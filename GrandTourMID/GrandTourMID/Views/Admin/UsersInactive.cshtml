@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "UsersInactive";
+    Layout = "~/Views/Shared/MasterAdmin.cshtml";
+}
+
+
+<link href="~/Content/admin_bootstrap_dist_css_bootstrap.min.css" rel="stylesheet" />
+
+<label class="w3-text-teal" id="mess"> </label>
+<button data-toggle="modal" data-target="#ModalRegistroUseradmi" class="w3-button w3-green w3-margin w3-right"><li class="fa fa-plus-circle "></li> Agregar Usuario</button>
+<br>
+
+<center><h2>Usuarios Inactivos</h2></center>
+<div class="w3-container">
+
+    <ul class="w3-ul w3-card-4" id="userscontentInactive"></ul>
+
+</div><br /><br />
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/Acciones.js"></script>

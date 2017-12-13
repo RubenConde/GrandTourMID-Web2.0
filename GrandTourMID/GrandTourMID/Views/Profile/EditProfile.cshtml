@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/MasterProfile.cshtml";
+}
+
+
+<div class="w3-row-padding">
+
+    <div class="w3-third">
+        <img draggable="true" id="output" style="width:100%; height:100%" class="w3-round"><br />
+        <label class="btn-block w3-grey w3-hover-teal " for="file">Seleccionar imagen<input id="file" name="file" type="file" accept="image/*" style="display:none" onchange="loadFile(event)" /></label>
+    </div>
+    <div class="w3-third">
+        <label class="w3-text-teal"><b>Nombre</b></label>
+        <input id="txtNombre" name="txtNombre" class="w3-input w3-border w3-white" placeholder="Nombre" type="text">
+        <label class="w3-text-teal"><b>Apellido Paterno</b></label>
+        <input id="txtApellidop" name="txtApellidop" class="w3-input w3-border w3-white" placeholder="Apellido Paterno" type="text">
+        <label class="w3-text-teal "><b>Apellido Materno</b></label>
+        <input id="txtApellidoM" name="txtApellidoM" class="w3-input w3-border w3-whitey" placeholder="Apellido Materno" type="text">
+        <label class="w3-text-teal"><b>Usuario</b></label>
+        <input id="txtUsuario" name="txtUsuario" class="w3-input w3-border w3-border-0 w3-white" placeholder="Usuario" type="text">
+        <label class="w3-text-teal "><b>Correo electronico</b></label>
+        <input id="txtEmail" name="txtEmail" class="w3-input w3-border w3-white" placeholder="Correco Electronico" type="text">
+    </div>
+    <div class="w3-third">
+        <div class="container">
+            <br />
+            <button class="w3-button w3-teal w3-block w3-hover-green w3-left-align" type="submit"><i class="fa fa-check fa-fw w3-margin-right "></i>Actualizar Información</button>
+        </div>
+        <div class="container">
+            <br />
+            <a onclick="document.getElementById('ModalContra').style.display = 'block'; MiFuncion()" ; class="w3-button w3-block w3-teal w3-hover-orange w3-left-align"><i class="fa fa-key fa-fw w3-margin-right"></i>Editar Contraseña</a>
+        </div>
+        <div class="container">
+            <br />
+            <a onclick="document.getElementById('baja').style.display = 'block';" ; class="w3-button w3-block w3-teal w3-hover-orange w3-left-align"><i class="fa fa-key fa-fw w3-margin-right"></i>Desactivar cuenta</a>
+        </div>
+    </div>
+</div>

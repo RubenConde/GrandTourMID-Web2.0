@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/MasterAdmin.cshtml";
+}
+
+
+
+
+
+
+<div class="w3-content w3-container w3-padding-64" id="contact">
+    <button id="btned" type="button" class="w3-button w3-right w3-blue w3-round"><li class="fa fa-edit"></li> Editar</button>
+
+    <div class="w3-row w3-padding-32 w3-section">
+
+        <div class="w3-col m4 w3-container">
+            <input class="w3-round w3-transparent w3-border" style="width:500px;" id="txtubi" name="txtubi" />
+            <br /><br />
+            <!-- Add Google Maps -->
+            <div id="googleMap" class="w3-round-large" style="width:100%;height:400px;"></div>
+       
+        </div>
+      
+        <br /><br /><br />
+
+        <div class="w3-col m8 w3-panel">
+
+            <form id="frmContacto" class="w3-large w3-margin-bottom">
+                <label id="mes" class="w3-text-green"></label><br /><br />
+                <li class="fa fa-text-width fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></li><input id="tit" name="tit" class=" w3-transparent w3-round w3-border" style="width:300px" placeholder="Ingrese Titúlo" required /><br /><br />
+                <li class="fa fa-text-width fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></li><input id="subt" name="subt" class="w3-transparent w3-border w3-round" placeholder="Ingrese un subtitulo" required /><br /><br />
+                <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i><input id="dire" name="dire" placeholder="Dirección" class="w3-transparent w3-border w3-round" required /> <br><br>
+                <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i><input id="tel" name="tel" placeholder="Ingrese número de telefono" class="w3-border w3-round w3-transparent" required /><br><br />
+                <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i><input id="corr" name="corr" placeholder="Correo electronico" class="w3-round w3-transparent w3-border" required /><br><br />
+                <i class="fa fa-coffee fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i><input id="mensajecontacto" name="mensajecontacto" placeholder="Mensaje personalizado para el usuario" class="w3-round w3-transparent w3-border" required /><br><br />
+                <input type="hidden" class="w3-round w3-transparent" id="la" name="la" />
+                <input type="hidden" class="w3-round w3-transparent w3-border" id="lon" name="lon" />
+                <button type="button" class="w3-button w3-left w3-section w3-red w3-hover-red" id="btncancelar"><li class="fa fa-times"></li> Cancelar</button>
+                <button id="btncontacto" class="w3-button w3-right w3-section w3-blue w3-hover-blue" type="button">
+                    <i class="fa fa-paper-plane"></i> ACTUALIZAR INFORMACION
+                </button>
+            </form>
+
+          
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/AccionesAdmin.js"></script>
+

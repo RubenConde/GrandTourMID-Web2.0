@@ -1,0 +1,225 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<title>Administrador</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="~/Content/w3.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="~/Content/admin_bootstrap_dist_css_bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/PhoneDesign.css" rel="stylesheet" />
+
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Poppins", sans-serif
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .w3-half img {
+        margin-bottom: -6px;
+        margin-top: 16px;
+        opacity: 0.8;
+        cursor: pointer
+    }
+
+        .w3-half img:hover {
+            opacity: 1
+        }
+
+    .black {
+        background-color: black;
+        color: white;
+    }
+</style>
+<body>
+    <button class="w3-red w3-round">Desactivado</button>
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar  w3-teal w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:normal;" id="mySidebar">
+        <br>
+        <br />
+        <br />
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+                <img src="~/img/usuario.png" class="w3-circle w3-margin-right" style="width:75px">
+            </div>
+            <div class="w3-col s9 w3-bar">
+                <br />
+                <span>Bienvenido, <strong>Mike</strong></span><br>
+                <div id="newinbox">
+                    <li class="w3-bar-item fa fa-spinner fa-pulse"></li>
+                </div>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+            </div>
+        </div>
+        <br />
+        <div class="w3-bar-block">
+            <a href="~/Admin/Back" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white w3-medium"><li class="fa fa-home"></li> Inicio</a>
+            <a href="~/Admin/ContactInbox" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-envelope"></li> Mensajes de contacto</a>
+            <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium">Designers</a>
+            <a onclick="myFunction('Menu')" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-user"></li> Usuarios</a>
+            <div id="Menu" class="w3-hide w3-container">
+                <a href="~/Admin/UsersRegister" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-group"></li> Usuarios Activos</a>
+                <a href="~/Admin/UsersInactive" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-user-times"></li> Usuarios Inactivos</a>
+                <a href="~/Admin/UsersBlocked" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-lock"></li> Usuarios Bloqueados</a>
+            </div>
+
+            
+            <a onclick="myFunction('Demo1')" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-cog"></li> Configuracíón</a>
+            <div id="Demo1" class="w3-hide w3-container">
+                <a href="~/Admin/EditIndex" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-edit"></li> Editar Inicio</a>
+                <a href="~/Admin/AboutApp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-mobile"></li> Acerca de la app</a>
+                <a href="~/Admin/Contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-user"></li> Contacto</a>
+            </div>
+            <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red  w3-medium"><li class="fa fa-sign-out"></li> Cerrar Sesión</a>
+        </div>
+    </nav>
+
+
+
+    <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+        <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+        <span>Company Name</span>
+    </header>
+
+
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <div class="w3-main w3-block" style="margin-left:340px;margin-right:40px">
+        <div class="w3-container" style="margin-top:10px" id="showcase">
+            <h1 class="w3-justify"><b>Administración</b></h1>
+        </div>
+        <div class="w3-col m9 w3-margin-bottom">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="ModalRegistroUseradmi" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registro de usuarios</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="w3-container" id="frmregistro">
+
+                        <button id="btnregistro" class="w3-button w3-right w3-round w3-green w3-hover-green" type="submit"><li class="fa fa-plus-circle"></li> Registrar</button>
+                        <div class="w3-row-padding">
+                            <label class="w3-animate-left w3-small"><b>Nombre</b></label>
+                            <i class="w3-small fa fa-user"></i>
+                            <input class="w3-input w3-transparent w3-border w3-round w3-small" id="nomc" name="nomc" type="text" placeholder="Ingrese su nombre">
+                            <label class="w3-animate-left w3-small"><b>Apellido Paterno</b></label>
+                            <i class="w3-small fa fa-user w3-small"></i>
+                            <input class="w3-input w3-transparent w3-border w3-round w3-small" type="text" id="apep" name="apep" placeholder="Apellido Paterno">
+                            <label class="w3-animate-left w3-small"><b>Apellido Materno</b></label>
+                            <i class="w3-small fa fa-user"></i>
+                            <input class="w3-input w3-transparent w3-border w3-round w3-small" type="text" id="apem" name="apem" placeholder="Apellido Materno">
+                            <label class="w3-animate-left w3-small"><b>Nombre de usuario</b></label>
+                            <i class="w3-small fa fa-user-plus"></i>
+                            <input class="w3-input w3-transparent w3-border w3-round w3-small" type="text" id="usr" name="usr" placeholder="Ingrese su nombre de usuario">
+                            <label class="w3-animate-left w3-small"><b>Correo electronico</b></label>
+                            <i class="w3-small fa fa-envelope"></i>
+                            <input class="w3-input w3-transparent w3-border w3-round w3-small" type="email" id="coe" name="coe" placeholder="Ingrese su Correo electronico">
+                            <label class="w3-animate-left w3-small"><b>Contraseña</b></label>
+                            <i class="w3-small fa fa-user-plus"></i>
+                            <input class="w3-input w3-transparent w3-border w3-round w3-small" type="password" id="ps" name="ps" placeholder="Ingrese su contraseña">
+                            <label class="w3-animate-left w3-small"><b>Confirmar contraseña</b></label>
+                            <i class="w3-small fa fa-user-plus"></i>
+                            <input class="w3-input w3-transparent w3-border w3-round w3-small" type="password" id="ps2" name="ps2" placeholder="Confirmar contraseña">
+                        </div>
+                        <br />
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+    <div id="modalinfousers" class="w3-modal w3-round">
+        <div class="w3-round w3-modal-content w3-animate-top w3-card-4" style="width:480px">
+            <header class="w3-container w3-teal">
+                <span onclick="document.getElementById('modalinfousers').style.display='none'"
+                      class="w3-button w3-display-topright">&times;</span>
+                <h6>información de usuario</h6>
+                <br>
+            </header>
+            
+            <div class="w3-container">
+                <img id="perfilimg" class="w3-image w3-round" style="width:75pX" />
+                <br /><br />
+                <label class="w3-text">Nombre</label>
+                <input class="w3-input w3-transparent w3-border w3-round w3-small" type="text" id="nameregister" name="nameregister" placeholder="Nombre">
+                <label class="w3-text">Apellido paterno</label>
+                <input class="w3-input w3-transparent w3-border w3-round w3-small" type="text" id="lastnamep" name="lastnamep" placeholder="Apellido Paterno">
+                <label class="w3-text">Apellido Materno</label>
+                <input class="w3-input w3-transparent w3-border w3-round w3-small" type="text" id="lastnamem" name="lastnamem" placeholder="Apellido Materno">
+                <label class="w3-text">Usuario</label>
+                <input class="w3-input w3-transparent w3-border w3-round w3-small" type="text" id="userregister" name="userregister" placeholder="Usuario">
+                <br />
+            </div>
+           
+        </div>
+    </div>
+
+
+
+</body>
+
+
+
+
+<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAA_QOzbpA8wTVvsWCfvksp3MfngNP6Q-E'></script>
+<script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="~/Scripts/locationpicker.jquery.min.js"></script>
+<script src="~/Scripts/AccionesAdmin.js"></script>
+<script src="~/Scripts/sweetalert2.all.js"></script>
+
+
+<script>
+
+    function cambiar_fondo() {
+        obj = document.getElementById('mySidebar');
+        obj.style.backgroundColor = (obj.style.backgroundColor == 'rgb(204, 204, 204)') ? 'transparent' : '#CCCCCC';
+    }
+
+
+
+
+
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+</script>
+
+

@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="~/Content/w3.css" rel="stylesheet" />
+<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html, body, h1, h2, h3, h4, h5 {
+        font-family: "RobotoDraft", "Roboto", sans-serif
+    }
+
+    .w3-bar-block .w3-bar-item {
+        padding: 16px
+    }
+</style>
+<body>
+
+
+
+    <!-- Side Navigation -->
+    <input name="idmensajecontacto" id="idmensajecontacto" type="hidden" />
+    <input name="idcorreoenviado" id="idcorreoenviado" type="hidden" />
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
+           class="w3-bar-item w3-button w3-hide-large w3-large">Cerrar<i class="fa fa-remove"></i></a>
+        <a href="~/Admin/Back" class="w3-button w3-black w3-hover-teal w3-bar-item"><li class="fa fa-mail-reply-all"></li> Regresar</a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-blue w3-button w3-hover-black w3-left-align" onclick="document.getElementById('id01').style.display = 'block'; Limpiar();">Nuevo mensaje <i class="w3-padding fa fa-pencil"></i></a>
+
+        <div id="numeroinbox">
+            <center><label id="car">Cargando <li class="fa fa-spinner fa-pulse"></li></label></center>
+        </div>
+        <div id="ContenedorUsuario" class="w3-hide w3-animate-left">
+        </div>
+        <div id="numeroleidos">
+            <center><label id="carg">Cargando <li class="fa fa-spinner fa-pulse"></li></label></center>
+        </div>
+        <div id="contenedorleidos" class="w3-hide w3-animate-left">
+        </div>
+        <div id="numeroenviados">
+            <center><label id="carga">Cargando <li class="fa fa-spinner fa-pulse"></li></label></center>
+        </div>
+        <div id="contenedorenviados" class="w3-hide w3-animate-left">
+
+        </div>
+        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-trash w3-margin-right"></i>Trash</a>
+    </nav>
+
+    <!-- Modal that pops up when you click on "New Message" -->
+    <div id="id01" class="w3-modal" style="z-index:4">
+        <div class="w3-modal-content w3-animate-top">
+            <div class="w3-container w3-padding w3-dark-gray">
+                <span onclick="document.getElementById('id01').style.display='none'"
+                      class="w3-button w3-red w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
+                <h2>Enviar correo electronico</h2>
+            </div>
+            <form id="frmenviarcorreocontacto" class="w3-panel">
+                <label>Para</label>
+                <input class="w3-input w3-border w3-margin-bottom w3-round w3-transparent" id="para" name="para" placeholder="Ingrese su correo electronico" type="email">
+                <label>Asunto</label>
+                <input class="w3-input w3-border w3-margin-bottom w3-round" id="asu" name="asu" type="text" placeholder="Ingrese su asunto">
+                <input class="w3-input w3-border w3-margin-bottom w3-round" id="inb" name="inb" style="height:150px" placeholder="Ingrese su mensaje">
+                <div class="w3-section">
+                    <button id="btnenviarcorreo" class="w3-button w3-green w3-right" type="submit">Send<i class="fa fa-paper-plane"></i></button>
+                </div>
+
+            </form>
+            <br />
+        </div>
+    </div>
+
+    <!-- Overlay effect when opening the side navigation on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
+
+    <!-- Page content -->
+    <div class="w3-main" style="margin-left:320px;">
+        <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
+        <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" onclick="document.getElementById('id01').style.display = 'block'; Limpiar();"><i class="fa fa-pencil"></i></a>
+
+        <div id="Borge" class="w3-container person">
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+    <script src="~/Scripts/ActionesInboxContacto.js"></script>
+    <script src="~/Scripts/sweetalert2.all.js"></script>
+    <script>
+
+
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+
+        function myFunc(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-red";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-red", "");
+            }
+        }
+
+    </script>
+
+
+
+</body>

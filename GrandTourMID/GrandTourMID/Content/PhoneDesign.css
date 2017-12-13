@@ -1,0 +1,104 @@
+﻿.phone-display {
+    max-width: 360px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+}
+
+.phone-display--image {
+    width: 190px;
+    height: 330px;
+    margin-bottom: -44px;
+}
+
+.phone-display--carousel {
+    position: relative;
+    display: inline-block;
+    margin-bottom: -44px;
+}
+
+.phone-display--carousel-mask {
+    width: 146px;
+    height: 260px;
+    background: black;
+    overflow: hidden;
+    position: absolute;
+    left: 22px;
+    top: 32px;
+}
+
+.phone-display--carousel-list {
+    width: 146px;
+    height: 260px;
+    background: black;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+    .phone-display--carousel-list li {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 146px;
+        height: 260px;
+        margin: 0;
+        padding: 0;
+    }
+
+        .phone-display--carousel-list li img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .phone-display--carousel-list li.is-current {
+            left: 0;
+            top: 0;
+        }
+
+        .phone-display--carousel-list li.is-next {
+            left: 100%;
+            top: 0;
+        }
+
+        .phone-display--carousel-list li.is-previous {
+            left: -100%;
+            top: 0;
+        }
+
+        .phone-display--carousel-list li.is-animating {
+            top: 0;
+            transition: left 0.3s ease-out;
+        }
+
+.phone-display--bezel {
+    font-size: 0;
+    border-radius: 100% 100% 12px 12px / 50% 50% 12px 12px;
+    margin: 0 15px;
+    padding: 44px 12px 16px 12px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.4) 100%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-display .btn {
+    margin: 12px 7px 0 7px;
+}
+
+.phone-display h3 {
+    font-size: 32px;
+    font-weight: 900;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .phone-display {
+        width: 100%;
+    }
+
+    .phone-display--image {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,15 @@
+#addfrm{
+	max-height: 400px;
+	overflow-x:hidden; overflow-y:scroll;
+}
+.contact-conten{
+	margin-right: 20px; margin-left: 20px;
+}
+.st{
+	margin-top: 8px;
+}
+.titleUser{
+	color: #013ADF;
+	font-weight: bolder;
+	text-align: center;
+}
