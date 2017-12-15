@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -534,15 +535,15 @@ namespace GrandTourMID.Controllers
             //ejemplo para guardar foto aun no funciona bien
             else if (data == "fotos")
             {
-                string img = Request.Form["file"];
-                string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(file.FileName);
+               /* string imgs = Request.Form["file"];
+                string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(img.FileName);
                 string patc = System.IO.Path.Combine(Server.MapPath("~/img/"), pic);
-                file.SaveAs(patc);
+                img.SaveAs(patc);
                 objeus.imagen = pic;
                 BDU.Foto(objeus);
 
 
-                respuesta = "1";
+                respuesta = "1";*/
 
                 /* for (int i = 0; i < Request.Files.Count; i++)
                  {
@@ -611,8 +612,20 @@ namespace GrandTourMID.Controllers
             }
 
             //actualiza información 
-            else if (data=="acercaAdmi")
+            else if (data == "acercaAdmi")
             {
+                objeace.titulo = Request.Form["tituloacercade"];
+                objeace.subtitulo = Request.Form["subtituloacercade"];
+                objeace.infoapp = Request.Form["infoacercade"];
+                objeace.infoAdicional = Request.Form["ifoacercadicional"];
+                objeace.img = Request.QueryString["files"];
+                GuardarImagen(file);
+
+
+                BDACE.ActualizarAcercaDe(objeace);
+
+                respuesta = "1";
+
 
 
 
@@ -629,16 +642,24 @@ namespace GrandTourMID.Controllers
         }
 
 
+        public ActionResult GuardarImagen(HttpPostedFileBase file)
+        {
+
+            string pic = System.IO.Path.GetFileName(file.FileName) + "_" + "_Gde_" + ImageFormat.Jpeg;
+            string patc = System.IO.Path.Combine(Server.MapPath("~/img"), pic);
+            file.SaveAs(patc);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                file.InputStream.CopyTo(ms);
+                byte[] array = ms.GetBuffer();
+
+                objeace.img = pic;
+
+            }
+            return Content("");
 
 
-
-
-
-
-
-
-
-
+        }
 
 
         //metodos fuera del controlador

@@ -302,7 +302,7 @@ function desact(e) {
 
             DesactivarAccount(e);
 
-            
+
         } else if (result.dismiss === 'cancel') {
             swal(
                 'Cancelado',
@@ -344,3 +344,48 @@ function DesactivarAccount(e) {
 
 
 //actualizar info acercade
+
+
+function ver() {
+    var file = document.getElementById('fileacerca');
+    var img = file.files[0];
+    var file = file.value.split("\\");
+    var fileName = file[file.length - 1];
+    var nameunic = fileName.replace(/\s/g, '');
+    alert(fileName);
+    $("#imagenacercas").val(nameunic);
+    var imd = file.value;
+}
+
+function Acercade(imd) {
+    $.ajax({
+        url: "/Ajax/Ajax?data=acercaAdmi&files=" + imd,
+        type: "POST",
+        data: $("#frmAcercade").serialize(),
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+
+            if (a == 1) {
+
+                swal({
+                    title: "Informacion Actualizada",
+                    text: 'Se ha actualizado correctamente la información',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                });
+
+            }
+            else if (a == 0) {
+
+            }
+            else {
+            }
+
+        }
+    });
+};

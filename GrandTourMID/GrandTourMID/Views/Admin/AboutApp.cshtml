@@ -3,16 +3,16 @@
     ViewBag.Title = "AboutApp";
     Layout = "~/Views/Shared/MasterAdmin.cshtml";
 }
-<form class="w3-content w3-container w3-padding-64" id="frmAcercade">
+<form class="w3-content w3-container w3-padding-64" enctype="multipart/form-data" id="frmAcercade">
     <div class="w3-container">
         <button class="w3-button w3-blue w3-round w3-right" style="right:100px">Editar</button>
     </div>
-    <center> <input class="w3-transparent w3-border w3-round w3-center" value="ABOUT ME" /></center><br />
-    <center><input class="w3-transparent w3-border w3-round w3-center" value="subtitulo" /></center><br />
+    <center><input name="tituloacercade" id="tituloacercade" class="w3-transparent w3-border w3-round w3-center"/></center><br />
+    <center><input name="subtituloacercade" id="subtituloacercade" class="w3-transparent w3-border w3-round w3-center" value="subtitulo" /></center><br />
 
     <center>
         <h4 class="w3-text-black">Información acerca de la app</h4>
-        <textarea placeholder="Ingrese información acerca de la app" class="w3-round w3-border w3-transparent" style="width:831px; height:211px"> We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        <textarea name="infoacercade" id="infoacercade" placeholder="Ingrese información acerca de la app" class="w3-round w3-border w3-transparent" style="width:831px; height:211px"> We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
         qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </textarea>
@@ -32,19 +32,19 @@
                 </div>
 
             </div>
-            <label class="w3-button w3-grey w3-hover-teal"><li class="fa fa-folder "></li> Seleccionar imagen<input id="file" name="file" type="file" accept="image/*" style="display:none" onchange="loadfilenew(event)" /></label>
+            <label class="w3-button w3-grey w3-hover-teal"><li class="fa fa-folder "></li> Seleccionar imagen<input id="fileacerca" name="fileacerca" type="file" accept="image/*" style="display:none" onchange="ver()" /></label>
         </div>
-
+        <input type="text" id="imagenacercas" name="imagenacercas" />
         <!-- Hide this text on small devices -->
         <div class="w3-col m6 w3-hide-small w3-padding-large">
             <h4>Información adicional</h4>
-            <textarea placeholder="Ingrese su información adicional" class="w3-border w3-transparent w3-round" style="height:350px; width:400px">                
+            <textarea name="ifoacercadicional" id="ifoacercadicional" placeholder="Ingrese su información adicional" class="w3-border w3-transparent w3-round" style="height:350px; width:400px">                
                 Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </textarea>
             <br /><br />
-            <button class="w3-button w3-green w3-round"><li class="fa fa-save"></li> Actualizar Información</button>
+            <button type="button" onclick="Acercade()" class="w3-button w3-green w3-round"><li class="fa fa-save"></li> Actualizar Información</button>
         </div>
     </div>
 
@@ -52,6 +52,10 @@
 
 
 <script>
+
+
+    
+
     var loadfilenew = function (event) {
         var imagenacerca = document.getElementById('imagenacerca');
         imagenacerca.src = URL.createObjectURL(event.target.files[0]);
