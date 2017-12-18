@@ -1,0 +1,152 @@
+﻿
+
+@{
+    ViewBag.Title = "Back";
+    Layout = "~/Views/Shared/MasterAdmin.cshtml";
+}
+
+
+
+
+
+<head>
+
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <link href="~/Content/w3.css" rel="stylesheet" />
+    <link href="~/Content/chat.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+</head>
+
+<div id="frame">
+    <form id="sidepanel">
+        <div id="profile">
+            <div class="wrap">
+                <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
+                <p>Mike Ross</p>
+
+                <div id="status-options">
+                    <ul>
+                        <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
+                        <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
+                        <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
+                        <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <input id="idchat" type="hidden" />
+        <div id="contacts">
+            <ul id="userscontainer">
+                <center><label id="carg">Obteniendo conversaciones <li class="fa fa-spinner fa-pulse"></li></label></center>
+            </ul>
+        </div>
+
+    </form>
+    <div class="content">
+        <div class="contact-profile">
+            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+            <label id="usrnames" type="text"></label>
+            <div class="social-media">
+            </div>
+        </div>
+        <div id="messages" class="messages">
+            <ul id="mensajes"></ul>
+        </div>
+        <form class="message-input" id="sentmensaje">
+            <div class="wrap">
+                <input type="text" id="menssage" name="menssage" placeholder="Escribe tu mensaje..." />
+                <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+                <button onclick="enviar()" type="button" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src="~/Scripts/AccionesChat.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script>
+
+    function holis() {
+        alert("que pes")
+    }
+    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+
+    $("#profile-img").click(function () {
+        $("#status-options").toggleClass("active");
+    });
+
+    $(".expand-button").click(function () {
+        $("#profile").toggleClass("expanded");
+        $("#contacts").toggleClass("expanded");
+    });
+
+    $("#status-options ul li").click(function () {
+        $("#profile-img").removeClass();
+        $("#status-online").removeClass("active");
+        $("#status-away").removeClass("active");
+        $("#status-busy").removeClass("active");
+        $("#status-offline").removeClass("active");
+        $(this).addClass("active");
+
+        if ($("#status-online").hasClass("active")) {
+            $("#profile-img").addClass("online");
+        } else if ($("#status-away").hasClass("active")) {
+            $("#profile-img").addClass("away");
+        } else if ($("#status-busy").hasClass("active")) {
+            $("#profile-img").addClass("busy");
+        } else if ($("#status-offline").hasClass("active")) {
+            $("#profile-img").addClass("offline");
+        } else {
+            $("#profile-img").removeClass();
+        };
+
+        $("#status-options").removeClass("active");
+    });
+
+
+    function ScrollDiv() {
+
+        if (document.getElementById('messages').scrollTop < (document.getElementById('messages').scrollHeight - document.getElementById('messages').offsetHeight)) {
+            -1
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollTop + 9000
+        }
+
+    };
+
+    function scrollToEnd() {
+        var container = document.getElementById('messages');
+        var scrollHeight = container.scrollHeight;
+        container.scrollTop = scrollHeight;
+    }
+
+    function mounted() {
+        this.scrollToEnd();
+    }
+    function updated() {
+        this.scrollToEnd();
+    }
+
+    function newMessage() {
+
+
+    };
+
+
+
+    $(window).on('keydown', function (e) {
+        if (e.which == 13) {
+            enviar();
+            updated();
+            mounted
+            return false;
+        }
+    });
+//# sourceURL=pen.js
+</script>
+

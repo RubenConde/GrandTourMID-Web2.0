@@ -1,4 +1,5 @@
 ﻿//span animado
+
 $(document).ready(function () {
 
     var ajaxCall = function () {
@@ -209,6 +210,7 @@ $("#btncontacto").click(function () {
             success: function (a) {
 
                 if (a == 1) {
+                   
                     swal({
                         title: "Informacion Actualizada",
                         text: 'Se ha actualizado correctamente la información',
@@ -218,6 +220,7 @@ $("#btncontacto").click(function () {
                         closeOnConfirm: true,
                         showLoaderOnConfirm: true
                     });
+
 
                     $("#tit").prop('disabled', true);
                     $("#subt").prop('disabled', true);
@@ -234,7 +237,7 @@ $("#btncontacto").click(function () {
 
                 }
                 else {
-                    var datos = JSON.parse(a);
+                    
 
 
                 }

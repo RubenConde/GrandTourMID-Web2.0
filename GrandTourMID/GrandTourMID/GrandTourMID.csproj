@@ -145,6 +145,7 @@
     <Compile Include="BO\AcercaBO.cs" />
     <Compile Include="BO\ContactoBO.cs" />
     <Compile Include="BO\CorreoBO.cs" />
+    <Compile Include="BO\InicioBO.cs" />
     <Compile Include="BO\PublicacionBO.cs" />
     <Compile Include="BO\UsuarioBO.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -152,8 +153,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="DAO\AcercaDAO.cs" />
+    <Compile Include="DAO\ChatDAO.cs" />
     <Compile Include="DAO\ConexionSQL.cs" />
     <Compile Include="DAO\ContactoDAO.cs" />
+    <Compile Include="DAO\InicioDAO.cs" />
     <Compile Include="DAO\LoginDAO.cs" />
     <Compile Include="DAO\PublicacionDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
@@ -169,6 +172,7 @@
     <Content Include="Content\admin_dist_css_skins__all-skins.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chat.css" />
     <Content Include="Content\estiloIndex.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts.css" />
@@ -186,6 +190,7 @@
     <Content Include="img\usuario.png" />
     <Content Include="Scripts\Acciones.js" />
     <Content Include="Scripts\AccionesAdmin.js" />
+    <Content Include="Scripts\AccionesChat.js" />
     <Content Include="Scripts\AccionesProfile.js" />
     <Content Include="Scripts\ActionesInboxContacto.js" />
     <Content Include="Scripts\AdmiLogin.js" />
@@ -200,6 +205,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\IndexEdit.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -241,6 +247,8 @@
     <Content Include="Views\Admin\UsersInactive.cshtml" />
     <Content Include="Views\Admin\UsersBlocked.cshtml" />
     <Content Include="Views\Admin\AboutApp.cshtml" />
+    <Content Include="Views\Admin\Chat.cshtml" />
+    <Content Include="Views\Admin\IndexEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

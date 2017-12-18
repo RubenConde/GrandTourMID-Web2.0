@@ -44,11 +44,14 @@
     <button class="w3-red w3-round">Desactivado</button>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar  w3-teal w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:normal;" id="mySidebar">
+        <a href="~/Admin/IndexEdit" class="w3-bar-item w3-button w3-text-white w3-left"><li class="fa fa-cogs fa-spin"></li> Mi diseño</a>
         <br>
+        
         <br />
         <br />
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
         <div class="w3-container w3-row">
+
             <div class="w3-col s4">
                 <img src="~/img/usuario.png" class="w3-circle w3-margin-right" style="width:75px">
             </div>
@@ -65,7 +68,7 @@
         <div class="w3-bar-block">
             <a href="~/Admin/Back" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white w3-medium"><li class="fa fa-home"></li> Inicio</a>
             <a href="~/Admin/ContactInbox" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-envelope"></li> Mensajes de contacto</a>
-            <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium">Designers</a>
+            <a href="~/Admin/Chat" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-group"></li> Atención a clientes</a>
             <a onclick="myFunction('Menu')" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-user"></li> Usuarios</a>
             <div id="Menu" class="w3-hide w3-container">
                 <a href="~/Admin/UsersRegister" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-group"></li> Usuarios Activos</a>
@@ -73,7 +76,7 @@
                 <a href="~/Admin/UsersBlocked" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-lock"></li> Usuarios Bloqueados</a>
             </div>
 
-            
+
             <a onclick="myFunction('Demo1')" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-cog"></li> Configuracíón</a>
             <div id="Demo1" class="w3-hide w3-container">
                 <a href="~/Admin/EditIndex" class="w3-bar-item w3-button w3-hover-white  w3-medium"><li class="fa fa-edit"></li> Editar Inicio</a>
@@ -95,9 +98,7 @@
     <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
     <div class="w3-main w3-block" style="margin-left:340px;margin-right:40px">
-        <div class="w3-container" style="margin-top:10px" id="showcase">
-            <h1 class="w3-justify"><b>Administración</b></h1>
-        </div>
+        
         <div class="w3-col m9 w3-margin-bottom">
             @RenderBody()
         </div>

@@ -1,5 +1,4 @@
 ﻿
-
 //Inbox Recibidos
 $(document).ready(function () {
     var ajaxCall = function () {

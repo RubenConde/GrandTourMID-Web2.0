@@ -24,10 +24,11 @@ namespace GrandTourMID.Controllers
         ContactoBO objecontacto = new ContactoBO();
         ContactoDAO BDCO = new ContactoDAO();
         PublicacionDAO BDP = new PublicacionDAO();
-        AcercaDAO BDACE = new AcercaDAO();
-        AcercaBO objeace = new AcercaBO();
+        ChatDAO BDCH = new ChatDAO();
+        InicioBO objei = new InicioBO();
+        InicioDAO BDI = new InicioDAO();
         // GET: Ajax
-        public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file)
+        public ActionResult Ajax(String data, UsuarioBO objeus)
         {
             string respuesta = "";
             //Login
@@ -35,6 +36,7 @@ namespace GrandTourMID.Controllers
             {
                 objeus.usuario = Request.Form["user"];
                 objeus.contraseña = Request.Form["psw"];
+
                 ArrayList datos = BDL.Login(objeus);
                 if (datos.Count > 0)
                 {
@@ -535,15 +537,15 @@ namespace GrandTourMID.Controllers
             //ejemplo para guardar foto aun no funciona bien
             else if (data == "fotos")
             {
-               /* string imgs = Request.Form["file"];
-                string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(img.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/"), pic);
-                img.SaveAs(patc);
-                objeus.imagen = pic;
-                BDU.Foto(objeus);
+                /* string imgs = Request.Form["file"];
+                 string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(img.FileName);
+                 string patc = System.IO.Path.Combine(Server.MapPath("~/img/"), pic);
+                 img.SaveAs(patc);
+                 objeus.imagen = pic;
+                 BDU.Foto(objeus);
 
 
-                respuesta = "1";*/
+                 respuesta = "1";*/
 
                 /* for (int i = 0; i < Request.Files.Count; i++)
                  {
@@ -612,17 +614,13 @@ namespace GrandTourMID.Controllers
             }
 
             //actualiza información 
-            else if (data == "acercaAdmi")
+            else if (data == "updateacerca")
             {
-                objeace.titulo = Request.Form["tituloacercade"];
-                objeace.subtitulo = Request.Form["subtituloacercade"];
-                objeace.infoapp = Request.Form["infoacercade"];
-                objeace.infoAdicional = Request.Form["ifoacercadicional"];
-                objeace.img = Request.QueryString["files"];
-                GuardarImagen(file);
-
-
-                BDACE.ActualizarAcercaDe(objeace);
+                objei.titulo = Request.Form["titulo2"];
+                objei.subtitulo = Request.Form["subtitulo2"];
+                objei.infoapp = Request.Form["infoapp2"];
+                objei.infoAdicional = Request.Form["infoadicional2"];
+                BDI.ActualizarAcercade(objei);
 
                 respuesta = "1";
 
@@ -631,20 +629,122 @@ namespace GrandTourMID.Controllers
 
             }
 
+            else if (data == "users")
+            {
+                int iduser = Convert.ToInt32(Session["ID"]);
+                objeus.id = iduser;
+                ArrayList dates = BDCH.Chat(objeus);
+                if (dates.Count > 0)
+                {
+                    int c = dates.Count / 3;
+                    DataTable d = BDCH.usersChat(objeus);
+                    for (int i = 0; i < c; i++)
+                    {
+                        DataRow row = d.Rows[i];
+                        respuesta = "<li onclick=\"chatGo(" + row["ID"] + ",'" + row["nombre"] + "');\" class=\"contact\"><div class=\"wrap\"><img src =\"\" alt=\"\" /><div class=\"meta\">" +
+                            "<p class=\"name\">" + row["nombre"] + "</p><p class=\"preview\">" + row["email"] + "</p></div></div></li>";
+                        Response.Write(respuesta);
+                    }
 
 
+                }
+                else
+                {
+                    Response.Write("No hay usuarios");
+                }
+
+                respuesta = "";
+            }
+
+            else if (data == "chat")
+            {
+
+                objeus.id = Convert.ToInt32(Session["ID"]);
+                Session["idchat"] = Request.QueryString["id"].ToString();
+                string se = Session["idchat"].ToString();
+                objeus.idchat = Convert.ToInt32(Request.QueryString["id"]);
+                DataTable d = BDCH.MsgChat(objeus);
+                try
+                {
+                    for (int i = 0; i < d.Rows.Count; i++)
+                    {
+                        DataRow row = d.Rows[i];
+
+                        if (row["idenvia"].ToString() == Request.QueryString["id"].ToString())
+                        {
+                            respuesta = "<li class=\"sent\"><img src =\"http://emilcarlsson.se/assets/mikeross.png\" alt=\"\">" +
+                                "<p>" + row["mensaje"] + "</p></li>"; Response.Write(respuesta);
+                        }
+                        else
+                        {
+                            respuesta = "<li class=\"replies\"><img src=\"http://emilcarlsson.se/assets/harveyspecter.png\" alt =\"\"/>" +
+                                "<p>" + row["mensaje"] + "</p>" +
+                                "</ li > "; Response.Write(respuesta);
+                        }
+
+                    }
+                    respuesta = "";
+                }
+                catch { }
+
+            }
+            else if (data == "infouser")
+            {
+                int id = Convert.ToInt32(Session["idchat"]);
+                DataTable dt = BDU.BuscarUser(id);
+                String jSonString = ConvertirDataJson(dt);
+                respuesta = jSonString;
+            }
+
+            else if (data == "enviarchat")
+            {
+                objeus.id = Convert.ToInt32(Session["ID"]);
+                objeus.idchat = Convert.ToInt32(Session["idchat"]);
+                objeus.mensaje = Request.Form["menssage"].ToString();
+                ArrayList idChat = BDCH.idChat(objeus);
+                if (idChat.Count > 0)
+                {
+                    objeus.idchat = Convert.ToInt32(idChat[0]);
+                    BDCH.Mensajesenviados(objeus);
+                    respuesta = "1";
+                }
+                else
+                {
+                    Response.Write("Error al enviar mensaje");
+                }
+            }
+
+            else if (data == "updatetitulo1")
+            {
+                objei.titulo = Request.Form["titulo1"];
+                BDI.ActualizarTitulo1(objei);
+                respuesta = "1";
+            }
+            else if (data == "updatetitulo3")
+            {
+                objei.titulo3 = Request.Form["titulo3"];
+                BDI.ActualizarTitulo3(objei);
+                respuesta = "1";
+            }
+            else if (data == "loadinfo")
+            {
+                DataTable dti = BDI.CargarInfoInicio();
+                String jSonString = ConvertirDataJson(dti);
+
+                respuesta = jSonString;
+
+            }
 
 
 
             return Content(respuesta);
-
-
         }
 
 
-        public ActionResult GuardarImagen(HttpPostedFileBase file)
-        {
 
+        public ActionResult GuardarImagen1(HttpPostedFileBase file)
+        {
+            string respuesta = "";
             string pic = System.IO.Path.GetFileName(file.FileName) + "_" + "_Gde_" + ImageFormat.Jpeg;
             string patc = System.IO.Path.Combine(Server.MapPath("~/img"), pic);
             file.SaveAs(patc);
@@ -652,11 +752,15 @@ namespace GrandTourMID.Controllers
             {
                 file.InputStream.CopyTo(ms);
                 byte[] array = ms.GetBuffer();
+                objei.img = pic;
+                BDI.Actualizarimagen1(objei);
 
-                objeace.img = pic;
 
             }
-            return Content("");
+
+            respuesta = "1";
+
+            return Content(respuesta);
 
 
         }
