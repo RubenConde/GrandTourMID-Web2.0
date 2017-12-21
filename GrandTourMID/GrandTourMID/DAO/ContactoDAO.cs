@@ -89,6 +89,12 @@ namespace GrandTourMID.DAO
             return EjercutarSentenciaBusqueda(sql);
         }
 
+        public DataTable ultimosinboxrecibidos()
+        {
+            string sql = string.Format(" select top 3 * from MensajeContacto where visto=0 order by idmensaje desc ");
+            return EjercutarSentenciaBusqueda(sql);
+        }
+       
 
         public int MensajeLeido(ContactoBO objec)
         {
@@ -108,7 +114,7 @@ namespace GrandTourMID.DAO
 
         public DataTable InboxEnviado()
         {
-            string sql = string.Format("select idcorreo, para, motivo, mensaje from Correo");
+            string sql = string.Format("select idcorreo, fecha, para, motivo, mensaje from Correo");
             return EjercutarSentenciaBusqueda(sql);
 
         }

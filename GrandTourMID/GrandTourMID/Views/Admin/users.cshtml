@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "users";
+    Layout = "~/Views/Shared/MasterAdmi.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                <h4 class="c-grey-900 mB-20">Tabla de empleados</h4>
+                <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead role="row">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Puesto</th>
+                            <th>Lugar</th>
+                            <th>Edad</th>
+                            <th>Fecha de Inicio</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Puesto</th>
+                            <th>Lugar</th>
+                            <th>Edad</th>
+                            <th>Fecha de Inicio</th>
+                        </tr>
+                    </tfoot>
+                    <tbody id="contenedor">
+                        <tr>
+                            <th id="name"></th>
+                            <th id="poste">Puesto</th>
+                            <th id="lieu">Lugar</th>
+                            <th id="ager">Edad</th>
+                            <th id="date">Fecha de Inicio</th>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/ajax/ajax?data=userslist",
+            type: "post",
+            success: function (a) {
+
+                var datos = jQuery.parseJSON(a);
+
+                for (var k in datos) {
+                    alert(datos[k]);
+                };
+
+           
+                
+
+            }
+        });
+        var ajaxcall = function () {
+            $.ajax({
+                url: "/ajax/ajax?data=userslist",
+                type: "post",
+                success: function (a) {
+
+                    var datos = jQuery.parseJSON(a);
+
+                    for (var k in datos) {
+                        alert(datos[k]);
+                    };
+                }
+            });
+        }
+        setinterval(ajaxcall, 1000)
+    });
+
+</script>
+

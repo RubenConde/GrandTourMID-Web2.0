@@ -13,7 +13,7 @@ namespace GrandTourMID.DAO
 
         public ArrayList Login(UsuarioBO objeus)
         {
-            string comando = string.Format("SELECT usuario.idusuario, usuario.nombre, usuario.idtipo, usuario.foto, tipo.nombre as rol, usuario.estado FROM usuario, tipo  WHERE usuario = '{0}' or email='{1}' and contrasenia = '{2}' and estado = 1 and usuario.idtipo = tipo.idtipo", objeus.usuario, objeus.usuario, objeus.EncriptarMD5(objeus.contraseña));
+            string comando = string.Format("SELECT usuario.idusuario, usuario.nombre, usuario.idtipo, usuario.foto, tipo.nombre as rol, usuario.estado FROM usuario, tipo  WHERE usuario = '{0}' and contrasenia = '{1}' and estado = 1 and usuario.idtipo = tipo.idtipo", objeus.usuario, objeus.EncriptarMD5(objeus.contraseña));
             SqlCommand adapter = new SqlCommand(comando, establecerConexion());
             abrirConexion();
             SqlDataReader lectura;

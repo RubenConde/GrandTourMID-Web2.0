@@ -1,14 +1,18 @@
 ﻿//span animado
-
 $(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=messagenew",
+        type: "POST",
+        success: function (a) {
 
+            $("#newinbox").html(a);
+
+        }
+    });
     var ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=messagenew",
             type: "POST",
-            beforeSend: function () {
-
-            },
             success: function (a) {
 
                 $("#newinbox").html(a);
@@ -19,8 +23,63 @@ $(document).ready(function () {
     setInterval(ajaxCall, 1000)
 });
 
-//numero de mensajes recibidos en widget
+///////ver todos emails
 
+function verinboxall() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=viewall",
+        type: "POST",
+
+        success: function (a) {
+            window.location = "/Admin/email";
+            
+
+        }
+    });
+
+   var ajaxCall = function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=viewall",
+            type: "POST",
+            beforeSend: function () {
+
+            },
+            success: function (a) {
+
+                $("#contenedorecibidos").html(a);
+
+            }
+        });
+    }
+    setInterval(ajaxCall, 1000)
+
+
+};
+
+
+
+///ultimos inbox recibidos
+$(document).ready(function () {
+
+    var ajaxCall = function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=ultimosinboxrecibidos",
+            type: "POST",
+            beforeSend: function () {
+
+            },
+            success: function (a) {
+
+                $("#ultimosrecibidos").html(a);
+
+            }
+        });
+    }
+    setInterval(ajaxCall, 1000)
+});
+
+
+//numero de mensajes recibidos en widget
 $(document).ready(function () {
 
     var ajaxCall = function () {
@@ -210,7 +269,7 @@ $("#btncontacto").click(function () {
             success: function (a) {
 
                 if (a == 1) {
-                   
+
                     swal({
                         title: "Informacion Actualizada",
                         text: 'Se ha actualizado correctamente la información',
@@ -237,7 +296,7 @@ $("#btncontacto").click(function () {
 
                 }
                 else {
-                    
+
 
 
                 }

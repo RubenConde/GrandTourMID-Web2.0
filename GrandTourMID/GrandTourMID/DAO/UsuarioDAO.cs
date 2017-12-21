@@ -115,7 +115,12 @@ namespace GrandTourMID.DAO
         }
 
 
+        public DataTable MostrarEmpleados()
+        {
+            string sql = string.Format("select u.nombre, t.nombre as rol, u.ciudad, u.fecha, u.edad from usuario u, tipo t where u.idtipo = t.idtipo and t.idtipo= 1");
+            return EjercutarSentenciaBusqueda(sql);
 
+        }
 
 
         public int ActualizarCodigo(CorreoBO objec)
@@ -184,7 +189,7 @@ namespace GrandTourMID.DAO
         }
 
 
-
+      
 
 
     }

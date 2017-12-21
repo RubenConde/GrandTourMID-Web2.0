@@ -1,7 +1,22 @@
-﻿
+﻿var ajaxCall;
+
 //Inbox Recibidos
-$(document).ready(function () {
-    var ajaxCall = function () {
+function cargarrecibidos() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=InboxRecibidos",
+        type: "POST",
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+            $("#contenedorenviados").fadeOut();
+            $("#contenedorleidos").fadeOut();
+            $("#contenedorecibidos").fadeIn();
+            $("#contenedorecibidos").html(a);
+
+        }
+    });
+    ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=InboxRecibidos",
             type: "POST",
@@ -10,17 +25,35 @@ $(document).ready(function () {
             },
             success: function (a) {
 
-                $("#ContenedorUsuario").html(a);
+                $("#contenedorecibidos").html(a);
 
             }
         });
     }
     setInterval(ajaxCall, 1000)
-});
-//inbox leidos
+}
 
-$(document).ready(function () {
-    var ajaxCall = function () {
+//inbox leidos
+var interval;
+function Cargarleidos() {
+
+    $.ajax({
+        url: "/Ajax/Ajax?data=InboxLeidos",
+        type: "POST",
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+            $("#contenedorenviados").fadeOut();
+            $("#contenedorecibidos").fadeOut();
+            $("#contenedorleidos").fadeIn();
+            $("#contenedorleidos").html(a);
+
+
+
+        }
+    });
+    ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=InboxLeidos",
             type: "POST",
@@ -35,11 +68,26 @@ $(document).ready(function () {
         });
     }
     setInterval(ajaxCall, 1000)
-});
+};
 
 //Inbox enviados
-$(document).ready(function () {
-    var ajaxCall = function () {
+function cargarenviados() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=usuariosenviados",
+        type: "POST",
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+
+            $("#contenedorleidos").fadeOut();
+            $("#contenedorecibidos").fadeOut();
+            $("#contenedorenviados").fadeIn();
+            $("#contenedorenviados").html(a);
+
+        }
+    });
+    ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=usuariosenviados",
             type: "POST",
@@ -54,10 +102,19 @@ $(document).ready(function () {
         });
     }
     setInterval(ajaxCall, 1000)
-});
+};
 
 //Numero recibidos
 $(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=Inboxnotifica",
+        type: "POST",
+        success: function (a) {
+
+            $("#numeroinbox").html(a);
+
+        }
+    });
 
     var ajaxCall = function () {
         $.ajax({
@@ -73,14 +130,25 @@ $(document).ready(function () {
             }
         });
     }
-    setInterval(ajaxCall, 1000)
+    setInterval(ajaxCall, 2000)
 });
 
 
 //numero vistos
 
 $(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=Inboxnotificaleidos",
+        type: "POST",
+        beforeSend: function () {
 
+        },
+        success: function (a) {
+
+            $("#numeroleidos").html(a);
+
+        }
+    });
     var ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=Inboxnotificaleidos",
@@ -102,6 +170,18 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
+    $.ajax({
+        url: "/Ajax/Ajax?data=inboxnotificenviados",
+        type: "POST",
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+
+            $("#numeroenviados").html(a);
+
+        }
+    });
     var ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=inboxnotificenviados",
@@ -121,16 +201,16 @@ $(document).ready(function () {
 
 
 //Ver inbox
-var interval;
+
 function VerMensa(e) {
     $("#idmensajecontacto").val(e);
-    clearInterval(interval);
+    clearInterval(ajaxCall);
     $.ajax({
         url: '/Ajax/Ajax?data=Verinbocs&idmensajecontac=' + e,
         type: "post",
 
         success: function (r) {
-            $("#Borge").html(r);
+            $("#mensajecontenedor").html(r);
         }
     });
 };
@@ -141,13 +221,13 @@ function VerMensa(e) {
 var interval;
 function VerInbox(e) {
     $("#idcorreoenviado").val(e);
-    clearInterval(interval);
+    clearInterval(ajaxCall);
     $.ajax({
         url: '/Ajax/Ajax?data=verenviado&idcorreoenviado=' + e,
         type: "post",
 
         success: function (r) {
-            $("#Borge").html(r);
+            $("#mensajecontenedor").html(r);
         }
     });
 };
@@ -217,8 +297,7 @@ $(document).ready(function () {
                 }
             });
         }
-        else
-        {
+        else {
             swal({
                 title: "¿Seguro que llenaste los campos?",
                 text: 'No puedes dejar campos vacíos, validalos porfavor!',

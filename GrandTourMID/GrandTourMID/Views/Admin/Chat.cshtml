@@ -2,151 +2,76 @@
 
 @{
     ViewBag.Title = "Back";
-    Layout = "~/Views/Shared/MasterAdmin.cshtml";
+    Layout = "~/Views/Shared/MasterAdmi.cshtml";
 }
 
+<style>
+    #scroll {
+        width: 628px;
+        height: 315px;
+        background: url(../Images/contenido.jpg);
+        overflow: auto;
+    }
+</style>
 
 
+<form id="sidepanel" class="full-container">
+    <div class="peers fxw-nw pos-r">
+        <div class="peer bdR" id="chat-sidebar">
+            <div class="layers h-100">
+                <div class="bdB layer w-100"><input placeholder="Search contacts..." name="chatSearch" class="form-constrol p-15 bdrs-0 w-100 bdw-0" type="text"></div>
+                <div id="userscontainer" class="layer w-100 fxg-1 scrollable pos-r ps ps--active-y">
+                    <li class="fa fa-spin spinner"></li>
 
-
-<head>
-
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-    <link href="~/Content/w3.css" rel="stylesheet" />
-    <link href="~/Content/chat.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-
-</head>
-
-<div id="frame">
-    <form id="sidepanel">
-        <div id="profile">
-            <div class="wrap">
-                <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-                <p>Mike Ross</p>
-
-                <div id="status-options">
-                    <ul>
-                        <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
-                        <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
-                        <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
-                        <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
-                    </ul>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; height: 567px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 450px;"></div>
+                    </div>
                 </div>
-
             </div>
         </div>
+        <div class="peer peer-greed" id="chat-box">
+            <div class="layers h-100">
+                <div class="layer w-100">
+                    <div class="peers fxw-nw jc-sb ai-c pY-20 pX-30 bgc-white">
+                        <div class="peers ai-c">
+                            <div class="peer d-n@md+"><a href="" title="" id="chat-sidebar-toggle" class="td-n c-grey-900 cH-blue-500 mR-30"><i class="ti-menu"></i></a></div>
+                            <div class="peer mR-20"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt="" class="w-3r h-3r bdrs-50p"></div>
+                            <div class="peer">
+                                <h6 class="lh-1 mB-0">John Doe</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="scroll" class="layer w-100 fxg-1 bgc-grey-200">
+                    <div class="p-20 gapY-15" id="mensajes">
 
-        <input id="idchat" type="hidden" />
-        <div id="contacts">
-            <ul id="userscontainer">
-                <center><label id="carg">Obteniendo conversaciones <li class="fa fa-spinner fa-pulse"></li></label></center>
-            </ul>
-        </div>
 
-    </form>
-    <div class="content">
-        <div class="contact-profile">
-            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <label id="usrnames" type="text"></label>
-            <div class="social-media">
+                    </div>
+                    <div class="ps__rail-x" style="left: 100px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    
+                </div>
+                <div class="layer w-100">
+                    <div class="p-20 bdT bgc-white">
+                        <div class="pos-r"><input class="form-control bdrs-10em m-0" placeholder="Escribe tu mensaje..." type="text"> <button type="button" class="btn btn-primary bdrs-50p w-2r p-0 h-2r pos-a r-1 t-1"><i class="fa fa-paper-plane-o"></i></button></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="messages" class="messages">
-            <ul id="mensajes"></ul>
-        </div>
-        <form class="message-input" id="sentmensaje">
-            <div class="wrap">
-                <input type="text" id="menssage" name="menssage" placeholder="Escribe tu mensaje..." />
-                <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                <button onclick="enviar()" type="button" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-            </div>
-        </form>
     </div>
-</div>
+</form>
 
-<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/AccionesChat.js"></script>
-<script src="https://unpkg.com/vue"></script>
+
 <script>
 
-    function holis() {
-        alert("que pes")
-    }
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-
-    $("#profile-img").click(function () {
-        $("#status-options").toggleClass("active");
-    });
-
-    $(".expand-button").click(function () {
-        $("#profile").toggleClass("expanded");
-        $("#contacts").toggleClass("expanded");
-    });
-
-    $("#status-options ul li").click(function () {
-        $("#profile-img").removeClass();
-        $("#status-online").removeClass("active");
-        $("#status-away").removeClass("active");
-        $("#status-busy").removeClass("active");
-        $("#status-offline").removeClass("active");
-        $(this).addClass("active");
-
-        if ($("#status-online").hasClass("active")) {
-            $("#profile-img").addClass("online");
-        } else if ($("#status-away").hasClass("active")) {
-            $("#profile-img").addClass("away");
-        } else if ($("#status-busy").hasClass("active")) {
-            $("#profile-img").addClass("busy");
-        } else if ($("#status-offline").hasClass("active")) {
-            $("#profile-img").addClass("offline");
-        } else {
-            $("#profile-img").removeClass();
-        };
-
-        $("#status-options").removeClass("active");
-    });
-
-
-    function ScrollDiv() {
-
-        if (document.getElementById('messages').scrollTop < (document.getElementById('messages').scrollHeight - document.getElementById('messages').offsetHeight)) {
-            -1
-            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollTop + 9000
-        }
-
-    };
-
-    function scrollToEnd() {
-        var container = document.getElementById('messages');
-        var scrollHeight = container.scrollHeight;
-        container.scrollTop = scrollHeight;
-    }
-
-    function mounted() {
-        this.scrollToEnd();
-    }
-    function updated() {
-        this.scrollToEnd();
-    }
-
-    function newMessage() {
-
-
-    };
-
-
-
-    $(window).on('keydown', function (e) {
-        if (e.which == 13) {
-            enviar();
-            updated();
-            mounted
-            return false;
-        }
-    });
-//# sourceURL=pen.js
+   
+  
 </script>
-

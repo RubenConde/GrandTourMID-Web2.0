@@ -67,8 +67,9 @@ $(document).ready(function () {
                         showLoaderOnConfirm: true
                     });
 
+                    
 
-                    $("#codigopass").modal("show");
+                    $("#codigopass").modal('show');
 
                     $("#loginpass").modal("hide");
 

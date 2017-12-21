@@ -270,6 +270,7 @@ namespace GrandTourMID.Controllers
                 {
                     objeus.id = Convert.ToInt32(Session["ID"]);
                     objeus.contraseña = Request.Form["pass1"];
+                    BDU.ModificarContraseña(objeus);
                     respuesta = "1";
                 }
                 catch
@@ -280,16 +281,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-            //cargar informacion del apartado de contacto en el backend
-            else if (data == "cargarInfoContact")
-            {
 
-                DataTable dt = BDCO.CargarInfoContacto();
-                String jSonString = ConvertirDataJson(dt);
-
-                respuesta = jSonString;
-
-            }
 
             //cargar informacion del apartado de contacto en el Index
             else if (data == "InfoContactoIndex")
@@ -337,7 +329,18 @@ namespace GrandTourMID.Controllers
                 catch { respuesta = "0"; }
 
             }
+            ////
+            else if (data == "viewall")
+            {
+                DataTable listainbox = BDCO.InboxRecibidos();
+                foreach (DataRow row in listainbox.Rows)
+                {
+                    respuesta = "<div onclick=\"VerMensa(" + row["idmensaje"] + ")\" class=\"email-list-item peers fxw-nw p-20 bdB bgcH-grey-100 cur-p\"><div class=\"peer mR-10\"></div><div class=\"peer peer-greed ov-h\"><div class=\"peers ai-c\"><div class=\"peer peer-greed\"><h6>" + row["nombre"] + "</h6></div><div class=\"peer\"><small>" + row["fecha"] + "</small></div></div><h5 class=\"fsz-def tt-c c-grey-900\">" + row["email"] + "</h5><span class=\"whs-nw w-100 ov-h tov-e d-b\">" + row["mensaje"] + "</span></div></div>";
+                    Response.Write(respuesta);
 
+                }
+                return Content(respuesta);
+            }
 
             //mostrar mensajes recibidos no vistos
             else if (data == "InboxRecibidos")
@@ -345,8 +348,7 @@ namespace GrandTourMID.Controllers
                 DataTable listainbox = BDCO.InboxRecibidos();
                 foreach (DataRow row in listainbox.Rows)
                 {
-                    respuesta = "<a onclick=\"VerMensa(" + row["idmensaje"] + ",'" + row["nombre"] + "'); w3_close();\" class=\"w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey\" id=\"firstTab\"><div class=\"w3-container\"><img class=\"w3-round w3-margin-right\" src=\"/img/usuario.png\" style=\"width:15%;\"><span class=\"w3-opacity w3-large\">" + row["nombre"] + "</span><h6></h6><p>" + row["email"] + "</p></div></a>";
-
+                    respuesta = "<div onclick=\"VerMensa(" + row["idmensaje"] + ")\" class=\"email-list-item peers fxw-nw p-20 bdB bgcH-grey-100 cur-p\"><div class=\"peer mR-10\"></div><div class=\"peer peer-greed ov-h\"><div class=\"peers ai-c\"><div class=\"peer peer-greed\"><h6>" + row["nombre"] + "</h6></div><div class=\"peer\"><small>" + row["fecha"] + "</small></div></div><h5 class=\"fsz-def tt-c c-grey-900\">" + row["email"] + "</h5><span class=\"whs-nw w-100 ov-h tov-e d-b\">" + row["mensaje"] + "</span></div></div>";
                     Response.Write(respuesta);
 
                 }
@@ -358,7 +360,7 @@ namespace GrandTourMID.Controllers
                 DataTable listanotiinbox = BDCO.NumeroInbox();
                 foreach (DataRow row in listanotiinbox.Rows)
                 {
-                    respuesta = "<a id=\"myBtn\" onclick=\"myFunc('ContenedorUsuario')\" href=\"javascript: void(0)\" class=\"w3-bar-item w3-teal w3-button\"><i class=\"fa fa-inbox w3-margin-right\"></i>Mensajes(" + row["mensaje"] + ")<i class=\"fa fa-caret-down w3-margin-left\"></i></a>";
+                    respuesta = "<span class=\"badge badge-pill bgc-deep-purple-50 c-deep-purple-700\">" + row["mensaje"] + "</span>";
 
                     Response.Write(respuesta);
                 }
@@ -372,7 +374,7 @@ namespace GrandTourMID.Controllers
                 DataTable vermen = BDCO.Vermensaje(objecontacto);
                 foreach (DataRow row in vermen.Rows)
                 {
-                    respuesta = "<br><img class=\"w3-round  w3-animate-top\" src=\"/img/usuario.png\" style=\"width:20%;\"><h5 id=\"correoresponder\" class=\"w3-opacity\">" + row["email"] + "</h5><h4><i class=\"fa fa-clock-o\">" + row["fecha"] + "</i></h4><a class=\"w3-button w3-light-grey\" id=\"btnresponder\" onclick=\" Correo(); document.getElementById('id01').style.display='block';\">Responder<i class=\"w3-margin-left fa fa-mail-reply\"></i></a><hr><p>" + row["mensaje"] + "</p><p>Atte: <br>" + row["nombre"] + "</p><input name=\"CorreoOculto\" id=\"CorreoOculto\" value=\"" + row["email"] + "\" type=\"hidden\"/>";
+                    respuesta = "<div class=\"h-100 scrollable pos-r ps ps--active-y\"><div class=\"email-content-wrapper\"><div class=\"peers ai-c jc-sb pX-40 pY-30\"><div class=\"peers peer-greed\"><div class=\"peer mR-20\"><img class=\"bdrs-50p w-3r h-3r\" alt=\"\" src=\"https://randomuser.me/api/portraits/men/11.jpg\"></div><div class=\"peer\"><small>" + row["fecha"] + "</small><h5 class=\"c-grey-900 mB-5\">" + row["nombre"] + "</h5><span>email: " + row["email"] + "</span></div></div><div class=\"peer\"><button style=\"cursor:pointer\" type=\"button\" onclick=\"Correo()\" data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger bdrs-50p p-15 lh-0\"><i  class=\"fa fa-reply\"></i></button></div></div><div class=\"bdT pX-40 pY-30\"><h4>Mensaje</h4><p>" + row["mensaje"] + "</p></div></div><div class=\"ps__rail-x\" style=\"left: 0px; bottom: 0px;\"><div class=\"ps__thumb-x\" tabindex=\"0\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"ps__rail-y\" style=\"top: 0px; height: 618px; right: 0px;\"><div class=\"ps__thumb-y\" tabindex=\"0\" style=\"top: 0px; height: 608px;\"></div></div></div><input id=\"CorreoOculto\" value=\"" + row["email"] + "\" type=\"hidden\">";
 
                     Response.Write(respuesta);
                 }
@@ -389,7 +391,7 @@ namespace GrandTourMID.Controllers
                 DataTable listanotiinbox = BDCO.NumeroInboxLeido();
                 foreach (DataRow row in listanotiinbox.Rows)
                 {
-                    respuesta = "<a id=\"myBtn\" onclick=\"myFunc('contenedorleidos')\" href=\"javascript: void(0)\" class=\"w3-bar-item w3-teal w3-button\"><i class=\"fa fa-check-circle w3-margin-right\"></i>Leidos(" + row["mensaje"] + ")<i class=\"fa fa-caret-down w3-margin-left\"></i></a>";
+                    respuesta = "<span class=\"badge badge-pill bgc-blue-50 c-blue-700\">" + row["mensaje"] + "</span>";
 
                     Response.Write(respuesta);
 
@@ -405,7 +407,7 @@ namespace GrandTourMID.Controllers
                 DataTable listainbox = BDCO.InboxVistos();
                 foreach (DataRow row in listainbox.Rows)
                 {
-                    respuesta = "<a onclick=\"VerMensa(" + row["idmensaje"] + ",'" + row["nombre"] + "'); w3_close();\" class=\"w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey\" id=\"firstTab\"><div class=\"w3-container\"><img class=\"w3-round w3-margin-right\" src=\"/img/usuario.png\" style=\"width:15%;\"><span class=\"w3-opacity w3-large\">" + row["nombre"] + "</span><h6></h6><p>" + row["email"] + "</p></div></a>";
+                    respuesta = "<div onclick=\"VerMensa(" + row["idmensaje"] + ")\" class=\"email-list-item peers fxw-nw p-20 bdB bgcH-grey-100 cur-p\"><div class=\"peer mR-10\"></div><div class=\"peer peer-greed ov-h\"><div class=\"peers ai-c\"><div class=\"peer peer-greed\"><h6>" + row["nombre"] + "</h6></div><div class=\"peer\"><small>" + row["fecha"] + "</small></div></div><h5 class=\"fsz-def tt-c c-grey-900\">" + row["email"] + "</h5><span class=\"whs-nw w-100 ov-h tov-e d-b\">" + row["mensaje"] + "</span></div></div>";
 
                     Response.Write(respuesta);
 
@@ -446,13 +448,35 @@ namespace GrandTourMID.Controllers
 
             }
 
+            else if (data == "ultimosinboxrecibidos")
+            {
+
+                DataTable dinboreci = BDCO.ultimosinboxrecibidos();
+                if (dinboreci.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dinboreci.Rows)
+                    {
+                        respuesta = "<li><a href =\"\" class=\"peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100\"><div class=\"peer mR-15\"><img class=\"w-3r bdrs-50p\" src=\"https://randomuser.me/api/portraits/men/1.jpg\" alt=\"\"></div><div class=\"peer peer-greed\"><div><div class=\"peers jc-sb fxw-nw mB-5\"><div class=\"peer\"><p class=\"fw-500 mB-0\">" + row["nombre"] + "</p></div><div class=\"peer\"><small class=\"fsz-xs\">" + row["fecha"] + "</small></div></div><span class=\"c-grey-600 fsz-sm\">" + row["mensaje"] + "</span></div></div></a></li>";
+                        Response.Write(respuesta);
+                    }
+                }
+                else
+                {
+                    Response.Write("<center></br><span class=\"fsz-sm fw-600 c-grey-900\">No hay mensajes nuevos</span></br></br></center>");
+                }
+
+
+                respuesta = "";
+            }
+
+
             ///numero o contador de los emails enviados
             else if (data == "inboxnotificenviados")
             {
                 DataTable listanotiinbox = BDCO.NumeroEnviado();
                 foreach (DataRow row in listanotiinbox.Rows)
                 {
-                    respuesta = "<a id=\"myBtn\" onclick=\"myFunc('contenedorenviados')\" href=\"javascript: void(0)\" class=\"w3-bar-item w3-teal w3-button\"><i class=\"fa fa-send w3-margin-right\"></i>Enviados(" + row["mensaje"] + ")<i class=\"fa fa-caret-down w3-margin-left\"></i></a>";
+                    respuesta = "<span class=\"badge badge-pill bgc-green-50 c-green-700\">" + row["mensaje"] + "</span>";
 
                     Response.Write(respuesta);
                 }
@@ -466,7 +490,7 @@ namespace GrandTourMID.Controllers
                 DataTable listaenvie = BDCO.InboxEnviado();
                 foreach (DataRow row in listaenvie.Rows)
                 {
-                    respuesta = "<a onclick=\"VerInbox(" + row["idcorreo"] + ",'" + row["para"] + "');  w3_close();\" class=\"w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey\" id=\"firstTab\"><div class=\"w3-container\"><img class=\"w3-round w3-margin-right\" src=\"/img/usuario.png\" style=\"width:15%;\"><span class=\"w3-opacity w3-large\">" + row["motivo"] + "</span><h6></h6><p>" + row["para"] + "</p></div></a>";
+                    respuesta = "<div style=\"cursor:pointer\" onclick=\"VerInbox(" + row["idcorreo"] + ",'" + row["para"] + "')\" class=\"email-list-item peers fxw-nw p-20 bdB bgcH-grey-100 cur-p\"><div class=\"peer mR-10\"></div><div class=\"peer peer-greed ov-h\"><div class=\"peers ai-c\"><div class=\"peer peer-greed\"><h6>" + row["para"] + "</h6></div><div class=\"peer\"><small>" + row["fecha"] + "</small></div></div><h5 class=\"fsz-def tt-c c-grey-900\">" + row["mensaje"] + "</h5><span class=\"whs-nw w-100 ov-h tov-e d-b\">" + row["motivo"] + "</span></div></div>";
 
                     Response.Write(respuesta);
 
@@ -482,7 +506,7 @@ namespace GrandTourMID.Controllers
                 DataTable visto = BDCO.Verinboxenviado(objecontacto);
                 foreach (DataRow row in visto.Rows)
                 {
-                    respuesta = "<br><img class=\"w3-round  w3-animate-top\" src=\"/img/usuario.png\" style=\"width:20%;\"><h5 id=\"correoresponder\" class=\"w3-opacity\">" + row["para"] + "</h5><h4><i class=\"fa fa-clock-o\">" + row["fecha"] + "</i></h4><hr><p>" + row["mensaje"] + "</p><p>Atte: <br>Soporte Grand Tour MID</p><input name=\"CorreoOculto\" id=\"CorreoOculto\" value=\"" + row["motivo"] + "\" type=\"hidden\"/>";
+                    respuesta = "<div class=\"h-100 scrollable pos-r ps ps--active-y\"><div class=\"email-content-wrapper\"><div class=\"peers ai-c jc-sb pX-40 pY-30\"><div class=\"peers peer-greed\"><div class=\"peer mR-20\"><img class=\"bdrs-50p w-3r h-3r\" alt=\"\" src=\"https://randomuser.me/api/portraits/men/11.jpg\"></div><div class=\"peer\"><small>" + row["fecha"] + "</small><h5 class=\"c-grey-900 mB-5\">" + row["para"] + "</h5><span>Asunto : " + row["motivo"] + "</span></div></div><div class=\"peer\"><button style=\"cursor:pointer\" type=\"button\" onclick=\"Correo()\" data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger bdrs-50p p-15 lh-0\"><i  class=\"fa fa-reply\"></i></button></div></div><div class=\"bdT pX-40 pY-30\"><h4>Mensaje</h4><p>" + row["mensaje"] + "\"</p><p>Atentamente: Grand Tour MID</p></div></div><div class=\"ps__rail-x\" style=\"left: 0px; bottom: 0px;\"><div class=\"ps__thumb-x\" tabindex=\"0\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"ps__rail-y\" style=\"top: 0px; height: 618px; right: 0px;\"><div class=\"ps__thumb-y\" tabindex=\"0\" style=\"top: 0px; height: 608px;\"></div></div></div><input id=\"CorreoOculto\" value=\"" + row["para"] + "\" type=\"hidden\">";
 
                     Response.Write(respuesta);
                 }
@@ -513,7 +537,7 @@ namespace GrandTourMID.Controllers
                 DataTable duser = BDCO.NumeroInbox();
                 foreach (DataRow row in duser.Rows)
                 {
-                    respuesta = "<a href=\"/Admin/ContactInbox\" class=\"w3-bar-item w3-button\"><i class=\"fa fa-envelope\"><span class=\"w3-badge w3-right w3-small w3-green\">" + row["mensaje"] + "</span></i></a>";
+                    respuesta = row["mensaje"].ToString();
                     Response.Write(respuesta);
                 }
                 respuesta = "";
@@ -641,8 +665,7 @@ namespace GrandTourMID.Controllers
                     for (int i = 0; i < c; i++)
                     {
                         DataRow row = d.Rows[i];
-                        respuesta = "<li onclick=\"chatGo(" + row["ID"] + ",'" + row["nombre"] + "');\" class=\"contact\"><div class=\"wrap\"><img src =\"\" alt=\"\" /><div class=\"meta\">" +
-                            "<p class=\"name\">" + row["nombre"] + "</p><p class=\"preview\">" + row["email"] + "</p></div></div></li>";
+                        respuesta = "<div onclick=\"chatGo(" + row["ID"] + ",'" + row["nombre"] + "'); scrool();\" class=\"peers fxw-nw ai-c p-20 bdB bgc-white bgcH-grey-50 cur-p\"><div class=\"peer\"><img src =\"\" alt=\"\" class=\"w-3r h-3r bdrs-50p\"></div><div class=\"peer peer-greed pL-20\"><h6 class=\"mB-0 lh-1 fw-400\">" + row["nombre"] + "</h6><small class=\"lh-1\">" + row["email"] + "</small></div></div>";
                         Response.Write(respuesta);
                     }
 
@@ -672,14 +695,13 @@ namespace GrandTourMID.Controllers
 
                         if (row["idenvia"].ToString() == Request.QueryString["id"].ToString())
                         {
-                            respuesta = "<li class=\"sent\"><img src =\"http://emilcarlsson.se/assets/mikeross.png\" alt=\"\">" +
-                                "<p>" + row["mensaje"] + "</p></li>"; Response.Write(respuesta);
+                            respuesta = "<div class=\"peers fxw-nw\"><div class=\"peer mR-20\"><img class=\"w-2r bdrs-50p\" src=\"\" alt=\"\"></div><div class=\"peer peer-greed\"><div class=\"layers ai-fs gapY-5\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mR-10\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
+                            Response.Write(respuesta);
                         }
                         else
                         {
-                            respuesta = "<li class=\"replies\"><img src=\"http://emilcarlsson.se/assets/harveyspecter.png\" alt =\"\"/>" +
-                                "<p>" + row["mensaje"] + "</p>" +
-                                "</ li > "; Response.Write(respuesta);
+                            respuesta = "<div class=\"peers fxw-nw ai-fe\"><div class=\"peer ord-1 mL-20\"><img class=\"w-2r bdrs-50p\" src=\"\" alt=\"\"></div><div class=\"peer peer-greed ord-0\"><div class=\"layers ai-fe gapY-10\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mL-10 ord-1\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed ord-0\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
+                            Response.Write(respuesta);
                         }
 
                     }
@@ -734,6 +756,15 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
 
             }
+
+            else if (data == "userslist")
+            {
+                DataTable listempl = BDU.MostrarEmpleados();
+                String jSonString = ConvertirDataJson(listempl);
+
+                respuesta = jSonString;
+            }
+
 
 
 

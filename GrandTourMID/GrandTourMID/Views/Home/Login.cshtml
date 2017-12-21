@@ -1,0 +1,144 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/styles.css" rel="stylesheet" />
+    <link href="~/Content/tablas.css" rel="stylesheet" />
+    <link href="~/Content/admin_bootstrap_dist_css_bootstrap.min.css" rel="stylesheet" />
+
+
+
+</head>
+<body class="app">
+
+    <div id='loader'>
+        <div class="spinner"></div>
+    </div>
+    <script type="text/javascript">
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('fadeOut');
+            }, 300);
+        });
+    </script>
+
+    <div class="peers ai-s fxw-nw h-100vh">
+        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style="background-image:url(../../img/casa.jpg)">
+            <div class="pos-a centerXY">
+                <a href="~/Home/Index">  <div class="bgc-white bdrs-50p pos-r" style="width:120px;height:120px"><img class="pos-a centerXY" src="assets/static/images/logo.png" alt=""></div></a>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r ps" style="min-width:320px">
+            <h4 class="fw-300 c-grey-900 mB-40">Inicio de sesión para administradores y empleados</h4>
+            <form id="frmloginadmi">
+                <div class="form-group"><label class="text-normal text-dark">Usuario o correo electronico</label><input class="form-control" id="user" name="user" required placeholder="Ingrese su correo o usuario" type="text"></div>
+                <div class="form-group"><label class="text-normal text-dark">Contraseña</label><input class="form-control" placeholder="Ingrese su contraseña" id="psw" required name="psw" type="password"></div>
+                <div class="form-group">
+                    <div class="peers ai-c jc-sb fxw-nw">
+                        <div class="peer">
+                            <a style="cursor:pointer" href="#loginpass" data-toggle="modal" data-target="#loginpass" class="peer"><label style="cursor:pointer" for="inputCall1" class="peers peer-greed js-sb ai-c">¿Haz olvidado tu contraseña?</label></a>
+                        </div>
+                        <div class="peer"><button id="btnlogin" class="btn btn-primary">Iniciar sesión</button></div>
+                    </div>
+                </div>
+            </form>
+            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+            </div>
+            <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-----------------------Modal ingresar Correo---------------------------->
+    <div class="modal fade" id="loginpass">
+        <div class="modal-dialog">
+            <form id="frmrecuperarpass" class="modal-content">
+
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Mensaje de recuperación de contraseña</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group has-feedback">
+                        <input type="email" required="true" name="ema" id="ema" maxlength="50" placeholder="Escribe tu correo registrado" class="form-control" />
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btncorreo" class="btn btn-primary pull-right">Enviar</button>
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="codigopass">
+        <div class="modal-dialog">
+            <center>
+                <form id="frmcodigo" class="modal-content" style="width:400px">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Codigo de recuperación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group has-feedback">
+                            <input type="text" required="true" name="cod" id="cod" maxlength="50" placeholder="Ingresa el codigo de recuperación" class="form-control" />
+                            <span class="fa fa-key form-control-feedback"></span>
+                        </div>
+                        <b><a href="#loginpass" data-toggle="modal" data-target="#loginpass" data-dismiss="modal">¿No recibiste tu código? click aqui</a></b>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary pull-right">Validar</button>
+
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </center>
+        </div>
+    </div>
+    <!--############################################### Modal cambio contraseña ###############################################-->
+    <div class="modal fade" id="cambiocontra">
+        <div class="modal-dialog">
+            <center>
+                <form id="frmcambiocontra" class="modal-content" style="width:400px">
+                    <div class="modal-body">
+                        <div class="form-group has-feedback">
+                            <h4 class="modal-title">Contraseña nueva</h4>
+                            <input type="password" required name="pass1" id="pass1" maxlength="50" placeholder="Ingresa tu contraseña" class="form-control" />
+                            <br />
+                            <h4 class="w3-left-align">Confirmar contraseña</h4>
+                            <input type="password" required name="pass2" id="pass2" maxlength="50" placeholder="Confirma tu contraseña" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnRefresh" class="btn btn-primary pull-right">Actualizar Contraseña</button>
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </center>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+    <script src="~/Scripts/bundle.js"></script>
+    <script type="text/javascript" src="~/Scripts/vendor.js"></script>
+    <script src="~/Scripts/sweetalert2.all.js"></script>
+    <script src="~/Scripts/AdmiLogin.js"></script>
+    <script src="~/Scripts/admin_bootstrap_dist_js_bootstrap.min.js"></script>
+</body>
+</html>
+

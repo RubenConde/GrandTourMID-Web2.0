@@ -1,8 +1,8 @@
 ﻿
-
+var ajaxCall
 $(document).on("ready", function () {
     
-    var ajaxCall = function () {
+    ajaxCall = function () {
         
         $.ajax({
             data: $("#sidepanel").serialize(),
@@ -20,19 +20,33 @@ $(document).on("ready", function () {
 
 });
 
-var interval;
+$(document).ready(function () {
+
+    scroll();
+})
+
+function scrool() {
+    
+    var objDiv = document.getElementById("scroll");
+    objDiv.scrollTop = objDiv.scrollHeight;
+
+};
 
 function chatGo(e, a) {
     $("#idchat").val(e);
-    clearInterval(interval);
-    interval = setInterval(function () {
+    clearInterval(ajaxCall);
+    ajaxCall = setInterval(function () {
         $.ajax({
             data: $("#sidepanel").serialize(),
             url: '/Ajax/Ajax?data=chat&id=' + e + '&name=' + a,
             type: "post",
+            sendBefore: function () {
+                
+            },
             success: function (r) {
                 $("#mensajes").html(r);
-                cargarinfouser();
+                
+                
             }
         });
         

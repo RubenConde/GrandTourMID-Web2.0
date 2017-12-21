@@ -59,5 +59,28 @@ namespace GrandTourMID.Controllers
             return View();
         }
 
+        public ActionResult email()
+        {
+            return View();
+        }
+
+        public ActionResult Compose()
+        {
+            return View();
+        }
+        public ActionResult users()
+        {
+            return View();
+        }
+
+        public ActionResult Myprofile()
+        {
+            return View();
+        }
+
+        public ActionResult Calendar()
+        {
+            return View();
+        }
     }
 }

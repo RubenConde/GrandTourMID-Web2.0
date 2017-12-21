@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "email";
+    Layout = "~/Views/Shared/MasterAdmi.cshtml";
+}
+
+
+
+<div class="full-container">
+    <div class="email-app">
+        <div class="email-side-nav remain-height ov-h">
+            <div class="h-100 layers">
+                <div class="p-20 bgc-grey-100 layer w-100"><button data-toggle="modal" data-target="#exampleModal" type="button" onclick="Limpiar()" class="btn btn-danger btn-block">Nuevo mensaje</button></div>
+                <div class="scrollable pos-r bdT layer w-100 fxg-1 ps">
+                    <ul class="p-20 nav flex-column">
+                        <li class="nav-item">
+                            <a onclick="cargarrecibidos();" style="cursor:pointer" class="nav-link c-grey-800 cH-blue-500 active">
+                                <div class="peers ai-c jc-sb">
+                                    <div class="peer peer-greed"><i class="mR-10 ti-email"></i> <span>Mensajes</span></div>
+                                    <div id="numeroinbox" class="peer"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  style="cursor:pointer" onclick="cargarenviados()" class="nav-link c-grey-800 cH-blue-500">
+                                <div class="peers ai-c jc-sb">
+                                    <div class="peer peer-greed"><i class="mR-10 ti-share"></i><span>Enviados</span></div>
+                                    <div id="numeroenviados" class="peer"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="cursor:pointer" onclick="Cargarleidos()" class="nav-link c-grey-800 cH-blue-500">
+                                <div class="peers ai-c jc-sb">
+                                    <div class="peer peer-greed"><i class="mR-10 ti-check"></i><span>Leídos</span></div>
+                                    <div id="numeroleidos" class="peer"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link c-grey-800 cH-blue-500">
+                                <div class="peers ai-c jc-sb">
+                                    <div class="peer peer-greed"><i class="mR-10 ti-trash"></i> <span>Trash</span></div>
+                                    <div class="peer"><span class="badge badge-pill bgc-red-50 c-red-700">+99</span></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="email-wrapper row remain-height bgc-white ov-h">
+            <div class="email-list h-100 layers">
+                <div class="layer w-100">
+                    <div class="bgc-grey-100 peers ai-c jc-sb p-20 fxw-nw">
+                        <div class="peer">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="email-side-toggle d-n@md+ btn bgc-white bdrs-2 mR-3 cur-p"><i class="ti-menu"></i></button>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn cur-p bgc-white no-after dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-more-alt"></i></button>
+                                    <ul class="dropdown-menu fsz-sm" aria-labelledby="btnGroupDrop1">
+                                        <li><a href="" class="d-b td-n pY-5 pX-10 bgcH-grey-100 c-grey-700"><i class="ti-trash mR-10"></i> <span>Delete</span></a></li>
+                                        <li><a href="" class="d-b td-n pY-5 pX-10 bgcH-grey-100 c-grey-700"><i class="ti-alert mR-10"></i> <span>Mark as Spam</span></a></li>
+                                        <li><a href="" class="d-b td-n pY-5 pX-10 bgcH-grey-100 c-grey-700"><i class="ti-star mR-10"></i> <span>Satar</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="peer">
+                            <div class="btn-group" role="group"><button type="button" class="fsz-xs btn bgc-white bdrs-2 mR-3 cur-p"><i class="ti-angle-left"></i></button> <button type="button" class="fsz-xs btn bgc-white bdrs-2 mR-3 cur-p"><i class="ti-angle-right"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layer w-100">
+                    <div class="bdT bdB"><input class="form-control m-0 bdw-0 pY-15 pX-20" placeholder="Search..." type="text"></div>
+                </div>
+                <div class="layer w-100 fxg-1 scrollable pos-r ps ps--active-y">
+
+                    <div>
+                        <br />
+                        
+                    </div>
+
+                    <div class="" id="contenedorecibidos">
+                        <center><p><li class="fa fa-reply"></li> Selecciona una opcion para ver mensajes</p></center>
+                    </div>
+                    <div class="" id="contenedorleidos">
+
+                    </div>
+                    <div class="" id="contenedorenviados">
+
+                    </div>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; height: 489px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 161px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="mensajecontenedor" class="email-content h-100">
+                <div>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <center><p class="w3-display-middle"><li class="fa fa-info"></li> Aqui podrás visualizar el mensaje</p></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Correo electronico</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmenviarcorreocontacto" class="email-compose-body">
+                    <h4 class="c-grey-900 mB-20">Enviar Mensaje</h4>
+                    <div class="send-header">
+                        <div class="form-group"><input class="form-control" placeholder="Para" name="para" id="para" type="text"></div>
+                        <div class="form-group"><input class="form-control" placeholder="Asunto" id="asu" name="asu" type="text"></div>
+                        
+                        <div class="form-group"><textarea name="inb" class="form-control" id="inb"  placeholder="Escribe tu mensaje..." rows="10" style="height: 163px;"></textarea></div>
+                    </div>
+                    <div id="compose-area"></div>
+                    <div class="text-right mrg-top-30"><button type="submit" id="btnenviarcorreo" class="btn btn-danger">Enviar</button></div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script src="~/Scripts/ActionesInboxContacto.js"></script>
+<script src="~/Scripts/AccionesAdmin.js"></script>

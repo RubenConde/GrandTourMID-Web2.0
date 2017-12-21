@@ -150,6 +150,7 @@
     <Compile Include="BO\UsuarioBO.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="DAO\AcercaDAO.cs" />
@@ -172,17 +173,24 @@
     <Content Include="Content\admin_dist_css_skins__all-skins.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\charts.css" />
     <Content Include="Content\chat.css" />
     <Content Include="Content\estiloIndex.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\PhoneDesign.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\tablas.css" />
+    <Content Include="Content\tooltip.css" />
     <Content Include="Content\w3-theme-blue-grey.css" />
     <Content Include="Content\w3.css" />
+    <Content Include="Content\xd.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\404.png" />
     <Content Include="img\casa.jpg" />
     <Content Include="img\phone-screenshot.png" />
     <Content Include="img\Previsualización.png" />
@@ -205,11 +213,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\IndexEdit.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -221,6 +231,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Sweatalert.js" />
     <Content Include="Scripts\sweetalert2.all.js" />
+    <Content Include="Scripts\vendor.js" />
     <Content Include="Scripts\weet_sweetalert.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -249,6 +260,14 @@
     <Content Include="Views\Admin\AboutApp.cshtml" />
     <Content Include="Views\Admin\Chat.cshtml" />
     <Content Include="Views\Admin\IndexEdit.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\MasterAdmi.cshtml" />
+    <Content Include="Views\Admin\email.cshtml" />
+    <Content Include="Views\Admin\Compose.cshtml" />
+    <Content Include="Views\Admin\users.cshtml" />
+    <Content Include="Views\Admin\Myprofile.cshtml" />
+    <Content Include="Views\Admin\Calendar.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
