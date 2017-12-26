@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -57,6 +58,20 @@ namespace GrandTourMID.BO
             return texto;
         }
 
+        public System.Drawing.Image RedimencionarImagen(System.Drawing.Image Imgoriginal, int Altoimg)
+        {
+            var Radio = (double)Altoimg / Imgoriginal.Height;//diferencia entre la imagenes
+            var NuevoAncho = (int)(Imgoriginal.Width * Radio);
+            var NuevoAlto = (int)(Imgoriginal.Height * Radio);
+            var ImagenRedimencionada = new Bitmap(NuevoAncho, NuevoAlto);
+            //creo archivo apartir del bitmap con las nuevas dimensiones
+            var g = Graphics.FromImage(ImagenRedimencionada);
+            g.DrawImage(Imgoriginal, 0, 0, NuevoAncho, NuevoAlto);
+            return ImagenRedimencionada;
+        }
 
     }
+
+   
+
 }

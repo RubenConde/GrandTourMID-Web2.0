@@ -236,13 +236,12 @@ function scrollToEnd() {
 
 ////editar contacto
 $(document).ready(function () {
-    $("#frmContacto").submit(function (e) {
-        e.preventDefault();
+    $("#btnacgragsr").submit(function () {
         if ($('#la').val() != "" && $("#lon").val() != "" && $("#tit").val() != "" && $("#subt").val() != "" && $("#dire").val() != "" && $("#tel").val() != "" && $("#corr").val() != "") {
             $.ajax({
                 url: "/Ajax/Ajax?data=InsertInfoContact",
                 type: "POST",
-                data: $("#frmContacto").serialize(),
+                data: $("#frmContac").serialize(),
                 beforeSend: function () {
                     $("#btnconbtntacto").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Iniciando sesión');
                 },
@@ -314,7 +313,6 @@ $("#edit2").click(function () {
         '</br><textarea placeholder="Ingrese la información acerca de la app" id="infoapp2" name="infoapp2" class="w3-round w3-transparent w3-border w3-input" type="text"></textarea></br>' +
         '<label>Informacion adicional</label>' +
         '</br><textarea placeholder="Ingrese la información acerca de la app" id="infoadicional2" name="infoadicional2" class="w3-round w3-transparent w3-border w3-input" type="text"></textarea></br>' +
-
         '<button type="button" onclick="updateacerca()" class="w3-button w3-small w3-right w3-green w3-hover-green w3-round"><li class="fa fa-save"></li> Actualizar</button><br /><br />' +
         '</form>'
     )
@@ -367,8 +365,7 @@ $("#edit5").click(function () {
 
         '<div class="w3-col m8 w3-panel">' +
 
-        '<form id="frmContacto" class="w3-large w3-margin-bottom">' +
-        '<label id="mes" class="w3-text-green"></label><br /><br />' +
+        '<form id="frmContac" class="w3-large w3-margin-bottom">' +
         '<li class="fa fa-text-width fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></li><input id="tit" name="tit" class=" w3-transparent w3-round w3-border" style="width:300px" placeholder="Ingrese Titúlo" required /><br /><br />' +
         '<li class="fa fa-text-width fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></li><input id="subt" name="subt" class="w3-transparent w3-border w3-round"  style="width:300px" placeholder="Ingrese un subtitulo" required /><br /><br />' +
         '<i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i><input id="dire" name="dire" placeholder="Dirección" class="w3-transparent w3-border w3-round"  style="width:300px" required /> <br><br>' +
@@ -376,26 +373,26 @@ $("#edit5").click(function () {
         '<i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i><input id="corr" name="corr" placeholder="Correo electronico" class="w3-round w3-transparent w3-border"  style="width:300px" required /><br><br />' +
         '<i class="fa fa-coffee fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i><input id="mensajecontacto2" name="mensajecontacto" placeholder="Mensaje personalizado para el usuario" class="w3-round w3-transparent w3-border"  style="width:300px" required /><br><br />' +
         '<input type="hidden" class="w3-round w3-transparent" id="la" name="la" />' +
-        ' <input type="hidden" class="w3-round w3-transparent w3-border" id="lon" name="lon" />' +
-        '<button id="btnconbtntacto" class="w3-button w3-right w3-section w3-blue w3-hover-blue" type="sumbit"><i class="fa fa-paper-plane"></i> ACTUALIZAR</button>' +
-        '<button id="btn" type="button"></button>' +
-        ' </form >' +
+        '<input type="hidden" class="w3-round w3-transparent w3-border" id="lon" name="lon" />' +
+        '<input id="btnacgragsr" type="submit" value="holis" />'+
+        '</form>' +
         '</div >' +
         '</div > ')
 
     $.ajax({
-        url: "/Ajax/Ajax?data=cargarInfoContact",
+        url: "/Ajax/Ajax?data=InfoContactoIndex",
         type: "POST",
         success: function (a) {
-            var datos = JSON.parse(a);
-            $('#la').val(datos.latitud);
-            $('#lon').val(datos.longitud);
-            $('#tit').val(datos.titulo);
-            $('#subt').val(datos.subtitulo);
-            $('#dire').val(datos.direccion);
-            $('#tel').val(datos.numero);
-            $('#corr').val(datos.correo);
-            $('#mensajecontacto2').val(datos.mensaje);
+
+            var d = JSON.parse(a);
+            $('#la').val(d.latitud);
+            $('#lon').val(d.longitud);
+            $('#tit').val(d.titulo);
+            $('#subt').val(d.subtitulo);
+            $('#dire').val(d.direccion);
+            $('#tel').val(d.numero);
+            $('#corr').val(d.correo);
+            $('#mensajecontacto2').val(d.mensaje);
             $('#googleMap2').locationpicker({
                 radius: 0,
                 location: {
@@ -421,7 +418,3 @@ $("#edit5").click(function () {
 
 });
 
-var verimg = function (event) {
-    var img1 = document.getElementById('img1');
-    img1.src = URL.createObjectURL(event.target.files[0]);
-};

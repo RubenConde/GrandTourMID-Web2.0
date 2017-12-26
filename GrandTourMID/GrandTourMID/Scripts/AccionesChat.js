@@ -1,9 +1,9 @@
 ﻿
 var ajaxCall
 $(document).on("ready", function () {
-    
+
     ajaxCall = function () {
-        
+
         $.ajax({
             data: $("#sidepanel").serialize(),
             url: '/Ajax/Ajax?data=users',
@@ -11,7 +11,7 @@ $(document).on("ready", function () {
             success: function (e) {
 
                 $("#userscontainer").html(e);
-                
+
             }
 
         });
@@ -26,7 +26,7 @@ $(document).ready(function () {
 })
 
 function scrool() {
-    
+
     var objDiv = document.getElementById("scroll");
     objDiv.scrollTop = objDiv.scrollHeight;
 
@@ -41,17 +41,16 @@ function chatGo(e, a) {
             url: '/Ajax/Ajax?data=chat&id=' + e + '&name=' + a,
             type: "post",
             sendBefore: function () {
-                
+
             },
             success: function (r) {
                 $("#mensajes").html(r);
-                
-                
+                cargarinfouser();
             }
         });
-        
+
     }, 300);
-    
+
 };
 
 
@@ -63,35 +62,42 @@ function cargarinfouser() {
         success: function (r) {
 
             var dt = JSON.parse(r);
-            $("#usrnames").html(dt.nombreus);
-            
+            $("#userenvia").prop("src", dt.foto);
+            $("#nameenvia").html(dt.nombreus);
+
         }
     });
 };
 
-function enviar() {    
-    if ($("#menssage").val() != "") {
+function enviar() {
+    if ($("#message").val() != "") {
         $.ajax({
-            data: $("#sentmensaje").serialize(),
+            data: $("#sidepanel").serialize(),
             url: "/Ajax/Ajax?data=enviarchat",
             type: "post",
             success: function (e) {
                 if (e == 1) {
 
-                    $("#menssage").val('');
+                    $("#message").val('');
                     scrollToEnd();
 
                 } else {
 
                 }
             }
-            
+
         });
-        
+
     }
     else {
 
     }
 };
 
+
+$('#btnenviarchar').keypress(function (event) {
+    if (event.keyCode == 13) {
+        enviar();
+    }
+});
 

@@ -82,5 +82,15 @@ namespace GrandTourMID.Controllers
         {
             return View();
         }
+        public ActionResult Maps()
+        {
+            return View();
+        }
+
+        public ActionResult AddLugar()
+        {
+            return View();
+        }
+
     }
 }

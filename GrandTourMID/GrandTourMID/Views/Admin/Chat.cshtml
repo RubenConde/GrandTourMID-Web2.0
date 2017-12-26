@@ -38,9 +38,9 @@
                     <div class="peers fxw-nw jc-sb ai-c pY-20 pX-30 bgc-white">
                         <div class="peers ai-c">
                             <div class="peer d-n@md+"><a href="" title="" id="chat-sidebar-toggle" class="td-n c-grey-900 cH-blue-500 mR-30"><i class="ti-menu"></i></a></div>
-                            <div class="peer mR-20"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt="" class="w-3r h-3r bdrs-50p"></div>
+                            <div class="peer mR-20"><img id="userenvia" src="" alt="" class="w-3r h-3r bdrs-50p"></div>
                             <div class="peer">
-                                <h6 class="lh-1 mB-0">John Doe</h6>
+                                <h6 id="nameenvia" class="lh-1 mB-0"></h6>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="layer w-100">
                     <div class="p-20 bdT bgc-white">
-                        <div class="pos-r"><input class="form-control bdrs-10em m-0" placeholder="Escribe tu mensaje..." type="text"> <button type="button" class="btn btn-primary bdrs-50p w-2r p-0 h-2r pos-a r-1 t-1"><i class="fa fa-paper-plane-o"></i></button></div>
+                        <div class="pos-r"><input id="message" name="message" class="form-control bdrs-10em m-0" placeholder="Escribe tu mensaje..." type="text"> <button id="btnenviarchar" type="button" onclick="enviar();" onkeypress="return event;" class="btn btn-primary bdrs-50p w-2r p-0 h-2r pos-a r-1 t-1"><i class="fa fa-paper-plane-o"></i></button></div>
                     </div>
                 </div>
             </div>

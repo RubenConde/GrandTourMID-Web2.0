@@ -119,5 +119,17 @@ namespace GrandTourMID.DAO
         }
 
 
+        public DataTable usersnotifica(UsuarioBO obelogin)
+        {
+            String comandoSQL = string.Format("select u.idusuario, u.email, u.idusuario as ID, u.nombre, u.foto   from usuario u, chat c   where c.idenvia <> {0} and u.idusuario = c.idenvia and c.idrecibe ={0} and u.visto=0", obelogin.id);
+            SqlDataAdapter adapter = new SqlDataAdapter(comandoSQL, establecerConexion());
+            DataTable tabla = new DataTable();
+            adapter.Fill(tabla);
+            return tabla;
+        }
+
+
+
+
     }
 }

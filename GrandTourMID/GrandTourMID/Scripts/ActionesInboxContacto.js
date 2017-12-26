@@ -269,6 +269,7 @@ $(document).ready(function () {
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true
                         });
+
                         $("#btnenviarcorreo").html('<i class="fa fa-paper-plane"></i> Enviar');
                         $("#para").val('');
                         $("#asu").val('');

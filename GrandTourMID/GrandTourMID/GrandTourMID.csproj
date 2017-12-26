@@ -167,6 +167,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\2RichTextMini_css_richtext.min.css" />
     <Content Include="Content\admin_bootstrap_dist_css_bootstrap.min.css" />
     <Content Include="Content\admin_css_style.css" />
     <Content Include="Content\admin_dist_css_AdminLTE.min.css" />
@@ -179,6 +180,8 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\PhoneDesign.css" />
+    <Content Include="Content\RichTextMini_css_site.css" />
+    <Content Include="Content\semantic.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\tablas.css" />
@@ -191,6 +194,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\404.png" />
+    <Content Include="img\500.png" />
     <Content Include="img\casa.jpg" />
     <Content Include="img\phone-screenshot.png" />
     <Content Include="img\Previsualización.png" />
@@ -229,6 +233,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\Sweatalert.js" />
     <Content Include="Scripts\sweetalert2.all.js" />
     <Content Include="Scripts\vendor.js" />
@@ -268,6 +273,9 @@
     <Content Include="Views\Admin\Myprofile.cshtml" />
     <Content Include="Views\Admin\Calendar.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Admin\Maps.cshtml" />
+    <Content Include="Views\Admin\AddLugar.cshtml" />
+    <Content Include="Views\Error\Error500.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

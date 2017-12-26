@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace GrandTourMID.Controllers
         InicioBO objei = new InicioBO();
         InicioDAO BDI = new InicioDAO();
         // GET: Ajax
-        public ActionResult Ajax(String data, UsuarioBO objeus)
+        public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file)
         {
             string respuesta = "";
             //Login
@@ -61,13 +62,6 @@ namespace GrandTourMID.Controllers
                 DataTable dt = BDU.BuscarUser(id);
                 String jSonString = ConvertirDataJson(dt);
                 respuesta = jSonString;
-                // string JSONresult;
-                //JSONresult = JsonConvert.SerializeObject(dt);
-                // Response.Write(JSONresult);
-                respuesta = jSonString;
-
-
-                //  respuesta = "{\"nombre\" : \"" + objeus.nombre + " \",\"foto\" : \"" + "/img/" + objeus.imagen + "\"}";
 
             }
             //Agregar Registro
@@ -97,8 +91,8 @@ namespace GrandTourMID.Controllers
             {
                 objeus.id = Convert.ToInt32(Session["ID"]);
                 int id = objeus.id;
-                objeus.contraseña = Request.Form["passprofilevalidar"];
-                string validar = objeus.EncriptarMD5(Request.Form["passprofilevalidar"]);
+                objeus.contraseña = Request.Form["contraac"];
+                string validar = objeus.EncriptarMD5(Request.Form["contraac"]);
                 string contra = "";
                 ArrayList datos = BDU.ValidarContraseña(objeus);
                 if (datos.Count > 0)
@@ -107,6 +101,9 @@ namespace GrandTourMID.Controllers
                 }
                 if (validar == contra)
                 {
+                    objeus.id = Convert.ToInt32(Session["ID"]);
+                    objeus.contraseña = Request.Form["contranue"];
+                    BDU.ModificarContraseña(objeus);
                     respuesta = "1";
                 }
                 else
@@ -121,12 +118,19 @@ namespace GrandTourMID.Controllers
             {
 
                 DataTable listaus = BDU.BuscarUsuarioActivo();
-                foreach (DataRow row in listaus.Rows)
+                if (listaus.Rows.Count > 0)
                 {
+                    foreach (DataRow row in listaus.Rows)
+                    {
 
-                    respuesta = "<li class=\"w3-bar\"><img src=\"" + row["Foto"] + "\" class=\"w3-bar-item w3-circle w3-hide-small\" style=\"width:85px\"><div class=\"w3-bar-item\"><span class=\"w3-large\">" + row["Nombre"] + "</span><br><span>" + row["Usuario"] + "</span></div><br /><button class=\"w3-round w3-button w3-green w3-small\">Activo</button>  <button id=\"btnaccountdesact\" class=\"w3-round w3-button w3-green w3-small\" onclick=\"desact(" + row["ID"] + ")\">Desactivar</button><button onclick=\"VerInfo(" + row["ID"] + ")\" class=\"fa fa-external-link w3-bar-item w3-button w3-white w3-xlarge w3-right editar\"></button></li>";
+                        respuesta = "";
 
-                    Response.Write(respuesta);
+                        Response.Write(respuesta);
+                    }
+                }
+                else
+                {
+                    respuesta = "0";
                 }
 
                 respuesta = "";
@@ -136,15 +140,19 @@ namespace GrandTourMID.Controllers
             {
 
                 DataTable listaus = BDU.BuscarUsuarioInactivo();
-                foreach (DataRow row in listaus.Rows)
+                if (listaus.Rows.Count > 0)
                 {
+                    foreach (DataRow row in listaus.Rows)
+                    {
 
-                    respuesta = "<li class=\"w3-bar\"> <a href=\"" + row["idusuario"] + "\" class=\"fa fa-external-link w3-bar-item w3-button w3-white w3-xlarge w3-right editar\"></a>" +
-                        "<img src=/img/" + row["foto"] + " class=\"w3-bar-item w3-circle w3-hide-small\" style=\"width:85px\"> " +
-                        "<div class=\"w3-bar-item\"> <span class=\"w3-large\">" + row["nombreus"] +
-                        "</span><br> <span>" + row["usuario"] + "</span></div></li><br/>";
+                        respuesta = "";
 
-                    Response.Write(respuesta);
+                        Response.Write(respuesta);
+                    }
+                }
+                else
+                {
+                    respuesta = "0";
                 }
 
                 respuesta = "";
@@ -154,17 +162,19 @@ namespace GrandTourMID.Controllers
             {
 
                 DataTable listaus = BDU.BuscarUsuarioBloqueado();
-
-                foreach (DataRow row in listaus.Rows)
+                if (listaus.Rows.Count > 0)
                 {
+                    foreach (DataRow row in listaus.Rows)
+                    {
 
-                    respuesta = "<li class=\"w3-bar\"> <a href=\"" + row["idusuario"] + "\" class=\"fa fa-external-link w3-bar-item w3-button w3-white w3-xlarge w3-right editar\"></a>" +
-                        "<img src=" + row["foto"] + " class=\"w3-bar-item w3-circle w3-hide-small\" style=\"width:85px\"> " +
-                        "<div class=\"w3-bar-item\"> <span class=\"w3-large\">" + row["nombreus"] +
-                        "</span><br> <span>" + row["usuario"] + "</span></div></li><br/>";
-                    Response.Write(respuesta);
+                        respuesta = "1";
+                        Response.Write(respuesta);
+                    }
                 }
-
+                else
+                {
+                    respuesta = "0";
+                }
                 respuesta = "";
             }
             //enviar correo electronico
@@ -329,7 +339,7 @@ namespace GrandTourMID.Controllers
                 catch { respuesta = "0"; }
 
             }
-            ////
+            ////ver mensaje notificacaiones
             else if (data == "viewall")
             {
                 DataTable listainbox = BDCO.InboxRecibidos();
@@ -665,7 +675,7 @@ namespace GrandTourMID.Controllers
                     for (int i = 0; i < c; i++)
                     {
                         DataRow row = d.Rows[i];
-                        respuesta = "<div onclick=\"chatGo(" + row["ID"] + ",'" + row["nombre"] + "'); scrool();\" class=\"peers fxw-nw ai-c p-20 bdB bgc-white bgcH-grey-50 cur-p\"><div class=\"peer\"><img src =\"\" alt=\"\" class=\"w-3r h-3r bdrs-50p\"></div><div class=\"peer peer-greed pL-20\"><h6 class=\"mB-0 lh-1 fw-400\">" + row["nombre"] + "</h6><small class=\"lh-1\">" + row["email"] + "</small></div></div>";
+                        respuesta = "<div onclick=\"chatGo(" + row["ID"] + ",'" + row["nombre"] + "');\" class=\"peers fxw-nw ai-c p-20 bdB bgc-white bgcH-grey-50 cur-p\"><div class=\"peer\"><img src =\"" + row["foto"] + "\" alt=\"\" class=\"w-3r h-3r bdrs-50p\"></div><div class=\"peer peer-greed pL-20\"><h6 class=\"mB-0 lh-1 fw-400\">" + row["nombre"] + "</h6><small class=\"lh-1\">" + row["email"] + "</small></div></div>";
                         Response.Write(respuesta);
                     }
 
@@ -673,7 +683,7 @@ namespace GrandTourMID.Controllers
                 }
                 else
                 {
-                    Response.Write("No hay usuarios");
+                    Response.Write("<center></br><span class=\"fsz-sm fw-600 c-grey-900\">Ningun mensaje nuevo</span></br></br></center>");
                 }
 
                 respuesta = "";
@@ -695,12 +705,12 @@ namespace GrandTourMID.Controllers
 
                         if (row["idenvia"].ToString() == Request.QueryString["id"].ToString())
                         {
-                            respuesta = "<div class=\"peers fxw-nw\"><div class=\"peer mR-20\"><img class=\"w-2r bdrs-50p\" src=\"\" alt=\"\"></div><div class=\"peer peer-greed\"><div class=\"layers ai-fs gapY-5\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mR-10\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
+                            respuesta = "<div class=\"peers fxw-nw\"><div class=\"peer mR-20\"><img class=\"w-2r bdrs-50p\" src=\"" + row["foto"] + "\" alt=\"\"></div><div class=\"peer peer-greed\"><div class=\"layers ai-fs gapY-5\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mR-10\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
                             Response.Write(respuesta);
                         }
                         else
                         {
-                            respuesta = "<div class=\"peers fxw-nw ai-fe\"><div class=\"peer ord-1 mL-20\"><img class=\"w-2r bdrs-50p\" src=\"\" alt=\"\"></div><div class=\"peer peer-greed ord-0\"><div class=\"layers ai-fe gapY-10\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mL-10 ord-1\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed ord-0\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
+                            respuesta = "<div class=\"peers fxw-nw ai-fe\"><div class=\"peer ord-1 mL-20\"><img class=\"w-2r bdrs-50p\" src=\"" + row["foto"] + "\" alt=\"\"></div><div class=\"peer peer-greed ord-0\"><div class=\"layers ai-fe gapY-10\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mL-10 ord-1\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed ord-0\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
                             Response.Write(respuesta);
                         }
 
@@ -710,6 +720,20 @@ namespace GrandTourMID.Controllers
                 catch { }
 
             }
+            else if (data == "chatrecibidos")
+            {
+                objeus.id = Convert.ToInt32(Session["ID"]);
+                DataTable duser = BDCH.usersnotifica(objeus);
+                foreach (DataRow row in duser.Rows)
+                {
+
+                    respuesta= " <li><a href=\"\" class=\"peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100\"><div class=\"peer mR-15\"><img class=\"w-3r bdrs-50p\" src=\"https://randomuser.me/api/portraits/men/1.jpg\" alt=\"\"></div><div class=\"peer peer-greed\"><span><span class=\"fw-500\">"+row["nombreus"]+"</span> <span class=\"c-grey-600\">liked your<span class=\"text-dark\">post</span></span></span><p class=\"m-0\"><small class=\"fsz-xs\">5 mins ago</small></p></div></a></li>";
+
+                }
+
+
+            }
+
             else if (data == "infouser")
             {
                 int id = Convert.ToInt32(Session["idchat"]);
@@ -722,7 +746,7 @@ namespace GrandTourMID.Controllers
             {
                 objeus.id = Convert.ToInt32(Session["ID"]);
                 objeus.idchat = Convert.ToInt32(Session["idchat"]);
-                objeus.mensaje = Request.Form["menssage"].ToString();
+                objeus.mensaje = Request.Form["message"].ToString();
                 ArrayList idChat = BDCH.idChat(objeus);
                 if (idChat.Count > 0)
                 {
@@ -765,36 +789,77 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
             }
 
-
-
-
-            return Content(respuesta);
-        }
-
-
-
-        public ActionResult GuardarImagen1(HttpPostedFileBase file)
-        {
-            string respuesta = "";
-            string pic = System.IO.Path.GetFileName(file.FileName) + "_" + "_Gde_" + ImageFormat.Jpeg;
-            string patc = System.IO.Path.Combine(Server.MapPath("~/img"), pic);
-            file.SaveAs(patc);
-            using (MemoryStream ms = new MemoryStream())
+            else if (data == "updateinfo")
             {
-                file.InputStream.CopyTo(ms);
-                byte[] array = ms.GetBuffer();
-                objei.img = pic;
-                BDI.Actualizarimagen1(objei);
+                objeus.id = Convert.ToInt32(Session["ID"]);
+                objeus.nombre = Request.Form["nameadmi"];
+                objeus.usuario = Request.Form["useradmi"];
+                objeus.apellidop = Request.Form["apepa"];
+                objeus.apellidom = Request.Form["apemat"];
+                objeus.email = Request.Form["emailadmi"];
+                BDU.Actualizarinfoadmi(objeus);
+                respuesta = "1";
+            }
 
+            else if (data == "guardarfotos")
+            {
+
+                if (file != null)
+                {
+
+                    objeus.id = Convert.ToInt32(Session["ID"]);
+                    string imgs = Request.Form["file"];
+                    string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(file.FileName);
+                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/usuarios/"), pic);
+                    file.SaveAs(patc);
+                    objeus.imagen = "/img/usuarios/" + pic;
+                    BDU.ActualizarFotou(objeus);
+                    respuesta = "1";
+                }
+                else
+                {
+
+                    respuesta = "0";
+                }
+                return Content(respuesta);
 
             }
 
-            respuesta = "1";
+
+
 
             return Content(respuesta);
+        }
 
+        public ActionResult cargarimagen(HttpPostedFileBase file)
+        {
+            string respuesta = "";
+            if (file != null)
+            {
+
+
+                string path = Server.MapPath("~/img/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                file.SaveAs(path + Path.GetFileName(file.FileName));
+                ViewBag.Message = "File uploaded successfully.";
+
+
+                respuesta = "0";
+
+
+
+            }
+            return Content(respuesta);
 
         }
+
+
+
+
 
 
         //metodos fuera del controlador

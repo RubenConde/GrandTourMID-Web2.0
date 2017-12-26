@@ -26,6 +26,32 @@ namespace GrandTourMID.DAO
             return EjecutarComando(cmd);
         }
 
+        public int ActualizarFotou(UsuarioBO objeus)
+        {
+            cmd = new SqlCommand("Update usuario set foto=@foto where idusuario=@id");
+            cmd.Parameters.Add("@foto", SqlDbType.VarChar).Value = objeus.imagen;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objeus.id;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+
+        }
+
+        public int Actualizarinfoadmi(UsuarioBO objeus)
+        {
+            cmd = new SqlCommand("Update usuario set nombre=@nombre, apellidop=@apep, usuario=@usuario, apellidom=@apem, email=@email where idusuario=@id");
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
+            cmd.Parameters.Add("@apep", SqlDbType.VarChar).Value =objeus.apellidop;
+            cmd.Parameters.Add("@apem", SqlDbType.VarChar).Value = objeus.apellidom;
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = objeus.email;
+            cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = objeus.usuario;
+            cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = objeus.id;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+
+
+        }
+
+
         public int ModificarContraseña(UsuarioBO objeus)
         {
             cmd = new SqlCommand("Update usuario set contrasenia=@contra where idusuario=@id");
@@ -38,7 +64,7 @@ namespace GrandTourMID.DAO
 
         public DataTable BuscarUser(int id)
         {
-            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.apellidop, u.apellidom,u. usuario, u.contrasenia, u.foto, email, t.nombre as rol FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and idusuario = '{0}'", id);
+            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.apellidop, u.apellidom,u.usuario, u.contrasenia, u.foto, u.email, t.nombre as rol FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and idusuario = '{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
 
         }
@@ -117,7 +143,7 @@ namespace GrandTourMID.DAO
 
         public DataTable MostrarEmpleados()
         {
-            string sql = string.Format("select u.nombre, t.nombre as rol, u.ciudad, u.fecha, u.edad from usuario u, tipo t where u.idtipo = t.idtipo and t.idtipo= 1");
+            string sql = string.Format("select u.nombre, t.nombre as rol, u.fecha, u.edad from usuario u, tipo t where u.idtipo = t.idtipo and t.idtipo= 1");
             return EjercutarSentenciaBusqueda(sql);
 
         }
