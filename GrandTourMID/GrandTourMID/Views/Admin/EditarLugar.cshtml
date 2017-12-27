@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "EditarLugar";
+    Layout = "~/Views/Shared/MasterAdmi.cshtml";
+}
+
+<head>
+    <title>Editar lugar</title>
+</head>
+
+<div id="cargarinfolugares">
+    <form ondragstart="return false" id="frmeditarlugar" class="row gap-20 masonry pos-r" enctype="multipart/form-data" style="position: relative; height: 1110.6px;">
+        <div class="masonry-sizer col-md-6"></div>
+        <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 0px;">
+            <div class="bgc-white p-20 bd">
+                <button type="button" class="btn btn-primary pull-right">Editar</button>
+                <h6 class="c-grey-900">Foto del lugar</h6>
+                <div class="mT-30">
+                    <div style="height:463.233px">
+                        <center><img class="rounded mx-auto d-block" id="imgeditarlugar" src="~/img/addimagen.png" style="width:450px; height:400px;" /></center>
+                        <br />
+                        <center><label class="btn-outline-secondary rounded" id="editarlugarimagen" style="width:133px;cursor:pointer;">Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenlugar(event)" /></label></center>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 801.666px;">
+            <div class="bgc-white p-20 bd">
+                <h6 class="c-grey-900">Datos del lugar</h6>
+                <div class="mT-30">
+                    <div class="container" novalidate="">
+                        <div class="row">
+                            <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre del lugar</label><input class="form-control" id="editnamelugar" name="editnamelugar" placeholder="Ingrese nombre del lugar" type="text"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3"><label for="validationCustom05">Información del lugar (WEB)</label><textarea style="resize:none" class="form-control" id="editinfolugarweb" name="editinfolugarweb" placeholder="Ingrese información de la web" type="text"></textarea></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3"><label for="validationCustom05">Información del lugar (APP)</label><textarea style="resize:none" class="form-control" id="editinfolugarapp" name="editinfolugarapp" placeholder="Ingrese infomación de la app" type="text"></textarea></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3"><label for="validationCustom09">Dirección</label><input class="form-control" name="editdireccionlugar" id="editdireccionlugar" placeholder="Ingrese la dirección" type="text"></div>
+                        </div>
+                        <br />
+                        <div class="timepicker-input input-icon form-group">
+                            <label for="validationCustom09">Fecha de fundación</label>
+                            <div class="input-group">
+                                <div class="input-group-addon bgc-white bd bdwR-0"><i class="ti-calendar"></i></div>
+                                <input class="form-control bdc-grey-200 start-date" id="editfechalugar" name="editfechalugar" placeholder="Fecha" data-provide="datepicker" type="text">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <div class="masonry-item col-md-12" style="position: absolute; left: 49.9994%; top: 506.4px;">
+
+            <div class="bgc-white p-20 bd">
+                <h6 class="c-grey-900">Ubicación del lugar</h6>
+                <div class="mT-30">
+                    <div>
+                        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                            <input id="edittxtubicalugar" name="edittxtubicalugar" class="form-control" placeholder="Buscar..." type="text" /><br />
+                            <center><div id="maplugaredit" style="position: relative; height:400px;  overflow: hidden;"></div></center>
+
+                        </div>
+                        <input type="hidden" name="editlonlugar" id="editlonlugar" />
+                        <input type="hidden" name="editlalugar" id="editlalugar" />
+                    </div>
+
+                    <button class="btn btn-primary" id="btneditarlugar" type="submit"><li class="fa fa-plus"></li> Editar información</button>
+                    <button class="btn btn-danger pull-right" id="btncancelareditarlugar" type="button">Cancelar</button>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=cargarinfolugar",
+            type: "POST",
+            success: function (a) {
+
+                var datos = JSON.parse(a);
+
+                $("#imgeditarlugar").prop("src", datos.imagenportada);
+                $('#editnamelugar').val(datos.nombre);
+                $('#editinfolugarweb').val(datos.informacionweb);
+                $('#editinfolugarapp').val(datos.informacionapp);
+                $('#editdireccionlugar').val(datos.direccion);
+                $('#editfechalugar').val(datos.fechafundacion);
+                $('#edittxtubicalugar').val(datos.direccionmap);
+                $('#editlonlugar').val(datos.longitud);
+                $('#editlalugar').val(datos.latitud);
+
+                $('#maplugaredit').locationpicker({
+                    radius: 0,
+                    location: {
+                        latitude: $('#editlalugar').val(),
+                        longitude: $('#editlonlugar').val()
+                    },
+                    inputBinding: {
+                        latitudeInput: $('#editlalugar'),
+                        longitudeInput: $('#editlonlugar'),
+                        locationNameInput: $('#edittxtubicalugar')
+
+
+                    },
+                    enableAutocomplete: true
+
+                });
+
+            }
+
+        });
+       
+
+    })
+
+</script>

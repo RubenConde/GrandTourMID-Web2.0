@@ -1,9 +1,102 @@
-﻿///maps agregarlugar
+﻿///cargar lugares
+$(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadlugares",
+        type: "POST",
+        success: function (a) {
 
-var loadimagenlugar = function (event) {
-    var imglugar = document.getElementById('imglugar');
-    imglugar.src = URL.createObjectURL(event.target.files[0]);
+            $("#contenedordelugares").html(a);
+
+        }
+    });
+});
+////
+function verinfolugar(e) {
+    clearInterval(interval);
+    $.ajax({
+        url: '/Ajax/Ajax?data=verinfolugar&idlugar=' + e,
+        type: "post",
+
+        success: function (a) {
+            if (a == 1) {
+
+                window.location = "/Admin/EditarLugar"
+            }
+
+        }
+    });
 };
+///cargar info del lugar seleccionado
+
+
+
+
+/// agregarlugar
+
+$(document).ready(function () {
+    $("#frmagregarlugar").submit(function (e) {
+        e.preventDefault();
+        if ($("#namelugar").val() != "" && $("#infolugarweb").val() != "" && $("#infolugarapp").val() != "" && $("#direccionlugar").val() != "" && $("#fechalugar").val() != "") {
+            var form = $('#frmagregarlugar')[0];
+            var dataString = new FormData(form);
+            $.ajax({
+                url: '/Ajax/Ajax?data=addlugar',  //Server script to process data
+                type: 'POST',
+                data: dataString,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (a) {
+                    if (a == 1) {
+                        swal({
+                            text: 'Se ha agregado el lugar correctamente!',
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        })
+                    }
+                    else if (a == 0) {
+                        swal({
+                            title: '¿Seguro no olvidas algo?',
+                            html: '<li class="fa fa-image"></li>' +" "+ "Debes ingresar una imagen",
+                            type: "question",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                    }
+                    else {
+
+
+
+                    }
+
+                }
+            });
+        }
+        else {
+            swal({
+
+                text: 'No puedes dejar campos vaciós',
+                type: "question",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#7986CB",
+                closeOnCancel: true,
+                closeOnConfirm: true,
+                showLoaderOnConfirm: true
+            });
+        }
+    });
+});
+
+
+
 
 
 ///cargar imagen en <img> del perfil del administrador
@@ -17,7 +110,6 @@ var loadimagenlugar = function (event) {
     var imglugar = document.getElementById('imglugar');
     imglugar.src = URL.createObjectURL(event.target.files[0]);
 };
-
 
 ////cambiar imagen de perfil
 $(document).ready(function () {
@@ -343,7 +435,7 @@ function myinfo() {
             $('#usernameadmis').html(datos.nombreus);
             $("#imgadmi").prop("src", datos.foto)
             $("#roundphotoadmi").prop("src", datos.foto)
-            
+
         }
 
     });

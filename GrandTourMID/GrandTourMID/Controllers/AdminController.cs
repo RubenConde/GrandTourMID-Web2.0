@@ -92,5 +92,14 @@ namespace GrandTourMID.Controllers
             return View();
         }
 
+        public ActionResult ListaLugares()
+        {
+            return View();
+        }
+
+        public ActionResult EditarLugar()
+        {
+            return View();
+        }
     }
 }

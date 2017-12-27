@@ -146,6 +146,7 @@
     <Compile Include="BO\ContactoBO.cs" />
     <Compile Include="BO\CorreoBO.cs" />
     <Compile Include="BO\InicioBO.cs" />
+    <Compile Include="BO\LugarBO.cs" />
     <Compile Include="BO\PublicacionBO.cs" />
     <Compile Include="BO\UsuarioBO.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="DAO\ContactoDAO.cs" />
     <Compile Include="DAO\InicioDAO.cs" />
     <Compile Include="DAO\LoginDAO.cs" />
+    <Compile Include="DAO\LugarDAO.cs" />
     <Compile Include="DAO\PublicacionDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,10 +197,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\404.png" />
     <Content Include="img\500.png" />
+    <Content Include="img\addimagen.png" />
     <Content Include="img\casa.jpg" />
     <Content Include="img\phone-screenshot.png" />
     <Content Include="img\Previsualización.png" />
     <Content Include="img\raidlobby.jpg" />
+    <Content Include="img\rosada.jpg" />
     <Content Include="img\usuario.png" />
     <Content Include="Scripts\Acciones.js" />
     <Content Include="Scripts\AccionesAdmin.js" />
@@ -276,6 +280,8 @@
     <Content Include="Views\Admin\Maps.cshtml" />
     <Content Include="Views\Admin\AddLugar.cshtml" />
     <Content Include="Views\Error\Error500.cshtml" />
+    <Content Include="Views\Admin\ListaLugares.cshtml" />
+    <Content Include="Views\Admin\EditarLugar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

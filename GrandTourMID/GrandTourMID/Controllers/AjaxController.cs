@@ -28,6 +28,8 @@ namespace GrandTourMID.Controllers
         ChatDAO BDCH = new ChatDAO();
         InicioBO objei = new InicioBO();
         InicioDAO BDI = new InicioDAO();
+        LugarBO objelug = new LugarBO();
+        LugarDAO BDLU = new LugarDAO();
         // GET: Ajax
         public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file)
         {
@@ -639,6 +641,8 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
             }
 
+
+
             //desactiva la cuenta de usuario
             else if (data == "desactivarcuenta")
             {
@@ -727,7 +731,7 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in duser.Rows)
                 {
 
-                    respuesta= " <li><a href=\"\" class=\"peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100\"><div class=\"peer mR-15\"><img class=\"w-3r bdrs-50p\" src=\"https://randomuser.me/api/portraits/men/1.jpg\" alt=\"\"></div><div class=\"peer peer-greed\"><span><span class=\"fw-500\">"+row["nombreus"]+"</span> <span class=\"c-grey-600\">liked your<span class=\"text-dark\">post</span></span></span><p class=\"m-0\"><small class=\"fsz-xs\">5 mins ago</small></p></div></a></li>";
+                    respuesta = " <li><a href=\"\" class=\"peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100\"><div class=\"peer mR-15\"><img class=\"w-3r bdrs-50p\" src=\"https://randomuser.me/api/portraits/men/1.jpg\" alt=\"\"></div><div class=\"peer peer-greed\"><span><span class=\"fw-500\">" + row["nombreus"] + "</span> <span class=\"c-grey-600\">liked your<span class=\"text-dark\">post</span></span></span><p class=\"m-0\"><small class=\"fsz-xs\">5 mins ago</small></p></div></a></li>";
 
                 }
 
@@ -825,6 +829,72 @@ namespace GrandTourMID.Controllers
 
             }
 
+            else if (data == "addlugar")
+            {
+                try
+                {
+                    if (file != null)
+                    {
+                        string imgs = Request.Form["file"];
+                        string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
+                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
+                        file.SaveAs(patc);
+                        objelug.imagen = "/img/lugares/" + pic;
+
+                        objelug.nombre = Request.Form["namelugar"];
+                        objelug.direccion = Request.Form["direccionlugar"];
+                        objelug.direccionmaps = Request.Form["txtubicalugar"];
+                        objelug.fecha = Request.Form["fechalugar"];
+                        objelug.informacionapp = Request.Form["infolugarapp"];
+                        objelug.informacionweb = Request.Form["infolugarweb"];
+                        objelug.latitud = Request.Form["lalugar"];
+                        objelug.longitud = Request.Form["lonlugar"];
+                        BDLU.AgregarLugar(objelug);
+                        respuesta = "1";
+                    }
+                    else
+                    {
+                        respuesta = "0";
+                    }
+                }
+                catch
+                {
+                    respuesta = "2";
+                }
+
+
+
+            }
+
+            else if (data == "loadlugares")
+            {
+
+                DataTable Lisluga = BDLU.CargarLugares();
+                foreach (DataRow row in Lisluga.Rows)
+                {
+                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><a onclick=\"verinfolugar(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</a></p></div>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+
+            /////cargar la informacion de lugares
+            else if (data == "verinfolugar")
+            {
+                Session["idlugar"] = Convert.ToInt32(Request.QueryString["idlugar"]);
+                respuesta = "1";
+            }
+
+            else if (data == "cargarinfolugar")
+            {
+                int id = Convert.ToInt32(Session["idlugar"]);
+                DataTable dt = BDLU.BuscarLugar(id);
+                String jSonString = ConvertirDataJson(dt);
+
+                respuesta = jSonString;
+            }
 
 
 
