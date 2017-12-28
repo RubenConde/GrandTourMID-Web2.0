@@ -28,9 +28,6 @@ function verinfolugar(e) {
 };
 ///cargar info del lugar seleccionado
 
-
-
-
 /// agregarlugar
 
 $(document).ready(function () {
@@ -95,10 +92,6 @@ $(document).ready(function () {
     });
 });
 
-
-
-
-
 ///cargar imagen en <img> del perfil del administrador
 var loadfile = function (event) {
     var pic = document.getElementById('imgadmi');
@@ -109,6 +102,12 @@ var loadfile = function (event) {
 var loadimagenlugar = function (event) {
     var imglugar = document.getElementById('imglugar');
     imglugar.src = URL.createObjectURL(event.target.files[0]);
+};
+
+////////cargra imagen de editar lugar en <img>
+var loadimagenlugareditar = function (event) {
+    var imgeditarlugar = document.getElementById('imgeditarlugar');
+    imgeditarlugar.src = URL.createObjectURL(event.target.files[0]);
 };
 
 ////cambiar imagen de perfil
@@ -645,12 +644,6 @@ $(document).ready(function () {
     setInterval(ajaxCall, 1000);
 
 });
-
-
-
-
-
-
 
 
 //cargar info contacto

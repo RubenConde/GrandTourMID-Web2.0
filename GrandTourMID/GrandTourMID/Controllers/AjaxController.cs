@@ -896,6 +896,29 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
             }
 
+            else if (data == "actualizarimagenlugar")
+            {
+
+                if (file != null)
+                {
+
+                   objelug.idlugar= Convert.ToInt32(Request.Form["idlugar"]);
+                    string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
+                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
+                    file.SaveAs(patc);
+                    objelug.imagen = "/img/lugares/" + pic;
+                    BDLU.ActualizarImagenLugar(objelug);
+                    respuesta = "1";
+                }
+                else
+                {
+
+                    respuesta = "0";
+                }
+                return Content(respuesta);
+
+            }
+
 
 
             return Content(respuesta);

@@ -40,10 +40,38 @@ namespace GrandTourMID.DAO
         }
 
 
+        public int ActualizarImagenLugar(LugarBO objelu)
+        {
+            cmd = new SqlCommand("update lugares set imagenportada=@imagen where idlugar=@id");
+            cmd.Parameters.Add("@imagen", SqlDbType.VarChar).Value= objelu.imagen;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objelu.idlugar;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
 
+        }
 
+        public int ActualizarDatosLugar(LugarBO objelug)
+        {
+            cmd = new SqlCommand("update lugares set fechafundacion=@fecha, nombre=@nombre,informacionapp=@infoapp, informacionweb=@infoweb, direccion=@direccion where idlugar=@id ");
+            cmd.Parameters.Add("@fecha", SqlDbType.VarChar).Value = objelug.fecha;
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objelug.nombre;
+            cmd.Parameters.Add("@infoapp", SqlDbType.VarChar).Value = objelug.informacionapp;
+            cmd.Parameters.Add("@infoweb", SqlDbType.VarChar).Value = objelug.informacionweb;
+            cmd.Parameters.Add("@direccion", SqlDbType.VarChar).Value = objelug.direccion;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objelug.idlugar;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
 
-
+        public int ActualizarUbicacionLugar(LugarBO objelug)
+        {
+            cmd = new SqlCommand("update lugares set latitud=@la, longitud=@lon, direccionmap=@diremap where idlugar=@id");
+            cmd.Parameters.Add("@la", SqlDbType.VarChar).Value = objelug.latitud;
+            cmd.Parameters.Add("@lon", SqlDbType.VarChar).Value = objelug.longitud;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objelug.idlugar;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
 
 
 
