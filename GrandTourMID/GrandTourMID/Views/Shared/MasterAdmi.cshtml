@@ -68,38 +68,41 @@
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-orange-500 ti-help-alt"></i> </span><span class="title">Preguntas y Respuestas</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="sidebar-link" href="~/Admin/users">Agregar preguntas y respuestas</a>
-
+                            <li>
+                                <a class="sidebar-link" href="~/Admin/AddPreguntas">Agregar preguntas y respuestas</a>
+                            </li>
+                            <li><a class="sidebar-link" href="~/Admin/ListaPreguntas">Ver Preguntas del lugar</a></li>
+                        </ul>
                     </li>
-                    <li><a class="sidebar-link" href="datatable.html">Data Table</a></li>
-                </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-purple-500 ti-map"></i> </span><span class="title">Lugares</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="~/Admin/AddLugar">Añadir nuevo lugar</a></li>
-                        <li><a href="~/Admin/ListaLugares">Lugares</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-teal-500 ti-view-list-alt"></i> </span><span class="title">Multiple Levels</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item dropdown"><a href="javascript:void(0);"><span>Menu Item</span></a></li>
-                        <li class="nav-item dropdown">
-                            <a href="javascript:void(0);"><span>Menu Item</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="javascript:void(0);">Menu Item</a></li>
-                                <li><a href="javascript:void(0);">Menu Item</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                </div>
-                <div class="ps__rail-y" style="top: 0px; right: 0px; height: 679px;">
-                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 620px;"></div>
-                </div>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-purple-500 ti-map-alt"></i> </span><span class="title">Lugares</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="sidebar-link" href="~/Admin/AddLugar">Agregar Lugares</a>
+                            </li>
+                            <li><a class="sidebar-link" href="~/Admin/ListaLugares">Lugares registrados</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-teal-500 ti-view-list-alt"></i> </span><span class="title">Multiple Levels</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item dropdown"><a href="javascript:void(0);"><span>Menu Item</span></a></li>
+                            <li class="nav-item dropdown">
+                                <a href="javascript:void(0);"><span>Menu Item</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0);">Menu Item</a></li>
+                                    <li><a href="javascript:void(0);">Menu Item</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px; height: 679px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 620px;"></div>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -180,7 +183,7 @@
                                 <li><a href="~/Admin/Myprofile" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Perfil</span></a></li>
                                 <li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-email mR-10"></i> <span>Messages</span></a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a  style="cursor:pointer;" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700" onclick="CerrarSesion()"><i class="ti-power-off mR-10"></i><span>Cerrar sesión</span></a></li>
+                                <li><a style="cursor:pointer;" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700" onclick="CerrarSesion()"><i class="ti-power-off mR-10"></i><span>Cerrar sesión</span></a></li>
                             </ul>
                         </li>
                     </ul>

@@ -287,6 +287,8 @@
     <Content Include="Views\Admin\ListaLugares.cshtml" />
     <Content Include="Views\Admin\EditarLugar.cshtml" />
     <Content Include="Views\Admin\AddPreguntas.cshtml" />
+    <Content Include="Views\Admin\ListaPreguntas.cshtml" />
+    <Content Include="Views\Admin\EditarPregunta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

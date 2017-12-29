@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "ListaPreguntas";
+    Layout = "~/Views/Shared/MasterAdmi.cshtml";
+}
+
+<h2>Listado de Preguntas y Respuestas de cada lugar</h2>
+
+
+<div id="iniciarlugares" class="container">
+    <div id="contenedorPreguntaslugares" class="row centered">
+
+    </div>
+</div>
+
+<div class="modal fade" id="modalpreguntas" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Preguntas del lugar</h4>
+                <button style="cursor:pointer" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <form>
+                            <label>Buscar lugar</label> <input id="buscartext" class="form-control" type="text" placeholder="Ingrese su busqueda" onkeyup="doSearch()" />
+                            <br />
+                        </form>
+
+                        <div style="width:780px; height:425px; overflow:auto;">
+                            <table id="datospreguntas" class="table table-striped table-bordered">
+                                <thead>
+                                <td>ID</td>
+                                <td>Pregunta</td>
+                                <td>Respuesta correcta</td>
+                                <td>Respuesta Incorrecta N°1</td>
+                                <td>Respuesta Incorrecta N°2</td>
+                                <td>Respuesta Incorrecta N°3</td>
+                                <td>Selección</td>
+                                </thead>
+                                <tbody id="contenerPreguntas"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=listalugarespreguntas",
+            type: "POST",
+            success: function (a) {
+
+                $("#contenedorPreguntaslugares").html(a);
+
+            }
+        });
+    });
+
+    function doSearch() {
+        var tableReg = document.getElementById('datospreguntas');
+        var searchText = document.getElementById('buscartext').value.toLowerCase();
+        var cellsOfRow = "";
+        var found = false;
+        var compareWith = "";
+        // Recorremos todas las filas con contenido de la tabla
+        for (var i = 1; i < tableReg.rows.length; i++) {
+            cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+            found = false;
+            // Recorremos todas las celdas
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                // Buscamos el texto en el contenido de la celda
+                if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tableReg.rows[i].style.display = '';
+            } else {
+                // si no ha encontrado ninguna coincidencia, esconde la
+                // fila de la tabla
+                tableReg.rows[i].style.display = 'none';
+            }
+        }
+    };
+
+
+    
+
+    function Verpreguntas(a) {
+        $.ajax({
+            url: "/Ajax/Ajax?data=verpregunatasrespuestas&idpreguntas=" + a,
+            type: "POST",
+            success: function (a) {
+
+                $("#contenerPreguntas").html(a);
+
+            }
+        });
+    };
+    
+
+
+    function editarpregunta(e) {
+        
+        $.ajax({
+            url: '/Ajax/Ajax?data=editquestion&idpregunta=' + e,
+            type: "post",
+
+            success: function (a) {
+                if (a == 1) {
+
+                    window.location = "/Admin/EditarPregunta"
+                }
+
+            }
+        });
+    };
+
+
+
+</script>

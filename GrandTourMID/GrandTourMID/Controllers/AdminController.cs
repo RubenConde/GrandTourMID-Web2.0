@@ -107,6 +107,14 @@ namespace GrandTourMID.Controllers
             return View();
 
         }
+        public ActionResult ListaPreguntas()
+        {
+            return View();
+        }
 
+        public ActionResult EditarPregunta()
+        {
+            return View();
+        }
     }
 }

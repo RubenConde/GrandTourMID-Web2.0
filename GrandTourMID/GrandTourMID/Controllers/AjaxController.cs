@@ -1002,6 +1002,57 @@ namespace GrandTourMID.Controllers
 
             }
 
+            else if (data == "listalugarespreguntas")
+            {
+                DataTable dlugares = BDLU.CargarLugares();
+                foreach (DataRow row in dlugares.Rows)
+                {
+                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>Preguntas</p><p><br><button type=\"button\" data-toggle=\"modal\" data-target=\"#modalpreguntas\" onclick=\"Verpreguntas(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\"><li class=\"fa fa-eye\"></li>  Ver preguntas</button></p></div>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+
+            else if (data == "verpregunatasrespuestas")
+            {
+                int id = Convert.ToInt32(Request.QueryString["idpreguntas"]);
+                DataTable lispre = BDPRE.VerPreguntasLugar(id);
+                foreach (DataRow row in lispre.Rows)
+                {
+                    respuesta = "<tr><td > " + row["idpregunta"] + " </td ><td>" + row["pregunta"] + "</td><td>" + row["correcta"] + " </td><td>" + row["respuesta2"] + "</td><td>" + row["respuesta3"] + "</td><td>" + row["respuesta4"] + "</td><td><button type=\"button\" onclick=\"editarpregunta(" + row["idpregunta"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
+                    Response.Write(respuesta);
+
+
+                }
+                respuesta = "";
+
+            }
+
+            else if (data == "editquestion")
+            {
+
+                Session["idpregunta"] = Convert.ToInt32(Request.QueryString["idpregunta"]);
+                respuesta = "1";
+
+            }
+
+
+            else if (data == "infopreguntaeditar")
+            {
+                int idpre = Convert.ToInt32(Session["idpregunta"]);
+                DataTable dt = BDPRE.verinfopregunta(idpre);
+                String jSonString = ConvertirDataJson(dt);
+
+                respuesta = jSonString;
+
+
+
+            }
+
+
+
             return Content(respuesta);
         }
 

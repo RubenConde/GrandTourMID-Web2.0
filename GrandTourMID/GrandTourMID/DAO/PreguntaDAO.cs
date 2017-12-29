@@ -29,5 +29,18 @@ namespace GrandTourMID.DAO
             return EjecutarComando(cmd);
         }
 
+
+        public DataTable VerPreguntasLugar(int id)
+        {
+            string sql = string.Format("select pregunta.idpregunta, pregunta.pregunta, Respuestas.correcta, Respuestas.respuesta2, Respuestas.respuesta3, Respuestas.respuesta4 from pregunta, Respuestas, lugares where pregunta.idpregunta = Respuestas.idpregunta and pregunta.idlugar = lugares.idlugar and lugares.idlugar = '{0}'", id);
+            return EjercutarSentenciaBusqueda(sql);
+        }
+
+        public DataTable verinfopregunta(int id)
+        {
+            string sql = string.Format("select pregunta.idpregunta, lugares.imagenportada, pregunta.pregunta, Respuestas.correcta, Respuestas.respuesta2, Respuestas.respuesta3,lugares.nombre, Respuestas.respuesta4 from pregunta, Respuestas, lugares where pregunta.idpregunta = Respuestas.idpregunta and pregunta.idlugar = lugares.idlugar and pregunta.idpregunta ='{0}'", id);
+            return EjercutarSentenciaBusqueda(sql);
+        }
+
     }
 }
