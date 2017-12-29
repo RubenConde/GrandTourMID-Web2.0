@@ -30,6 +30,8 @@ namespace GrandTourMID.Controllers
         InicioDAO BDI = new InicioDAO();
         LugarBO objelug = new LugarBO();
         LugarDAO BDLU = new LugarDAO();
+        PreguntasBO objp = new PreguntasBO();
+        PreguntaDAO BDPRE = new PreguntaDAO();
         // GET: Ajax
         public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file)
         {
@@ -43,6 +45,7 @@ namespace GrandTourMID.Controllers
                 ArrayList datos = BDL.Login(objeus);
                 if (datos.Count > 0)
                 {
+                    Session.Timeout = 200000;
                     Session["ID"] = datos[0].ToString();
                     Session["idtipo"] = datos[2].ToString();
                     Session["imagen"] = datos[3].ToString();
@@ -56,6 +59,17 @@ namespace GrandTourMID.Controllers
                 }
 
             }
+            ///Cerrar sesión
+            if (data == "closesesion")
+            {
+
+                Session.Abandon();
+                Session.RemoveAll();
+                Session.Clear();
+                respuesta = "1";
+
+            }
+
             //Recuperando datos en el perfil de usuario
             else if (data == "DatosUsuario")
             {
@@ -902,7 +916,7 @@ namespace GrandTourMID.Controllers
                 if (file != null)
                 {
 
-                   objelug.idlugar= Convert.ToInt32(Request.Form["idlugar"]);
+                    objelug.idlugar = Convert.ToInt32(Request.Form["idlugar"]);
                     string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
                     string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
                     file.SaveAs(patc);
@@ -912,14 +926,81 @@ namespace GrandTourMID.Controllers
                 }
                 else
                 {
-
                     respuesta = "0";
                 }
                 return Content(respuesta);
 
             }
 
+            else if (data == "actualizardatoslugar")
+            {
+                try
+                {
+                    objelug.idlugar = Convert.ToInt32(Request.Form["idlugar2"]);
+                    objelug.nombre = Request.Form["editnamelugar"];
+                    objelug.informacionweb = Request.Form["editinfolugarweb"];
+                    objelug.informacionapp = Request.Form["editinfolugarapp"];
+                    objelug.direccion = Request.Form["editdireccionlugar"];
+                    objelug.fecha = Request.Form["editfechalugar"];
+                    BDLU.ActualizarDatosLugar(objelug);
+                    respuesta = "1";
+                }
+                catch { respuesta = "0"; }
+            }
 
+            else if (data == "actualizarubicacion")
+            {
+                try
+                {
+                    objelug.idlugar = Convert.ToInt32(Request.Form["idlugar3"]);
+                    objelug.longitud = Request.Form["editlonlugar"];
+                    objelug.latitud = Request.Form["editlalugar"];
+                    objelug.direccionmaps = Request.Form["edittxtubicalugar"];
+                    BDLU.ActualizarUbicacionLugar(objelug);
+                    respuesta = "1";
+                }
+                catch { respuesta = "0"; }
+
+
+            }
+            else if (data == "tablalugares")
+            {
+                DataTable dlugares = BDLU.CargarLugares();
+                foreach (DataRow row in dlugares.Rows)
+                {
+                    respuesta = "<tr><td > " + row["idlugar"] + " </td ><td>" + row["nombre"] + "</td><td>" + row["direccion"] + " </td><td><button onclick=\"SeleccionarL(" + row["idlugar"] + ")\" class=\"btn btn-primary small\" style=\"cursor:pointer\" data-dismiss=\"modal\" type=\"button\"><li class=\"fa fa-share-square-o\"></li> Seleccionar</button></td></tr>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+            else if (data == "infolugarpreguntas")
+            {
+                int id = Convert.ToInt32(Request.QueryString["idlugar"]);
+                DataTable dt = BDLU.BuscarLugar(id);
+                String jSonString = ConvertirDataJson(dt);
+
+                respuesta = jSonString;
+
+
+            }
+            else if (data == "agregarpregunta")
+            {
+                try
+                {
+                    objp.pregunta = Request.Form["namepregunta"];
+                    objp.idlugar = Convert.ToInt32(Request.Form["idlugarpreguntas"]);
+                    objp.correcta = Request.Form["correcta"];
+                    objp.respuesta2 = Request.Form["incorrecta1"];
+                    objp.respuesta3 = Request.Form["incorrecta2"];
+                    objp.respuesta4 = Request.Form["incorrecta3"];
+                    BDPRE.AgregarPregunta(objp);
+                    respuesta = "1";
+                }
+                catch { respuesta = "0"; }
+
+            }
 
             return Content(respuesta);
         }

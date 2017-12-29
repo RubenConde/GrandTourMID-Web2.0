@@ -68,6 +68,7 @@ namespace GrandTourMID.DAO
             cmd = new SqlCommand("update lugares set latitud=@la, longitud=@lon, direccionmap=@diremap where idlugar=@id");
             cmd.Parameters.Add("@la", SqlDbType.VarChar).Value = objelug.latitud;
             cmd.Parameters.Add("@lon", SqlDbType.VarChar).Value = objelug.longitud;
+            cmd.Parameters.Add("@diremap", SqlDbType.VarChar).Value = objelug.direccionmaps;
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = objelug.idlugar;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);

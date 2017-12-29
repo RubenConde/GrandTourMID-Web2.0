@@ -147,6 +147,7 @@
     <Compile Include="BO\CorreoBO.cs" />
     <Compile Include="BO\InicioBO.cs" />
     <Compile Include="BO\LugarBO.cs" />
+    <Compile Include="BO\PreguntasBO.cs" />
     <Compile Include="BO\PublicacionBO.cs" />
     <Compile Include="BO\UsuarioBO.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="DAO\InicioDAO.cs" />
     <Compile Include="DAO\LoginDAO.cs" />
     <Compile Include="DAO\LugarDAO.cs" />
+    <Compile Include="DAO\PreguntaDAO.cs" />
     <Compile Include="DAO\PublicacionDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,6 +193,7 @@
     <Content Include="Content\w3-theme-blue-grey.css" />
     <Content Include="Content\w3.css" />
     <Content Include="Content\xd.css" />
+    <Content Include="img\lugar.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -199,6 +202,7 @@
     <Content Include="img\500.png" />
     <Content Include="img\addimagen.png" />
     <Content Include="img\casa.jpg" />
+    <Content Include="img\logogtm.png" />
     <Content Include="img\phone-screenshot.png" />
     <Content Include="img\Previsualización.png" />
     <Content Include="img\raidlobby.jpg" />
@@ -282,6 +286,7 @@
     <Content Include="Views\Error\Error500.cshtml" />
     <Content Include="Views\Admin\ListaLugares.cshtml" />
     <Content Include="Views\Admin\EditarLugar.cshtml" />
+    <Content Include="Views\Admin\AddPreguntas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

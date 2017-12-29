@@ -1,4 +1,7 @@
-﻿///cargar lugares
+﻿
+
+
+///cargar lugares
 $(document).ready(function () {
     $.ajax({
         url: "/Ajax/Ajax?data=loadlugares",
@@ -59,7 +62,7 @@ $(document).ready(function () {
                     else if (a == 0) {
                         swal({
                             title: '¿Seguro no olvidas algo?',
-                            html: '<li class="fa fa-image"></li>' +" "+ "Debes ingresar una imagen",
+                            html: '<li class="fa fa-image"></li>' + " " + "Debes ingresar una imagen",
                             type: "question",
                             confirmButtonText: "Aceptar",
                             confirmButtonColor: "#7986CB",

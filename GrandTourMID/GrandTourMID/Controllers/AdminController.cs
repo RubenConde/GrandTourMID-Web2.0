@@ -101,5 +101,12 @@ namespace GrandTourMID.Controllers
         {
             return View();
         }
+
+        public ActionResult AddPreguntas()
+        {
+            return View();
+
+        }
+
     }
 }
