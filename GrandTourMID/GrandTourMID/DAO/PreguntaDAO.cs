@@ -41,6 +41,23 @@ namespace GrandTourMID.DAO
             string sql = string.Format("select pregunta.idpregunta, lugares.imagenportada, pregunta.pregunta, Respuestas.correcta, Respuestas.respuesta2, Respuestas.respuesta3,lugares.nombre, Respuestas.respuesta4 from pregunta, Respuestas, lugares where pregunta.idpregunta = Respuestas.idpregunta and pregunta.idlugar = lugares.idlugar and pregunta.idpregunta ='{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
         }
+        public int ActualizarPregunta(PreguntasBO objep)
+        {
+            cmd = new SqlCommand("update pregunta set pregunta=@pre where idpregunta=@id");
+            cmd.Parameters.Add("@pre", SqlDbType.VarChar).Value = objep.pregunta;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objep.idlugar;
+            cmd.CommandType = CommandType.Text;
+            int id = EjecutarComando(cmd);
+            cmd = new SqlCommand("update Respuestas set correcta=@correcta, respuesta2=@re2, respuesta3=@re3, respuesta4=@re4 where idpregunta=@id");
+            cmd.Parameters.Add("@correcta", SqlDbType.VarChar).Value = objep.correcta;
+            cmd.Parameters.Add("@re2", SqlDbType.VarChar).Value = objep.respuesta2;
+            cmd.Parameters.Add("@re3", SqlDbType.VarChar).Value = objep.respuesta3;
+            cmd.Parameters.Add("@re4", SqlDbType.VarChar).Value = objep.respuesta4;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objep.idlugar;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
 
     }
 }

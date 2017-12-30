@@ -1051,6 +1051,20 @@ namespace GrandTourMID.Controllers
 
             }
 
+            else if (data == "updatepregunta")
+            {
+                objp.idlugar = Convert.ToInt32(Request.Form["respuesta"]);
+                objp.pregunta = Request.Form["namepreguntaeditar"];
+                objp.correcta = Request.Form["editarcorrecta"];
+                objp.respuesta2 = Request.Form["editarincorrecta1"];
+                objp.respuesta3 = Request.Form["editarincorrecta2"];
+                objp.respuesta4 = Request.Form["editarincorrecta3"];
+                BDPRE.ActualizarPregunta(objp);
+                respuesta = "1";
+
+
+            }
+
 
 
             return Content(respuesta);
