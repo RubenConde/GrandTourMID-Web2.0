@@ -1,21 +1,6 @@
 ﻿
-$(document).ready(function () {
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=DatosUsuario",
-            type: "POST",
-            success: function (a) {
-                var datos = JSON.parse(a);
 
-                $('#nombreperfil').html(datos.nombreus);
-                $('#fotoperfil').prop("src", datos.foto);
-                $('#apellidoperfilpaterno').html(datos.apellidop);
-            }
 
-        });
-    }
-    setInterval(ajaxCall, 900);
-});
 
 
 $(document).ready(function () {

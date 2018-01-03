@@ -17,7 +17,7 @@ namespace GrandTourMID.DAO
 
         public ConexionSQL()
         {
-            con = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=proyectoTour;Trusted_Connection=True;");
+            con = new SqlConnection("Server=LAPTOP-8EM06GIO;Database=proyectoTour;Trusted_Connection=True;");
             //sirve para establecer las consultas e instrucciones SQL que se ejecutarán en el servidor
             exec = new SqlCommand();
 
@@ -26,7 +26,7 @@ namespace GrandTourMID.DAO
 
         public SqlConnection establecerConexion()
         {
-            string cs = "Server=localhost\\SQLEXPRESS;Database=proyectoTour;Trusted_Connection=True;";
+            string cs = "Server=LAPTOP-8EM06GIO;Database=proyectoTour;Trusted_Connection=True;";
             con = new SqlConnection(cs);
             return con;
         }
