@@ -43,7 +43,7 @@ $("#file2").on("change", function () {
         var reader = new FileReader();
         reader.readAsDataURL(files[0]);
         reader.onloadend = function () {
-            $("#header2").css("background-image", "url(" + this.result + ")");
+            $("#imgheader2").css("background-image", "url(" + this.result + ")");
         }
     }
     $("#cancelaimagenheader2").show();
