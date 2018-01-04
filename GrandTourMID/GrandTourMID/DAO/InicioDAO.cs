@@ -31,30 +31,65 @@ namespace GrandTourMID.DAO
         public int ActualizarTitulo4(InicioBO objei)
         {
             cmd = new SqlCommand("update Acercade set titulo4=@titulo where idacerca=1");
-            cmd.Parameters.Add("@titulo", SqlDbType.VarChar).Value = objei.titulo2;
+            cmd.Parameters.Add("@titulo", SqlDbType.VarChar).Value = objei.titulo4;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
 
         public int ActualizarAcercade(InicioBO objei)
         {
-            cmd = new SqlCommand("update Acercade set titulo2=@titulo, subtitulo=@sub, infoapp=@infoa, infoadicional=@infoad where idacerca=1");
+            cmd = new SqlCommand("update Acercade set titulo2=@titulo,infoapp=@infoa where idacerca=1");
             cmd.Parameters.Add("@titulo", SqlDbType.VarChar).Value = objei.titulo;
-            cmd.Parameters.Add("@sub", SqlDbType.VarChar).Value = objei.subtitulo;
             cmd.Parameters.Add("@infoa", SqlDbType.VarChar).Value = objei.infoapp;
-            cmd.Parameters.Add("@infoad", SqlDbType.VarChar).Value = objei.infoAdicional;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
 
         public int Actualizarimagen1(InicioBO objei)
         {
-            cmd = new SqlCommand("update Acercade set img=@img where idacerca=1");
+            cmd = new SqlCommand("update imagenesinicio set img=@img where idimg=1");
             cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
-
         }
+
+        public int Actualizarimagen2(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set img1=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
+        public int Actualizarimagenheader1(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set header1=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+        public int Actualizarimagenparallax(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set header2=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
+        public int Actualizarimagenparallax2(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set header3=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
+        public DataTable CargarImgsInicio()
+        {            
+            string sql = string.Format("select * from imagenesinicio");
+            return EjercutarSentenciaBusqueda(sql);
+        }
+
 
         public DataTable CargarInfoInicio()
         {

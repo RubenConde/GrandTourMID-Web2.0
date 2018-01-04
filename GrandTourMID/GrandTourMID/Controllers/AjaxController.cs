@@ -669,9 +669,7 @@ namespace GrandTourMID.Controllers
             else if (data == "updateacerca")
             {
                 objei.titulo = Request.Form["titulo2"];
-                objei.subtitulo = Request.Form["subtitulo2"];
                 objei.infoapp = Request.Form["infoapp2"];
-                objei.infoAdicional = Request.Form["infoadicional2"];
                 BDI.ActualizarAcercade(objei);
 
                 respuesta = "1";
@@ -715,27 +713,25 @@ namespace GrandTourMID.Controllers
                 string se = Session["idchat"].ToString();
                 objeus.idchat = Convert.ToInt32(Request.QueryString["id"]);
                 DataTable d = BDCH.MsgChat(objeus);
-                try
+
+                for (int i = 0; i < d.Rows.Count; i++)
                 {
-                    for (int i = 0; i < d.Rows.Count; i++)
+                    DataRow row = d.Rows[i];
+
+                    if (row["idenvia"].ToString() == Request.QueryString["id"].ToString())
                     {
-                        DataRow row = d.Rows[i];
-
-                        if (row["idenvia"].ToString() == Request.QueryString["id"].ToString())
-                        {
-                            respuesta = "<div class=\"peers fxw-nw\"><div class=\"peer mR-20\"><img class=\"w-2r bdrs-50p\" src=\"" + row["foto"] + "\" alt=\"\"></div><div class=\"peer peer-greed\"><div class=\"layers ai-fs gapY-5\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mR-10\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
-                            Response.Write(respuesta);
-                        }
-                        else
-                        {
-                            respuesta = "<div class=\"peers fxw-nw ai-fe\"><div class=\"peer ord-1 mL-20\"><img class=\"w-2r bdrs-50p\" src=\"" + row["foto"] + "\" alt=\"\"></div><div class=\"peer peer-greed ord-0\"><div class=\"layers ai-fe gapY-10\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mL-10 ord-1\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed ord-0\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
-                            Response.Write(respuesta);
-                        }
-
+                        respuesta = "<div class=\"peers fxw-nw\"><div class=\"peer mR-20\"><img class=\"w-2r bdrs-50p\" src=\"" + row["foto"] + "\" alt=\"\"></div><div class=\"peer peer-greed\"><div class=\"layers ai-fs gapY-5\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mR-10\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
+                        Response.Write(respuesta);
                     }
-                    respuesta = "";
+                    else
+                    {
+                        respuesta = "<div class=\"peers fxw-nw ai-fe\"><div class=\"peer ord-1 mL-20\"><img class=\"w-2r bdrs-50p\" src=\"" + row["foto"] + "\" alt=\"\"></div><div class=\"peer peer-greed ord-0\"><div class=\"layers ai-fe gapY-10\"><div class=\"layer\"><div class=\"peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2\"><div class=\"peer mL-10 ord-1\"><small>" + row["hora"] + "</small></div><div class=\"peer-greed ord-0\"><span>" + row["mensaje"] + "</span></div></div></div></div></div></div>";
+                        Response.Write(respuesta);
+                    }
+
                 }
-                catch { }
+                respuesta = "";
+
 
             }
             else if (data == "chatrecibidos")
@@ -790,6 +786,81 @@ namespace GrandTourMID.Controllers
                 BDI.ActualizarTitulo3(objei);
                 respuesta = "1";
             }
+
+
+            else if (data == "updatetitulo4")
+            {
+                objei.titulo4 = Request.Form["titulo4"];
+                BDI.ActualizarTitulo4(objei);
+                respuesta = "1";
+
+            }
+
+            else if (data == "GuardarImagen1")
+            {
+                string imgs = Request.Form["file"];
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagen1(objei);
+                respuesta = "1";
+
+            }
+
+            else if (data == "GuardarImagen2")
+            {
+                string imgs = Request.Form["file"];
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagen2(objei);
+                respuesta = "1";
+
+
+            }
+            else if (data == "GuardarImagenheader1")
+            {
+                string imgs = Request.Form["file"];
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagenheader1(objei);
+                respuesta = "1";
+
+
+            }
+
+            else if (data == "guardarparallax")
+            {
+                string imgs = Request.Form["file"];
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagenparallax(objei);
+                respuesta = "1";
+
+
+            }
+
+            else if (data == "guardarparallax2")
+            {
+                string imgs = Request.Form["file"];
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagenparallax2(objei);
+
+                respuesta = "1";
+
+
+            }
+            
+
             else if (data == "loadinfo")
             {
                 DataTable dti = BDI.CargarInfoInicio();
@@ -798,6 +869,17 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
 
             }
+
+
+            else if (data == "loadimagesinicio")
+            {
+                DataTable dtimg = BDI.CargarImgsInicio();
+                String jSonString = ConvertirDataJson(dtimg);
+
+                respuesta = jSonString;
+
+            }
+
 
             else if (data == "userslist")
             {

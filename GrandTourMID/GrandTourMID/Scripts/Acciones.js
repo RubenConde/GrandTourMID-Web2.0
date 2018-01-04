@@ -1,4 +1,60 @@
-﻿//login
+﻿
+function cargarinfoinicio() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadinfo",
+        type: "POST",
+        success: function (a) {
+            var datos = JSON.parse(a);
+            $('#edittitulo').html(datos.titulo);
+            $('#titulograndtour').html(datos.titulo2);
+            $('#infoapp').html(datos.infoapp);
+            $('#edititulo3').html(datos.titulo3);
+            $('#edittitulo4').html(datos.titulo4);
+       
+        }
+    });
+
+    var ajaxCall = function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=loadinfo",
+            type: "POST",
+            success: function (a) {
+                var datos = JSON.parse(a);
+                $('#edittitulo').html(datos.titulo);
+                $('#titulograndtour').html(datos.titulo2);
+                $('#infoapp').html(datos.infoapp);
+                $('#edititulo3').html(datos.titulo3);
+                $('#edittitulo4').html(datos.titulo4);
+
+            }
+        });
+    }
+    setInterval(ajaxCall, 1000);
+
+}
+
+
+function cargarimagenesinicio() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadimagesinicio",
+        type: "POST",
+        success: function (a) {
+
+            var datos = JSON.parse(a);
+            $('#imginicio1').prop("src", datos.img);
+            $('#imginicio2').prop("src", datos.img1);
+
+            $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
+            $("#header2").css("background-image", "url(" + datos.header2 + ")");
+            $("#header3").css("background-image", "url(" + datos.header3 + ")");
+
+        }
+    });
+
+}
+
+
+//login
 $(document).ready(function () {
     $("#frmlogin").submit(function (e) {
         e.preventDefault();
@@ -144,12 +200,12 @@ $(document).ready(function () {
 
 //Ocultar div contacto
 
-$(document).ready(function () {
-    $("#contact").hide();
-})
+
 
 //cargar info contacto
 $(document).ready(function () {
+    cargarimagenesinicio();
+    cargarinfoinicio();
     var ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=InfoContactoIndex",
