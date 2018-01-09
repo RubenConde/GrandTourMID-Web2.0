@@ -69,7 +69,6 @@ namespace GrandTourMID.Controllers
                 respuesta = "1";
 
             }
-
             //Recuperando datos en el perfil de usuario
             else if (data == "DatosUsuario")
             {
@@ -101,7 +100,6 @@ namespace GrandTourMID.Controllers
                 }
 
             }
-
             //Validar Contraseña en el perfil de usuario
             else if (data == "checkpass")
             {
@@ -288,7 +286,6 @@ namespace GrandTourMID.Controllers
 
 
             }
-
             //Cambiar contraseña
             else if (data == "Changepassword")
             {
@@ -307,8 +304,6 @@ namespace GrandTourMID.Controllers
 
 
             }
-
-
             //cargar informacion del apartado de contacto en el Index
             else if (data == "InfoContactoIndex")
             {
@@ -318,7 +313,6 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
 
             }
-
             //actualizar la informacion del apartado de contacto en el backend
             else if (data == "InsertInfoContact")
             {
@@ -339,7 +333,6 @@ namespace GrandTourMID.Controllers
                 catch { respuesta = "0"; }
 
             }
-
             //enviar un mensaje de contacto desde el index
             else if (data == "EnviarMensajeContacto")
             {
@@ -367,7 +360,6 @@ namespace GrandTourMID.Controllers
                 }
                 return Content(respuesta);
             }
-
             //mostrar mensajes recibidos no vistos
             else if (data == "InboxRecibidos")
             {
@@ -392,7 +384,6 @@ namespace GrandTourMID.Controllers
                 }
                 respuesta = "";
             }
-
             ///ver el mensaje cuando se selecciona a un usuario
             else if (data == "Verinbocs")
             {
@@ -410,7 +401,6 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
             //notificaciones de mensajes ya leidos contador
             else if (data == "Inboxnotificaleidos")
             {
@@ -425,8 +415,6 @@ namespace GrandTourMID.Controllers
                 }
                 respuesta = "";
             }
-
-
             //ver usuarios de mensajes leidos
             else if (data == "InboxLeidos")
             {
@@ -440,7 +428,6 @@ namespace GrandTourMID.Controllers
                 }
                 respuesta = "";
             }
-
             //responder a traves de correo electronico
             else if (data == "responderinbox")
             {
@@ -473,7 +460,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-
+            //res
             else if (data == "ultimosinboxrecibidos")
             {
 
@@ -494,8 +481,6 @@ namespace GrandTourMID.Controllers
 
                 respuesta = "";
             }
-
-
             ///numero o contador de los emails enviados
             else if (data == "inboxnotificenviados")
             {
@@ -508,7 +493,6 @@ namespace GrandTourMID.Controllers
                 }
                 respuesta = "";
             }
-
             //cargar los usuarios a los que se han enviado emails
             else if (data == "usuariosenviados")
             {
@@ -524,7 +508,6 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
             //ver informacion de los mensajes enviados
             else if (data == "verenviado")
             {
@@ -542,7 +525,6 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
             //numero de usuarios registrados la informacion se muestra en el backend
             else if (data == "numberuser")
             {
@@ -555,7 +537,6 @@ namespace GrandTourMID.Controllers
                 }
                 respuesta = "";
             }
-
             //numero de mensajes recibidos notificaciones
             else if (data == "messagenew")
             {
@@ -583,7 +564,6 @@ namespace GrandTourMID.Controllers
 
                 respuesta = "";
             }
-
             //ejemplo para guardar foto aun no funciona bien
             else if (data == "fotos")
             {
@@ -614,7 +594,6 @@ namespace GrandTourMID.Controllers
                  objeus.imagen = "";
                  respuesta = "1";*/
             }
-
             //ejemplo de vista previa de publicaciones aun no funciona correctamente
             else if (data == "publicaciones")
             {
@@ -644,7 +623,6 @@ namespace GrandTourMID.Controllers
 
                 respuesta = "";
             }
-
             //carga la informacion de usuarios registrados en un modal
             else if (data == "verinfousuariosregistrados")
             {
@@ -654,9 +632,6 @@ namespace GrandTourMID.Controllers
 
                 respuesta = jSonString;
             }
-
-
-
             //desactiva la cuenta de usuario
             else if (data == "desactivarcuenta")
             {
@@ -664,7 +639,6 @@ namespace GrandTourMID.Controllers
                 BDU.DesactivarCuenta(id);
                 respuesta = "1";
             }
-
             //actualiza información 
             else if (data == "updateacerca")
             {
@@ -678,7 +652,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-
+            //res
             else if (data == "users")
             {
                 int iduser = Convert.ToInt32(Session["ID"]);
@@ -704,7 +678,7 @@ namespace GrandTourMID.Controllers
 
                 respuesta = "";
             }
-
+            //res
             else if (data == "chat")
             {
 
@@ -734,6 +708,7 @@ namespace GrandTourMID.Controllers
 
 
             }
+            //res
             else if (data == "chatrecibidos")
             {
                 objeus.id = Convert.ToInt32(Session["ID"]);
@@ -747,7 +722,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-
+            //res
             else if (data == "infouser")
             {
                 int id = Convert.ToInt32(Session["idchat"]);
@@ -755,7 +730,7 @@ namespace GrandTourMID.Controllers
                 String jSonString = ConvertirDataJson(dt);
                 respuesta = jSonString;
             }
-
+            //res
             else if (data == "enviarchat")
             {
                 objeus.id = Convert.ToInt32(Session["ID"]);
@@ -773,21 +748,21 @@ namespace GrandTourMID.Controllers
                     Response.Write("Error al enviar mensaje");
                 }
             }
-
+            //res
             else if (data == "updatetitulo1")
             {
                 objei.titulo = Request.Form["titulo1"];
                 BDI.ActualizarTitulo1(objei);
                 respuesta = "1";
             }
+            //res
             else if (data == "updatetitulo3")
             {
                 objei.titulo3 = Request.Form["titulo3"];
                 BDI.ActualizarTitulo3(objei);
                 respuesta = "1";
             }
-
-
+            //res
             else if (data == "updatetitulo4")
             {
                 objei.titulo4 = Request.Form["titulo4"];
@@ -795,7 +770,7 @@ namespace GrandTourMID.Controllers
                 respuesta = "1";
 
             }
-
+            //res
             else if (data == "GuardarImagen1")
             {
                 string imgs = Request.Form["file"];
@@ -807,7 +782,7 @@ namespace GrandTourMID.Controllers
                 respuesta = "1";
 
             }
-
+            //res
             else if (data == "GuardarImagen2")
             {
                 string imgs = Request.Form["file"];
@@ -820,6 +795,7 @@ namespace GrandTourMID.Controllers
 
 
             }
+            //res
             else if (data == "GuardarImagenheader1")
             {
                 string imgs = Request.Form["file"];
@@ -832,7 +808,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-
+            //res
             else if (data == "guardarparallax")
             {
                 string imgs = Request.Form["file"];
@@ -845,7 +821,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-
+            //res
             else if (data == "guardarparallax2")
             {
                 string imgs = Request.Form["file"];
@@ -859,8 +835,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-            
-
+            //res
             else if (data == "loadinfo")
             {
                 DataTable dti = BDI.CargarInfoInicio();
@@ -869,8 +844,7 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
 
             }
-
-
+            //res
             else if (data == "loadimagesinicio")
             {
                 DataTable dtimg = BDI.CargarImgsInicio();
@@ -879,8 +853,7 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
 
             }
-
-
+            //res
             else if (data == "userslist")
             {
                 DataTable listempl = BDU.MostrarEmpleados();
@@ -888,7 +861,7 @@ namespace GrandTourMID.Controllers
 
                 respuesta = jSonString;
             }
-
+            //res
             else if (data == "updateinfo")
             {
                 objeus.id = Convert.ToInt32(Session["ID"]);
@@ -900,7 +873,7 @@ namespace GrandTourMID.Controllers
                 BDU.Actualizarinfoadmi(objeus);
                 respuesta = "1";
             }
-
+            //res
             else if (data == "guardarfotos")
             {
 
@@ -924,7 +897,7 @@ namespace GrandTourMID.Controllers
                 return Content(respuesta);
 
             }
-
+            //res
             else if (data == "addlugar")
             {
                 try
@@ -961,7 +934,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-
+            //res
             else if (data == "loadlugares")
             {
 
@@ -975,14 +948,13 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
             /////cargar la informacion de lugares
             else if (data == "verinfolugar")
             {
                 Session["idlugar"] = Convert.ToInt32(Request.QueryString["idlugar"]);
                 respuesta = "1";
             }
-
+            //res
             else if (data == "cargarinfolugar")
             {
                 int id = Convert.ToInt32(Session["idlugar"]);
@@ -991,7 +963,7 @@ namespace GrandTourMID.Controllers
 
                 respuesta = jSonString;
             }
-
+            //res
             else if (data == "actualizarimagenlugar")
             {
 
@@ -1013,7 +985,7 @@ namespace GrandTourMID.Controllers
                 return Content(respuesta);
 
             }
-
+            //res
             else if (data == "actualizardatoslugar")
             {
                 try
@@ -1029,7 +1001,7 @@ namespace GrandTourMID.Controllers
                 }
                 catch { respuesta = "0"; }
             }
-
+            //res
             else if (data == "actualizarubicacion")
             {
                 try
@@ -1045,6 +1017,7 @@ namespace GrandTourMID.Controllers
 
 
             }
+            //res
             else if (data == "tablalugares")
             {
                 DataTable dlugares = BDLU.CargarLugares();
@@ -1057,6 +1030,7 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
+            //res
             else if (data == "infolugarpreguntas")
             {
                 int id = Convert.ToInt32(Request.QueryString["idlugar"]);
@@ -1067,6 +1041,7 @@ namespace GrandTourMID.Controllers
 
 
             }
+            //res
             else if (data == "agregarpregunta")
             {
                 try
@@ -1083,7 +1058,7 @@ namespace GrandTourMID.Controllers
                 catch { respuesta = "0"; }
 
             }
-
+            //res
             else if (data == "listalugarespreguntas")
             {
                 DataTable dlugares = BDLU.CargarLugares();
@@ -1096,7 +1071,7 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
+            //res
             else if (data == "verpregunatasrespuestas")
             {
                 int id = Convert.ToInt32(Request.QueryString["idpreguntas"]);
@@ -1111,7 +1086,7 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
+            //res
             else if (data == "editquestion")
             {
 
@@ -1119,8 +1094,7 @@ namespace GrandTourMID.Controllers
                 respuesta = "1";
 
             }
-
-
+            //res
             else if (data == "infopreguntaeditar")
             {
                 int idpre = Convert.ToInt32(Session["idpregunta"]);
@@ -1132,7 +1106,7 @@ namespace GrandTourMID.Controllers
 
 
             }
-
+            //res
             else if (data == "updatepregunta")
             {
                 objp.idlugar = Convert.ToInt32(Request.Form["respuesta"]);
@@ -1147,8 +1121,6 @@ namespace GrandTourMID.Controllers
 
             }
 
-
-
             return Content(respuesta);
         }
 
@@ -1157,35 +1129,19 @@ namespace GrandTourMID.Controllers
             string respuesta = "";
             if (file != null)
             {
-
-
                 string path = Server.MapPath("~/img/");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
                 }
-
                 file.SaveAs(path + Path.GetFileName(file.FileName));
                 ViewBag.Message = "File uploaded successfully.";
-
-
                 respuesta = "0";
-
-
-
             }
             return Content(respuesta);
-
         }
 
-
-
-
-
-
         //metodos fuera del controlador
-
-
         public string ConvertirDataJson(DataTable table)
         {
             var jsonString = new StringBuilder();
@@ -1222,8 +1178,6 @@ namespace GrandTourMID.Controllers
             return jsonString.ToString();
         }
 
-
-
         private string GenerarCodigo(CorreoBO objec)
         {
             Random obj = new Random();
@@ -1240,10 +1194,6 @@ namespace GrandTourMID.Controllers
             }
             objec.codigo = nuevacadena;
             return nuevacadena;
-
-
-
         }
-
     }
 }

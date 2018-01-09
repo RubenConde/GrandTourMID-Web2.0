@@ -27,17 +27,12 @@ namespace GrandTourMID.DAO
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
-
-
         public DataTable CargarInfoContacto()
         {
             string sql = string.Format("select titulo, subtitulo, direccion, numero, correo, mensaje, longitud, latitud from Contacto where idcontacto=1");
             return EjercutarSentenciaBusqueda(sql);
 
         }
-
-
-
         public int MensajeDeContacto(ContactoBO objec)
         {
             cmd = new SqlCommand("insert into MensajeContacto(nombre, email, mensaje) values(@nombre, @correo, @mensaje )");
@@ -47,7 +42,6 @@ namespace GrandTourMID.DAO
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
-
         public int EnviarCorreo(ContactoBO objec)
         {
             cmd = new SqlCommand("insert into Correo (para, motivo, mensaje)values(@para, @motivo, @mensaje)");
@@ -57,45 +51,36 @@ namespace GrandTourMID.DAO
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
-
         public DataTable InboxRecibidos()
         {
             string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=0");
             return EjercutarSentenciaBusqueda(sql);
         }
-
         public DataTable NumeroInbox()
         {
             string sql = string.Format("select COUNT(mensaje) as mensaje from MensajeContacto where visto=0");
             return EjercutarSentenciaBusqueda(sql);
-
         }
         public DataTable NumeroInboxLeido()
         {
             string sql = string.Format("select COUNT(mensaje) as mensaje from MensajeContacto where visto=1");
             return EjercutarSentenciaBusqueda(sql);
-
         }
-
         public DataTable InboxVistos()
         {
             string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=1");
             return EjercutarSentenciaBusqueda(sql);
         }
-
         public DataTable Vermensaje(ContactoBO objec)
         {
             string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where idmensaje='{0}'", objec.idcontacto);
             return EjercutarSentenciaBusqueda(sql);
         }
-
         public DataTable ultimosinboxrecibidos()
         {
             string sql = string.Format(" select top 3 * from MensajeContacto where visto=0 order by idmensaje desc ");
             return EjercutarSentenciaBusqueda(sql);
         }
-       
-
         public int MensajeLeido(ContactoBO objec)
         {
             cmd = new SqlCommand("update MensajeContacto set visto=1 where idmensaje=@id ");
@@ -103,34 +88,37 @@ namespace GrandTourMID.DAO
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
-
-
         public DataTable NumeroEnviado()
         {
             string sql = string.Format("select COUNT(mensaje) as mensaje from Correo");
             return EjercutarSentenciaBusqueda(sql);
-
         }
-
         public DataTable InboxEnviado()
         {
             string sql = string.Format("select idcorreo, fecha, para, motivo, mensaje from Correo");
             return EjercutarSentenciaBusqueda(sql);
-
         }
-
         public DataTable Verinboxenviado(ContactoBO objec)
         {
-
             string sql = string.Format("select idcorreo, para, motivo, mensaje, fecha from Correo where idcorreo='{0}'", objec.idcontacto);
             return EjercutarSentenciaBusqueda(sql);
-
         }
-
-
-
-
-
-
+        public DataTable Numeroeliminado()
+        {
+            string sql = string.Format("select COUNT(mensaje) as mensaje from MensajeContacto where eliminado=1");
+            return EjercutarSentenciaBusqueda(sql);
+        }
+        public DataTable Inboxeliminado()
+        {
+            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where eliminado=1");
+            return EjercutarSentenciaBusqueda(sql);
+        }
+        public int Mensajeeliminado(ContactoBO objec)
+        {
+            cmd = new SqlCommand("update MensajeContacto set eliminado=1 where idmensaje=@id ");
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objec.idcontacto;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
     }
 }

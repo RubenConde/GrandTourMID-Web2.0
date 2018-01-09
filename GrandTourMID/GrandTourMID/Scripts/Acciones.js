@@ -10,7 +10,6 @@ function cargarinfoinicio() {
             $('#infoapp').html(datos.infoapp);
             $('#edititulo3').html(datos.titulo3);
             $('#edittitulo4').html(datos.titulo4);
-       
         }
     });
 
@@ -25,36 +24,28 @@ function cargarinfoinicio() {
                 $('#infoapp').html(datos.infoapp);
                 $('#edititulo3').html(datos.titulo3);
                 $('#edittitulo4').html(datos.titulo4);
-
             }
         });
     }
+
     setInterval(ajaxCall, 1000);
-
 }
-
 
 function cargarimagenesinicio() {
     $.ajax({
         url: "/Ajax/Ajax?data=loadimagesinicio",
         type: "POST",
         success: function (a) {
-
             var datos = JSON.parse(a);
             $('#imginicio1').prop("src", datos.img);
             $('#imginicio2').prop("src", datos.img1);
-
             $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
             $("#header2").css("background-image", "url(" + datos.header2 + ")");
             $("#header3").css("background-image", "url(" + datos.header3 + ")");
-
         }
     });
-
 }
 
-
-//login
 $(document).ready(function () {
     $("#frmlogin").submit(function (e) {
         e.preventDefault();
@@ -72,7 +63,6 @@ $(document).ready(function () {
                     clear();
                 }
                 else if (a == 0) {
-
                     swal({
                         text: 'Usuario o contraseña incorrecta!',
                         type: "error",
@@ -84,12 +74,8 @@ $(document).ready(function () {
                     })
                     $("#btnlogin").html('<i class="fa fa-sign-in"></i> Iniciar sesión');
                     clear();
-
-
-
                 }
                 else {
-
                 }
             }
         });
