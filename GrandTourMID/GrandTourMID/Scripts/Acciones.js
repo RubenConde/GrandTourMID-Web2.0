@@ -21,9 +21,9 @@ function cargarinfoinicio() {
                 var datos = JSON.parse(a);
                 $('#edittitulo').html(datos.titulo);
                 $('#titulograndtour').html(datos.titulo2);
-                $('#infoapp').html(datos.infoapp);
+                $('#infoapp').val(datos.infoapp);
                 $('#edititulo3').html(datos.titulo3);
-                $('#edittitulo4').html(datos.titulo4);
+                $('#edititulo4').html(datos.titulo4);
             }
         });
     }

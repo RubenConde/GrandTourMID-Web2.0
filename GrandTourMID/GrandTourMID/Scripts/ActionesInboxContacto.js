@@ -1,5 +1,30 @@
 ﻿var ajaxCall;
 
+
+function deleteinbox(e) {
+    $.ajax({
+        url: '/Ajax/Ajax?data=eliminarinbox&idinbox=' + e,
+        type: "post",
+
+        success: function (r) {
+
+            if (r == 1) {
+                swal(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
+            }
+
+
+        }
+    });
+}
+
+
+
+
+
 //Inbox Recibidos
 function cargarrecibidos() {
     $.ajax({
@@ -11,6 +36,7 @@ function cargarrecibidos() {
         success: function (a) {
             $("#contenedorenviados").fadeOut();
             $("#contenedorleidos").fadeOut();
+            $("#contenedoreliminados").fadeOut();
             $("#contenedorecibidos").fadeIn();
             $("#contenedorecibidos").html(a);
 
@@ -46,6 +72,7 @@ function Cargarleidos() {
         success: function (a) {
             $("#contenedorenviados").fadeOut();
             $("#contenedorecibidos").fadeOut();
+            $("#contenedoreliminados").fadeOut();
             $("#contenedorleidos").fadeIn();
             $("#contenedorleidos").html(a);
 
@@ -82,6 +109,7 @@ function cargarenviados() {
 
             $("#contenedorleidos").fadeOut();
             $("#contenedorecibidos").fadeOut();
+            $("#contenedoreliminados").fadeOut();
             $("#contenedorenviados").fadeIn();
             $("#contenedorenviados").html(a);
 
@@ -102,7 +130,78 @@ function cargarenviados() {
         });
     }
     setInterval(ajaxCall, 1000)
+
 };
+
+
+function CargarEliminados() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=listaeliminados",
+        type: "POST",
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+
+            $("#contenedorleidos").fadeOut();
+            $("#contenedorecibidos").fadeOut();
+            $("#contenedorenviados").fadeOut();
+            $("#contenedoreliminados").fadeIn();
+            $("#contenedoreliminados").html(a);
+
+        }
+    });
+    ajaxCall = function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=listaeliminados",
+            type: "POST",
+            beforeSend: function () {
+
+            },
+            success: function (a) {
+
+                $("#contenedoreliminados").html(a);
+
+            }
+        });
+    }
+    setInterval(ajaxCall, 1000)
+
+};
+
+
+///Numero eliminados
+$(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=Numeroeliminado",
+        type: "POST",
+        success: function (a) {
+
+            $("#numeroeliminados").html(a);
+
+        }
+    });
+
+    var ajaxCall = function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=Numeroeliminado",
+            type: "POST",
+            beforeSend: function () {
+
+            },
+            success: function (a) {
+
+                $("#numeroeliminados").html(a);
+
+            }
+        });
+    }
+    setInterval(ajaxCall, 2000)
+});
+
+
+
+
 
 //Numero recibidos
 $(document).ready(function () {

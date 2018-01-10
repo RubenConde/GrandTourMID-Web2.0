@@ -391,7 +391,7 @@ namespace GrandTourMID.Controllers
                 DataTable vermen = BDCO.Vermensaje(objecontacto);
                 foreach (DataRow row in vermen.Rows)
                 {
-                    respuesta = "<div class=\"h-100 scrollable pos-r ps ps--active-y\"><div class=\"email-content-wrapper\"><div class=\"peers ai-c jc-sb pX-40 pY-30\"><div class=\"peers peer-greed\"><div class=\"peer mR-20\"><img class=\"bdrs-50p w-3r h-3r\" alt=\"\" src=\"https://randomuser.me/api/portraits/men/11.jpg\"></div><div class=\"peer\"><small>" + row["fecha"] + "</small><h5 class=\"c-grey-900 mB-5\">" + row["nombre"] + "</h5><span>email: " + row["email"] + "</span></div></div><div class=\"peer\"><button style=\"cursor:pointer\" type=\"button\" onclick=\"Correo()\" data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger bdrs-50p p-15 lh-0\"><i  class=\"fa fa-reply\"></i></button></div></div><div class=\"bdT pX-40 pY-30\"><h4>Mensaje</h4><p>" + row["mensaje"] + "</p></div></div><div class=\"ps__rail-x\" style=\"left: 0px; bottom: 0px;\"><div class=\"ps__thumb-x\" tabindex=\"0\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"ps__rail-y\" style=\"top: 0px; height: 618px; right: 0px;\"><div class=\"ps__thumb-y\" tabindex=\"0\" style=\"top: 0px; height: 608px;\"></div></div></div><input id=\"CorreoOculto\" value=\"" + row["email"] + "\" type=\"hidden\">";
+                    respuesta = "<div class=\"h-100 scrollable pos-r ps ps--active-y\"><div class=\"email-content-wrapper\"><div class=\"peers ai-c jc-sb pX-40 pY-30\"><div class=\"peers peer-greed\"><div class=\"peer mR-20\"><img class=\"bdrs-50p w-3r h-3r\" alt=\"\" src=\"https://randomuser.me/api/portraits/men/11.jpg\"></div><div class=\"peer\"><small>" + row["fecha"] + "</small><h5 class=\"c-grey-900 mB-5\">" + row["nombre"] + "</h5><span>email: " + row["email"] + "</span></div></div><div class=\"peer\"><button style=\"cursor:pointer\" type=\"button\" onclick=\"Correo()\" data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger bdrs-50p p-15 lh-0\"><i  class=\"fa fa-reply\"></i></button>&nbsp; <button onclick=\"deleteinbox(" + row["idmensaje"] + ");\" style=\"cursor:pointer\" type=\"button\" class=\"btn btn-danger bdrs-50p p-15 lh-0\"><i  class=\"fa fa-trash\"></i></button></div></div><div class=\"bdT pX-40 pY-30\"><h4>Mensaje</h4><p>" + row["mensaje"] + "</p></div></div><div class=\"ps__rail-x\" style=\"left: 0px; bottom: 0px;\"><div class=\"ps__thumb-x\" tabindex=\"0\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"ps__rail-y\" style=\"top: 0px; height: 618px; right: 0px;\"><div class=\"ps__thumb-y\" tabindex=\"0\" style=\"top: 0px; height: 608px;\"></div></div></div><input id=\"CorreoOculto\" value=\"" + row["email"] + "\" type=\"hidden\">";
 
                     Response.Write(respuesta);
                 }
@@ -1120,6 +1120,62 @@ namespace GrandTourMID.Controllers
 
 
             }
+
+
+            else if (data == "eliminarinbox")
+            {
+                objecontacto.idcontacto = Convert.ToInt32(Request.QueryString["idinbox"]);
+                BDCO.Mensajeeliminado(objecontacto);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "listaeliminados")
+            {
+                DataTable dteliminados = BDCO.Inboxeliminado();
+
+                foreach (DataRow row in dteliminados.Rows)
+                {
+                    respuesta = "<div onclick=\"VerMensa(" + row["idmensaje"] + ")\" class=\"email-list-item peers fxw-nw p-20 bdB bgcH-grey-100 cur-p\"><div class=\"peer mR-10\"></div><div class=\"peer peer-greed ov-h\"><div class=\"peers ai-c\"><div class=\"peer peer-greed\"><h6>" + row["nombre"] + "</h6></div><div class=\"peer\"><small>" + row["fecha"] + "</small></div></div><h5 class=\"fsz-def tt-c c-grey-900\">" + row["email"] + "</h5><span class=\"whs-nw w-100 ov-h tov-e d-b\">" + row["mensaje"] + "</span></div></div>";
+                    Response.Write(respuesta);
+                }
+                respuesta = "";
+
+
+            }
+
+            else if (data == "Numeroeliminado")
+            {
+                DataTable dteliminado = BDCO.Numeroeliminado();
+
+                foreach (DataRow row in dteliminado.Rows)
+                {
+
+                    respuesta = "<div class=\"peer\"><span class=\"badge badge-pill bgc-red-50 c-red-700\">" + row["mensaje"] + "</span></div>";
+                    Response.Write(respuesta);
+
+
+                }
+
+                respuesta = "";
+
+
+            }
+
+            else if (data == "editinfojugar")
+            {
+                objei.titulo = Request.Form["titulojugar"];
+                objei.subtitulo = Request.Form["subtitulojugar"];
+                BDI.ActualizarInfojugar(objei);
+
+                respuesta = "1";
+
+
+            }
+
+
 
             return Content(respuesta);
         }

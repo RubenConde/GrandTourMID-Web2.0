@@ -97,7 +97,14 @@ namespace GrandTourMID.DAO
             return EjercutarSentenciaBusqueda(sql);
         }
 
-
+        public int ActualizarInfojugar(InicioBO objei)
+        {
+            cmd = new SqlCommand("update Acercade set titulojugar=@tit, subtitulojugar=@sub where idacerca=1");
+            cmd.Parameters.Add("@tit", SqlDbType.VarChar).Value = objei.titulo;
+            cmd.Parameters.Add("@sub", SqlDbType.VarChar).Value = objei.subtitulo;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
 
 
 

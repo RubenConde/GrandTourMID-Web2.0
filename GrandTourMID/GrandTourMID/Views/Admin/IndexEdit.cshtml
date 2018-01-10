@@ -14,329 +14,310 @@
 <title>Diseño</title>
 <style>
     body {
-    
-    overflow-x:scroll;
-    overflow-y:scroll;
-    
+        overflow-x: scroll;
+        overflow-y: scroll;
     }
 </style>
 
 
 
-    <!-- Navbar (sit on top) -->
-    <div class="w3-top">
-        <div class="w3-bar" id="myNavbar">
-            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-                <i class="fa fa-bars"></i>
-            </a>
-            <a href="~/Admin/Back" class="w3-bar-item w3-button w3-text-white"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
-        </div>
-        <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-            <a href="~/Admin/Back" class="w3-bar-item w3-button w3-text-white w3-right"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
-        </div>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="~/Admin/Back" class="w3-bar-item w3-button w3-text-white"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
+    </div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="~/Admin/Back" class="w3-bar-item w3-button w3-text-white w3-right"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
+    </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class=" w3-display-container w3-opacity-min" style="min-height: 100%;" id="imgheader1">
+    <div class="w3-display-middle" style="white-space:nowrap;">
+        <span id="edittitulo" class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"></span>
+        <button id="edit1" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-round w3-blue w3-ripple w3-hover-blue w3-small">Editar <i class="fa fa-cog fa-spin"></i> </button>
     </div>
 
-    <!-- First Parallax Image with Logo Text -->
-    <div class=" w3-display-container w3-opacity-min" style="min-height: 100%;" id="imgheader1">
-        <div class="w3-display-middle" style="white-space:nowrap;">
-            <span id="edittitulo" class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"></span>
-            <button id="edit1" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-round w3-blue w3-ripple w3-hover-blue w3-small"><i class="fa fa-cog fa-spin"></i> Editar</button>
+    <form id="frmcambiarimagen2" class="phone-display w3-display-right w3-opacity-off" style="right:250px">
+        <span id="cancelaimagen2" style="cursor:pointer" class="w3-text-red w3-center w3-round" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+        <span id="cambiarimagen2" style="cursor:pointer" class="w3-text-green w3-center w3-round"><li class="fa fa-check-circle"></li></span>
+
+        <center><label class="w3-hover-gray w3-round w3-text-white" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio2(event)" /></label>&nbsp;</center>
+        <div class="phone-display--carousel">
+            <img class="phone-display--image" src="/img/phone-screenshot.png" width="190" height="330" />
+            <div class="phone-display--carousel-mask">
+                <lu>
+                    <li class="is-current">
+                        <img id="imginicio2" class="phone-display--carousel-list" />
+                    </li>
+                </lu>
+            </div>
+
         </div>
 
-        <form id="frmcambiarimagen2" class="phone-display w3-display-right w3-opacity-off" style="right:250px">
-            <span id="cancelaimagen2" style="cursor:pointer" class="w3-text-red w3-center w3-round" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-            <span id="cambiarimagen2" style="cursor:pointer" class="w3-text-green w3-center w3-round"><li class="fa fa-check-circle"></li></span>
+        <div class="phone-display--bezel hidden-xs">
 
-            <center><label class="w3-hover-gray w3-round w3-text-white" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio2(event)" /></label>&nbsp;</center>
+            <h3 class="w3-button w3-text-black">Descargalo</h3>
+
+        </div>
+
+    </form>
+
+</div>
+<form id="frmimagenheader1">
+    <center>
+        <span id="cancelaimagenheaderinicio" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+        <span id="cambiarimagenheaderinicio" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
+    </center>
+
+    <center>
+        <h5><label class="w3-hover-gray w3-grayscale w3-round w3-text-gray" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Cambiar imagen principal<input id="file" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>&nbsp;</h5>
+    </center>
+</form>
+
+
+
+<!-- Container (About Section) -->
+
+<div class="w3-content w3-container w3-padding-64" id="about">
+    <button id="edit2" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-round w3-blue w3-ripple w3-hover-blue w3-small"> Editar <i class="fa fa-cog fa-spin"></i></button>
+    <div class="w3-row">
+
+        <div class="w3-center w3-padding-large">
+            <p><b id="titulograndtour"></b></p>
+            <span id="cancelaimagen1" style="cursor:pointer" class="w3-text-red w3-center w3-round" onclick="cancelar();"><li class="fa fa-times-circle"></li></span>
+            <span id="cambiarimagen1" style="cursor:pointer" class="w3-text-green w3-center w3-round"><li class="fa fa-check-circle"></li></span>
+            <br>
+
             <div class="phone-display--carousel">
-                <img class="phone-display--image" src="/img/phone-screenshot.png" width="190" height="330" />
+
+                <img class="phone-display--image" src="~/img/phone-screenshot.png" width="190" height="330" />
+
                 <div class="phone-display--carousel-mask">
                     <lu>
                         <li class="is-current">
-                            <img id="imginicio2" class="phone-display--carousel-list" />
+                            <img id="imginicio1" class="phone-display--carousel-list" />
                         </li>
                     </lu>
                 </div>
-
             </div>
-
-            <div class="phone-display--bezel hidden-xs">
-
-                <h3 class="w3-button w3-text-black">Descargalo</h3>
-
-            </div>
-
-        </form>
-
+        </div>
     </div>
-    <form id="frmimagenheader1">
-        <center>
-            <span id="cancelaimagenheaderinicio" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-            <span id="cambiarimagenheaderinicio" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
-        </center>
 
-        <center>
-            <h5><label class="w3-hover-gray w3-grayscale w3-round w3-text-gray" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Cambiar imagen principal<input id="file" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>&nbsp;</h5>
-        </center>
+    <br />
+    <!-- Hide this text on small devices -->
+    <form id="frmcambiarimagen1" class="w3-row">
+
+        <div class="w3-hide-small w3-padding-large">
+            <center><label class="w3-hover-gray w3-round" id="uploadimg" style="width:133px;cursor:pointer;">Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>&nbsp;</center>
+            <br /><br />
+            
+            <textarea readonly="readonly" disabled style="width:950px; height:90px; background-color:transparent;  border:none; resize:none" id="infoapp">
+            </textarea>
+        </div>
     </form>
+</div>
 
-
-
-    <!-- Container (About Section) -->
-
-    <div class="w3-content w3-container w3-padding-64" id="about">
-        <button id="edit2" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-round w3-blue w3-ripple w3-hover-blue w3-small"><i class="fa fa-cog fa-spin"></i> Editar</button>
-        <div class="w3-row">
-
-            <div class="w3-center w3-padding-large">
-                <p><b id="titulograndtour"></b></p>
-                <span id="cancelaimagen1" style="cursor:pointer" class="w3-text-red w3-center w3-round" onclick="cancelar();"><li class="fa fa-times-circle"></li></span>
-                <span id="cambiarimagen1" style="cursor:pointer" class="w3-text-green w3-center w3-round"><li class="fa fa-check-circle"></li></span>
-                <br>
-
-                <div class="phone-display--carousel">
-
-                    <img class="phone-display--image" src="~/img/phone-screenshot.png" width="190" height="330" />
-
-                    <div class="phone-display--carousel-mask">
-                        <lu>
-                            <li class="is-current">
-                                <img id="imginicio1" class="phone-display--carousel-list" />
-                            </li>
-                        </lu>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br />
-        <!-- Hide this text on small devices -->
-        <form id="frmcambiarimagen1" class="w3-row">
-
-            <div class="w3-hide-small w3-padding-large">
-                <br />
-                <center><label class="w3-hover-gray w3-round" id="uploadimg" style="width:133px;cursor:pointer;">Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>&nbsp;</center>
-                <p id="infoapp">
-
-                </p>
-            </div>
-        </form>
+<div class="w3-row w3-center w3-dark-grey w3-padding-16">
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">14+</span><br>
+        Partners
     </div>
-
-    <div class="w3-row w3-center w3-dark-grey w3-padding-16">
-        <div class="w3-quarter w3-section">
-            <span class="w3-xlarge">14+</span><br>
-            Partners
-        </div>
-        <div class="w3-quarter w3-section">
-            <span class="w3-xlarge">55+</span><br>
-            Projects Done
-        </div>
-        <div class="w3-quarter w3-section">
-            <span class="w3-xlarge">89+</span><br>
-            Happy Clients
-        </div>
-        <div class="w3-quarter w3-section">
-            <span class="w3-xlarge">150+</span><br>
-            Meetings
-        </div>
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">55+</span><br>
+        Projects Done
     </div>
-
-    <!-- Second Parallax Image with Portfolio Text -->
-    <div id="header2" class="bgimg-2 w3-display-container w3-opacity-min">
-        <div class="w3-display-middle">
-            <span id="edititulo3" class="w3-xxlarge w3-dark-grey w3-round-large w3-text-white w3-wide"></span>
-            <button id="edit3" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-circle w3-blue w3-ripple w3-hover-blue w3-small"><i class="fa fa-cog fa-spin w3-small"></i></button>
-        </div>
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">89+</span><br>
+        Happy Clients
     </div>
-    <form id="frmimagenheader2">
-        <center>
-            <span id="cancelaimagenheader2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-            <span id="cambiarimagenheader2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
-        </center>
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">150+</span><br>
+        Meetings
+    </div>
+</div>
 
-        <center>
-            <h5><label class="w3-hover-gray w3-grayscale w3-round w3-text-gray" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Cambiar Parallax<input id="file2" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>&nbsp;</h5>
-        </center>
-    </form>
+<!-- Second Parallax Image with Portfolio Text -->
+<div id="header2" class="bgimg-2 w3-display-container w3-opacity-min">
+    <div class="w3-display-middle">
+        <span id="edititulo3" class="w3-xxlarge w3-dark-grey w3-round-large w3-text-white w3-wide"></span>
+        <button id="edit3" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-circle w3-blue w3-ripple w3-hover-blue w3-small"><i class="fa fa-cog fa-spin w3-small"></i></button>
+    </div>
+</div>
+<form id="frmimagenheader2">
+    <center>
+        <span id="cancelaimagenheader2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+        <span id="cambiarimagenheader2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
+    </center>
+
+    <center>
+        <h5><label class="w3-hover-gray w3-grayscale w3-round w3-text-gray" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Cambiar Parallax<input id="file2" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>&nbsp;</h5>
+    </center>
+</form>
 
 
-    <div class="w3-content w3-container w3-padding-64" id="portfolio">
-        <h3 class="w3-center">MY WORK</h3>
-        <p class="w3-center"><em>Here are some of my latest lorem work ipsum tipsum.<br> Click on the images to make them bigger</em></p><br>
-
-        <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-        <div class="w3-row-padding w3-center">
-            <div class="w3-col m3">
-                <img src="/img/casa.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist over the mountains">
-            </div>
-
-            <div class="w3-col m3">
-                <img src="/w3images/p2.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Coffee beans">
-            </div>
-
-            <div class="w3-col m3">
-                <img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Bear closeup">
-            </div>
-
-            <div class="w3-col m3">
-                <img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Quiet ocean">
-            </div>
+<div class="w3-content w3-container w3-padding-64" id="portfolio">
+    <div>
+        <button id="btnjugar" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-blue w3-round w3-small">Editar <i class="fa fa-cog fa-spin"></i></button>
+        <h3 id="tituloju" class="w3-center"></h3>
+        <p class="w3-center" id="subtituju"><em ></em></p><br>
+    </div>
+    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+    <div class="w3-row-padding w3-center">
+        <div class="w3-col m3">
+            <span id="updateminiatura" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-large" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+            <span id="cancelarminiatura" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-large"><li class="fa fa-check-circle"></li></span>
+            <img src="/img/casa.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist over the mountains">
+            <label class=" w3-grayscale w3-round w3-text-gray w3-tooltip" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-file-image-o  w3-tooltip "> <span style="position:absolute;left:0;top:5px" class="w3-text w3-tag w3-dark-grey"> Presiona aqui para seleccionar una imagen y ver una previsualización<br /> </span></li><input id="file2" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>
         </div>
 
-        <div class="w3-row-padding w3-center w3-section">
-            <div class="w3-col m3">
-                <img src="/w3images/p5.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist">
-            </div>
+        <div class="w3-col m3">
+            <img src="/w3images/p2.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Coffee beans">
+        </div>
 
-            <div class="w3-col m3">
-                <img src="/w3images/p6.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="My beloved typewriter">
-            </div>
+        <div class="w3-col m3">
+            <img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Bear closeup">
+        </div>
 
-            <div class="w3-col m3">
-                <img src="/w3images/p7.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Empty ghost train">
-            </div>
-
-            <div class="w3-col m3">
-                <img src="/w3images/p8.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sailing">
-            </div>
-            <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
+        <div class="w3-col m3">
+            <img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Quiet ocean">
         </div>
     </div>
 
+    
+</div>
 
-    <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-        <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
-        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-            <img id="img01" class="w3-image">
-            <p id="caption" class="w3-opacity w3-large"></p>
-        </div>
+
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+    <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+        <img id="img01" class="w3-image">
+        <p id="caption" class="w3-opacity w3-large"></p>
     </div>
+</div>
 
-    <!-- Third Parallax Image with Portfolio Text -->
-    <div id="header3" class="bgimg-3 w3-display-container w3-opacity-min">
-        <div class="w3-display-middle">
-            <span id="edittitulo4" class="w3-xxlarge w3-text-white w3-round-large w3-dark-grey w3-wide"></span>
-            <button id="edit4" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-circle w3-blue w3-ripple w3-hover-blue w3-small"><i class="fa fa-cog fa-spin w3-small"></i></button>
-        </div>
+<!-- Third Parallax Image with Portfolio Text -->
+<div id="header3" class="bgimg-3 w3-display-container w3-opacity-min">
+    <div class="w3-display-middle">
+        <span id="edittitulo4" class="w3-xxlarge w3-text-white w3-round-large w3-dark-grey w3-wide"></span>
+        <button id="edit4" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-circle w3-blue w3-ripple w3-hover-blue w3-small"><i class="fa fa-cog fa-spin w3-small"></i></button>
     </div>
-    <form id="frmimagenheader3">
-        <center>
-            <span id="cancelaimagenheader3" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-            <span id="cambiarimagenheader3" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
-        </center>
+</div>
+<form id="frmimagenheader3">
+    <center>
+        <span id="cancelaimagenheader3" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+        <span id="cambiarimagenheader3" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
+    </center>
 
-        <center>
-            <h5><label class="w3-hover-gray w3-grayscale w3-round w3-text-gray" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Cambiar Parallax<input id="file3" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>&nbsp;</h5>
-        </center>
-    </form>
+    <center>
+        <h5><label class="w3-hover-gray w3-grayscale w3-round w3-text-gray" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Cambiar Parallax<input id="file3" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>&nbsp;</h5>
+    </center>
+</form>
 
-    <!-- Container (Contact Section) -->
-    <div class="w3-content w3-container w3-padding-64" id="contact">
-        <button id="edit5" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-round w3-blue w3-ripple w3-hover-blue w3-small"><i class="fa fa-cog fa-spin w3-small"></i> Editar</button>
-        <h3 class="w3-center" id="txtTitulo"></h3>
-        <h3 class="w3-center" id="Subtitulo"><em></em></h3>
-        <div class="w3-row w3-padding-32 w3-section">
-            <div class="w3-col m4 w3-container">
-                <!-- Add Google Maps -->
-                <div id="googleMap" class="w3-round-large " style="width:100%;height:400px;"></div>
+<!-- Container (Contact Section) -->
+<div class="w3-content w3-container w3-padding-64" id="contact">
+    <button id="edit5" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-round w3-blue w3-ripple w3-hover-blue w3-small"> Editar <i class="fa fa-cog fa-spin w3-small"></i></button>
+    <h3 class="w3-center" id="txtTitulo"></h3>
+    <h3 class="w3-center" id="Subtitulo"><em></em></h3>
+    <div class="w3-row w3-padding-32 w3-section">
+        <div class="w3-col m4 w3-container">
+            <!-- Add Google Maps -->
+            <div id="googleMap" class="w3-round-large " style="width:100%;height:400px;"></div>
+        </div>
+        <div class="w3-col m8 w3-panel">
+            <div class="w3-large w3-margin-bottom">
+                <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge " style="width:169px" id="direccion"></i> <br>
+                <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right" id="telefono"></i> <br>
+                <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right" id="correo"></i> <br>
+                <input type="hidden" class="w3-round w3-transparent" id="latitud" />
+                <input type="hidden" class="w3-round w3-transparent w3-border" id="longitud" />
             </div>
-            <div class="w3-col m8 w3-panel">
-                <div class="w3-large w3-margin-bottom">
-                    <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge " style="width:169px" id="direccion"></i> <br>
-                    <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right" id="telefono"></i> <br>
-                    <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right" id="correo"></i> <br>
-                    <input type="hidden" class="w3-round w3-transparent" id="latitud" />
-                    <input type="hidden" class="w3-round w3-transparent w3-border" id="longitud" />
-                </div>
-                <p id="mesaage"><i class="fa fa-coffee"></i></p>
+            <p id="mesaage"><i class="fa fa-coffee"></i></p>
 
-            </div>
         </div>
     </div>
+</div>
 
 
-    <!-- Footer -->
-    <footer class="w3-center w3-black w3-padding-48 w3-opacity w3-hover-opacity-off">
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-48 w3-opacity w3-hover-opacity-off">
 
-        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <a href="#imgheader1" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <div class="w3-xlarge w3-section">
         <div class="w3-xlarge w3-section">
-            <div class="w3-xlarge w3-section">
-                <a style="cursor:pointer" onclick="document.getElementById('id01').style.display='block'" class=" w3-display-container"><li class="fa fa-sign-in"> Iniciar Sesión</li></a>
-            </div>
-            <div class="w3-xlarge w3-section">
-                <a class=" w3-display-container" href="/Home/adminlog"><li class="fa fa-cogs"> Administrador</li></a>
-            </div>
-            <div class="w3-xlarge w3-section">
-                <a style="cursor:pointer" onclick="document.getElementById('id02').style.display='block'" class=" w3-display-container"><li class="fa fa-user-plus"> Crear cuenta</li></a>
-            </div>
-            <a href="https://Www.facebook.com"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
-            <i class="fa fa-instagram w3-hover-opacity"></i>
-            <i class="fa fa-twitter w3-hover-opacity"></i>
-
+            <a style="cursor:pointer" onclick="document.getElementById('id01').style.display='block'" class=" w3-display-container"><li class="fa fa-sign-in"> Iniciar Sesión</li></a>
         </div>
-    </footer>
-
-    <div id="Modaledit" class="w3-modal w3-round w3-transparent">
-        <div class="w3-modal-content w3-animate-top w3-round" style="width:650px">
-            <header class="w3-container w3-blue-gray w3-round">
-                <span onclick="document.getElementById('Modaledit').style.display='none'"
-                      class="w3-button w3-display-topright">&times;</span>
-                <h2>Editar Información</h2>
-            </header>
-            <div id="contenedorprimario" class="w3-container w3-white">
-            </div>
-            <footer class="w3-container w3-blue-gray">
-                <p class="w3-small">Derechos reservados</p>
-            </footer>
+        <div class="w3-xlarge w3-section">
+            <a class=" w3-display-container" href="/Home/adminlog"><li class="fa fa-cogs"> Administrador</li></a>
         </div>
+        <div class="w3-xlarge w3-section">
+            <a style="cursor:pointer" onclick="document.getElementById('id02').style.display='block'" class=" w3-display-container"><li class="fa fa-user-plus"> Crear cuenta</li></a>
+        </div>
+        <a href="https://Www.facebook.com"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+
     </div>
+</footer>
+
+<div id="Modaledit" class="w3-modal w3-round w3-transparent">
+    <div class="w3-modal-content w3-animate-top w3-round" style="width:650px">
+        <header class="w3-container w3-blue-gray w3-round">
+            <span onclick="document.getElementById('Modaledit').style.display='none'"
+                  class="w3-button w3-display-topright">&times;</span>
+            <h2>Editar información</h2>
+        </header>
+        <div id="contenedorprimario" class="w3-container w3-white">
+        </div>
+        <footer class="w3-container w3-blue-gray">
+            <p class="w3-small">Derechos reservados</p>
+        </footer>
+    </div>
+</div>
 
 
 
-    <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
-    <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAA_QOzbpA8wTVvsWCfvksp3MfngNP6Q-E'></script>
-    <script src="/Scripts/locationpicker.jquery.min.js"></script>
-    <script src="/Scripts/sweetalert2.all.js"></script>
-    <script src="~/Scripts/editarindex.js"></script>
-    <script>
+<script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAA_QOzbpA8wTVvsWCfvksp3MfngNP6Q-E'></script>
+<script src="/Scripts/locationpicker.jquery.min.js"></script>
+<script src="/Scripts/sweetalert2.all.js"></script>
+<script src="~/Scripts/editarindex.js"></script>
+<script>
 
-        // Modal Image Gallery
-        function onClick(element) {
-            document.getElementById("img01").src = element.src;
-            document.getElementById("modal01").style.display = "block";
-            var captionText = document.getElementById("caption");
-            captionText.innerHTML = element.alt;
+    // Modal Image Gallery
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    }
+
+    // Change style of navbar on scroll
+    window.onscroll = function () { myFunction() };
+    function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-black";
+        } else {
+            navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-black", "");
         }
+    }
 
-        // Change style of navbar on scroll
-        window.onscroll = function () { myFunction() };
-        function myFunction() {
-            var navbar = document.getElementById("myNavbar");
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-black";
-            } else {
-                navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-black", "");
-            }
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function toggleFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
         }
+    }
+</script>
 
-        // Used to toggle the menu on small screens when clicking on the menu button
-        function toggleFunction() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
-    </script>
-
-    <!--
-    To use this code on your website, get a free API key from Google.
-    -->
-
-
-
-
-
+<!--
+To use this code on your website, get a free API key from Google.
+-->

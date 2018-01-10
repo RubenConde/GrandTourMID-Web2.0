@@ -53,22 +53,22 @@ namespace GrandTourMID.DAO
         }
         public DataTable InboxRecibidos()
         {
-            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=0");
+            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=0 and eliminado = 0");
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable NumeroInbox()
         {
-            string sql = string.Format("select COUNT(mensaje) as mensaje from MensajeContacto where visto=0");
+            string sql = string.Format("select COUNT(mensaje) as mensaje from MensajeContacto where visto=0 and eliminado=0");
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable NumeroInboxLeido()
         {
-            string sql = string.Format("select COUNT(mensaje) as mensaje from MensajeContacto where visto=1");
+            string sql = string.Format("select COUNT(mensaje) as mensaje from MensajeContacto where visto=1 and eliminado=0");
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable InboxVistos()
         {
-            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=1");
+            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=1 and eliminado=0");
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable Vermensaje(ContactoBO objec)
@@ -78,7 +78,7 @@ namespace GrandTourMID.DAO
         }
         public DataTable ultimosinboxrecibidos()
         {
-            string sql = string.Format(" select top 3 * from MensajeContacto where visto=0 order by idmensaje desc ");
+            string sql = string.Format(" select top 3 * from MensajeContacto where visto=0 and eliminado=0 order by idmensaje desc ");
             return EjercutarSentenciaBusqueda(sql);
         }
         public int MensajeLeido(ContactoBO objec)

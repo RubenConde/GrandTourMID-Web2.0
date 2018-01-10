@@ -110,6 +110,8 @@ function cargarinfoinicio() {
             $('#infoapp').html(datos.infoapp);
             $('#edititulo3').html(datos.titulo3);
             $('#edittitulo4').html(datos.titulo4);
+            $("#tituloju").html(datos.titulojugar)
+            $("#subtituju").html(datos.subtitulojugar)
             $("#cancelaimagen1").hide();
             $("#cambiarimagen1").hide();
             $("#cancelaimagen2").hide();
@@ -128,11 +130,12 @@ function cargarinfoinicio() {
                 $('#infoapp').html(datos.infoapp);
                 $('#edititulo3').html(datos.titulo3);
                 $('#edittitulo4').html(datos.titulo4);
-
+                $("#tituloju").html(datos.titulojugar)
+                $("#subtituju").html(datos.subtitulojugar)
             }
         });
     }
-    setInterval(ajaxCall, 1000);
+    setInterval(ajaxCall, 5000);
 
 }
 
@@ -444,6 +447,43 @@ function updatetitulo3() {
     });
 };
 
+////informacion de titulos jugar actualizar la información
+
+
+function editinfojugar() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=editinfojugar",
+        type: "POST",
+        data: $("#frmtitulosjugar").serialize(),
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+
+            if (a == 1) {
+
+                swal({
+                    text: 'Información actualizada!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#4CAF50",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                });
+
+            }
+            else if (a == 0) {
+
+            }
+            else {
+
+
+            }
+
+        }
+    });
+};
 /////titulo4
 function updatetitulo4() {
     $.ajax({
@@ -573,7 +613,7 @@ function actualizarcontacto() {
                         showLoaderOnConfirm: true
                     });
                     $("#btnactualizar").html('<i class="fa fa-paper-plane" aria-hidden="true"></i> ACTUALIZAR');
-                    scrollToEnd();
+                    
                 }
                 else if (a == 0) {
 
@@ -615,6 +655,16 @@ $("#edit1").click(function () {
         '<button type="button" onclick="updatetitulo1()" class="w3-button w3-small w3-right w3-green w3-hover-green w3-round"><li class="fa fa-save"></li> Actualizar</button><br /><br />' +
         '</form>'
     )
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadinfo",
+        type: "POST",
+        success: function (a) {
+            var datos = JSON.parse(a);
+            $('#titulo1').val(datos.titulo);
+     
+
+        }
+    });
 });
 
 $("#edit2").click(function () {
@@ -624,7 +674,7 @@ $("#edit2").click(function () {
         '<label>Titulo</label>' +
         '</br><input placeholder="Ingrese el titulo" id="titulo2" name="titulo2" class="w3-round w3-transparent w3-border w3-input" type="text"/></br>' +
         '<label>Informacion acerca de la app</label>' +
-        '</br><textarea placeholder="Ingrese la información acerca de la app" id="infoapp2" name="infoapp2" class="w3-round w3-transparent w3-border w3-input" type="text"></textarea></br>' +
+        '</br><textarea style="height:120px; resize:none;"  placeholder="Ingrese la información acerca de la app" id="infoapp2" name="infoapp2" class="w3-round w3-transparent w3-border w3-input" type="text"></textarea></br>' +
         '<button type="button" onclick="updateacerca()" class="w3-button w3-small w3-right w3-green w3-hover-green w3-round"><li class="fa fa-save"></li> Actualizar</button><br /><br />' +
         '</form>'
     )
@@ -651,6 +701,16 @@ $("#edit3").click(function () {
         '<button type="button" onclick="updatetitulo3()" class="w3-button w3-small w3-right w3-green w3-hover-green w3-round"><li class="fa fa-save"></li> Actualizar</button><br /><br />' +
         '</form>'
     )
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadinfo",
+        type: "POST",
+        success: function (a) {
+            var datos = JSON.parse(a);
+            $('#titulo3').val(datos.titulo3);
+
+
+        }
+    });
 });
 
 $("#edit4").click(function () {
@@ -663,9 +723,48 @@ $("#edit4").click(function () {
         '</form>'
     )
 
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadinfo",
+        type: "POST",
+        success: function (a) {
+            var datos = JSON.parse(a);
+            $('#titulo4').val(datos.titulo4);
+
+
+        }
+    });
+
+});
+
+
+$("#btnjugar").click(function () {
+
+    $('#contenedorprimario').html(
+        '<form id="frmtitulosjugar" onsubmit="return false;">' +
+        '<br/>'+
+        '<label>Titulo</label>' +
+        '</br><input id="titulojugar" name="titulojugar" placeholder="Ingrese el titulo" class="w3-round w3-transparent w3-border w3-input" type="text"/></br>' +
+        '<label>Subtitulo</label>' +
+        '</br><textarea id="subtitulojugar" name="subtitulojugar" placeholder="Ingrese el titulo" class="w3-round w3-transparent w3-border w3-input" style="resize:none" /></br>' +
+
+        '<button type="button" onclick="editinfojugar()" class="w3-button w3-small w3-right w3-green w3-hover-green w3-round"><li class="fa fa-save"></li> Actualizar</button><br /><br />' +
+        '</form>'
+    )
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadinfo",
+        type: "POST",
+        success: function (a) {
+            var datos = JSON.parse(a);
+            $('#titulojugar').val(datos.titulojugar);
+            $('#subtitulojugar').val(datos.subtitulojugar);
+
+        }
+    });
 
 
 });
+
+
 
 $("#edit5").click(function () {
 
