@@ -62,6 +62,11 @@ $(document).ready(function () {
                     window.location = "/Profile/Profile";
                     clear();
                 }
+                if (a == 2) {
+                    $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
+                    window.location = "/Admin/Back";
+                    clear
+                }
                 else if (a == 0) {
                     swal({
                         text: 'Usuario o contraseña incorrecta!',

@@ -51,7 +51,7 @@ namespace GrandTourMID.Controllers
                     Session["imagen"] = datos[3].ToString();
                     Session["rol"] = datos[4].ToString();
                     Session["estado"] = datos[5].ToString();
-                    respuesta = "1";
+                    respuesta = datos[2].ToString();
                 }
                 else
                 {
