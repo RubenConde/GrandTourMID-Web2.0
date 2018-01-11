@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#frmloginadmi").submit(function (e) {
         e.preventDefault();
         $.ajax({
-            url: "/Ajax/Ajax?data=login",
+            url: "/Ajax/Ajax?data=loginadmin",
             type: "POST",
             data: $("#frmloginadmi").serialize(),
             beforeSend: function () {
@@ -18,7 +18,7 @@ $(document).ready(function () {
                 }
                 else if (a == 2) {
                     $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
-                    window.location = "/Profile/Profile";
+                    window.location = "/Home/Index";
                     clear();
                 }
                 else if (a == 0) {

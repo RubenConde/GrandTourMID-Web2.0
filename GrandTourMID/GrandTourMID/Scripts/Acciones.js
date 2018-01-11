@@ -64,7 +64,7 @@ $(document).ready(function () {
                 }
                 if (a == 2) {
                     $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
-                    window.location = "/Admin/Back";
+                    window.location = "/Home/Login";
                     clear
                 }
                 else if (a == 0) {

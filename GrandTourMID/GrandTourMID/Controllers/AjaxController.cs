@@ -45,13 +45,53 @@ namespace GrandTourMID.Controllers
                 ArrayList datos = BDL.Login(objeus);
                 if (datos.Count > 0)
                 {
-                    Session.Timeout = 200000;
-                    Session["ID"] = datos[0].ToString();
-                    Session["idtipo"] = datos[2].ToString();
-                    Session["imagen"] = datos[3].ToString();
-                    Session["rol"] = datos[4].ToString();
-                    Session["estado"] = datos[5].ToString();
-                    respuesta = datos[2].ToString();
+                    int idtipos = Convert.ToInt32(datos[2]);
+                    if (idtipos == 1)
+                    {
+                        Session.Timeout = 200000;
+                        Session["ID"] = datos[0].ToString();
+                        Session["idtipo"] = datos[2].ToString();
+                        Session["imagen"] = datos[3].ToString();
+                        Session["rol"] = datos[4].ToString();
+                        Session["estado"] = datos[5].ToString();
+                        respuesta = "1";
+                    }
+                    else
+                    {
+                        respuesta = "2";
+                    }
+                }
+                else
+                {
+                    respuesta = "0";
+                }
+
+            }
+
+            else if (data == "loginadmin")
+            {
+                objeus.usuario = Request.Form["user"];
+                objeus.contraseña = Request.Form["psw"];
+
+                ArrayList datos = BDL.Login(objeus);
+                if (datos.Count > 0)
+                {
+                    int idtipos = Convert.ToInt32(datos[2]);
+                    if (idtipos == 1)
+                    {
+                        Session.Timeout = 200000;
+                        Session["ID"] = datos[0].ToString();
+                        Session["idtipo"] = datos[2].ToString();
+                        Session["imagen"] = datos[3].ToString();
+                        Session["rol"] = datos[4].ToString();
+                        Session["estado"] = datos[5].ToString();
+                        respuesta = "1";
+                    }
+                    else
+                    {
+                        respuesta = "2";
+                    }
+                   
                 }
                 else
                 {
@@ -84,15 +124,22 @@ namespace GrandTourMID.Controllers
             {
                 try
                 {
-
-                    objeus.nombre = Request.Form["nomc"];
-                    objeus.apellidop = Request.Form["apep"];
-                    objeus.apellidom = Request.Form["apem"];
-                    objeus.contraseña = Request.Form["ps"];
                     objeus.email = Request.Form["coe"];
                     objeus.usuario = Request.Form["usr"];
-                    BDU.Agregar(objeus);
-                    respuesta = "1";
+                    if (Convert.ToInt32(BDU.ValidarRegistro(objeus)) >= 1)
+                    {
+                        respuesta = "2";
+                    }
+                    else
+                    {
+                        objeus.nombre = Request.Form["nomc"];
+                        objeus.apellidop = Request.Form["apep"];
+                        objeus.apellidom = Request.Form["apem"];
+                        objeus.contraseña = Request.Form["ps"];
+                        BDU.Agregar(objeus);
+                        respuesta = "1";
+                    }
+
                 }
                 catch
                 {
@@ -532,7 +579,7 @@ namespace GrandTourMID.Controllers
                 DataTable duser = BDU.NumeroUsuarios();
                 foreach (DataRow row in duser.Rows)
                 {
-                    respuesta =  row["usuario"].ToString();
+                    respuesta = row["usuario"].ToString();
                     Response.Write(respuesta);
                 }
                 respuesta = "";
@@ -837,7 +884,7 @@ namespace GrandTourMID.Controllers
             }
             else if (data == "guardarimagenpaso1")
             {
-                
+
                 string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
                 string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
                 file.SaveAs(patc);

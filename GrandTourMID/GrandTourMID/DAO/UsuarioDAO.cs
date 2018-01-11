@@ -120,6 +120,13 @@ namespace GrandTourMID.DAO
 
         }
 
+        public DataTable ValidarRegistro(UsuarioBO objus)
+        {
+            string sql = string.Format("select count(*) from usuario where usuario = '"+objus.usuario+"' or email = '"+objus.email+"';");
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
         public DataTable BuscarUsuarioActivo()
         {
             string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.apellidop as ApellidoP, u.apellidom as ApellidoM, u.usuario as Usuario, u.foto as Foto, u.estado from usuario u, tipo t WHERE t.idtipo = u.idtipo and u.estado = 1");
@@ -158,6 +165,7 @@ namespace GrandTourMID.DAO
             return EjecutarComando(cmd);
         }
 
+        
 
         public ArrayList TipoDeEstado(CorreoBO objec)
         {
