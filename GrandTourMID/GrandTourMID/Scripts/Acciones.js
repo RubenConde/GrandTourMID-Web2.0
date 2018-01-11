@@ -10,6 +10,8 @@ function cargarinfoinicio() {
             $('#infoapp').html(datos.infoapp);
             $('#edititulo3').html(datos.titulo3);
             $('#edittitulo4').html(datos.titulo4);
+            $("#tituloju").html(datos.titulojugar);
+            $("#subtituju").html(datos.subtitulojugar);
         }
     });
 
@@ -24,11 +26,13 @@ function cargarinfoinicio() {
                 $('#infoapp').val(datos.infoapp);
                 $('#edititulo3').html(datos.titulo3);
                 $('#edititulo4').html(datos.titulo4);
+                $("#tituloju").html(datos.titulojugar);
+                $("#subtituju").html(datos.subtitulojugar);
             }
         });
     }
 
-    setInterval(ajaxCall, 1000);
+    setInterval(ajaxCall, 2000);
 }
 
 function cargarimagenesinicio() {
@@ -42,8 +46,34 @@ function cargarimagenesinicio() {
             $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
             $("#header2").css("background-image", "url(" + datos.header2 + ")");
             $("#header3").css("background-image", "url(" + datos.header3 + ")");
+            $('#slide1').prop("src", datos.imgslide1);
+            $('#slide2').prop("src", datos.imgslide2);
+            $('#slide3').prop("src", datos.imgslide3);
+            $('#slide4').prop("src", datos.imgslide4);
         }
     });
+
+    var ajaxCall = function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=loadimagesinicio",
+            type: "POST",
+            success: function (a) {
+                var datos = JSON.parse(a);
+                $('#imginicio1').prop("src", datos.img);
+                $('#imginicio2').prop("src", datos.img1);
+                $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
+                $("#header2").css("background-image", "url(" + datos.header2 + ")");
+                $("#header3").css("background-image", "url(" + datos.header3 + ")");
+                $('#slide1').prop("src", datos.imgslide1);
+                $('#slide2').prop("src", datos.imgslide2);
+                $('#slide3').prop("src", datos.imgslide3);
+                $('#slide4').prop("src", datos.imgslide4);
+            }
+        });
+    }
+
+    setInterval(ajaxCall, 2000);
+
 }
 
 $(document).ready(function () {
@@ -63,9 +93,23 @@ $(document).ready(function () {
                     clear();
                 }
                 if (a == 2) {
-                    $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
-                    window.location = "/Home/Login";
-                    clear
+                    swal({
+                        title: 'Verificamos que eres administrador!',
+                        text: 'Serás redirigido a tu inicio de sesión',
+                        timer: 5000,
+                        onOpen: () => {
+                            swal.showLoading()
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === 'timer') {
+
+                            $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
+                            window.location = "/Home/Login";
+                            clear
+                        }
+                    })
+
+                 
                 }
                 else if (a == 0) {
                     swal({
@@ -121,13 +165,6 @@ $(document).ready(function () {
                             $("#usr").val('');
                             $("#ps2").val('');
 
-                            $('#ModalRegistroUseradmi').modal('hide');
-                            if ($('.modal-backdrop').is(':visible')) {
-                                $('body').removeClass('modal-open');
-                                $('.modal-backdrop').remove();
-                            };
-
-
                         }
 
                         else if (a == 0) {
@@ -144,6 +181,37 @@ $(document).ready(function () {
 
                             $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
                         }
+                        else if (a == 2) {
+                            swal({
+
+                                title: "oops",
+                                text: 'El usuario ya se encuentra registrado',
+                                type: "question",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
+                        }
+                        else if (a == 3) {
+
+                            swal({
+
+                                title: "oops",
+                                text: 'El correo ya se encuentra registrado',
+                                type: "question",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
+
+                        }
+
                         else {
 
                             $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');

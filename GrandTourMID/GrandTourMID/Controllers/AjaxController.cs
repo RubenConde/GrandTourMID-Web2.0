@@ -46,7 +46,7 @@ namespace GrandTourMID.Controllers
                 if (datos.Count > 0)
                 {
                     int idtipos = Convert.ToInt32(datos[2]);
-                    if (idtipos == 1)
+                    if (idtipos == 2)
                     {
                         Session.Timeout = 200000;
                         Session["ID"] = datos[0].ToString();
@@ -126,9 +126,16 @@ namespace GrandTourMID.Controllers
                 {
                     objeus.email = Request.Form["coe"];
                     objeus.usuario = Request.Form["usr"];
-                    if (Convert.ToInt32(BDU.ValidarRegistro(objeus)) >= 1)
+                    DataTable usre = BDU.ValidarRegistroUsuario(objeus);
+                    DataTable usemail = BDU.ValidarRegistroEmail(objeus);
+
+                    if (usre.Rows.Count > 0)
                     {
                         respuesta = "2";
+                    }
+                    else if (usemail.Rows.Count > 0)
+                    {
+                        respuesta = "3";
                     }
                     else
                     {
@@ -938,6 +945,59 @@ namespace GrandTourMID.Controllers
 
 
             }
+            else if (data == "guardarimagenslide1")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide1(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenslide2")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide2(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenslide3")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide3(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenslide4")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide4(objei);
+
+                respuesta = "1";
+            }
             //res
             else if (data == "loadinfo")
             {
@@ -1277,9 +1337,6 @@ namespace GrandTourMID.Controllers
 
 
             }
-
-
-
             return Content(respuesta);
         }
 

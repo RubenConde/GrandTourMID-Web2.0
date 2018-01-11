@@ -168,6 +168,7 @@ function cargarimagenesinicio() {
 
 
 function OcultarBotonesAccion() {
+
     $("#cancelaimagen2").hide();
     $("#cambiarimagen2").hide();
     $("#cancelaimagen1").hide();
@@ -208,12 +209,10 @@ function cargarinfoinicio() {
             $('#infoapp').html(datos.infoapp);
             $('#edititulo3').html(datos.titulo3);
             $('#edittitulo4').html(datos.titulo4);
-            $("#tituloju").html(datos.titulojugar)
-            $("#subtituju").html(datos.subtitulojugar)
-            $("#cancelaimagen1").hide();
-            $("#cambiarimagen1").hide();
-            $("#cancelaimagen2").hide();
-            $("#cambiarimagen2").hide();
+            $("#tituloju").html(datos.titulojugar);
+            $("#subtituju").html(datos.subtitulojugar);
+
+            
         }
     });
 
@@ -228,8 +227,8 @@ function cargarinfoinicio() {
                 $('#infoapp').html(datos.infoapp);
                 $('#edititulo3').html(datos.titulo3);
                 $('#edittitulo4').html(datos.titulo4);
-                $("#tituloju").html(datos.titulojugar)
-                $("#subtituju").html(datos.subtitulojugar)
+                $("#tituloju").html(datos.titulojugar);
+                $("#subtituju").html(datos.subtitulojugar);
             }
         });
     }

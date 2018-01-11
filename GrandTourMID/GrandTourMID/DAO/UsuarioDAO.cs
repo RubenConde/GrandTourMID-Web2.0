@@ -120,9 +120,16 @@ namespace GrandTourMID.DAO
 
         }
 
-        public DataTable ValidarRegistro(UsuarioBO objus)
+        public DataTable ValidarRegistroUsuario(UsuarioBO objus)
         {
-            string sql = string.Format("select count(*) from usuario where usuario = '"+objus.usuario+"' or email = '"+objus.email+"';");
+            string sql = string.Format("select idusuario from usuario where usuario = '"+objus.usuario+"'");
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
+        public DataTable ValidarRegistroEmail(UsuarioBO objus)
+        {
+            string sql = string.Format("select idusuario from usuario where email = '" + objus.email + "'");
             return EjercutarSentenciaBusqueda(sql);
 
         }
