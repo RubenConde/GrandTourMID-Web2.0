@@ -55,6 +55,38 @@ var loadimagenpaso4 = function (event) {
 
 
 };
+var loadslide1 = function (event) {
+    var imgslide1 = document.getElementById('imgslide1');
+    imgslide1.src = URL.createObjectURL(event.target.files[0]);
+    $("#cambiarslide1").show();
+    $("#cancelarslide1").show();
+
+
+};
+var loadslide2 = function (event) {
+    var imgslide2 = document.getElementById('imgslide2');
+    imgslide2.src = URL.createObjectURL(event.target.files[0]);
+    $("#cambiarslide2").show();
+    $("#cancelarslide2").show();
+
+
+};
+var loadslide3 = function (event) {
+    var imgslide3 = document.getElementById('imgslide3');
+    imgslide3.src = URL.createObjectURL(event.target.files[0]);
+    $("#cambiarslide3").show();
+    $("#cancelarslide3").show();
+
+
+};
+var loadslide4 = function (event) {
+    var imgslide4 = document.getElementById('imgslide4');
+    imgslide4.src = URL.createObjectURL(event.target.files[0]);
+    $("#cambiarslide4").show();
+    $("#cancelarslide4").show();
+
+
+};
 
 
 $("#file").on("change", function () {
@@ -118,36 +150,51 @@ function cargarimagenesinicio() {
             $('#imgpaso2').prop("src", datos.imgpaso2);
             $('#imgpaso3').prop("src", datos.imgpaso3);
             $('#imgpaso4').prop("src", datos.imgpaso4);
-
+            $('#imgslide1').prop("src", datos.imgslide1);
+            $('#imgslide2').prop("src", datos.imgslide2);
+            $('#imgslide3').prop("src", datos.imgslide3);
+            $('#imgslide4').prop("src", datos.imgslide4);
 
             
             $("#header2").css("background-image", "url(" + datos.header2 + ")");
             $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
             $("#header3").css("background-image", "url(" + datos.header3 + ")");
-            
-            $("#cancelaimagen2").hide();
-            $("#cambiarimagen2").hide();
-            $("#cancelaimagen1").hide();
-            $("#cambiarimagen1").hide();
-            $("#cancelaimagenheaderinicio").hide();
-            $("#cambiarimagenheaderinicio").hide();
-            $("#cancelaimagenheader2").hide();
-            $("#cambiarimagenheader2").hide();
-            $("#cancelaimagenheader3").hide();
-            $("#cambiarimagenheader3").hide();
-            $("#imgpaso1actualizar").hide();
-            $("#imgpaso1cancelar").hide();
-            $("#imgpaso2actualizar").hide();
-            $("#imgpaso2cancelar").hide();
-            $("#imgpaso3actualizar").hide();
-            $("#imgpaso3cancelar").hide();
-            $("#imgpaso4actualizar").hide();
-            $("#imgpaso4cancelar").hide();
+            OcultarBotonesAccion();
+          
         }
     });
 
 }
 
+
+function OcultarBotonesAccion() {
+    $("#cancelaimagen2").hide();
+    $("#cambiarimagen2").hide();
+    $("#cancelaimagen1").hide();
+    $("#cambiarimagen1").hide();
+    $("#cancelaimagenheaderinicio").hide();
+    $("#cambiarimagenheaderinicio").hide();
+    $("#cancelaimagenheader2").hide();
+    $("#cambiarimagenheader2").hide();
+    $("#cancelaimagenheader3").hide();
+    $("#cambiarimagenheader3").hide();
+    $("#imgpaso1actualizar").hide();
+    $("#imgpaso1cancelar").hide();
+    $("#imgpaso2actualizar").hide();
+    $("#imgpaso2cancelar").hide();
+    $("#imgpaso3actualizar").hide();
+    $("#imgpaso3cancelar").hide();
+    $("#imgpaso4actualizar").hide();
+    $("#imgpaso4cancelar").hide();
+    $("#cambiarslide1").hide();
+    $("#cancelarslide1").hide();
+    $("#cambiarslide2").hide();
+    $("#cancelarslide2").hide();
+    $("#cambiarslide3").hide();
+    $("#cancelarslide3").hide();
+    $("#cambiarslide4").hide();
+    $("#cancelarslide4").hide();
+}
 
 
 function cargarinfoinicio() {
@@ -560,6 +607,152 @@ function updatetitulo1() {
         }
     });
 };
+
+//////////////IMAGENES DEL SLIDE ACTUALIZAR 
+
+
+
+
+
+$("#cambiarslide1").click(function () {
+
+    var form = $('#frmslide1')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenslide1',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado tu foto de perfil!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
+
+
+$("#cambiarslide2").click(function () {
+
+    var form = $('#frmslide2')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenslide2',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado tu foto de perfil!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
+
+
+
+$("#cambiarslide3").click(function () {
+
+    var form = $('#frmslide3')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenslide3',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado tu foto de perfil!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
+
+
+$("#cambiarslide4").click(function () {
+
+    var form = $('#frmslide4')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenslide4',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado tu foto de perfil!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
 
 //actualizar info Acercade
 

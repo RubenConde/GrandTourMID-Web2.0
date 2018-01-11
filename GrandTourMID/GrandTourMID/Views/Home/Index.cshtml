@@ -5,6 +5,21 @@
 }
 
 
+<style>
+     .mySlides {
+        display: none
+    }
+
+    .w3-left, .w3-right, .w3-badge {
+        cursor: pointer
+    }
+
+    .w3-badge {
+        height: 13px;
+        width: 13px;
+        padding: 0
+    }
+</style>
 
 
 
@@ -85,38 +100,29 @@
     </div>
 </div>
 <div class="w3-content  w3-container w3-padding-64" id="portfolio">
-    <h1 class="w3-center w3-text-black ">Sigue los pasos</h1>
-    @*
+    <h3 class="w3-center w3-text-dark-grey ">Sigue los pasos</h3>
+    
         <p class="w3-center"><em>Here are some of my latest lorem work ipsum tipsum.<br> Click on the images to make them bigger</em></p>
-        <br>*@
+        <br>
     <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-    <div class="w3-row-padding w3-text-black w3-center">
-        <div class="w3-col m3">
-            <p class="w3-xlarge">Paso 1</p>
-            <img src="~/img/casa.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Descarga Nuestra App 100 FREE">
-            <p class="w3-xlarge">!Instala¡</p>
+        <div class="w3-row-padding w3-center">
+
+            <div class="w3-content w3-display-container" style="max-width:900px">
+                <img id="slide1" class="mySlides" src="~/img/casa.jpg" style="width:100%; height:420px">
+                <img id="slide2" class="mySlides" src="~/img/500.png" style="width:100%; height:420px">
+                <img id="slide3" class="mySlides" src="~/img/404.png" style="width:100%; height:420px">
+                <img  id="slide4" class="mySlides" src="~/img/lugar.png" style="width:100%; height:420px">
+                <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+                    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+                    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+                    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
+                </div>
+            </div>
         </div>
-        <div class="w3-col m3 ">
-            <p class="w3-xlarge"> Paso 2</p>
-            <img src="~/img/casa.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Inicia Sesion Para Empezar La Aventura">
-            <p class="w3-xlarge">!Inicia Sesion¡</p>
-        </div>
-        <div class="w3-col m3">
-            <p class="w3-xlarge">Paso 3</p>
-            <img src="~/img/casa.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Conoce Los Diversos Lugares de Merida">
-            <p class="w3-xlarge">!Visita Lugares¡</p>
-        </div>
-        <div class="w3-col m3">
-            <p class="w3-xlarge">Paso 4</p>
-            <img src="~/img/casa.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Recibe Futuras Recompensas">
-            <p class="w3-xlarge">!Diviertete¡</p>
-        </div>
-    </div>
-    <div class="w3-row-padding w3-center">
-        <button class="w3-button w3-black w3-center w3-section" id="learnmore" type="submit">
-            Learn More
-        </button>
-    </div>
+    
 </div>
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
     <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
@@ -193,3 +199,33 @@
 
 <script src="~/Scripts/Acciones.js"></script>
 
+
+<script>
+
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-white", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-white";
+    }
+</script>

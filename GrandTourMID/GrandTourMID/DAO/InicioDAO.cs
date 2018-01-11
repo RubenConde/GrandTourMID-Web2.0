@@ -135,6 +135,37 @@ namespace GrandTourMID.DAO
             return EjecutarComando(cmd);
         }
 
+        public int ActualizarSlide1(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgslide1=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
+        public int ActualizarSlide2(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgslide2=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
+        public int ActualizarSlide3(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgslide3=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+        public int ActualizarSlide4(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgslide4=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
 
 
     }

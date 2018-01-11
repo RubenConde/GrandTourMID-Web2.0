@@ -51,7 +51,7 @@ namespace GrandTourMID.Controllers
                     Session["imagen"] = datos[3].ToString();
                     Session["rol"] = datos[4].ToString();
                     Session["estado"] = datos[5].ToString();
-                    respuesta = datos[2].ToString();
+                    respuesta = "1";
                 }
                 else
                 {
@@ -860,8 +860,6 @@ namespace GrandTourMID.Controllers
 
                 respuesta = "1";
 
-
-
             }
             else if (data == "guardarimagenpaso3")
             {
@@ -885,6 +883,64 @@ namespace GrandTourMID.Controllers
                 file.SaveAs(patc);
                 objei.img = "/img/inicio/" + pic;
                 BDI.Actualizarimagenpaso4(objei);
+
+                respuesta = "1";
+
+
+
+            }
+
+            else if (data == "guardarimagenslide1")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide1(objei);
+
+                respuesta = "1";
+
+
+
+            }
+
+            else if (data == "guardarimagenslide2")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide2(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenslide3")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide3(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenslide4")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.ActualizarSlide4(objei);
 
                 respuesta = "1";
 

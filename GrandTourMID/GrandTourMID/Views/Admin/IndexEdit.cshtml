@@ -170,47 +170,38 @@
     <div class="w3-row-padding w3-center">
 
         <div class="w3-content w3-display-container">
-            <div class="w3-display-container mySlides">
-                <img src="~/img/casa.jpg" style="width:100%; height:420px">
-                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>
-                <span id="cancelaimagenheader2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-                <span id="cambiarimagenheader2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
+            <form id="frmslide1" class="w3-display-container mySlides">
+                <img id="imgslide1" src="~/img/casa.jpg" style="width:100%; height:420px">
+                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadslide1(event)" /></label>
+                <span id="cancelarslide1" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+                <span id="cambiarslide1" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
 
-            </div>
+            </form>
 
-            <div class="w3-display-container mySlides">
-                <img src="~/img/casa.jpg" style="width:100%;  height:420px">
-                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>
-                <span id="cancelaimagenheader2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-                <span id="cambiarimagenheader2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
+            <form id="frmslide2" class="w3-display-container mySlides">
+                <img id="imgslide2" src="~/img/casa.jpg" style="width:100%;  height:420px">
+                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadslide2(event)" /></label>
+                <span id="cancelarslide2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+                <span id="cambiarslide2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
 
-            </div>
-            <div class="w3-display-container mySlides">
-                <img src="~/img/logogtm.png" style="width:100%;  height:420px">
-                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>
-                <span id="cancelaimagenheader2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-                <span id="cambiarimagenheader2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
+            </form>
+            <form id="frmslide3" class="w3-display-container mySlides">
+                <img id="imgslide3" src="~/img/logogtm.png" style="width:100%;  height:420px">
+                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadslide3(event)" /></label>
+                <span id="cancelarslide3" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+                <span id="cambiarslide3" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
 
-            </div>
+            </form>
 
-            <div class="w3-display-container mySlides">
-                <img src="img_mountains.jpg" style="width:100%;  height:420px">
-                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>
-                <span id="cancelaimagenheader2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-                <span id="cambiarimagenheader2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
+            <form id="frmslide4" class="w3-display-container mySlides">
+                <img id="imgslide4" src="img_mountains.jpg" style="width:100%;  height:420px">
+                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadslide4(event)" /></label>
+                <span id="cancelarslide4" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
+                <span id="cambiarslide4" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
 
-            </div>
-
-            <div class="w3-display-container mySlides">
-                <img src="img_mountains.jpg" style="width:100%;  height:420px">
-                <label class="w3-display-middle  w3-container w3-round w3-padding-16 w3-small w3-white" id="uploadimg" style="width:180px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>
-                <span id="cancelaimagenheader2" style="cursor:pointer" class="w3-text-red w3-center w3-round w3-xlarge" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
-                <span id="cambiarimagenheader2" style="cursor:pointer" class="w3-text-green w3-center w3-round w3-xlarge"><li class="fa fa-check-circle"></li></span>
-
-            </div>
-
-            <button class="w3-button w3-display-left w3-white" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-white" onclick="plusDivs(1)">&#10095;</button>
+            </form>
+            <button class="w3-button w3-display-left w3-white" onclick="plusDivs(-1); OcultarBotonesAccion();">&#10094;</button>
+            <button class="w3-button w3-display-right w3-white" onclick="plusDivs(1); OcultarBotonesAccion();">&#10095;</button>
 
         </div>
         
