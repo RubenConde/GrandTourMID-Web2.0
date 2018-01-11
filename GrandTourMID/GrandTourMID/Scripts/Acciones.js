@@ -39,43 +39,11 @@ function cargarimagenesinicio() {
             var datos = JSON.parse(a);
             $('#imginicio1').prop("src", datos.img);
             $('#imginicio2').prop("src", datos.img1);
-            $('#slide1').prop("src", datos.imgslide1);
-            $('#slide2').prop("src", datos.imgslide2);
-            $('#slide3').prop("src", datos.imgslide3);
-            $('#slide4').prop("src", datos.imgslide4);
-
-
             $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
             $("#header2").css("background-image", "url(" + datos.header2 + ")");
             $("#header3").css("background-image", "url(" + datos.header3 + ")");
         }
     });
-
-
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=loadimagesinicio",
-            type: "POST",
-            success: function (a) {
-                var datos = JSON.parse(a);
-                $('#imginicio1').prop("src", datos.img);
-                $('#imginicio2').prop("src", datos.img1);
-                $('#slide1').prop("src", datos.imgslide1);
-                $('#slide2').prop("src", datos.imgslide2);
-                $('#slide3').prop("src", datos.imgslide3);
-                $('#slide4').prop("src", datos.imgslide4);
-
-
-                $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
-                $("#header2").css("background-image", "url(" + datos.header2 + ")");
-                $("#header3").css("background-image", "url(" + datos.header3 + ")");
-            }
-        });
-    }
-
-    setInterval(ajaxCall, 1000);
-
-
 }
 
 $(document).ready(function () {
@@ -93,6 +61,11 @@ $(document).ready(function () {
                     $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
                     window.location = "/Profile/Profile";
                     clear();
+                }
+                if (a == 2) {
+                    $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
+                    window.location = "/Home/Login";
+                    clear
                 }
                 else if (a == 0) {
                     swal({
@@ -284,7 +257,7 @@ $(document).ready(function () {
                             confirmButtonColor: "#4CAF50",
                             closeOnCancel: true,
                             closeOnConfirm: true,
-
+                            
                         });
                         $("#enviarcontacto").html('<i class="fa fa-paper-plane"></i> Enviar');
                         $("#nomcontacto").val('');
@@ -335,13 +308,13 @@ $(document).ready(function () {
                 confirmButtonText: "Aceptar",
                 closeOnCancel: true,
                 closeOnConfirm: true,
-
-
+                
+                
             });
 
 
         }
-
+        
     });
 });
 
