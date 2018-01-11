@@ -546,6 +546,18 @@ $(document).ready(function () {
 
 //numero de usuarios en la pagina
 $(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=numberuser",
+        type: "POST",
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+
+            $("#numerousers").html(a);
+
+        }
+    });
     var ajaxCall = function () {
         $.ajax({
             url: "/Ajax/Ajax?data=numberuser",
@@ -555,12 +567,12 @@ $(document).ready(function () {
             },
             success: function (a) {
 
-                $("#numerousuarios").html(a);
+                $("#numerousers").html(a);
 
             }
         });
     }
-    setInterval(ajaxCall, 1000)
+    setInterval(ajaxCall, 3000)
 });
 
 //cargar listas de usuarios activos

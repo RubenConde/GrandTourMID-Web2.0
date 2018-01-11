@@ -1,4 +1,6 @@
 ﻿
+var modal = document.getElementById('Modaledit');
+
 var loadimageninicio1 = function (event) {
     var imginicio1 = document.getElementById('imginicio1');
     imginicio1.src = URL.createObjectURL(event.target.files[0]);
@@ -18,6 +20,41 @@ var loadimageninicio2 = function (event) {
 };
 
 
+var loadimagenpaso1 = function (event) {
+    var imgpaso1 = document.getElementById('imgpaso1');
+    imgpaso1.src = URL.createObjectURL(event.target.files[0]);
+    $("#imgpaso1actualizar").show();
+    $("#imgpaso1cancelar").show();
+
+
+};
+
+var loadimagenpaso2 = function (event) {
+    var imgpaso2 = document.getElementById('imgpaso2');
+    imgpaso2.src = URL.createObjectURL(event.target.files[0]);
+    $("#imgpaso2actualizar").show();
+    $("#imgpaso2cancelar").show();
+
+
+};
+
+var loadimagenpaso3 = function (event) {
+    var imgpaso3 = document.getElementById('imgpaso3');
+    imgpaso3.src = URL.createObjectURL(event.target.files[0]);
+    $("#imgpaso3actualizar").show();
+    $("#imgpaso3cancelar").show();
+
+
+};
+
+var loadimagenpaso4 = function (event) {
+    var imgpaso4 = document.getElementById('imgpaso4');
+    imgpaso4.src = URL.createObjectURL(event.target.files[0]);
+    $("#imgpaso4actualizar").show();
+    $("#imgpaso4cancelar").show();
+
+
+};
 
 
 $("#file").on("change", function () {
@@ -43,7 +80,7 @@ $("#file2").on("change", function () {
         var reader = new FileReader();
         reader.readAsDataURL(files[0]);
         reader.onloadend = function () {
-            $("#imgheader2").css("background-image", "url(" + this.result + ")");
+            $("#header2").css("background-image", "url(" + this.result + ")");
         }
     }
     $("#cancelaimagenheader2").show();
@@ -77,9 +114,15 @@ function cargarimagenesinicio() {
             var datos = JSON.parse(a);
             $('#imginicio1').prop("src", datos.img);
             $('#imginicio2').prop("src", datos.img1);
+            $('#imgpaso1').prop("src", datos.imgpaso1);
+            $('#imgpaso2').prop("src", datos.imgpaso2);
+            $('#imgpaso3').prop("src", datos.imgpaso3);
+            $('#imgpaso4').prop("src", datos.imgpaso4);
 
-            $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
+
+            
             $("#header2").css("background-image", "url(" + datos.header2 + ")");
+            $("#imgheader1").css("background-image", "url(" + datos.header1 + ")");
             $("#header3").css("background-image", "url(" + datos.header3 + ")");
             
             $("#cancelaimagen2").hide();
@@ -92,6 +135,14 @@ function cargarimagenesinicio() {
             $("#cambiarimagenheader2").hide();
             $("#cancelaimagenheader3").hide();
             $("#cambiarimagenheader3").hide();
+            $("#imgpaso1actualizar").hide();
+            $("#imgpaso1cancelar").hide();
+            $("#imgpaso2actualizar").hide();
+            $("#imgpaso2cancelar").hide();
+            $("#imgpaso3actualizar").hide();
+            $("#imgpaso3cancelar").hide();
+            $("#imgpaso4actualizar").hide();
+            $("#imgpaso4cancelar").hide();
         }
     });
 
@@ -135,7 +186,7 @@ function cargarinfoinicio() {
             }
         });
     }
-    setInterval(ajaxCall, 5000);
+    setInterval(ajaxCall, 2000);
 
 }
 
@@ -173,15 +224,14 @@ $("#cambiarimagen1").click(function () {
                     text: 'Se ha actualizado tu foto de perfil!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#7986CB",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 })
                 cargarimagenesinicio();
                 cargarinfoinicio();
-                $("#btnupdatepicture").prop('disabled', true);
-
+                modal.style.display = "none";
 
 
             }
@@ -210,14 +260,14 @@ $("#cambiarimagen2").click(function () {
                     text: 'Se ha actualizado la imagen!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#7986CB",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 })
                 cargarimagenesinicio();
                 cargarinfoinicio();
-
+                modal.style.display = "none";
 
 
             }
@@ -246,14 +296,14 @@ $("#cambiarimagenheaderinicio").click(function () {
                     text: 'Se ha actualizado la imagen!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#7986CB",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 })
                 cargarimagenesinicio();
                 cargarinfoinicio();
-
+                modal.style.display = "none";
 
 
             }
@@ -263,7 +313,144 @@ $("#cambiarimagenheaderinicio").click(function () {
 });
 //////////////
 
+/////////actualizar imagen paso1 
 
+
+$("#imgpaso1actualizar").click(function () {
+
+    var form = $('#frmimgpaso1')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenpaso1',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado la imagen!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
+///////////
+$("#imgpaso2actualizar").click(function () {
+
+    var form = $('#frmimgpaso2')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenpaso2',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado la imagen!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
+///////////////
+$("#imgpaso3actualizar").click(function () {
+
+    var form = $('#frmimgpaso3')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenpaso3',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado la imagen!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
+//////////////
+$("#imgpaso4actualizar").click(function () {
+
+    var form = $('#frmimgpaso4')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: '/Ajax/Ajax?data=guardarimagenpaso4',  //Server script to process data
+        type: 'POST',
+        data: dataString,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (a) {
+            if (a == 1) {
+                swal({
+                    text: 'Se ha actualizado la imagen!',
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#006064",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+                cargarimagenesinicio();
+                cargarinfoinicio();
+                modal.style.display = "none";
+
+
+            }
+
+        }
+    });
+});
 
 //////primer parallax
 
@@ -285,14 +472,14 @@ $("#cambiarimagenheader2").click(function () {
                     text: 'Se ha actualizado la imagen!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#7986CB",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 })
                 cargarimagenesinicio();
                 cargarinfoinicio();
-
+                modal.style.display = "none";
 
 
             }
@@ -321,14 +508,14 @@ $("#cambiarimagenheader3").click(function () {
                     text: 'Se ha actualizado la imagen!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#7986CB",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 })
                 cargarimagenesinicio();
                 cargarinfoinicio();
-
+                modal.style.display = "none";
 
 
             }
@@ -354,13 +541,13 @@ function updatetitulo1() {
                     text: 'El titulo ha sido actualizado!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#4CAF50",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true,
                     confirmButton: false
                 });
-
+                modal.style.display = "none";
             }
             else if (a == 0) {
 
@@ -392,12 +579,12 @@ function updateacerca() {
                     text: 'Información actualizada!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#4CAF50",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 });
-
+                modal.style.display = "none";
             }
             else if (a == 0) {
 
@@ -428,12 +615,12 @@ function updatetitulo3() {
                     text: 'Información actualizada!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#4CAF50",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 });
-
+                modal.style.display = "none";
             }
             else if (a == 0) {
 
@@ -466,12 +653,12 @@ function editinfojugar() {
                     text: 'Información actualizada!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#4CAF50",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 });
-
+                modal.style.display = "none";
             }
             else if (a == 0) {
 
@@ -501,12 +688,12 @@ function updatetitulo4() {
                     text: 'Información actualizada!',
                     type: "success",
                     confirmButtonText: "Aceptar",
-                    confirmButtonColor: "#4CAF50",
+                    confirmButtonColor: "#006064",
                     closeOnCancel: true,
                     closeOnConfirm: true,
                     showLoaderOnConfirm: true
                 });
-
+                modal.style.display = "none";
             }
             else if (a == 0) {
 
@@ -607,13 +794,13 @@ function actualizarcontacto() {
                         text: 'Se actualizo la información correctamente!',
                         type: "success",
                         confirmButtonText: "Aceptar",
-                        confirmButtonColor: "#4CAF50",
+                        confirmButtonColor: "#006064",
                         closeOnCancel: true,
                         closeOnConfirm: true,
                         showLoaderOnConfirm: true
                     });
                     $("#btnactualizar").html('<i class="fa fa-paper-plane" aria-hidden="true"></i> ACTUALIZAR');
-                    
+                    modal.style.display = "none";
                 }
                 else if (a == 0) {
 
@@ -621,7 +808,7 @@ function actualizarcontacto() {
                         text: 'Usuario o contraseña incorrecta!',
                         type: "error",
                         confirmButtonText: "Aceptar",
-                        confirmButtonColor: "#4CAF50",
+                        confirmButtonColor: "#006064",
                         closeOnCancel: true,
                         closeOnConfirm: true,
                         showLoaderOnConfirm: true
@@ -644,6 +831,32 @@ function actualizarcontacto() {
 
 
 
+$("#imgpaso1").click(function () {
+
+    $('#contenedorprimario').html(
+        '<br/><form id="frmtitulo1" onsubmit="return false;">' +
+        '<center><b><label>Aqui puedes editar las instrucciones de del juego</label></b></center>'+
+        '<br/><textarea placeholder="Aqui ingrese instrucciones de la aplicación" style="width:205px; height:323px; resize:none;" class="w3-left w3-round w3-transparent w3-border w3-input"></textarea>' +
+        '<textarea placeholder="Aqui ingrese instrucciones de la aplicación" style="width:205px; height:323px; resize:none;" class="w3-right w3-round w3-transparent w3-border w3-input"></textarea>' +
+        '<center>' +
+        '<span id="" style="cursor:pointer" class="w3-text-red w3-center w3-round" onclick="cancelar();"><li class="fa fa-times-circle"></li></span>&nbsp;'+
+        '<span id="" style="cursor:pointer" class="w3-text-green w3-center w3-round"><li class="fa fa-check-circle"></li></span>'+
+        '<div class=" phone-display--carousel" > '+
+            '<img class="phone-display--image" src="/img/phone-screenshot.png" width="190" height="330" />'+
+            '<div class="phone-display--carousel-mask">'+
+                '<lu>'+
+                    '<li class="is-current">'+
+                       ' <img id="imginicio1" class="phone-display--carousel-list" />'+
+                   ' </li>'+
+                '</lu>'+
+          '</div>'+
+        '</div><br/>' +
+        
+        '<center /><br /><br />'+
+        '<h5><label class="w3-hover-gray w3-grayscale w3-round w3-text-gray" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Cambiar imagen<input id="file2" name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicioheader1(event)" /></label>&nbsp;</h5>' +
+        '</form><br/><br/><br/>'
+    )
+});
 
 
 $("#edit1").click(function () {

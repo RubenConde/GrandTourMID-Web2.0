@@ -84,6 +84,35 @@ namespace GrandTourMID.DAO
             return EjecutarComando(cmd);
         }
 
+        public int Actualizarimagenpaso1(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgpaso1=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+        public int Actualizarimagenpaso2(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgpaso2=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+        public int Actualizarimagenpaso3(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgpaso3=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+        public int Actualizarimagenpaso4(InicioBO objei)
+        {
+            cmd = new SqlCommand("update imagenesinicio set imgpaso4=@img where idimg=1");
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objei.img;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
         public DataTable CargarImgsInicio()
         {            
             string sql = string.Format("select * from imagenesinicio");

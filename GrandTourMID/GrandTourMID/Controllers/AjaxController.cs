@@ -532,7 +532,7 @@ namespace GrandTourMID.Controllers
                 DataTable duser = BDU.NumeroUsuarios();
                 foreach (DataRow row in duser.Rows)
                 {
-                    respuesta = "<h3>" + row["usuario"] + "</h3>";
+                    respuesta =  row["usuario"].ToString();
                     Response.Write(respuesta);
                 }
                 respuesta = "";
@@ -832,6 +832,62 @@ namespace GrandTourMID.Controllers
                 BDI.Actualizarimagenparallax2(objei);
 
                 respuesta = "1";
+
+
+            }
+            else if (data == "guardarimagenpaso1")
+            {
+                
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagenpaso1(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenpaso2")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagenpaso2(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenpaso3")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagenpaso3(objei);
+
+                respuesta = "1";
+
+
+
+            }
+            else if (data == "guardarimagenpaso4")
+            {
+
+                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
+                file.SaveAs(patc);
+                objei.img = "/img/inicio/" + pic;
+                BDI.Actualizarimagenpaso4(objei);
+
+                respuesta = "1";
+
 
 
             }

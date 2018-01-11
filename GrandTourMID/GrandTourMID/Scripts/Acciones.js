@@ -67,7 +67,7 @@ $(document).ready(function () {
                         text: 'Usuario o contraseña incorrecta!',
                         type: "error",
                         confirmButtonText: "Aceptar",
-                        confirmButtonColor: "#4CAF50",
+                        confirmButtonColor: "#006064",
                         closeOnCancel: true,
                         closeOnConfirm: true,
                         showLoaderOnConfirm: true

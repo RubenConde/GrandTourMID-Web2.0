@@ -53,7 +53,7 @@ namespace GrandTourMID.DAO
         }
         public DataTable InboxRecibidos()
         {
-            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=0 and eliminado = 0");
+            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=0 and eliminado = 0  order by idmensaje desc");
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable NumeroInbox()
