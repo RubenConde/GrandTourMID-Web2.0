@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "EditarPregunta";
+    Layout = "~/Views/Shared/MasterAdmi.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="bgc-white bd bdrs-3 p-20 mB-20">
+        <a style="color:black" href="~/Admin/ListaRetos"><li class="fa fa-reply-all"></li> Regresar</a> <h4 class="c-grey-900 mT-10 mB-30">Editar retos</h4>
+
+        <center><h3 id="titulolugareditar"></h3></center></center>
+        <center> <img id="imageneditarreto" class="img-rounded rounded" src="~/img/lugar.png" style="width:400px; height:400px; border:inherit" /></center>
+
+    </div>
+    <form id="frmeditarreto" class="bgc-white bd bdrs-3 p-20 mB-20">
+        <input id="idlugarretos" name="idlugarretos" type="hidden" />
+        <div class="form-group">
+            <label for="exampleInputEmail1">Reto</label>
+            <input type="text" class="form-control border-info" id="nameretoeditar" name="nameretoeditar" aria-describedby="emailHelp" placeholder="Ingrese el reto">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" id="btneditarpregunta">Actualizar reto</button>
+            <button type="button" class="btn btn-danger" id="btncancelareditarpregunta">Cancelar</button>
+        </div>
+        <input id="respuesta" name="respuesta" type="hidden" />
+    </form>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#frmeditarreto").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/Ajax/Ajax?data=updatereto",
+                type: "POST",
+                data: $("#frmeditarreto").serialize(),
+                beforeSend: function () {
+
+                },
+                success: function (a) {
+
+                    if (a == 1) {
+                        alert("Actualizado");
+                        Inforeto();
+                    }
+                    else if (a == 0) {
+
+                    }
+                    else {
+                        var datos = JSON.parse(a);
+
+
+                    }
+
+                }
+            });
+        });
+    });
+
+
+    function Inforeto() {
+
+        $.ajax({
+            url: "/Ajax/Ajax?data=inforetoeditar",
+            type: "POST",
+            success: function (a) {
+                var datos = JSON.parse(a);
+
+                $('#nameretoeditar').val(datos.pregunta);
+                $('#titulolugareditar').html(datos.nombre);
+                $("#respuesta").val(datos.idpregunta);
+                $("#imageneditarpregunta").prop("src", datos.imagenportada)
+
+            }
+
+        });
+    };
+
+
+    $(document).ready(function () {
+
+        Inforeto();
+    })
+
+</script>

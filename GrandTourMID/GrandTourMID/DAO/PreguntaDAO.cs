@@ -35,10 +35,20 @@ namespace GrandTourMID.DAO
             string sql = string.Format("select pregunta.idpregunta, pregunta.pregunta, Respuestas.correcta, Respuestas.respuesta2, Respuestas.respuesta3, Respuestas.respuesta4 from pregunta, Respuestas, lugares where pregunta.idpregunta = Respuestas.idpregunta and pregunta.idlugar = lugares.idlugar and lugares.idlugar = '{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
         }
+        public DataTable VerRetosLugar(int id)
+        {
+            string sql = string.Format("select reto.idreto, reto.reto from reto, lugares where reto.idlugar = lugares.idlugar and lugares.idlugar = '{0}'", id);
+            return EjercutarSentenciaBusqueda(sql);
+        }
 
         public DataTable verinfopregunta(int id)
         {
             string sql = string.Format("select pregunta.idpregunta, lugares.imagenportada, pregunta.pregunta, Respuestas.correcta, Respuestas.respuesta2, Respuestas.respuesta3,lugares.nombre, Respuestas.respuesta4 from pregunta, Respuestas, lugares where pregunta.idpregunta = Respuestas.idpregunta and pregunta.idlugar = lugares.idlugar and pregunta.idpregunta ='{0}'", id);
+            return EjercutarSentenciaBusqueda(sql);
+        }
+        public DataTable verinforeto(int id)
+        {
+            string sql = string.Format("select reto.idreto, lugares.imagenportada, reto.reto,lugares.nombre from reto, lugares where reto.idlugar = lugares.idlugar and reto.idreto ='{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
         }
         public int ActualizarPregunta(PreguntasBO objep)
@@ -53,6 +63,14 @@ namespace GrandTourMID.DAO
             cmd.Parameters.Add("@re2", SqlDbType.VarChar).Value = objep.respuesta2;
             cmd.Parameters.Add("@re3", SqlDbType.VarChar).Value = objep.respuesta3;
             cmd.Parameters.Add("@re4", SqlDbType.VarChar).Value = objep.respuesta4;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objep.idlugar;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+        public int ActualizarReto(PreguntasBO objep)
+        {
+            cmd = new SqlCommand("update reto set reto=@pre where idpregunta=@id");
+            cmd.Parameters.Add("@pre", SqlDbType.VarChar).Value = objep.pregunta;
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = objep.idlugar;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);

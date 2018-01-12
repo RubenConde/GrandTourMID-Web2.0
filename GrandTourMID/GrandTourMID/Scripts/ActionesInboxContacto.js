@@ -353,7 +353,9 @@ $(document).ready(function () {
                 type: "POST",
                 data: $("#frmenviarcorreocontacto").serialize(),
                 beforeSend: function () {
+
                     $("#btnenviarcorreo").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Enviando');
+
                 },
                 success: function (a) {
 

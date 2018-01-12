@@ -32,6 +32,7 @@ namespace GrandTourMID.Controllers
         LugarDAO BDLU = new LugarDAO();
         PreguntasBO objp = new PreguntasBO();
         PreguntaDAO BDPRE = new PreguntaDAO();
+
         // GET: Ajax
         public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file)
         {
@@ -1231,6 +1232,18 @@ namespace GrandTourMID.Controllers
 
             }
             //res
+            else if (data == "listalugaresretos")
+            {
+                DataTable dlugares = BDLU.CargarLugares();
+                foreach (DataRow row in dlugares.Rows)
+                {
+                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>Retos</p><p><br><button type=\"button\" data-toggle=\"modal\" data-target=\"#modalretos\" onclick=\"Verretos(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\"><li class=\"fa fa-eye\"></li>  Ver retos</button></p></div>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
             else if (data == "listalugarespreguntas")
             {
                 DataTable dlugares = BDLU.CargarLugares();
@@ -1258,11 +1271,32 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
+            else if (data == "verretoscompletos")
+            {
+                int id = Convert.ToInt32(Request.QueryString["idretos"]);
+                DataTable lispre = BDPRE.VerRetosLugar(id);
+                foreach (DataRow row in lispre.Rows)
+                {
+                    respuesta = "<tr><td > " + row["idreto"] + " </td ><td>" + row["reto"] + "</td><td><button type=\"button\" onclick=\"editarreto(" + row["idreto"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
+                    Response.Write(respuesta);
+
+
+                }
+                respuesta = "";
+
+            }
             //res
             else if (data == "editquestion")
             {
 
                 Session["idpregunta"] = Convert.ToInt32(Request.QueryString["idpregunta"]);
+                respuesta = "1";
+
+            }
+            else if (data == "editreto")
+            {
+
+                Session["idreto"] = Convert.ToInt32(Request.QueryString["idreto"]);
                 respuesta = "1";
 
             }
@@ -1274,9 +1308,14 @@ namespace GrandTourMID.Controllers
                 String jSonString = ConvertirDataJson(dt);
 
                 respuesta = jSonString;
+            }
+            else if (data == "inforetoeditar")
+            {
+                int idpre = Convert.ToInt32(Session["idreto"]);
+                DataTable dt = BDPRE.verinforeto(idpre);
+                String jSonString = ConvertirDataJson(dt);
 
-
-
+                respuesta = jSonString;
             }
             //res
             else if (data == "updatepregunta")
@@ -1292,7 +1331,15 @@ namespace GrandTourMID.Controllers
 
 
             }
+            else if (data == "updatereto")
+            {
+                objp.idlugar = Convert.ToInt32(Request.Form["respuesta"]);
+                objp.pregunta = Request.Form["nameretoeditar"];
+                BDPRE.ActualizarReto(objp);
+                respuesta = "1";
 
+
+            }
 
             else if (data == "eliminarinbox")
             {

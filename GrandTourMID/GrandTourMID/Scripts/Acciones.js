@@ -127,6 +127,7 @@ $(document).ready(function () {
                 }
                 if (a == 2) {
                     swal({
+
                         title: 'Verificamos que eres administrador!',
                         text: 'Serás redirigido a tu inicio de sesión',
                         timer: 5000,
@@ -152,7 +153,8 @@ $(document).ready(function () {
                         confirmButtonColor: "#006064",
                         closeOnCancel: true,
                         closeOnConfirm: true,
-                        showLoaderOnConfirm: true
+                        showLoaderOnConfirm: true,
+                        
                     })
                     $("#btnlogin").html('<i class="fa fa-sign-in"></i> Iniciar sesión');
                     clear();
