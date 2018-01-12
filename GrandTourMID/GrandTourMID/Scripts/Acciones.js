@@ -1,4 +1,37 @@
 ﻿
+
+$(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=numberuser",
+        type: "POST",
+        beforeSend: function () {
+
+        },
+        success: function (a) {
+
+            $("#numerouserss").html(a);
+
+        }
+    });
+    var ajaxCall = function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=numberuser",
+            type: "POST",
+            beforeSend: function () {
+
+            },
+            success: function (a) {
+
+                $("#numerouserss").html(a);
+
+            }
+        });
+    }
+    setInterval(ajaxCall, 3000)
+});
+
+
+
 function cargarinfoinicio() {
     $.ajax({
         url: "/Ajax/Ajax?data=loadinfo",
