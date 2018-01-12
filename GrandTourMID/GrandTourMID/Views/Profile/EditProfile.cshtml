@@ -4,12 +4,11 @@
     Layout = "~/Views/Shared/MasterProfile.cshtml";
 }
 
-
 <head>
     <title>Mi perfil</title>
 </head>
+
 <div class="row gap-20 masonry pos-r" style="position: relative; height: 1110.6px;">
-    <div class="masonry-sizer col-md-6"></div>
     <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 0px;">
         <div class="bgc-white p-20 bd">
             <button class="btn btn-primary pull-right" id="btneditfoto" type="button"> Editar</button>
@@ -23,8 +22,8 @@
                     <center> <button class="w-2r bdrs-50p  btn btn-outline-danger" id="btncancelarfoto" type="button">x</button></center>
                     <br /><br />
                 </form>
-               
-              
+
+
             </div>
         </div>
     </div>
@@ -78,16 +77,15 @@
             </div>
         </div>
     </div>
-
 </div>
 <script src="~/Scripts/sweetalert2.all.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>      
+<script>
     $(document).ready(function () {
         myinfo();
 
     });
-             
+
     function myinfo() {
         $.ajax({
             url: "/Ajax/Ajax?data=DatosUsuario",

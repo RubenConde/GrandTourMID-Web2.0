@@ -24,7 +24,7 @@
     <div class="w3-top">
         <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+            <a href="~/Profile/Profile" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Inicio</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
@@ -36,7 +36,7 @@
                     <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
                 </div>
             </div>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src="/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
+            <a href="#" onclick="CerrarSesion()" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src="/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Salir"></a>
         </div>
     </div>
 
@@ -47,16 +47,128 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
         <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
     </div>
+    <br /><br /><br />
 
-    <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
-        
-       
-        @RenderBody()
-        
+    <!--Contenido de la pagina-->
+    <div class="w3-row">
+        <!-- Left Column -->
+        <div class="w3-col m3">
+            <div style="margin-left:10px">
+                <!-- Profile -->
+                <div class="w3-card w3-round w3-white">
+                    <div class="w3-container">
+                        <p class="w3-center"><img id="fotoperfil" src="~/img/usuario.png" class="w3-circle" style="height:150px;width:150px" alt="Cargando.."></p>
+                        <h4 id="nombreperfil" class="w3-center">Nombre de usuario</h4>
+                        <hr>
+                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Nombre real del usuario</p>
+                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Pais de origen</p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> Fecha de nacimiento del usuario</p>
+                    </div>
+                </div>
+                <br>
+                <!-- Accordion -->
+                <div class="w3-card w3-round">
+                    <div class="w3-white">
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i> Mi Perfil</button>
+                        <div id="Demo1" class="w3-hide w3-container">
+                            <a class="w3-button w3-block w3-theme-l1 w3-left-align" href="~/Profile/Profile"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mis Publicaciones</a>
+                            <a class="w3-button w3-block w3-theme-l1 w3-left-align" href="~/Profile/EditProfile"><i class="fa fa-gear fa-fw w3-margin-right"></i> Configuración</a>
+                        </div>
+                        <a class="w3-button w3-block w3-theme-l1 w3-left-align" href="~/Profile/LugaresVisitados"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mis Lugares Visitados</a>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mis fotos recientes</button>
+                        <div id="Demo3" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <br>
+                                <div class="w3-half">
+                                    <img src="~/img/rosada.jpg" style="width:100%" class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/img/rosada.jpg" style="width:100%" class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/img/rosada.jpg" style="width:100%" class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/img/rosada.jpg" style="width:100%" class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/img/rosada.jpg" style="width:100%" class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/img/rosada.jpg" style="width:100%" class="w3-margin-bottom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!-- Interests -->
+                <div class="w3-card w3-round w3-white w3-hide-small">
+                    <div class="w3-container">
+                        <p>Ultimos lugares visitados</p>
+                        <p>
+                            <span class="w3-tag w3-small w3-theme-d5">Catedral de San Idelfonso</span>
+                            <span class="w3-tag w3-small w3-theme-d4">Teatro Armando Manzanero</span>
+                            <span class="w3-tag w3-small w3-theme-d3">Teatro Peon Contreras</span>
+                            <span class="w3-tag w3-small w3-theme-d2">Centro de Convencions Siglo XXI</span>
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <!-- Alert Box -->
+                <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+                        <i class="fa fa-remove"></i>
+                    </span>
+                    <p><strong>Hey!</strong></p>
+                    <p>Soy una alerta, no se para que pueda servir, ¿que piensas Ku? :v</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Left Column -->
+        <!-- Page Container -->
+        <div class="w3-col m7">
+            <div class="w3-container w3-content w3-card w3-round w3-white" style="margin-left:10px; margin-right:10px">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- End Page Container -->
+        <!--Righ Column-->
+        <div class="w3-col m2">
+            <div style="margin-right:10px">
+                <div class="w3-card w3-round w3-white w3-center">
+                    <div class="w3-container">
+                        <p>Eventos proximos:</p>
+                        <img src="~/img/casa.jpg" alt="Forest" style="width:100%;">
+                        <p><strong>Nombre del evento</strong></p>
+                        <p>Dia HO:RA</p>
+                        <p><button class="w3-button w3-block w3-theme-l4">Información</button></p>
+                    </div>
+                </div>
+                <br>
+                <div class="w3-card w3-round w3-white w3-hide-small">
+                    <div class="w3-container">
+                        <p>Lugares mas visitados</p>
+                        <p>
+                            <span class="w3-tag w3-small w3-theme-d5">Catedral de San Idelfonso</span>
+                            <span class="w3-tag w3-small w3-theme-d4">Teatro Armando Manzanero</span>
+                            <span class="w3-tag w3-small w3-theme-d3">Teatro Peon Contreras</span>
+                            <span class="w3-tag w3-small w3-theme-d2">Centro de Convencions Siglo XXI</span>
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+                    <p>ADS</p>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Right Column -->
     </div>
-    <!-- End Page Container -->
-    <br>
+
+    <!--Final contenido de la pagina-->
+    <br />
 
     <!-- Footer -->
     <footer class="w3-container w3-theme-d3 w3-padding-16">
@@ -92,6 +204,43 @@
                 x.className = x.className.replace(" w3-show", "");
             }
         }
+
+        function CerrarSesion() {
+            $.ajax({
+                url: "/Ajax/Ajax?data=closesesion",
+                type: "POST",
+                beforeSend: function () {
+
+                },
+                success: function (a) {
+
+                    if (a == 1) {
+                        swal({
+                            title: 'Estamos cerrando la sesión!',
+                            text: 'Nos vemos pronto.',
+                            timer: 5000,
+                            onOpen: () => {
+                                swal.showLoading()
+                            }
+                        }).then((result) => {
+                            if (result.dismiss === 'timer') {
+                                window.location = "/Home/Login";
+                            }
+                        })
+
+                    }
+                    else if (a == 0) {
+
+                    }
+                    else {
+
+
+                    }
+
+                }
+            });
+        };
+
     </script>
 
 </body>
