@@ -141,5 +141,10 @@ namespace GrandTourMID.Controllers
             
             return View();
         }
+
+        public ActionResult AddRetos()
+        {
+            return View();
+        }
     }
 }

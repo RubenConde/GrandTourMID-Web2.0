@@ -1221,6 +1221,15 @@ namespace GrandTourMID.Controllers
                 catch { respuesta = "0"; }
 
             }
+
+            else if (data == "AgregarReto")
+            {
+                objp.pregunta = Request.Form["namereto"];
+                objp.idlugar = Convert.ToInt32(Request.Form["idlugarRetos"]);
+                BDPRE.AgregarReto(objp);
+                respuesta = "1";
+
+            }
             //res
             else if (data == "listalugarespreguntas")
             {

@@ -58,6 +58,15 @@ namespace GrandTourMID.DAO
             return EjecutarComando(cmd);
         }
 
+        public int AgregarReto(PreguntasBO objep)
+        {
+            cmd = new SqlCommand("insert into reto (reto, idlugar) values (@reto, @idlugar)");
+            cmd.Parameters.Add("@reto", SqlDbType.VarChar).Value = objep.pregunta;
+            cmd.Parameters.Add("@idlugar", SqlDbType.Int).Value = objep.idlugar;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
 
     }
 }
