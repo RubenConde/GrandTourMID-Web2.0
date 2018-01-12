@@ -34,9 +34,6 @@ $(document).ready(function () {
                     })
                     $("#btnlogin").html('<i class="fa fa-sign-in"></i> Iniciar sesión');
                     clear();
-
-
-
                 }
                 else {
 

@@ -183,10 +183,7 @@ $(document).ready(function () {
                         }
                         else if (a == 2) {
                             swal({
-
-                                title: "oops",
-                                text: 'El usuario ya se encuentra registrado',
-                                type: "question",
+                                html: '<li class="fa fa-user"></li> El usuario ya ha sido registrado',
                                 confirmButtonText: "Aceptar",
                                 closeOnCancel: true,
                                 closeOnConfirm: true,
@@ -200,7 +197,7 @@ $(document).ready(function () {
                             swal({
 
                                 title: "oops",
-                                text: 'El correo ya se encuentra registrado',
+                                text: 'El correo ya ah sido  registrado',
                                 type: "question",
                                 confirmButtonText: "Aceptar",
                                 closeOnCancel: true,
