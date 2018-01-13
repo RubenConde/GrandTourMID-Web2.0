@@ -2,16 +2,19 @@
 var loadimagenpublic1 = function (event) {
     var imgpublic1 = document.getElementById('imgpublic1');
     imgpublic1.src = URL.createObjectURL(event.target.files[0]);
+    $("#spancloseimagen1").show();
 };
 
 var loadimagenpublic2 = function (event) {
     var imgpublic2 = document.getElementById('imgpublic2');
     imgpublic2.src = URL.createObjectURL(event.target.files[0]);
+    $("#spancloseimagen2").show();
 };
 
 var loadimagenpublic3 = function (event) {
     var imgpublic3 = document.getElementById('imgpublic3');
     imgpublic3.src = URL.createObjectURL(event.target.files[0]);
+    $("#spancloseimagen3").show();
 };
 
 $(document).ready(function () {
@@ -61,35 +64,39 @@ $(document).ready(function () {
 
 
 ///////
-var start = 5;
+
+var acumulador = 5;
+
+
 var reachedMax = false;
 
 $(window).scroll(function () {
 
     if ($(window).scrollTop() == $(document).height() - $(window).height())
-        getData(start);
+        getData();
 
 });
-
 
 
 
 $(document).ready(function () {
-    getData(start);
+
+    getData();
+    
 });
 
 
-function getData(start){
+function getData(){
     if (reachedMax)
         return;
     $.ajax({
-        url: '/Ajax/Ajax?data=publicaciones&start='+ start,
+        url: '/Ajax/Ajax?data=publicaciones',
         method: 'Post',
         success: function (a) {
             if (a == "reachedMax")
                 reachedMax = true;
             else {
-                start += 0;
+                
                 $("#publicaciones").append(a);
             }
 
@@ -104,10 +111,15 @@ function getData(start){
 
 $(document).ready(function () {
 
+    myinfo();
     $("#divimagenes").hide();
     $("#spanclose").hide();
+    $("#spancloseimagen1").hide();
+    $("#spancloseimagen2").hide();
+    $("#spancloseimagen3").hide();
+    $("#cancelarsubida").hide();
     
-    myinfo();
+    
 
 });
 
@@ -115,7 +127,7 @@ $("#subirimg").click(function () {
     $("#divimagenes").show();
     $("#spanclose").show();
     $("#subirimg").hide();
-
+    $("#cancelarsubida").show();
 })
 
 
@@ -123,7 +135,32 @@ function ocultarinfo() {
     $("#divimagenes").hide();
     $("#spanclose").hide();
     $("#subirimg").show();
+    $("#cancelarsubida").hide();
+    $("#imgpublic2").prop("src", "/img/subirfoto.png");
+    $("#imgpublic3").prop("src", "/img/subirfoto.png");
+  
+    
+}
 
+function eliminarimagen1() {
+    $("#fileimg").val(null);
+    $("#imgpublic1").prop("src", "/img/subirfoto.png");
+    $("#spancloseimagen1").hide();
+
+    
+}
+
+function eliminarimagen2() {
+    $("#fileimg2").val(null);
+    $("#imgpublic2").prop("src", "/img/subirfoto.png");
+    $("#spancloseimagen2").hide();
+}
+
+
+function eliminarimagen3() {
+    $("#fileimg3").val(null);
+    $("#imgpublic3").prop("src", "/img/subirfoto.png");
+    $("#spancloseimagen3").hide();
 }
 
 function myinfo() {

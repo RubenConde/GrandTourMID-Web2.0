@@ -652,7 +652,18 @@ namespace GrandTourMID.Controllers
             //ejemplo de vista previa de publicaciones aun no funciona correctamente
             else if (data == "publicaciones")
             {
-                int numero = Convert.ToInt32(Request.QueryString["start"]);
+
+                int numero = 5;
+                int suma=0;
+                numero = Convert.ToInt32(Session["numero"]);
+                int numero2 = numero;
+                if (numero == numero2)
+                {
+                   suma = (numero + 10);
+                }
+
+                Session["numero"] = Convert.ToInt32(suma);
+
                 DataTable Lispubli = BDP.CargarPublicaciones(numero);
                 string imagen;
 
@@ -663,11 +674,11 @@ namespace GrandTourMID.Controllers
 
                     if (imagen == "")
                     {
-                        respuesta = " <div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"/img/usuario.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">32 min</span><h6>" + row["idusuario"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = " <div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"/img/usuario.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">32 min</span><h6>" + row["idusuario"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
                     }
                     else
                     {
-                        respuesta = "<div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"/img/usuario.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">32 min</span><h6>" + row["idusuario"] + "</h6><br><p>" + row["texto"] + "</p><img src=\"" + row["img"] + "\" style=\"width:100%\" ><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"/img/usuario.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">32 min</span><h6>" + row["idusuario"] + "</h6><br><p>" + row["texto"] + "</p> <hr class=\"w3-clear\"><img src=\"" + row["img"] + "\" style=\"width:100%\" ><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
                     }
 
                     Response.Write(respuesta);
