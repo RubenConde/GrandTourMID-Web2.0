@@ -3,15 +3,15 @@
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/MasterProfile.cshtml";
 }
-<h3 class="w3-theme-d5">&nbsp; Realiza una publicación</h3>
-<form id="frmpublicacion" class="w3-margin-bottom" enctype="multipart/form-data">
-    <div class=w3-row>
 
+<form id="frmpublicacion" class="w3-margin-bottom" enctype="multipart/form-data">
+    <div class="w3-row w3-content w3-card w3-round w3-white">
+        <h3 class="w3-theme-d5">&nbsp; Realiza una publicación</h3>
         <div class="w3-col m12">
             <div class="w3-row-padding w3-center">
                 <div class="w3-col m12">
                     <div class="w3-container w3-padding">
-                        <textarea class="w3-border w3-col m12 w3-margin-bottom" placeholder="Escribe tu publicación" style="max-width:763px; min-width:763px"></textarea>
+                        <textarea class="w3-border w3-col m12 w3-margin-bottom" placeholder="Escribe tu publicación" style="max-width:100%; min-width:100%"></textarea>
                         <div class="w3-center w3-margin">
                             <div class="w3-col m4">
                                 <img src="~/img/subirfoto.png" style="width:200px;height:200px" id="img">
@@ -27,15 +27,17 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <h3 class="w3-theme-d5">&nbsp;</h3>
 </form>
+
 <div class="w3-row">
-    <div id="publicaciones" class="w3-container w3-card w3-white w3-round">
+    <div id="publicaciones" class="">
     </div>
+
 </div>
 
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
 <script src="~/Scripts/AccionesProfile.js"></script>

@@ -45,5 +45,9 @@ namespace GrandTourMID.Controllers
         {
             return View();
         }
+        public ActionResult InfoLugarVisitado()
+        {
+            return View();
+        }
     }
 }

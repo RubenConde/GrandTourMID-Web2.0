@@ -128,7 +128,7 @@
         <!-- End Left Column -->
         <!-- Page Container -->
         <div class="w3-col m7">
-            <div class="w3-container w3-content w3-card w3-round w3-white" style="margin-left:10px; margin-right:10px">
+            <div class="w3-container " style="margin-left:10px; margin-right:10px">
                 @RenderBody()
             </div>
         </div>
@@ -181,6 +181,7 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/AccionesProfile.js"></script>
+    <script src="~/Scripts/sweetalert2.all.js"></script>
     <script>
         // Accordion
         function myFunction(id) {
@@ -224,7 +225,7 @@
                             }
                         }).then((result) => {
                             if (result.dismiss === 'timer') {
-                                window.location = "/Home/Login";
+                                window.location = "/Home/Index";
                             }
                         })
 

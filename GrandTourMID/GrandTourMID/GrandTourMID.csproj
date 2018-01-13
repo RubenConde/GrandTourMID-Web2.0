@@ -298,6 +298,7 @@
     <Content Include="Views\Admin\ListaRetos.cshtml" />
     <Content Include="Views\Admin\EditarReto.cshtml" />
     <Content Include="Views\Profile\LugaresVisitados.cshtml" />
+    <Content Include="Views\Profile\InfoLugarVisitado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
