@@ -57,10 +57,10 @@
                 <!-- Profile -->
                 <div class="w3-card w3-round w3-white">
                     <div class="w3-container">
-                        <p class="w3-center"><img id="fotoperfil" src="~/img/usuario.png" class="w3-circle" style="height:150px;width:150px" alt="Cargando.."></p>
-                        <h4 id="nombreperfil" class="w3-center">Nombre de usuario</h4>
+                        <p class="w3-center"><img id="fotoperfil"  class="w3-circle" style="height:150px;width:150px" ></p>
+                        <h4 id="nombreperfil" class="w3-center"></h4>
                         <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Nombre real del usuario</p>
+                        <p id="namecomple"><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i></p>
                         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Pais de origen</p>
                         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> Fecha de nacimiento del usuario</p>
                     </div>
@@ -69,10 +69,10 @@
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
                     <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i> Mi Perfil</button>
-                        <div id="Demo1" class="w3-hide w3-container">
-                            <a class="w3-button w3-block w3-theme-l1 w3-left-align" href="~/Profile/Profile"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mis Publicaciones</a>
-                            <a class="w3-button w3-block w3-theme-l1 w3-left-align" href="~/Profile/EditProfile"><i class="fa fa-gear fa-fw w3-margin-right"></i> Configuración</a>
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align "><i class="fa fa-user fa-fw w3-margin-right"></i> Mi Perfil <li class="fa fa-sort-down w3-small fa-fw w3-right" style="margin-top:-18px" ></li></button>
+                        <div id="Demo1" class="w3-hide ">
+                            <a class="w3-button w3-block w3-theme-l1 w3-left-align w3-opacity-min " href="~/Profile/Profile"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mis Publicaciones</a>
+                            <a class="w3-button w3-block w3-theme-l1 w3-left-align w3-opacity-min" href="~/Profile/EditProfile"><i class="fa fa-gear fa-fw w3-margin-right"></i> Configuración</a>
                         </div>
                         <a class="w3-button w3-block w3-theme-l1 w3-left-align" href="~/Profile/LugaresVisitados"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mis Lugares Visitados</a>
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mis fotos recientes</button>

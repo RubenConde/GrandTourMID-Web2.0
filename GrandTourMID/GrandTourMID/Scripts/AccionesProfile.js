@@ -1,7 +1,18 @@
 ﻿
+var loadimagenpublic1 = function (event) {
+    var imgpublic1 = document.getElementById('imgpublic1');
+    imgpublic1.src = URL.createObjectURL(event.target.files[0]);
+};
 
+var loadimagenpublic2 = function (event) {
+    var imgpublic2 = document.getElementById('imgpublic2');
+    imgpublic2.src = URL.createObjectURL(event.target.files[0]);
+};
 
-
+var loadimagenpublic3 = function (event) {
+    var imgpublic3 = document.getElementById('imgpublic3');
+    imgpublic3.src = URL.createObjectURL(event.target.files[0]);
+};
 
 $(document).ready(function () {
     $("#frmvalidarcontra").submit(function (e) {
@@ -87,5 +98,60 @@ function getData(start){
         
 
     })
+
+}
+
+
+$(document).ready(function () {
+
+    $("#divimagenes").hide();
+    $("#spanclose").hide();
+    
+    myinfo();
+
+});
+
+$("#subirimg").click(function () {
+    $("#divimagenes").show();
+    $("#spanclose").show();
+    $("#subirimg").hide();
+
+})
+
+
+function ocultarinfo() {
+    $("#divimagenes").hide();
+    $("#spanclose").hide();
+    $("#subirimg").show();
+
+}
+
+function myinfo() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=DatosUsuario",
+        type: "POST",
+        success: function (a) {
+
+            var datos = JSON.parse(a);
+
+            $('#nombreperfil').html(datos.usuario);
+            $('#namecomple').html('<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ' + datos.nombreus +" "+ datos.apellidop +" "+ datos.apellidom);
+            $('#validationCustom06').val();
+            $('#validationCustom08').val();
+            $('#validationCustom10').val(datos.email);
+            $('#usernameadmis').html(datos.nombreus);
+            $("#imgadmi").prop("src", datos.foto)
+            $("#fotoperfil").prop("src", datos.foto)
+            $('#validationCustom04').val(datos.usuario);
+            $('#validationCustom06').val(datos.apellidop);
+            $('#validationCustom08').val(datos.apellidom);
+
+        }
+
+    });
+
+    
+
+
 
 }
