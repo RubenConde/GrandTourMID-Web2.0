@@ -11,18 +11,18 @@
 <div class="w3-row w3-card w3-white w3-round w3-margin-bottom">
     <div class="w3-col m6  ">
         <div class="w3-margin">
-            <button class="w3-button w3-right w3-theme w3-round" id="btneditfoto" type="button"> Editar</button>
+            <button class="w3-button w3-small w3-right w3-blue w3-round" id="btneditfoto" type="button"> Editar</button>
             <h4>Foto de perfil</h4>
-            <form id="frmcambiarfoto" enctype="multipart/form-data">
+            <form id="frmfotousuario" enctype="multipart/form-data">
                 <center>
-                    <img class="w3-center w3-margin" id="imgadmi" style="width:300px; height:300px;" /><br />
-                    <label class="w3-hover-amber w3-round" id="uploadimg" style="cursor:pointer;">
+                    <img class="w3-center w3-circle w3-margin" id="imgedit" style="width:300px; height:300px;" /><br />
+                    <label class="w3-hover-gray w3-round" id="uploadimg" style="cursor:pointer;">
                         Seleccionar imagen
                         <input name="file" type="file" accept="image/*" style="display:none" onchange="loadfile(event)" />
                     </label>
                 </center>
                 <br />
-                    <input id="btnupdatepicture" class="w3-button w3-left w3-round w3-theme" type="submit" value="Actualizar" />
+                    <input id="btnupdatefoto" class="w3-button w3-blue-gray  w3-ripple  w3-hover-white w3-border w3-hover-border-blue-gray w3-round-large" type="submit" value="Actualizar" />
                     <button class="w3-button w3-red w3-right w3-round" id="btncancelarfoto" type="button">Cancelar</button>
                 <br />
                 <br />
@@ -31,42 +31,40 @@
     </div>
     <div class="w3-col m6 ">
         <div class="w3-margin">
-            <button class="w3-button w3-right w3-theme w3-round" id="btnhabilit" type="button"> Editar</button>
+            <button class="w3-button w3-right w3-small w3-blue w3-round" id="btnhabilitar" type="button"> Editar</button>
             <h4>Mis datos</h4>
-            <div class="mT-30">
-                <form class="w3-container" id="needs-validation" novalidate="">
+            <div>
+                <form class="w3-container">
                     <div class="w3-row">
                         <div class="w3-col m6">
-                            <label for="validationCustom01">Nombre</label><br />
-                            <input class="form-control w3-input" id="validationCustom02" name="nameadmi" placeholder="Nombre" required="" type="text" style="max-width:150px">
+                            <label >Nombre</label><br />
+                            <input class="w3-input" id="nameuser" name="nameuser" placeholder="Nombre"  type="text" style="max-width:150px">
                         </div>
                         <div class="w3-col m6">
-                            <label for="validationCustom03">Usuario</label><br />
-                            <input class="form-control w3-input" id="validationCustom04" name="useradmi" placeholder="Usuario" required="" type="text" style="max-width:150px">
+                            <label >Usuario</label><br />
+                            <input class="w3-input" id="userprofile" name="userprofile" placeholder="Usuario" required="" type="text" style="max-width:150px">
                         </div>
                     </div>
                     <div class="w3-row">
                         <div class="w3-col m6">
-                            <label for="validationCustom05">Apellido Paterno</label><br />
-                            <input class="form-control w3-input" id="validationCustom06" name="apepa" placeholder="Apellido Paterno" required="" type="text" style="max-width:150px">
+                            <label>Apellido Paterno</label><br />
+                            <input class="w3-input" id="apellidouserpate" name="apellidouserpate" placeholder="Apellido Paterno" required="" type="text" style="max-width:150px">
                         </div>
                         <div class="w3-col m6 ">
-                            <label for="validationCustom07">Apellido Materno</label><br />
-                            <input class="form-control w3-input" id="validationCustom08" name="apemat" placeholder="Apellido Materno" required="" type="text" style="max-width:150px">
+                            <label >Apellido Materno</label><br />
+                            <input class="form-control w3-input" id="apellidousermate" name="apellidousermate" placeholder="Apellido Materno" required="" type="text" style="max-width:150px">
                         </div>
                     </div>
                     <div class="w3-row">
                         <div class="w3-col m12">
-                            <label for="validationCustom09">Correo electronico</label><br />
-                            <input class="form-control w3-input" name="emailadmi" id="validationCustom10" placeholder="Correo electronico" required="" type="email" style="max-width:100%">
+                            <label>Correo electronico</label><br />
+                            <input class="w3-input" name="emailuser" id="emailuser" placeholder="Correo electronico" required="" type="email" style="max-width:100%">
                         </div>
                     </div>
                     <br />
-                    <button id="btnupdate" class="w3-button w3-left w3-theme w3-round" type="submit">Actualizar mis datos</button>
+                    <button id="btnupdate" class="w3-button w3-blue-gray  w3-ripple  w3-hover-white w3-border w3-hover-border-blue-gray w3-round-large" type="submit">Actualizar mis datos</button>
                     <button class="w3-button w3-red w3-right w3-round" id="btncancelar" type="button"> Cancelar</button>
                 </form>
-
-                <script>!function () { "use strict"; window.addEventListener("load", function () { var t = document.getElementById("needs-validation"); t.addEventListener("submit", function (e) { !1 === t.checkValidity() && (e.preventDefault(), e.stopPropagation()), t.classList.add("was-validated") }, !1) }, !1) }()</script>
             </div>
         </div>
     </div>
@@ -75,20 +73,20 @@
 <div class="w3-row w3-card w3-white w3-round">
     <div class="w3-col m12">
         <div class="w3-margin">
-            <button class="w3-button w3-right w3-theme w3-round" id="btneditcontra" type="button"> Editar</button>
+            <button class="w3-button w3-right w3-blue w3-small w3-round" id="btneditcontra" type="button"> Editar</button>
             <h4>Mi contraseña</h4>
             <form id="frmvalidarcontra">
                 <div class="w3-row w3-margin-bottom">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Contraseña actual</label><br />
-                    <input class="form-control w3-input" id="contrac" name="contraac" placeholder="Contraseña actual" type="password">
+                    <label >Contraseña actual</label><br />
+                    <input class="w3-input" id="contrac" name="contraac" placeholder="Contraseña actual" type="password">
                 </div>
                 <div class="w3-row w3-margin-bottom">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Contraseña nueva</label><br />
-                    <input class="form-control w3-input" id="contranue" name="contranue" placeholder="Contraseña nueva" type="password">
+                    <label>Contraseña nueva</label><br />
+                    <input class="w3-input" id="contranue" name="contranue" placeholder="Contraseña nueva" type="password">
                 </div>
                 <div class="w3-row w3-margin-bottom">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Confirmar contraseña</label><br />
-                    <input class="form-control w3-input" id="contraconfi" name="contraconfi" placeholder="Confirmar contraseña" type="password">
+                    <label>Confirmar contraseña</label><br />
+                    <input class="w3-input" id="contraconfi" name="contraconfi" placeholder="Confirmar contraseña" type="password">
                 </div>
                 <button class="w3-button w3-left w3-theme w3-round" id="btnvalidar" type="submit"><li class="fa fa-save"></li> Actualizar contraseña</button>
                 <button class="w3-button w3-red w3-right w3-round" id="btncancelarcontra" type="button"> Cancelar</button>
@@ -103,47 +101,15 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 <script>
+
+
     $(document).ready(function () {
         myinfo();
 
     });
 
-    function myinfo() {
-        $.ajax({
-            url: "/Ajax/Ajax?data=DatosUsuario",
-            type: "POST",
-            success: function (a) {
-
-                var datos = JSON.parse(a);
-
-                $('#validationCustom02').val(datos.nombreus);
-                $('#validationCustom04').val(datos.usuario);
-                $('#validationCustom06').val(datos.apellidop);
-                $('#validationCustom08').val(datos.apellidom);
-                $('#validationCustom10').val(datos.email);
-                $('#usernameadmis').html(datos.nombreus);
-                $("#imgadmi").prop("src", datos.foto)
-                $("#roundphotoadmi").prop("src", datos.foto)
-
-            }
-
-        });
-    }
     //habilitar textbox
-    $("#btnhabilit").click(function () {
 
-
-        $("#validationCustom02").prop('disabled', false);
-        $("#validationCustom04").prop('disabled', false);
-        $("#validationCustom06").prop('disabled', false);
-        $("#validationCustom10").prop('disabled', false);
-        $("#validationCustom08").prop('disabled', false);
-        $("#btnupdate").prop('disabled', false);
-        $("#btncancelar").prop('disabled', false);
-        $("#btncancelar").show();
-
-
-    });
 
     //actualizar info admi
     $(document).ready(function () {

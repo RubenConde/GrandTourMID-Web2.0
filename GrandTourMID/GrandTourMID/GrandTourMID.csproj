@@ -205,7 +205,6 @@
     <Content Include="img\casa.jpg" />
     <Content Include="img\logogtm.png" />
     <Content Include="img\phone-screenshot.png" />
-    <Content Include="img\Previsualización.png" />
     <Content Include="img\raidlobby.jpg" />
     <Content Include="img\rosada.jpg" />
     <Content Include="img\usuario.png" />
@@ -225,6 +224,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\editarindex.js" />
@@ -303,7 +303,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

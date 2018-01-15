@@ -25,6 +25,7 @@ namespace GrandTourMID.Controllers
         ContactoBO objecontacto = new ContactoBO();
         ContactoDAO BDCO = new ContactoDAO();
         PublicacionDAO BDP = new PublicacionDAO();
+        PublicacionBO objepu = new PublicacionBO();
         ChatDAO BDCH = new ChatDAO();
         InicioBO objei = new InicioBO();
         InicioDAO BDI = new InicioDAO();
@@ -34,7 +35,7 @@ namespace GrandTourMID.Controllers
         PreguntaDAO BDPRE = new PreguntaDAO();
 
         // GET: Ajax
-        public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file)
+        public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file, HttpPostedFileBase file2, HttpPostedFileBase file3)
         {
             string respuesta = "";
             //Login
@@ -92,7 +93,7 @@ namespace GrandTourMID.Controllers
                     {
                         respuesta = "2";
                     }
-                   
+
                 }
                 else
                 {
@@ -650,35 +651,180 @@ namespace GrandTourMID.Controllers
                  respuesta = "1";*/
             }
             //ejemplo de vista previa de publicaciones aun no funciona correctamente
+
+            else if (data == "agregarpublicacion")
+            {
+                if (file != null && file2 == null && file3 == null)
+                {
+                    string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
+                    file.SaveAs(patc);
+                    objepu.img = "/img/publicaciones/" + pic;
+                    objepu.img2 = "";
+                    objepu.img3 = "";
+                    objepu.idusuario = Convert.ToInt32(Session["ID"]);
+
+                    objepu.texto = Request.Form["textpub"];
+
+                    BDP.AgregarPublicacion(objepu);
+
+                    respuesta = "1";
+
+                }
+                else if (file != null && file2 != null && file3 == null)
+                {
+
+                    string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
+                    file.SaveAs(patc);
+                    objepu.img = "/img/publicaciones/" + pic;
+
+                    string pic2 = "inicio_GDE" + System.IO.Path.GetFileName(file2.FileName);
+                    string patc2 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic2);
+                    file2.SaveAs(patc2);
+                    objepu.img2 = "/img/publicaciones/" + pic2;
+
+                    objepu.img3 = "";
+
+                    objepu.idusuario = Convert.ToInt32(Session["ID"]);
+
+                    objepu.texto = Request.Form["textpub"];
+
+                    BDP.AgregarPublicacion(objepu);
+
+                    respuesta = "1";
+                }
+
+                else if (file != null && file2 != null && file3 != null)
+                {
+                    string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
+                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
+                    file.SaveAs(patc);
+                    objepu.img = "/img/publicaciones/" + pic;
+
+                    string pic2 = "inicio_GDE" + System.IO.Path.GetFileName(file2.FileName);
+                    string patc2 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic2);
+                    file2.SaveAs(patc2);
+                    objepu.img2 = "/img/publicaciones/" + pic2;
+
+
+                    string pic3 = "inicio_GDE" + System.IO.Path.GetFileName(file3.FileName);
+                    string patc3 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic3);
+                    file3.SaveAs(patc3);
+                    objepu.img3 = "/img/publicaciones/" + pic3;
+
+
+                    objepu.idusuario = Convert.ToInt32(Session["ID"]);
+
+                    objepu.texto = Request.Form["textpub"];
+
+                    BDP.AgregarPublicacion(objepu);
+
+                    respuesta = "1";
+
+                }
+
+                else if ( file == null && file2 ==null && file3==null)
+                {
+                    objepu.img ="";
+                    objepu.img2 = "";
+                    objepu.img3 = "";
+
+                    objepu.idusuario = Convert.ToInt32(Session["ID"]);
+
+                    objepu.texto = Request.Form["textpub"];
+
+                    BDP.AgregarPublicacion(objepu);
+                    respuesta = "1";
+
+                }
+
+
+             
+
+           
+
+           
+
+            
+
+            }
+
             else if (data == "publicaciones")
             {
 
-                int numero = 5;
-                int suma=0;
-                numero = Convert.ToInt32(Session["numero"]);
-                int numero2 = numero;
-                if (numero == numero2)
-                {
-                   suma = (numero + 10);
-                }
 
-                Session["numero"] = Convert.ToInt32(suma);
-
-                DataTable Lispubli = BDP.CargarPublicaciones(numero);
+                DataTable Lispubli = BDP.CargarPublicaciones();
                 string imagen;
+                string imagen2;
+                string imagen3;
 
 
                 foreach (DataRow row in Lispubli.Rows)
                 {
                     imagen = row["img"].ToString();
-
+                    imagen2 = row["img2"].ToString();
+                    imagen3 = row["img3"].ToString();
                     if (imagen == "")
                     {
-                        respuesta = " <div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"/img/usuario.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">32 min</span><h6>" + row["idusuario"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span><h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
                     }
-                    else
+                    else if (imagen != "" && imagen2 == "" && imagen3 == "")
                     {
-                        respuesta = "<div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"/img/usuario.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">32 min</span><h6>" + row["idusuario"] + "</h6><br><p>" + row["texto"] + "</p> <hr class=\"w3-clear\"><img src=\"" + row["img"] + "\" style=\"width:100%\" ><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"]+"\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom\"><p>"+row["texto"]+"</p><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+
+
+                    }
+
+                    else if (imagen != "" && imagen2 != "" && imagen3 == "")
+                    {
+                        respuesta = "<div class=\"w3-container w3-margin-top w3-card w3-white w3-round\">" +
+                        "<br><img src =\"" + row["foto"] + "\" alt =\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span>" +
+                        "<h6>" + row["nombre"] + "</h6>" +
+                        "<br>" +
+
+                        "<hr class=\"w3-clear\">" +
+                        "<div class=\"w3-row-padding w3-margin-top\">" +
+
+                        "<div class=\"w3-row-padding\">" +
+                        "<div class=\"w3-half\">" +
+                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img"] + "\" onclick=\"onClick(this)\" style=\"width:100%; height:445px;  cursor:pointer\">" +
+                        "</div>" +
+
+                        "<div class=\"w3-half\">" +
+                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img2"] + "\" onclick=\"onClick(this)\" style=\"width:100%; height:445px; cursor:pointer\">" +
+                        "</div>" +
+
+
+                        "</div>" +
+                        "<br />" +
+                        "<button style =\"margin-left:15px\" type=\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i> Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button>" +
+                          "</div>" +
+                      "</div>";
+                    }
+                    else if (imagen != "" && imagen2 != "" && imagen3 != "")
+                    {
+                        respuesta = "<div  class=\"w3-container  w3-card w3-white w3-round\">" +
+                            
+                        "<br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span>" +
+                        "<h6>" + row["nombre"] + "</h6><br>" +
+                        "<hr class=\"w3-clear\">" +
+                        "<div class=\"w3-main\">" +
+                        "<div class=\"w3-row-padding\">" +
+                        "<div class=\"w3-half\">" +
+                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img"] + "\" onclick=\"onClick(this)\" style=\"width:380px; height:222.8px; cursor:pointer\">" +
+                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img2"] + "\" onclick=\"onClick(this)\" style=\"width:380px; height:222.8px; cursor:pointer\">" +
+                        "</div>" +
+
+                        "<div class=\"w3-half\">" +
+                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img3"] + "\" onclick=\"onClick(this)\" style=\"width:380px; height:445px; cursor:pointer\">" +
+                        "</div>" +
+                        "</div>" +
+                        "<br />" +
+                        "<button style =\"margin-left:15px\" type=\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button>" +
+                        "</div>" +
+                        "</div>";
+
                     }
 
                     Response.Write(respuesta);

@@ -14,6 +14,11 @@
 <link href="~/Content/fonts.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+
+    body {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
     html, body, h1, h2, h3, h4, h5 {
         font-family: "Open Sans", sans-serif
     }
@@ -57,7 +62,7 @@
                 <!-- Profile -->
                 <div class="w3-card w3-round w3-white">
                     <div class="w3-container">
-                        <p class="w3-center"><img id="fotoperfil"  class="w3-circle" style="height:150px;width:150px" ></p>
+                        <p class="w3-center"><img id="fotoperfil" class="w3-circle" style="height:150px;width:150px"></p>
                         <h4 id="nombreperfil" class="w3-center"></h4>
                         <hr>
                         <p id="namecomple"><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i></p>
@@ -69,7 +74,7 @@
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
                     <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align "><i class="fa fa-user fa-fw w3-margin-right"></i> Mi Perfil <li class="fa fa-sort-down w3-small fa-fw w3-right" style="margin-top:-18px" ></li></button>
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align "><i class="fa fa-user fa-fw w3-margin-right"></i> Mi Perfil <li class="fa fa-sort-down w3-small fa-fw w3-right" style="margin-top:-18px"></li></button>
                         <div id="Demo1" class="w3-hide ">
                             <a class="w3-button w3-block w3-theme-l1 w3-left-align w3-opacity-min " href="~/Profile/Profile"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mis Publicaciones</a>
                             <a class="w3-button w3-block w3-theme-l1 w3-left-align w3-opacity-min" href="~/Profile/EditProfile"><i class="fa fa-gear fa-fw w3-margin-right"></i> Configuración</a>
@@ -179,7 +184,8 @@
         <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
     <script src="~/Scripts/AccionesProfile.js"></script>
     <script src="~/Scripts/sweetalert2.all.js"></script>
     <script>
@@ -241,6 +247,9 @@
                 }
             });
         };
+
+
+
 
     </script>
 

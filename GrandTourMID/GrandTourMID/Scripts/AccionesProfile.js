@@ -65,61 +65,58 @@ $(document).ready(function () {
 
 ///////
 
-var acumulador = 5;
-
-
-var reachedMax = false;
-
-$(window).scroll(function () {
-
-    if ($(window).scrollTop() == $(document).height() - $(window).height())
-        getData();
-
-});
-
-
-
 $(document).ready(function () {
 
-    getData();
-    
-});
+    info();
+})
 
+function myFunction() {
+    var x = document.getElementById("de");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
 
-function getData(){
-    if (reachedMax)
-        return;
+function info() {
     $.ajax({
         url: '/Ajax/Ajax?data=publicaciones',
         method: 'Post',
         success: function (a) {
-            if (a == "reachedMax")
-                reachedMax = true;
-            else {
-                
-                $("#publicaciones").append(a);
-            }
+
+            $("#publicaciones").html(a);
 
         }
+    });
 
-        
+    var ajaxCall = function () {
+        $.ajax({
+            url: '/Ajax/Ajax?data=publicaciones',
+            method: 'Post',
+            success: function (a) {
 
-    })
+                $("#publicaciones").html(a);
 
+            }
+        });
+    }
+    setInterval(ajaxCall, 1000)
 }
 
 
 $(document).ready(function () {
 
-    myinfo();
     $("#divimagenes").hide();
     $("#spanclose").hide();
     $("#spancloseimagen1").hide();
     $("#spancloseimagen2").hide();
     $("#spancloseimagen3").hide();
     $("#cancelarsubida").hide();
+    myinfo();
     
-    
+
+
 
 });
 
@@ -132,14 +129,15 @@ $("#subirimg").click(function () {
 
 
 function ocultarinfo() {
+    
     $("#divimagenes").hide();
     $("#spanclose").hide();
     $("#subirimg").show();
     $("#cancelarsubida").hide();
     $("#imgpublic2").prop("src", "/img/subirfoto.png");
     $("#imgpublic3").prop("src", "/img/subirfoto.png");
-  
-    
+
+
 }
 
 function eliminarimagen1() {
@@ -147,7 +145,7 @@ function eliminarimagen1() {
     $("#imgpublic1").prop("src", "/img/subirfoto.png");
     $("#spancloseimagen1").hide();
 
-    
+
 }
 
 function eliminarimagen2() {
@@ -172,23 +170,34 @@ function myinfo() {
             var datos = JSON.parse(a);
 
             $('#nombreperfil').html(datos.usuario);
-            $('#namecomple').html('<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ' + datos.nombreus +" "+ datos.apellidop +" "+ datos.apellidom);
-            $('#validationCustom06').val();
-            $('#validationCustom08').val();
-            $('#validationCustom10').val(datos.email);
-            $('#usernameadmis').html(datos.nombreus);
-            $("#imgadmi").prop("src", datos.foto)
+            $('#namecomple').html('<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ' + datos.nombreus + " " + datos.apellidop + " " + datos.apellidom);
+            
+            $('#nameuser').val(datos.nombreus);
+            $('#userprofile').val(datos.usuario);
+            $('#apellidouserpate').val(datos.apellidop);
+            $('#apellidousermate').val(datos.apellidom);
+            $('#emailuser').val(datos.email);
+            $("#imgedit").prop("src", datos.foto)
             $("#fotoperfil").prop("src", datos.foto)
-            $('#validationCustom04').val(datos.usuario);
-            $('#validationCustom06').val(datos.apellidop);
-            $('#validationCustom08').val(datos.apellidom);
-
         }
 
     });
-
-    
-
-
-
 }
+
+$("#btnhabilit").click(function () {
+
+
+    $("#nameuser").prop('disabled', false);
+    $("#emailuser").prop('disabled', false);
+    $("#apellidousermate").prop('disabled', false);
+    $("#apellidouserpate").prop('disabled', false);
+    $("#userprofile").prop('disabled', false);
+    $("#userprofile").prop('disabled', false);
+
+    $("#btncancelar").prop('disabled', false);
+    $("#btncancelar").show();
+
+
+});
+
+

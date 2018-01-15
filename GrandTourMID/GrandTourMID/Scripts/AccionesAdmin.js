@@ -422,26 +422,7 @@ $(document).ready(function () {
 });
 
 //cargarinfo
-function myinfo() {
-    $.ajax({
-        url: "/Ajax/Ajax?data=DatosUsuario",
-        type: "POST",
-        success: function (a) {
-            var datos = JSON.parse(a);
 
-            $('#validationCustom02').val(datos.nombreus);
-            $('#validationCustom04').val(datos.usuario);
-            $('#validationCustom06').val(datos.apellidop);
-            $('#validationCustom08').val(datos.apellidom);
-            $('#validationCustom10').val(datos.email);
-            $('#usernameadmis').html(datos.nombreus);
-            $("#imgadmi").prop("src", datos.foto)
-            $("#roundphotoadmi").prop("src", datos.foto)
-
-        }
-
-    });
-}
 
 //span animado
 $(document).ready(function () {

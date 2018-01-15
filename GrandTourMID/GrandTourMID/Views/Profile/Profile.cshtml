@@ -4,6 +4,23 @@
     Layout = "~/Views/Shared/MasterProfile.cshtml";
 }
 
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif;
+    }
+
+    .w3-third img {
+        margin-bottom: -6px;
+        opacity: 0.8;
+        cursor: pointer
+    }
+
+        .w3-third img:hover {
+            opacity: 1
+        }
+</style>
+
+
 <form id="frmpublicacion" class="w3-margin-bottom" enctype="multipart/form-data">
     <div class="w3-row w3-content w3-card w3-round w3-white">
         <h3 class="w3-theme-d5">&nbsp; Realiza una publicación</h3>
@@ -12,10 +29,10 @@
                 <div class="w3-col m12">
                     <div class="w3-container w3-padding">
 
-                        <textarea class="w3-border w3-col m12 w3-margin-bottom" placeholder="Escribe tu publicación" style="max-width:100%; min-width:100%"></textarea>
+                        <textarea id="textpub" name="textpub" class="w3-border w3-col m12 w3-margin-bottom" placeholder="Escribe tu publicación" style="max-width:100%; min-width:100%"></textarea>
                         <label style="cursor:pointer" id="subirimg" class="w3-left"><a class="w3-hover-dark-grey w3-round"><li class="fa fa-paperclip"></li> Subir Imagenes</a></label>
-                        <span id="spanclose" onclick="ocultarinfo();" class="w3-right fa fa-minus-circle" style="cursor:pointer; margin-right:-11px; margin-top:-12px">    </span>
-                        <div id="divimagenes" class="w3-center w3-margin">
+                        <span hidden="hidden" id="spanclose" onclick="ocultarinfo();" class="w3-right fa fa-minus-circle" style="cursor:pointer; margin-right:-11px; margin-top:-12px">    </span>
+                        <div id="divimagenes" hidden="hidden" class="w3-center w3-margin">
 
                             <div class=" w3-col m4">
                                 <span id="spancloseimagen1" onclick="eliminarimagen1();" class="w3-right w3-display-container fa fa-times-circle w3-small" style="cursor:pointer; margin-right:-1px; margin-top:2px"></span>
@@ -28,27 +45,29 @@
                             <div class="w3-col m4">
                                 <span id="spancloseimagen2" onclick="eliminarimagen2();" class="w3-right w3-display-container fa fa-times-circle w3-small" style="cursor:pointer; margin-right:-0px; margin-top:2px"></span>
                                 <label class="w3-hover-opacity w3-round" id="uploadimg" style="cursor:pointer;">
-                                    <input id="fileimg2" name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenpublic2(event)" />
+                                    <input id="fileimg2" name="file2" type="file" accept="image/*" style="display:none" onchange="loadimagenpublic2(event)" />
                                     <img src="~/img/subirfoto.png" class=" w3-round" style="width:200px;height:200px" id="imgpublic2">
                                 </label>
                             </div>
                             <div class="w3-col m4">
                                 <span id="spancloseimagen3" hidden="hidden" onclick="eliminarimagen3();" class="w3-right w3-display-container fa fa-times-circle w3-small" style="cursor:pointer; margin-right:+1px; margin-top:2px"></span>
                                 <label class="w3-hover-opacity w3-round" id="uploadimg" style="cursor:pointer;">
-                                    <input id="fileimg3" name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenpublic3(event)" />
+                                    <input id="fileimg3" name="file3" type="file" accept="image/*" style="display:none" onchange="loadimagenpublic3(event)" />
                                     <img src="~/img/subirfoto.png" class=" w3-round" style="width:200px;height:200px" id="imgpublic3">
                                 </label>
+
                                 <br />
                                 <br />
-                                
+
 
                             </div>
 
                         </div>
-                        <button id="cancelarsubida" hidden="hidden" type="submit" style="margin-left:300px" class="w3-button w3-right-align w3-theme-d2">cancelar subida de imagenes</button>
+                        <button id="cancelarsubida"  type="button" style="margin-left:300px" class="w3-button w3-right-align w3-theme-d2">cancelar subida de imagenes</button>
                         <button type="submit" class="w3-button w3-right  w3-theme-d2">Publicar</button>
-                    </div>
 
+
+                    </div>
                 </div>
             </div>
 
@@ -57,11 +76,103 @@
 </form>
 
 <div class="w3-row">
-    <div id="publicaciones" class="">
+    <div id="publicaciones" class="w3-animate-opacity">
+
+
+
+
+
     </div>
+
 
 </div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+
+<div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+        <div>
+            <img style="width:100%; height:521.05px;" id="img01" class="w3-image">
+            <br /><button class="w3-button w3-pink rounded w3-left"><li class="fa fa-heart"></li> Me gusta</button>
+
+        </div>
+
+
+    </div>
+</div>
+
 <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
 <script src="~/Scripts/AccionesProfile.js"></script>
+<script>
+
+   
+
+
+
+
+
+
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    };
+
+    $(document).ready(function () {
+        $("#frmpublicacion").submit(function (e) {
+            e.preventDefault();
+            var form = $('#frmpublicacion')[0];
+            var dataString = new FormData(form);
+            $.ajax({
+                url: '/Ajax/Ajax?data=agregarpublicacion',  //Server script to process data
+                type: 'POST',
+                data: dataString,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (a) {
+
+                    if (a == 1) {
+                        swal({
+                            text: 'Se ha realizado tu publicación!',
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        })
+
+
+
+                        $("#textpub").val('');
+                        $("#fileimg").val(null);
+                        $("#fileimg2").val(null);
+                        $("#fileimg3").val(null);
+                        $("#imgpublic1").prop("src", "/img/subirfoto.png");
+                        $("#imgpublic2").prop("src", "/img/subirfoto.png");
+                        $("#imgpublic3").prop("src", "/img/subirfoto.png");
+                        $("#spancloseimagen1").hide();
+                        $("#spancloseimagen2").hide();
+                        $("#spancloseimagen3").hide();
+                        $("#divimagenes").hide();
+                        $("#spanclose").hide();
+                        $("#subirimg").show();
+                        $("#cancelarsubida").hide();
+                    }
+
+                }
+            });
+        });
+    });
+
+
+
+
+
+
+</script>
