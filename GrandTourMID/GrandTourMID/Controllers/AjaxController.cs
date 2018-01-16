@@ -771,7 +771,7 @@ namespace GrandTourMID.Controllers
                     }
                     else if (imagen != "" && imagen2 == "" && imagen3 == "")
                     {
-                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"]+"\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom\"><p>"+row["texto"]+"</p><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"]+"\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom\"><p>"+row["texto"]+"</p><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
 
 
                     }
@@ -804,7 +804,7 @@ namespace GrandTourMID.Controllers
                     }
                     else if (imagen != "" && imagen2 != "" && imagen3 != "")
                     {
-                        respuesta = "<div  class=\"w3-container  w3-card w3-white w3-round\">" +
+                        respuesta = "<div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\">" +
                             
                         "<br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span>" +
                         "<h6>" + row["nombre"] + "</h6><br>" +

@@ -168,6 +168,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GrantTourMID.asmx.cs">
+      <DependentUpon>GrantTourMID.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +198,7 @@
     <Content Include="Content\w3-theme-blue-grey.css" />
     <Content Include="Content\w3.css" />
     <Content Include="Content\xd.css" />
+    <Content Include="GrantTourMID.asmx" />
     <Content Include="img\lugar.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
