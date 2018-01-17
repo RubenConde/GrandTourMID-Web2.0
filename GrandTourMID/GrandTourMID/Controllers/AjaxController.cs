@@ -771,7 +771,7 @@ namespace GrandTourMID.Controllers
                     }
                     else if (imagen != "" && imagen2 == "" && imagen3 == "")
                     {
-                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"]+"\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom\"><p>"+row["texto"]+"</p><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"]+"\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom\"><p>"+row["texto"]+"</p><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
 
 
                     }
@@ -782,8 +782,9 @@ namespace GrandTourMID.Controllers
                         "<br><img src =\"" + row["foto"] + "\" alt =\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span>" +
                         "<h6>" + row["nombre"] + "</h6>" +
                         "<br>" +
+                        "<p> " + row["texto"] + " </p>" +
 
-                        "<hr class=\"w3-clear\">" +
+                           "<hr class=\"w3-clear\">" +
                         "<div class=\"w3-row-padding w3-margin-top\">" +
 
                         "<div class=\"w3-row-padding\">" +
@@ -807,7 +808,7 @@ namespace GrandTourMID.Controllers
                         respuesta = "<div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\">" +
                             
                         "<br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span>" +
-                        "<h6>" + row["nombre"] + "</h6><br>" +
+                        "<h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p>" +
                         "<hr class=\"w3-clear\">" +
                         "<div class=\"w3-main\">" +
                         "<div class=\"w3-row-padding\">" +
@@ -1299,12 +1300,27 @@ namespace GrandTourMID.Controllers
 
             else if (data == "loadfotosusuarioxlugar")
             {
-                int id = Convert.ToInt32(Session["ID"]);
-                DataTable Lisluga = BDLU.CargarFotosLugarUsuario(id);
+                int iduser = Convert.ToInt32(Session["ID"]);
+                int idlug = Convert.ToInt32(Session["idlugar"]);
+                DataTable Lisluga = BDLU.CargarFotosLugarUsuario(idlug, iduser);
                 foreach (DataRow row in Lisluga.Rows)
                 {
-                    respuesta = "<center><div class=\"w3-third w3-margin-top\"><img src =\"" + row["imagenportada"] + "\" style=\"width:200px;cursor:zoom-in\" onclick=\"\">" +
-                        "<div id = \"IDDELAFOTO\" class=\"w3-modal w3-black\" onclick=\"\"><span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span><div class=\"w3-modal-content w3-animate-zoom\"><img src = \"" + row["imagenportada"] + "\" style=\"width:100%\"></div></div></div></center>";
+                    respuesta = "<center><div class=\"w3-third w3-margin-top\"><img src =\"" + row["foto"] + "\" style=\"width:200px; height:200px;cursor:zoom-in\" onclick=\"document.getElementById('modalgaleria"+row["idfoto"]+"').style.display = 'block'\">" +
+                        "<div id = \"modalgaleria"+row["idfoto"]+ "\" class=\"w3-modal w3-black\" onclick=\"document.getElementById('modalgaleria" + row["idfoto"] + "').style.display = 'none'\"><span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span><div class=\"w3-modal-content w3-animate-zoom\"><img src = \"" + row["foto"] + "\" style=\"width:100%\"></div></div></div></center>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+
+            else if (data == "loadultimasfotosuser")
+            {
+                int iduser = Convert.ToInt32(Session["ID"]);
+                DataTable Lisluga = BDLU.CargarUltimasFotosUser(iduser);
+                foreach (DataRow row in Lisluga.Rows)
+                {
+                    respuesta = "<div class=\"w3-half\"><img onclick=\"onClick(this)\" src =\"" + row["foto"] + "\" style = \"width:100%; height:100px\" class=\"w3-margin-bottom\"></div>";
                     Response.Write(respuesta);
                 }
 

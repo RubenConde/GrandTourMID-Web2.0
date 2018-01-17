@@ -35,7 +35,19 @@ $(document).ready(function () {
         type: "POST",
         success: function (a) {
 
-            $("#usuariovisitas").html(a);
+            $("#fotosusuariolugar").html(a);
+
+        }
+    });
+});
+
+$(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadultimasfotosuser",
+        type: "POST",
+        success: function (a) {
+
+            $("#ultimasfotosusuario").html(a);
 
         }
     });

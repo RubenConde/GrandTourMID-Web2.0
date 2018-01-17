@@ -45,10 +45,16 @@ namespace GrandTourMID.DAO
             return EjercutarSentenciaBusqueda(sql);
 
         }
-
-        public DataTable CargarFotosLugarUsuario(int id)
+        public DataTable CargarUltimasFotosUser(int id)
         {
-            string sql = string.Format("select l.nombre, l.idlugar, l.imagenportada from Visita v join lugares l on v.idlugar = l.idlugar join usuario u on v.idusuario = u.idusuario where v.idusuario = {0}", id);
+            string sql = string.Format("select top 6 f.foto, f.idfoto from UsuarioFotos uf join usuario u on u.idusuario = uf.idusuario join Fotos f on f.idfoto = uf.idfoto where u.idusuario = {0} order by f.idfoto desc", id);
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
+        public DataTable CargarFotosLugarUsuario(int idlugar, int idusuario)
+        {
+            string sql = string.Format("select f.idfoto, f.foto from UsuarioFotos uf join fotos f on f.idfoto = uf.idfoto join usuario u on u.idusuario = uf.idusuario join lugares l on l.idlugar = uf.idlugar where uf.idusuario = {0} and uf.idlugar = {1} ", idusuario, idlugar);
             return EjercutarSentenciaBusqueda(sql);
 
         }

@@ -31,9 +31,9 @@
     </div>
 
     <form>
-        <h2>Mis fotos de "NOMBRE DEL LUGAR"</h2>
+        <h2>Mis fotos</h2>
 
-        <div class="w3-row-padding w3-margin-top">
+        <div class="w3-row-padding w3-margin-top" id="fotosusuariolugar">
             @*DISEÑO DE CADA IMAGEN*@
 
         </div><br />
@@ -63,7 +63,7 @@
                 $('#nombrelugarvisitado').html(datos.nombre);
                 $('#nombrelugarinfo').html(datos.nombre);
                 $('#infoweblugarvis').html(datos.informacionweb);
-                $('#editinfolugarapp').val(datos.informacionapp);
+                $('#nombrelugarfotos').html(datos.nombre);
                 $('#editdireccionlugar').val(datos.direccion);
                 $('#fechalugarinfo').html(datos.fechafundacion);
                 $('#edittxtubicalugar').val(datos.direccionmap);
