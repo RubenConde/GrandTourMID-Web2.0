@@ -7,45 +7,35 @@
 
 
 
-<div class="container">
-    <h3 class="w3-theme-d5">&nbsp; Nombre del lugar</h3>
+<div class="w3-container w3-card w3-round w3-white ">
+    <h3 class="w3-theme-d5" id="nombrelugarvisitado"></h3>
     <div class="w3-row">
-        <div class="w3-half">
+        <div class="w3-twothird">
             <div class="w3-row-padding">
                 <br />
                 <center>
-                    <img draggable="true" src="~/img/rosada.jpg" id="imagen9" style="width:450px; height:250px" class="w3-round w3-animate-zoom"><br />
+                    <img draggable="true" id="imagenportadavisitado" style="width:450px; height:250px" class="w3-round w3-animate-zoom"><br />
                 </center>
             </div>
         </div>
 
-        <div class="w3-half">
-            <br />
-            <input id="txtId" name="txtId" class="w3-input w3-border-blue" type="hidden" value="IDDELLUGAR" required>
-            <img src="~/img/Sin título.png" style="width:446px" />
+        <div class="w3-third">
+            <div class="w3-row">
+                <p><b>Nombre:</b><p id="nombrelugarinfo"></p></p>
+                <p><b>Fecha de fundacion:</b><p id="fechalugarinfo"></p></p>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <p><label>Aqui ira la informacion de la web del lugar</label></p>
+    <div class="w3-row-padding">
+        <p><label id="infoweblugarvis"></label></p>
     </div>
 
     <form>
         <h2>Mis fotos de "NOMBRE DEL LUGAR"</h2>
-       
+
         <div class="w3-row-padding w3-margin-top">
-        @*DISEÑO DE CADA IMAGEN*@
-            <center>
-                <div class="w3-third">
-                    <img src="~/img/rosada.jpg" style="width:200px;cursor:zoom-in"
-                         onclick="document.getElementById(IDDELLAFOTO).style.display='block'">
-                    <div id="IDDELAFOTO" class="w3-modal w3-black" onclick="this.style.display='none'">
-                        <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-                        <div class="w3-modal-content w3-animate-zoom">
-                            <img src="~/img/rosada.jpg" style="width:100%">
-                        </div>
-                    </div>
-                </div>
-            </center>
+            @*DISEÑO DE CADA IMAGEN*@
+
         </div><br />
 
 
@@ -53,4 +43,38 @@
     </form>
 
 </div>
+<script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script>
 
+    $(document).ready(function () {
+        Cargarinfolugar();
+    })
+
+    function Cargarinfolugar() {
+        $.ajax({
+            url: "/Ajax/Ajax?data=cargarinfolugar",
+            type: "POST",
+            success: function (a) {
+
+                var datos = JSON.parse(a);
+
+
+                $("#imagenportadavisitado").prop("src", datos.imagenportada);
+                $('#nombrelugarvisitado').html(datos.nombre);
+                $('#nombrelugarinfo').html(datos.nombre);
+                $('#infoweblugarvis').html(datos.informacionweb);
+                $('#editinfolugarapp').val(datos.informacionapp);
+                $('#editdireccionlugar').val(datos.direccion);
+                $('#fechalugarinfo').html(datos.fechafundacion);
+                $('#edittxtubicalugar').val(datos.direccionmap);
+                $('#editlonlugar').val(datos.longitud);
+                $('#editlalugar').val(datos.latitud);
+                $('#idlugar').val(datos.idlugar);
+                $('#idlugar2').val(datos.idlugar);
+                $('#idlugar3').val(datos.idlugar);
+            }
+
+        });
+    }
+
+</script>

@@ -31,6 +31,17 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadhomelugares",
+        type: "POST",
+        success: function (a) {
+
+            $("#homelugares").html(a);
+
+        }
+    });
+});
 
 function cargarinfoinicio() {
     $.ajax({

@@ -28,6 +28,11 @@ namespace GrandTourMID.Controllers
             return View();
         }
 
+        public ActionResult Lugares()
+        {
+            return View();
+        }
+
 
     }
 }

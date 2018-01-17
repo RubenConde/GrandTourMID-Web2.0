@@ -304,6 +304,8 @@
     <Content Include="Views\Admin\EditarReto.cshtml" />
     <Content Include="Views\Profile\LugaresVisitados.cshtml" />
     <Content Include="Views\Profile\InfoLugarVisitado.cshtml" />
+    <Content Include="Views\Home\Lugares.cshtml" />
+    <Content Include="Views\Home\InfoLugar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

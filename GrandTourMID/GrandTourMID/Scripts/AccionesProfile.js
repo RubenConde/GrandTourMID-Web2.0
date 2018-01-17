@@ -18,6 +18,50 @@ var loadimagenpublic3 = function (event) {
 };
 
 $(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadlugaresvisitados",
+        type: "POST",
+        success: function (a) {
+
+            $("#usuariovisitas").html(a);
+
+        }
+    });
+});
+
+$(document).ready(function () {
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadfotosusuarioxlugar",
+        type: "POST",
+        success: function (a) {
+
+            $("#usuariovisitas").html(a);
+
+        }
+    });
+});
+
+
+var interval;
+
+function verinfolugar(e) {
+    clearInterval(interval);
+    $.ajax({
+        url: '/Ajax/Ajax?data=verinfolugar&idlugar=' + e,
+        type: "post",
+
+        success: function (a) {
+            if (a == 1) {
+
+                window.location = "/Profile/InfoLugarVisitado"
+            }
+
+        }
+    });
+};
+
+
+$(document).ready(function () {
     $("#frmvalidarcontra").submit(function (e) {
         e.preventDefault();
         $.ajax({

@@ -1269,6 +1269,49 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
+            else if (data == "loadhomelugares")
+            {
+
+                DataTable Lisluga = BDLU.CargarLugares();
+                foreach (DataRow row in Lisluga.Rows)
+                {
+                    respuesta = "<div class=\"w3-col m6 w3-margin-right w3-center\" style=\"width:349px; height:313px; \"><div class=\"w3-btn w3-white w3-ripple\" style=\"margin:0;padding:0\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:230px\"><p>" + row["nombre"] + "</p></div></div>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+
+            else if (data == "loadlugaresvisitados")
+            {
+                int id = Convert.ToInt32(Session["ID"]);
+                DataTable Lisluga = BDLU.BuscarLugarPorUsuario(id);
+                foreach (DataRow row in Lisluga.Rows)
+                {
+                    respuesta = "<div class=\"w3-row w3-center w3-margin\"><div class=\"w3-col m6 w3-margin-top\"><a onclick=\"verinfolugar(" + row["idlugar"] + ")\" class=\"w3-btn w3-white w3-ripple\" style=\"margin:0;padding:0;\"><div style = \"width:320px; height:200px\" ><img src=\"" + row["imagenportada"] + "\" style=\"width:100%; height:165px\"><h5 class=\"w3-small\">" + row["nombre"] + "</h5></div></a></div></div>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+
+            else if (data == "loadfotosusuarioxlugar")
+            {
+                int id = Convert.ToInt32(Session["ID"]);
+                DataTable Lisluga = BDLU.CargarFotosLugarUsuario(id);
+                foreach (DataRow row in Lisluga.Rows)
+                {
+                    respuesta = "<center><div class=\"w3-third w3-margin-top\"><img src =\"" + row["imagenportada"] + "\" style=\"width:200px;cursor:zoom-in\" onclick=\"\">" +
+                        "<div id = \"IDDELAFOTO\" class=\"w3-modal w3-black\" onclick=\"\"><span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span><div class=\"w3-modal-content w3-animate-zoom\"><img src = \"" + row["imagenportada"] + "\" style=\"width:100%\"></div></div></div></center>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+
             /////cargar la informacion de lugares
             else if (data == "verinfolugar")
             {
