@@ -1306,7 +1306,7 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in Lisluga.Rows)
                 {
                     respuesta = "<center><div class=\"w3-third w3-margin-top\"><img src =\"" + row["foto"] + "\" style=\"width:200px; height:200px;cursor:zoom-in\" onclick=\"document.getElementById('modalgaleria"+row["idfoto"]+"').style.display = 'block'\">" +
-                        "<div id = \"modalgaleria"+row["idfoto"]+ "\" class=\"w3-modal w3-black\" onclick=\"document.getElementById('modalgaleria" + row["idfoto"] + "').style.display = 'none'\"><span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span><div class=\"w3-modal-content w3-animate-zoom\"><img src = \"" + row["foto"] + "\" style=\"width:100%\"></div></div></div></center>";
+                        "<div style=\"padding - top:0\" id = \"modalgaleria" + row["idfoto"]+ "\" class=\"w3-modal w3-black\" onclick=\"document.getElementById('modalgaleria" + row["idfoto"] + "').style.display = 'none'\"><span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span><div class=\"w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64\"><img src = \"" + row["foto"] + "\" style=\"width:100%\"></div></div></div></center>";
                     Response.Write(respuesta);
                 }
 
@@ -1320,7 +1320,7 @@ namespace GrandTourMID.Controllers
                 DataTable Lisluga = BDLU.CargarUltimasFotosUser(iduser);
                 foreach (DataRow row in Lisluga.Rows)
                 {
-                    respuesta = "<div class=\"w3-half\"><img onclick=\"onClick(this)\" src =\"" + row["foto"] + "\" style = \"width:100%; height:100px\" class=\"w3-margin-bottom\"></div>";
+                    respuesta = "<div class=\"w3-half\"><img onclick=\"onClick(this)\" src =\"" + row["foto"] + "\" style = \"width:100%; height:100px; cursor:zoom-in\" class=\"w3-margin-bottom\"></div>";
                     Response.Write(respuesta);
                 }
 

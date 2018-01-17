@@ -22,8 +22,8 @@
                     </label>
                 </center>
                 <br />
-                    <input id="btnupdatefoto" class="w3-button w3-blue-gray  w3-ripple  w3-hover-white w3-border w3-hover-border-blue-gray w3-round-large" type="submit" value="Actualizar" />
-                    <button class="w3-button w3-red w3-right w3-round" id="btncancelarfoto" type="button">Cancelar</button>
+                <input id="btnupdatefoto" class="w3-button w3-blue-gray  w3-ripple  w3-hover-white w3-border w3-hover-border-blue-gray w3-round-large" type="submit" value="Actualizar" />
+                <button class="w3-button w3-red w3-right w3-round" id="btncancelarfoto" type="button">Cancelar</button>
                 <br />
                 <br />
             </form>
@@ -34,31 +34,31 @@
             <button class="w3-button w3-right w3-small w3-blue w3-round" id="btnhabilitar" type="button"> Editar</button>
             <h4>Mis datos</h4>
             <div>
-                <form class="w3-container">
+                <form class="w3-container" id="needs-validation">
                     <div class="w3-row">
                         <div class="w3-col m6">
-                            <label >Nombre</label><br />
-                            <input class="w3-input" id="nameuser" name="nameuser" placeholder="Nombre"  type="text" style="max-width:150px">
+                            <label>Nombre</label><br />
+                            <input class="w3-input" id="nameuser" name="nameadmi" placeholder="Nombre" type="text" style="max-width:150px">
                         </div>
                         <div class="w3-col m6">
-                            <label >Usuario</label><br />
-                            <input class="w3-input" id="userprofile" name="userprofile" placeholder="Usuario" required="" type="text" style="max-width:150px">
+                            <label>Usuario</label><br />
+                            <input class="w3-input" id="userprofile" name="useradmi" placeholder="Usuario" required="" type="text" style="max-width:150px">
                         </div>
                     </div>
                     <div class="w3-row">
                         <div class="w3-col m6">
                             <label>Apellido Paterno</label><br />
-                            <input class="w3-input" id="apellidouserpate" name="apellidouserpate" placeholder="Apellido Paterno" required="" type="text" style="max-width:150px">
+                            <input class="w3-input" id="apellidouserpate" name="apepa" placeholder="Apellido Paterno" required="" type="text" style="max-width:150px">
                         </div>
                         <div class="w3-col m6 ">
-                            <label >Apellido Materno</label><br />
-                            <input class="form-control w3-input" id="apellidousermate" name="apellidousermate" placeholder="Apellido Materno" required="" type="text" style="max-width:150px">
+                            <label>Apellido Materno</label><br />
+                            <input class="form-control w3-input" id="apellidousermate" name="apemat" placeholder="Apellido Materno" required="" type="text" style="max-width:150px">
                         </div>
                     </div>
                     <div class="w3-row">
                         <div class="w3-col m12">
                             <label>Correo electronico</label><br />
-                            <input class="w3-input" name="emailuser" id="emailuser" placeholder="Correo electronico" required="" type="email" style="max-width:100%">
+                            <input class="w3-input" name="emailadmi" id="emailuser" placeholder="Correo electronico" required="" type="email" style="max-width:100%">
                         </div>
                     </div>
                     <br />
@@ -77,7 +77,7 @@
             <h4>Mi contraseña</h4>
             <form id="frmvalidarcontra">
                 <div class="w3-row w3-margin-bottom">
-                    <label >Contraseña actual</label><br />
+                    <label>Contraseña actual</label><br />
                     <input class="w3-input" id="contrac" name="contraac" placeholder="Contraseña actual" type="password">
                 </div>
                 <div class="w3-row w3-margin-bottom">
@@ -88,7 +88,7 @@
                     <label>Confirmar contraseña</label><br />
                     <input class="w3-input" id="contraconfi" name="contraconfi" placeholder="Confirmar contraseña" type="password">
                 </div>
-                <button class="w3-button w3-left w3-theme w3-round" id="btnvalidar" type="submit"><li class="fa fa-save"></li> Actualizar contraseña</button>
+                <button class="w3-button w3-left w3-theme w3-round" id="btnvalidar" type="submit">Actualizar contraseña</button>
                 <button class="w3-button w3-red w3-right w3-round" id="btncancelarcontra" type="button"> Cancelar</button>
                 <br />
                 <br>
@@ -97,25 +97,57 @@
     </div>
 </div>
 
+<div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+        <div>
+            <img style="width:100%" id="img01" class="w3-image">
+            <br />
+        </div>
+    </div>
+</div>
+
 <script src="~/Scripts/sweetalert2.all.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 <script>
-
-
     $(document).ready(function () {
         myinfo();
 
     });
 
-    //habilitar textbox
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    };
 
+    ///Cargar informacion
+    $(document).ready(function () {
+        myinfo();
+        $("#nameuser").prop('disabled', true);
+        $("#userprofile").prop('disabled', true);
+        $("#apellidouserpate").prop('disabled', true);
+        $("#apellidousermate").prop('disabled', true);
+        $("#emailuser").prop('disabled', true);
+        $("#btnupdatefoto").prop('disabled', true);
+        $("#uploadimg").hide();
+        $("#contrac").prop('disabled', true);
+        $("#contranue").prop('disabled', true);
+        $("#contraconfi").prop('disabled', true);
+        $("#btnvalidar").prop('disabled', true);
+        $("#btnupdate").prop('disabled', true);
+        $("#btncancelarcontra").hide();
+        $("#btncancelarfoto").hide();
+        $("#btncancelar").hide();
+    });
 
-    //actualizar info admi
+    //Editar Info
     $(document).ready(function () {
         $("#needs-validation").submit(function (e) {
             e.preventDefault();
-            if ($("#validationCustom02").val() != "" && $("#validationCustom04").val() != "" && $("#validationCustom06").val() != "" && $("#validationCustom08").val() != "" && $("#validationCustom10").val() != "") {
+            if ($("#nameuser").val() != "" && $("#userprofile").val() != "" && $("#apellidouserpate").val() != "" && $("#apellidousermate").val() != "" && $("#emailuser").val() != "") {
                 $.ajax({
                     url: "/Ajax/Ajax?data=updateinfo",
                     type: "POST",
@@ -136,14 +168,14 @@
                                 showLoaderOnConfirm: true
 
                             });
-                            $("#btnupdate").html('<i class="fa fa-save" aria-hidden="true"></i> Actualizar mis datos');
+                            $("#btnupdate").html('Actualizar mis datos');
                             myinfo();
 
-                            $("#validationCustom02").prop('disabled', true);
-                            $("#validationCustom04").prop('disabled', true);
-                            $("#validationCustom06").prop('disabled', true);
-                            $("#validationCustom10").prop('disabled', true);
-                            $("#validationCustom08").prop('disabled', true);
+                            $("#nameuser").prop('disabled', true);
+                            $("#userprofile").prop('disabled', true);
+                            $("#apellidouserpate").prop('disabled', true);
+                            $("#apellidousermate").prop('disabled', true);
+                            $("#emailuser").prop('disabled', true);
                             $("#contrac").prop('disabled', true);
                             $("#contranue").prop('disabled', true);
                             $("#contraconfi").prop('disabled', true);
@@ -163,7 +195,7 @@
                                 showLoaderOnConfirm: true
                             })
 
-                            $("#btnupdate").html('<i class="fa fa-save" aria-hidden="true"></i> Actualizar mis datos');
+                            $("#btnupdate").html('Actualizar mis datos');
                             $("#passprofilevalidar").val('');
 
 
@@ -189,34 +221,28 @@
             }
         });
     });
+    $("#btnhabilitar").click(function () {
+        myinfo();
 
-    $("#btneditfoto").click(function () {
-
-        $("#btnupdatepicture").prop('disabled', false);
-        $("#uploadimg").show();
-        $("#btncancelarfoto").show();
-
-
-
+        $("#nameuser").prop('disabled', false);
+        $("#userprofile").prop('disabled', false);
+        $("#apellidouserpate").prop('disabled', false);
+        $("#apellidousermate").prop('disabled', false);
+        $("#emailuser").prop('disabled', false);
+        $("#validationCustom10").prop('disabled', false);
+        $("#validationCustom08").prop('disabled', false);
+        $("#btnupdate").prop('disabled', false);
+        $("#btncancelar").prop('disabled', false);
+        $("#btncancelar").show();
     });
-
-    $("#btncancelarfoto").click(function () {
-        myinfo();
-
-        $("#btnupdatepicture").prop('disabled', true);
-        $("#uploadimg").hide();
-        $("#btncancelarfoto").hide();
-    })
-
     $("#btncancelar").click(function () {
-
         myinfo();
 
-        $("#validationCustom02").prop('disabled', true);
-        $("#validationCustom04").prop('disabled', true);
-        $("#validationCustom06").prop('disabled', true);
-        $("#validationCustom10").prop('disabled', true);
-        $("#validationCustom08").prop('disabled', true);
+        $("#nameuser").prop('disabled', true);
+        $("#userprofile").prop('disabled', true);
+        $("#apellidouserpate").prop('disabled', true);
+        $("#apellidousermate").prop('disabled', true);
+        $("#emailuser").prop('disabled', true);
         $("#validationCustom10").prop('disabled', true);
         $("#validationCustom08").prop('disabled', true);
         $("#btnupdate").prop('disabled', true);
@@ -224,36 +250,122 @@
         $("#btncancelar").hide();
     })
 
-    ///cargar info usuario
+    //Editar Contraseña
     $(document).ready(function () {
+        $("#frmvalidarcontra").submit(function (e) {
+            e.preventDefault();
+            if ($("#contranue").val() != "" && $("#contraconfi").val() != "" && $("#contrac").val() != "") {
+                if ($("#contranue").val() == $("#contraconfi").val()) {
 
+                    $.ajax({
+                        url: "/Ajax/Ajax?data=checkpass",
+                        type: "POST",
+                        data: $("#frmvalidarcontra").serialize(),
+                        beforeSend: function () {
+                            $("#btnvalidar").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Validando');
+                        },
+                        success: function (a) {
+                            if (a == 1) {
+                                swal({
+                                    text: 'Se actualizo tu contraseña!',
+                                    type: "success",
+                                    confirmButtonText: "Aceptar",
+                                    confirmButtonColor: "#4CAF50",
+                                    closeOnCancel: true,
+                                    closeOnConfirm: true,
+                                    showLoaderOnConfirm: true
+                                })
+                                $("#btnvalidar").html('<i class="fa fa-sign-in" aria-hidden="true"></i> Validar contraseña');
+                                $("#contrac").prop('disabled', true);
+                                $("#contranue").prop('disabled', true);
+                                $("#contraconfi").prop('disabled', true);
+                                $("#btnvalidar").prop('disabled', true);
+                                $("#btncancelar").prop('disabled', true);
+                                $("#btncancelarcontra").hide();
+
+                            }
+                            else if (a == 0) {
+                                swal({
+                                    text: 'Contraseña actual incorrecta, intentalo de nuevo!',
+                                    type: "error",
+                                    confirmButtonText: "Aceptar",
+                                    confirmButtonColor: "#4CAF50",
+                                    closeOnCancel: true,
+                                    closeOnConfirm: true,
+                                    showLoaderOnConfirm: true
+                                })
+
+                                $("#btnvalidar").html('<i class="fa fa-sign-in" aria-hidden="true"></i> Validar contraseña');
+                                $("#passprofilevalidar").val('');
+
+
+                            }
+                            else {
+
+                            }
+                        }
+                    });
+                }
+                else {
+
+                    swal({
+                        text: 'las contraseñas no coinciden, confirmalas!',
+                        type: "question",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonColor: "#3F51B5",
+                        closeOnCancel: true,
+                        closeOnConfirm: true,
+                        showLoaderOnConfirm: true
+                    })
+
+                }
+            }
+            else {
+
+                swal({
+                    title: 'No haz llenado los campos',
+                    text: 'No puedes dejar campos vacíos!',
+                    type: "question",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#3F51B5",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                })
+            }
+        });
+
+    });
+    $("#btneditcontra").click(function () {
         myinfo();
 
-        $("#validationCustom02").prop('disabled', true);
-        $("#validationCustom04").prop('disabled', true);
-        $("#validationCustom06").prop('disabled', true);
-        $("#validationCustom10").prop('disabled', true);
-        $("#validationCustom08").prop('disabled', true);
-        $("#btnupdatepicture").prop('disabled', true);
-        $("#uploadimg").hide();
+        $("#contrac").prop('disabled', false);
+        $("#contranue").prop('disabled', false);
+        $("#contraconfi").prop('disabled', false);
+        $("#btnvalidar").prop('disabled', false);
+        $("#btncancelar").prop('disabled', false);
+        $("#btncancelarcontra").show();
+    });
+    $("#btncancelarcontra").click(function () {
+        myinfo();
+
         $("#contrac").prop('disabled', true);
         $("#contranue").prop('disabled', true);
         $("#contraconfi").prop('disabled', true);
         $("#btnvalidar").prop('disabled', true);
-        $("#btnupdate").prop('disabled', true);
         $("#btncancelar").prop('disabled', true);
-        $("#btncancelarcontra").prop('disabled', true);
-        $("#btncancelarfoto").hide();
-        $("#btncancelar").hide();
+        $("#btncancelarcontra").hide();
+    })
 
-
-    });
-
-    ////cambiar imagen de perfil
+    //Editar Foto
+    var loadfile = function (event) {
+        var pic = document.getElementById('imgedit');
+        pic.src = URL.createObjectURL(event.target.files[0]);
+    };
     $(document).ready(function () {
-        $("#frmcambiarfoto").submit(function (e) {
+        $("#frmfotousuario").submit(function (e) {
             e.preventDefault();
-            var form = $('#frmcambiarfoto')[0];
+            var form = $('#frmfotousuario')[0];
             var dataString = new FormData(form);
             $.ajax({
                 url: '/Ajax/Ajax?data=guardarfotos',  //Server script to process data
@@ -275,7 +387,7 @@
                             showLoaderOnConfirm: true
                         })
                         myinfo();
-                        $("#btnupdatepicture").prop('disabled', true);
+                        $("#btnupdatefoto").prop('disabled', true);
                         $("#uploadimg").hide();
                         $("#btncancelarfoto").hide();
 
@@ -286,11 +398,16 @@
             });
         });
     });
+    $("#btneditfoto").click(function () {
 
-    ///cargar imagen en <img> del perfil del administrador
-    var loadfile = function (event) {
-        var pic = document.getElementById('imgadmi');
-        pic.src = URL.createObjectURL(event.target.files[0]);
-    };
-
+        $("#btnupdatefoto").prop('disabled', false);
+        $("#uploadimg").show();
+        $("#btncancelarfoto").show();
+    });
+    $("#btncancelarfoto").click(function () {
+        myinfo();
+        $("#btnupdatefoto").prop('disabled', true);
+        $("#uploadimg").hide();
+        $("#btncancelarfoto").hide();
+    })
 </script>

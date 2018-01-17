@@ -95,11 +95,6 @@ $(document).ready(function () {
     });
 });
 
-///cargar imagen en <img> del perfil del administrador
-var loadfile = function (event) {
-    var pic = document.getElementById('imgadmi');
-    pic.src = URL.createObjectURL(event.target.files[0]);
-};
 ///cargar imagen en <img> del lugar
 
 var loadimagenlugar = function (event) {
@@ -111,6 +106,14 @@ var loadimagenlugar = function (event) {
 var loadimagenlugareditar = function (event) {
     var imgeditarlugar = document.getElementById('imgeditarlugar');
     imgeditarlugar.src = URL.createObjectURL(event.target.files[0]);
+};
+
+
+////////////////////EDITAR PERFIL ADMINISTRADOR////////////////////////
+///cargar imagen en <img> del perfil del administrador
+var loadfile = function (event) {
+    var pic = document.getElementById('imgadmi');
+    pic.src = URL.createObjectURL(event.target.files[0]);
 };
 
 ////cambiar imagen de perfil
@@ -150,10 +153,7 @@ $(document).ready(function () {
         });
     });
 });
-
-
 ///cambiar password
-
 $(document).ready(function () {
     $("#frmvalidarcontra").submit(function (e) {
         e.preventDefault();
@@ -235,8 +235,6 @@ $(document).ready(function () {
     });
 
 });
-
-
 ///cargar info usuario
 $(document).ready(function () {
 
@@ -262,9 +260,6 @@ $(document).ready(function () {
 
 });
 
-///cancelarfoto
-
-
 ///cancelar 
 $("#btncancelar").click(function () {
 
@@ -280,8 +275,6 @@ $("#btncancelar").click(function () {
     $("#btnupdate").prop('disabled', true);
     $("#btncancelar").prop('disabled', true);
 })
-
-
 $("#btncancelarfoto").click(function () {
     myinfo();
 
@@ -289,8 +282,6 @@ $("#btncancelarfoto").click(function () {
     $("#uploadimg").hide();
     $("#btncancelarfoto").hide();
 })
-
-
 $("#btncancelarcontra").click(function () {
 
     $("#contrac").val('');
@@ -313,8 +304,6 @@ $("#btneditfoto").click(function () {
 
 
 });
-
-
 //habilitar inputs contraseña
 $("#btneditcontra").click(function () {
 
@@ -326,7 +315,6 @@ $("#btneditcontra").click(function () {
 
 
 });
-
 //habilitar textbox
 $("#btnhabilit").click(function () {
 
@@ -420,7 +408,6 @@ $(document).ready(function () {
         }
     });
 });
-
 //cargarinfo
 
 
