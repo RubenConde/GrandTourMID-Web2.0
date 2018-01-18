@@ -73,46 +73,7 @@ function verinfolugar(e) {
 };
 
 
-$(document).ready(function () {
-    $("#frmvalidarcontra").submit(function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: "/Ajax/Ajax?data=checkpass",
-            type: "POST",
-            data: $("#frmvalidarcontra").serialize(),
-            beforeSend: function () {
-                $("#btnvalidar").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Validando');
-            },
-            success: function (a) {
-                if (a == 1) {
 
-                    window.location = "/Profile/EditProfile";
-
-                    $("#btnvalidar").html('<i class="fa fa-sign-in" aria-hidden="true"></i> Validar contraseña');
-                }
-                else if (a == 0) {
-                    swal({
-                        text: 'Contraseña incorrecta, intentalo de nuevo!',
-                        type: "error",
-                        confirmButtonText: "Aceptar",
-                        confirmButtonColor: "#4CAF50",
-                        closeOnCancel: true,
-                        closeOnConfirm: true,
-                        showLoaderOnConfirm: true
-                    })
-
-                    $("#btnvalidar").html('<i class="fa fa-sign-in" aria-hidden="true"></i> Validar contraseña');
-                    $("#passprofilevalidar").val('');
-
-
-                }
-                else {
-
-                }
-            }
-        });
-    });
-});
 
 
 
@@ -122,8 +83,8 @@ $(document).ready(function () {
 ///////
 
 $(document).ready(function () {
-
     info();
+    $("#comentarios").hide();
 })
 
 function myFunction() {

@@ -24,7 +24,7 @@ namespace GrandTourMID.DAO
             cmd = new SqlCommand("insert into publicacion (idusuario, texto, img,img2,img3) values (@idus, @texto, @img, @img2, @img3)");
             cmd.Parameters.Add("@idus", SqlDbType.Int).Value = objeus.idusuario;
             cmd.Parameters.Add("@texto", SqlDbType.VarChar).Value = objeus.texto;
-            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objeus.img;
+            cmd.Parameters.Add("@img", SqlDbType.Image).Value = objeus.img;
             cmd.Parameters.Add("@img2", SqlDbType.VarChar).Value = objeus.img2;
             cmd.Parameters.Add("@img3", SqlDbType.VarChar).Value = objeus.img3;
             cmd.CommandType = CommandType.Text;

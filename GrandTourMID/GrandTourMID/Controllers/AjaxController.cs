@@ -659,7 +659,8 @@ namespace GrandTourMID.Controllers
                     string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
                     string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
                     file.SaveAs(patc);
-                    objepu.img = "/img/publicaciones/" + pic;
+                  
+
                     objepu.img2 = "";
                     objepu.img3 = "";
                     objepu.idusuario = Convert.ToInt32(Session["ID"]);
@@ -677,7 +678,7 @@ namespace GrandTourMID.Controllers
                     string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
                     string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
                     file.SaveAs(patc);
-                    objepu.img = "/img/publicaciones/" + pic;
+                    
 
                     string pic2 = "inicio_GDE" + System.IO.Path.GetFileName(file2.FileName);
                     string patc2 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic2);
@@ -700,7 +701,7 @@ namespace GrandTourMID.Controllers
                     string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
                     string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
                     file.SaveAs(patc);
-                    objepu.img = "/img/publicaciones/" + pic;
+                    
 
                     string pic2 = "inicio_GDE" + System.IO.Path.GetFileName(file2.FileName);
                     string patc2 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic2);
@@ -726,7 +727,7 @@ namespace GrandTourMID.Controllers
 
                 else if ( file == null && file2 ==null && file3==null)
                 {
-                    objepu.img ="";
+                    
                     objepu.img2 = "";
                     objepu.img3 = "";
 
@@ -755,28 +756,33 @@ namespace GrandTourMID.Controllers
 
 
                 DataTable Lispubli = BDP.CargarPublicaciones();
-                string imagen;
+                byte [] imagen;
                 string imagen2;
                 string imagen3;
 
 
                 foreach (DataRow row in Lispubli.Rows)
                 {
-                    imagen = row["img"].ToString();
+                    string byyte = row["img"].ToString();
+                    imagen = Encoding.ASCII.GetBytes(byyte);
+
+                    string im = Convert.ToBase64String(imagen);
+
                     imagen2 = row["img2"].ToString();
                     imagen3 = row["img3"].ToString();
-                    if (imagen == "")
+                    
+                    if (imagen == null)
                     {
                         respuesta = "<div class=\"w3-container w3-margin-top w3-card w3-white w3-round\"><br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span><h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
                     }
-                    else if (imagen != "" && imagen2 == "" && imagen3 == "")
+                    else if (imagen != null && imagen2 == "" && imagen3 == "")
                     {
-                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"]+"\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom\"><p>"+row["texto"]+"</p><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + im + "\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom\"><p>"+row["texto"]+"</p><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button><button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
 
 
                     }
 
-                    else if (imagen != "" && imagen2 != "" && imagen3 == "")
+                    else if (imagen != null && imagen2 != "" && imagen3 == "")
                     {
                         respuesta = "<div class=\"w3-container w3-margin-top w3-card w3-white w3-round\">" +
                         "<br><img src =\"" + row["foto"] + "\" alt =\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span>" +
@@ -789,7 +795,7 @@ namespace GrandTourMID.Controllers
 
                         "<div class=\"w3-row-padding\">" +
                         "<div class=\"w3-half\">" +
-                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img"] + "\" onclick=\"onClick(this)\" style=\"width:100%; height:445px;  cursor:pointer\">" +
+                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + im + "\" onclick=\"onClick(this)\" style=\"width:100%; height:445px;  cursor:pointer\">" +
                         "</div>" +
 
                         "<div class=\"w3-half\">" +
@@ -803,7 +809,7 @@ namespace GrandTourMID.Controllers
                           "</div>" +
                       "</div>";
                     }
-                    else if (imagen != "" && imagen2 != "" && imagen3 != "")
+                    else if (imagen != null && imagen2 != "" && imagen3 != "")
                     {
                         respuesta = "<div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\">" +
                             
@@ -813,7 +819,7 @@ namespace GrandTourMID.Controllers
                         "<div class=\"w3-main\">" +
                         "<div class=\"w3-row-padding\">" +
                         "<div class=\"w3-half\">" +
-                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img"] + "\" onclick=\"onClick(this)\" style=\"width:380px; height:222.8px; cursor:pointer\">" +
+                        "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + im + "\" onclick=\"onClick(this)\" style=\"width:380px; height:222.8px; cursor:pointer\">" +
                         "<img class=\"w3-opacity-min w3-hover-opacity-off\" src=\"" + row["img2"] + "\" onclick=\"onClick(this)\" style=\"width:380px; height:222.8px; cursor:pointer\">" +
                         "</div>" +
 

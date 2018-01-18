@@ -184,6 +184,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\charts.css" />
     <Content Include="Content\chat.css" />
+    <Content Include="Content\chatus.css" />
     <Content Include="Content\clima.css" />
     <Content Include="Content\estiloIndex.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -306,6 +307,7 @@
     <Content Include="Views\Profile\InfoLugarVisitado.cshtml" />
     <Content Include="Views\Home\Lugares.cshtml" />
     <Content Include="Views\Home\InfoLugar.cshtml" />
+    <Content Include="Views\Profile\chatuser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

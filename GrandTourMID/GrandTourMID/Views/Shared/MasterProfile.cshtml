@@ -13,12 +13,15 @@
 <link href="~/Content/w3.css" rel="stylesheet" />
 <link href="~/Content/fonts.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/chatus.css" rel="stylesheet" />
+
 <style>
 
     body {
         overflow-x: hidden;
         overflow-y: hidden;
     }
+
     html, body, h1, h2, h3, h4, h5 {
         font-family: "Open Sans", sans-serif
     }
@@ -32,7 +35,7 @@
             <a href="~/Profile/Profile" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Inicio</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+            <a href="#" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
             <div class="w3-dropdown-hover w3-hide-small">
                 <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
@@ -81,7 +84,8 @@
                         </div>
                         <a class="w3-button w3-block w3-theme-l1 w3-left-align" href="~/Profile/LugaresVisitados"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mis Lugares Visitados</a>
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mis fotos recientes</button>
-                        <div id="Demo3" class="w3-hide w3-container"><br />
+                        <div id="Demo3" class="w3-hide w3-container">
+                            <br />
                             <div class="w3-row-padding" id="ultimasfotosusuario">
                             </div>
                         </div>
@@ -145,17 +149,27 @@
                 </div>
                 <br>
                 <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-                    <p>ADS</p>
+                    <p>ads</p>
                 </div>
+
+
+
+
+
+
+
 
             </div>
         </div>
         <!-- End Right Column -->
     </div>
 
+ 
     <!--Final contenido de la pagina-->
     <br />
 
+
+    
 
     <!-- Footer -->
     <footer class="w3-container w3-theme-d3 w3-padding-16">
@@ -232,6 +246,8 @@
 
 
 
+
+        
 
     </script>
 

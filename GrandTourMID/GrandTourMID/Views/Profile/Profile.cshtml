@@ -73,14 +73,20 @@
 
         </div>
     </div>
+
 </form>
+
+
+
+
 
 <div class="w3-row">
     <div id="publicaciones" class="w3-animate-opacity">
 
+    </div>
 
-
-
+    <div class="" id="comentarios">
+        <label>HOLA que onda</label>
 
     </div>
 
@@ -104,6 +110,13 @@
 <script src="~/Scripts/AccionesProfile.js"></script>
 
 <script>
+
+    $("#btnComentar").click(function () {
+        $("#comentarios").show();
+
+
+    })
+
     function onClick(element) {
         document.getElementById("img01").src = element.src;
         document.getElementById("modal01").style.display = "block";

@@ -49,5 +49,10 @@ namespace GrandTourMID.Controllers
         {
             return View();
         }
+
+        public ActionResult chatuser()
+        {
+            return View();
+        }
     }
 }

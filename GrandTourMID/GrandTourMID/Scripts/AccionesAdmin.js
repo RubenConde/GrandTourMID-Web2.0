@@ -181,7 +181,12 @@ $(document).ready(function () {
                             $("#btnvalidar").html('<i class="fa fa-sign-in" aria-hidden="true"></i> Validar contraseña');
                             $("#contranue").val('');
                             $("#contraconfi").val('');
-                            $("#contraac").val('');
+                            $("#contrac").val('');
+                            $("#contranue").prop('disabled', true);
+                            $("#contraconfi").prop('disabled', true);
+                            $("#contrac").prop('disabled', true);
+                            $("#btnvalidar").prop('disabled', true);
+                            $("#btncancelarcontra").prop('disabled', true);
                         }
                         else if (a == 0) {
                             swal({
@@ -470,6 +475,28 @@ function verinboxall() {
 };
 
 
+function myinfo() {
+    $.ajax({
+        url: "/Ajax/Ajax?data=DatosUsuario",
+        type: "POST",
+        success: function (a) {
+
+            var datos = JSON.parse(a);
+
+
+            $('#usernameadmis').html(datos.nombreus);
+            $('#userprofile').val(datos.usuario);
+            $('#validationCustom02').val(datos.nombreus);
+            $('#validationCustom04').val(datos.usuario);
+            $('#validationCustom06').val(datos.apellidop);
+            $('#validationCustom08').val(datos.apellidom);
+            $('#validationCustom10').val(datos.email);
+            $("#imgadmi").prop("src", datos.foto)
+            $("#roundphotoadmi").prop("src", datos.foto)
+        }
+
+    });
+}
 
 ///ultimos inbox recibidos
 $(document).ready(function () {

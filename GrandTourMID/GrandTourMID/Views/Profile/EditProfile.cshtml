@@ -8,10 +8,10 @@
     <title>Mi perfil</title>
 </head>
 
-<div class="w3-row w3-card w3-white w3-round w3-margin-bottom">
+<div class="w3-row w3-card w3-white w3-round  w3-margin-bottom">
     <div class="w3-col m6  ">
         <div class="w3-margin">
-            <button class="w3-button w3-small w3-right w3-blue w3-round" id="btneditfoto" type="button"> Editar</button>
+            <button class="w3-button w3-small w3-right w3-blue w3-round w3-ripple" id="btneditfoto" type="button"> Editar</button>
             <h4>Foto de perfil</h4>
             <form id="frmfotousuario" enctype="multipart/form-data">
                 <center>
@@ -31,39 +31,39 @@
     </div>
     <div class="w3-col m6 ">
         <div class="w3-margin">
-            <button class="w3-button w3-right w3-small w3-blue w3-round" id="btnhabilitar" type="button"> Editar</button>
+            <button class="w3-button w3-right w3-ripple w3-small w3-blue w3-round" id="btnhabilitar" type="button"> Editar</button>
             <h4>Mis datos</h4>
-            <div>
+            <div><br /><br />
                 <form class="w3-container" id="needs-validation">
                     <div class="w3-row">
                         <div class="w3-col m6">
                             <label>Nombre</label><br />
-                            <input class="w3-input" id="nameuser" name="nameadmi" placeholder="Nombre" type="text" style="max-width:150px">
+                            <input class="w3-input w3-transparent w3-round" id="nameuser" name="nameadmi" placeholder="Nombre" type="text" style="max-width:150px">
                         </div>
                         <div class="w3-col m6">
                             <label>Usuario</label><br />
-                            <input class="w3-input" id="userprofile" name="useradmi" placeholder="Usuario" required="" type="text" style="max-width:150px">
+                            <input class="w3-input w3-transparent w3-round" id="userprofile" name="useradmi" placeholder="Usuario" required="" type="text" style="max-width:150px">
                         </div>
                     </div>
                     <div class="w3-row">
                         <div class="w3-col m6">
                             <label>Apellido Paterno</label><br />
-                            <input class="w3-input" id="apellidouserpate" name="apepa" placeholder="Apellido Paterno" required="" type="text" style="max-width:150px">
+                            <input class="w3-input w3-transparent w3-round" id="apellidouserpate" name="apepa" placeholder="Apellido Paterno" required="" type="text" style="max-width:150px">
                         </div>
                         <div class="w3-col m6 ">
                             <label>Apellido Materno</label><br />
-                            <input class="form-control w3-input" id="apellidousermate" name="apemat" placeholder="Apellido Materno" required="" type="text" style="max-width:150px">
+                            <input class="w3-input w3-transparent w3-round" id="apellidousermate" name="apemat" placeholder="Apellido Materno" required="" type="text" style="max-width:150px">
                         </div>
                     </div>
                     <div class="w3-row">
                         <div class="w3-col m12">
                             <label>Correo electronico</label><br />
-                            <input class="w3-input" name="emailadmi" id="emailuser" placeholder="Correo electronico" required="" type="email" style="max-width:100%">
+                            <input class="w3-input w3-transparent w3-round" name="emailadmi" id="emailuser" placeholder="Correo electronico" required="" type="email" style="max-width:100%">
                         </div>
                     </div>
                     <br />
                     <button id="btnupdate" class="w3-button w3-blue-gray  w3-ripple  w3-hover-white w3-border w3-hover-border-blue-gray w3-round-large" type="submit">Actualizar mis datos</button>
-                    <button class="w3-button w3-red w3-right w3-round" id="btncancelar" type="button"> Cancelar</button>
+                    <button class="w3-button w3-red w3-right w3-round w3-ripple" id="btncancelar" type="button"> Cancelar</button>
                 </form>
             </div>
         </div>
@@ -141,6 +141,10 @@
         $("#btncancelarcontra").hide();
         $("#btncancelarfoto").hide();
         $("#btncancelar").hide();
+        $("#btnupdatefoto").hide();
+        $("#btnupdate").hide();
+        $("#btnvalidar").hide();
+        
     });
 
     //Editar Info
@@ -194,7 +198,7 @@
                                 closeOnConfirm: true,
                                 showLoaderOnConfirm: true
                             })
-
+                            $("#btnupdate").hide();
                             $("#btnupdate").html('Actualizar mis datos');
                             $("#passprofilevalidar").val('');
 
@@ -234,10 +238,11 @@
         $("#btnupdate").prop('disabled', false);
         $("#btncancelar").prop('disabled', false);
         $("#btncancelar").show();
+        $("#btnupdate").show();
     });
     $("#btncancelar").click(function () {
         myinfo();
-
+        $("#btnupdate").hide();
         $("#nameuser").prop('disabled', true);
         $("#userprofile").prop('disabled', true);
         $("#apellidouserpate").prop('disabled', true);
@@ -282,7 +287,7 @@
                                 $("#btnvalidar").prop('disabled', true);
                                 $("#btncancelar").prop('disabled', true);
                                 $("#btncancelarcontra").hide();
-
+                                $("#btnvalidar").hide();
                             }
                             else if (a == 0) {
                                 swal({
@@ -294,10 +299,10 @@
                                     closeOnConfirm: true,
                                     showLoaderOnConfirm: true
                                 })
-
-                                $("#btnvalidar").html('<i class="fa fa-sign-in" aria-hidden="true"></i> Validar contraseña');
+                                
+                                $("#btnvalidar").html('<i></i> Validar contraseña');
                                 $("#passprofilevalidar").val('');
-
+                                
 
                             }
                             else {
@@ -345,6 +350,7 @@
         $("#btnvalidar").prop('disabled', false);
         $("#btncancelar").prop('disabled', false);
         $("#btncancelarcontra").show();
+        $("#btnvalidar").show();
     });
     $("#btncancelarcontra").click(function () {
         myinfo();
@@ -355,6 +361,7 @@
         $("#btnvalidar").prop('disabled', true);
         $("#btncancelar").prop('disabled', true);
         $("#btncancelarcontra").hide();
+        $("#btnvalidar").show();
     })
 
     //Editar Foto
@@ -387,7 +394,7 @@
                             showLoaderOnConfirm: true
                         })
                         myinfo();
-                        $("#btnupdatefoto").prop('disabled', true);
+                        $("#btnupdatefoto").hide();
                         $("#uploadimg").hide();
                         $("#btncancelarfoto").hide();
 
@@ -399,15 +406,16 @@
         });
     });
     $("#btneditfoto").click(function () {
-
+        $("#btnupdatefoto").show();
         $("#btnupdatefoto").prop('disabled', false);
         $("#uploadimg").show();
         $("#btncancelarfoto").show();
     });
     $("#btncancelarfoto").click(function () {
         myinfo();
-        $("#btnupdatefoto").prop('disabled', true);
+        $("#btnupdatefoto").hide();
         $("#uploadimg").hide();
         $("#btncancelarfoto").hide();
+        
     })
 </script>
