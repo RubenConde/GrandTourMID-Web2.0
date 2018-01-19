@@ -17,13 +17,13 @@ namespace GrandTourMID.DAO
 
         public ConexionSQL()
         {
-            con = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=proyectoTour;Trusted_Connection=True;");
+            con = new SqlConnection("Server=localhost;Database=proyectoTour;Trusted_Connection=True;");
             //sirve para establecer las consultas e instrucciones SQL que se ejecutarán en el servidor
             exec = new SqlCommand();
         }
         public SqlConnection establecerConexion()
         {
-            string cs = "Server=localhost\\SQLEXPRESS;Database=proyectoTour;Trusted_Connection=True;";
+            string cs = "Server=localhost;Database=proyectoTour;Trusted_Connection=True;";
             con = new SqlConnection(cs);
             return con;
         }
