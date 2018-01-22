@@ -126,6 +126,13 @@ namespace GrandTourMID.DAO
             return EjercutarSentenciaBusqueda(sql);
         }
 
+        public DataTable Ingles()
+        {
+            string sql = string.Format("select ingles from traductor");
+            return EjercutarSentenciaBusqueda(sql);
+        }
+
+
         public int ActualizarInfojugar(InicioBO objei)
         {
             cmd = new SqlCommand("update Acercade set titulojugar=@tit, subtitulojugar=@sub where idacerca=1");

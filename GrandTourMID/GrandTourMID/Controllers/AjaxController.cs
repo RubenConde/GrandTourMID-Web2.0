@@ -33,6 +33,7 @@ namespace GrandTourMID.Controllers
         LugarDAO BDLU = new LugarDAO();
         PreguntasBO objp = new PreguntasBO();
         PreguntaDAO BDPRE = new PreguntaDAO();
+        ComentarioDAO BDCOME = new ComentarioDAO();
 
         // GET: Ajax
         public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file, HttpPostedFileBase file2, HttpPostedFileBase file3)
@@ -1599,6 +1600,33 @@ namespace GrandTourMID.Controllers
 
 
             }
+
+            else if(data=="loadcomentarios")
+            {
+
+                DataTable dcome = BDCOME.CargarComentarios();
+
+                foreach (DataRow row in dcome.Rows)
+                {
+                    respuesta = "<div class=\"w3-row\"><div class=\"w3-col m2 text-center\"><img class=\"w3-circle\" src=\""+row["foto"]+"\" style=\"width:80px;height:80px; margin-top:20px\"></div><div class=\"w3-col m-10 w3-container w3-dark-gray w3-round\" style=\"width:360px; height:130px; margin-left:4px\"><h4>"+row["nombre"]+"<span class=\"w3-medium w3-right\"> " +row["fecha"]+"</span></h4><p>"+row["comentario"]+"</p><br></div></div><br/>";
+                    Response.Write(respuesta);
+
+                }
+
+
+                respuesta = "";
+
+            }
+
+            else if (data == "ingles")
+            {
+                
+                DataTable dt = BDI.Ingles();
+                String jSonString = ConvertirDataJson(dt);
+
+                respuesta = jSonString;
+            }
+
             return Content(respuesta);
         }
 

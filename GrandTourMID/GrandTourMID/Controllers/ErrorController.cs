@@ -26,11 +26,10 @@ namespace GrandTourMID.Controllers
 
                 default:
                     ViewBag.Title = "Página no encontrada";
-                    ViewBag.Description = "Algo salio muy mal :( ..";
-                    break;
+                    return View("Error500");
             }
 
-            return Content("");
+          
 
         }
 

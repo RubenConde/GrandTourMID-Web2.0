@@ -6,7 +6,7 @@
 
 
 <style>
-     .mySlides {
+    .mySlides {
         display: none
     }
 
@@ -19,12 +19,45 @@
         width: 13px;
         padding: 0
     }
+
+    #div {
+        width: 100%;
+        height: 3000px;
+        overflow: hidden;
+    }
+
+        #div:hover {
+            overflow-y: auto;
+        }
+
+    #content {
+        position: relative;
+        width: 200px;
+        height: 180px;
+        
+        overflow: hidden;
+    }
+
+    #scrollable {
+        height: 90%;
+        width: 555px;
+        overflow-y: scroll;
+    }
 </style>
 
 
 
 
 <div class=" w3-display-container w3-opacity-min" style=" min-height: 100%;" id="imgheader1">
+    
+    <div id="content" style="margin-top:180px; width:550.117px; height:325.233px; border:none" class="w3-container w3-small w3-col m4 w3-text-white">
+        <h5 class="w3-text-dark-gray w3-center">Comentarios recientes</h5>
+        <div id="scrollable">
+          
+
+        </div>
+    </div>
+
     <div class="w3-display-middle" style="white-space:nowrap;">
         <span id="edittitulo" class="w3-xxxlarge w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"></span>
 
@@ -70,7 +103,7 @@
     <div class="w3-row">
         <div class=w3-hide-small w3-padding-large">
             <br /><br />
-            <textarea class="w3-large" readonly="readonly" disabled style="width:950px; height:90px; background-color:transparent;  border:none; resize:none" id="infoapp" >
+            <textarea class="w3-large" readonly="readonly" disabled style="width:950px; height:90px; background-color:transparent;  border:none; resize:none" id="infoapp">
             </textarea>
         </div>
     </div>
@@ -101,28 +134,28 @@
 </div>
 <div class="w3-content  w3-container w3-padding-64" id="portfolio">
     <h3 id="tituloju" class="w3-center w3-text-dark-grey "></h3>
-    
-        <p id="subtituju" class="w3-center"><em></em></p>
-        <br>
-    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-        <div class="w3-row-padding w3-center">
 
-            <div class="w3-content w3-display-container" style="max-width:900px">
-                <img id="slide1" class="mySlides"  style="width:100%; height:420px">
-                <img id="slide2" class="mySlides"  style="width:100%; height:420px">
-                <img id="slide3" class="mySlides"  style="width:100%; height:420px">
-                <img  id="slide4" class="mySlides" style="width:100%; height:420px">
-                <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-                    <div class="w3-left w3-text-black w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-                    <div class="w3-right w3-text-black w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-                    <span class="w3-badge demo w3-border w3-transparent  w3-hover-black" onclick="currentDiv(1)"></span>
-                    <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(2)"></span>
-                    <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(3)"></span>
-                    <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(4)"></span>
-                </div>
+    <p id="subtituju" class="w3-center"><em></em></p>
+    <br>
+    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+    <div class="w3-row-padding w3-center">
+
+        <div class="w3-content w3-display-container" style="max-width:900px">
+            <img id="slide1" class="mySlides" style="width:100%; height:420px">
+            <img id="slide2" class="mySlides" style="width:100%; height:420px">
+            <img id="slide3" class="mySlides" style="width:100%; height:420px">
+            <img id="slide4" class="mySlides" style="width:100%; height:420px">
+            <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                <div class="w3-left w3-text-black w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                <div class="w3-right w3-text-black w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                <span class="w3-badge demo w3-border w3-transparent  w3-hover-black" onclick="currentDiv(1)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(2)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(3)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(4)"></span>
             </div>
         </div>
-    
+    </div>
+
 </div>
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
     <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
@@ -134,7 +167,7 @@
 <!-- Third Parallax Image with Portfolio Text -->
 <div class="bgimg-3 w3-display-container w3-opacity-min" id="header3">
     <div class="w3-display-middle">
-        <span id="edititulo4"  class="w3-dark-grey w3-xxlarge w3-text-white w3-wide"></span>
+        <span id="edititulo4" class="w3-dark-grey w3-xxlarge w3-text-white w3-wide"></span>
     </div>
 </div>
 <!-- Container (Contact Section) -->
@@ -174,7 +207,8 @@
 </div>
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-48 w3-opacity w3-hover-opacity-off">
-    <a href="#home" class="w3-button w3-black"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+
+    <a href="#imgheader1" class="w3-button w3-black"><i class="fa fa-arrow-up w3-margin-right"></i>Ir hacia arriba</a>
     <div class="w3-xlarge w3-section">
         <div class="w3-xlarge w3-section">
             <a style="cursor:pointer" onclick="document.getElementById('id01').style.display='block'" class=" w3-display-container">
@@ -195,6 +229,12 @@
         <i class="fa fa-instagram @*w3-hover-opacity*@"></i>
         <i class="fa fa-twitter @*w3-hover-opacity*@"></i>
     </div>
+    <div class="w3-left w3-opacity-min" style="margin-top:-280px; margin-left:100px">
+        <a class="twitter-timeline w3-left" data-width="300" data-height="300" data-theme="dark" data-link-color="#2B7BB9" href="https://twitter.com/Grantourmid?ref_src=twsrc%5Etfw">Tweets by Grantourmid</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    </div>
+  
 </footer>
 
 <script src="~/Scripts/Acciones.js"></script>
@@ -228,4 +268,15 @@
         x[slideIndex - 1].style.display = "block";
         dots[slideIndex - 1].className += " w3-white";
     }
+
+
+
+
+
+
+    http://stackoverflow.com/questions/1326570/how-to-disable-browser-or-element-scrollbar-but-let-scrolling-with-wheel-or-arro*/
+    $("div").bind("mousewheel", function (ev, delta) {
+        var scrollTop = $(this).scrollTop();
+        $(this).scrollTop(scrollTop - Math.round(delta * 20));
+    });
 </script>
