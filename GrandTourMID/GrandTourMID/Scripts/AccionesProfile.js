@@ -98,6 +98,31 @@ function myFunction() {
 
 function info() {
     $.ajax({
+        url: '/Ajax/Ajax?data=comentarios',
+        method: 'Post',
+        success: function (a) {
+
+            $("#comentarios").html(a);
+
+        }
+    });
+
+    var ajaxCall = function () {
+        $.ajax({
+            url: '/Ajax/Ajax?data=comentarios',
+            method: 'Post',
+            success: function (a) {
+
+                $("#comentarios").html(a);
+
+            }
+        });
+    }
+    setInterval(ajaxCall, 1000)
+}
+
+function info() {
+    $.ajax({
         url: '/Ajax/Ajax?data=publicaciones',
         method: 'Post',
         success: function (a) {
