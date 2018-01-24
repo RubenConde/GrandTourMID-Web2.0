@@ -17,6 +17,7 @@ var loadimagenpublic3 = function (event) {
     $("#spancloseimagen3").show();
 };
 
+
 $(document).ready(function () {
     $.ajax({
         url: "/Ajax/Ajax?data=loadlugaresvisitados",
