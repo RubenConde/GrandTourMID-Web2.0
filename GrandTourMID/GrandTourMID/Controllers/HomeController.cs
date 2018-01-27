@@ -10,12 +10,64 @@ namespace GrandTourMID.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                if (idtipo == 1)
+                {
+                    if (estado == 1)
+                    {
+                        return Redirect("~/Admin/email");
+                    }
+                    else
+                    {
+                        return View("~/Home/Index");
+                    }
+                }
+                if (idtipo == 2)
+                {
+                    return Redirect("~/Profile/Profile");
+                }
+            }
+            return Content("");
         }
 
         public ActionResult Login()
         {
-            return View();
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                if (idtipo == 1)
+                {
+                    if (estado == 1)
+                    {
+                        return Redirect("~/Admin/email");
+                    }
+                    else
+                    {
+                        return View("~/Home/Index");
+                    }
+                }
+                if (idtipo == 2)
+                {
+                    return Redirect("~/Profile/Profile");
+                }
+            }
+            return Content("");
         }
 
         public ActionResult adminlog()
@@ -30,7 +82,33 @@ namespace GrandTourMID.Controllers
 
         public ActionResult Lugares()
         {
-            return View();
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                if (idtipo == 1)
+                {
+                    if (estado == 1)
+                    {
+                        return Redirect("~/Admin/email");
+                    }
+                    else
+                    {
+                        return View("~/Home/Index");
+                    }
+                }
+                if (idtipo == 2)
+                {
+                    return Redirect("~/Profile/Profile");
+                }
+            }
+            return Content("");
         }
 
 
