@@ -99,22 +99,22 @@ function myFunction() {
 
 function info() {
     $.ajax({
-        url: '/Ajax/Ajax?data=comentarios',
+        url: '/Ajax/Ajax?data=comentpub',
         method: 'Post',
         success: function (a) {
 
-            $("#comentarios").html(a);
+            $("#comentpub").html(a);
 
         }
     });
 
     var ajaxCall = function () {
         $.ajax({
-            url: '/Ajax/Ajax?data=comentarios',
+            url: '/Ajax/Ajax?data=comentpub',
             method: 'Post',
             success: function (a) {
 
-                $("#comentarios").html(a);
+                $("#comentpub").html(a);
 
             }
         });
@@ -169,6 +169,14 @@ $("#subirimg").click(function () {
     $("#subirimg").hide();
     $("#cancelarsubida").show();
 })
+
+$("#cancelarsubida").click(function () {
+    $("#divimagenes").hide();
+    $("#spanclose").hide();
+    $("#subirimg").show();
+    $("#cancelarsubida").hide();
+})
+
 
 
 function ocultarinfo() {

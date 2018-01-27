@@ -144,6 +144,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BO\AcercaBO.cs" />
     <Compile Include="BO\ComentarioBO.cs" />
+    <Compile Include="BO\ComentPubBO.cs" />
     <Compile Include="BO\ContactoBO.cs" />
     <Compile Include="BO\CorreoBO.cs" />
     <Compile Include="BO\InicioBO.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="DAO\AcercaDAO.cs" />
     <Compile Include="DAO\ChatDAO.cs" />
     <Compile Include="DAO\ComentarioDAO.cs" />
+    <Compile Include="DAO\ComentPubDAO.cs" />
     <Compile Include="DAO\ConexionSQL.cs" />
     <Compile Include="DAO\ContactoDAO.cs" />
     <Compile Include="DAO\InicioDAO.cs" />

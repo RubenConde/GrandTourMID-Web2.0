@@ -13,7 +13,7 @@ $(document).ready(function () {
             success: function (a) {
                 if (a == 1) {
                     $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
-                    window.location = "/Admin/Back";
+                    window.location = "/Admin/email";
                     clear();
                 }
                 else if (a == 2) {
@@ -166,7 +166,7 @@ $(document).ready(function () {
 
                     if (a == 1) {
                         $("#btnRefresh").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Actualizar contraseña');
-                        window.location = "/Admin/Back";
+                        window.location = "/Admin/email";
                     }
                     else if (a == 0) {
                         $("#btnRefresh").html('<i "></i> Actualizar contraseña');

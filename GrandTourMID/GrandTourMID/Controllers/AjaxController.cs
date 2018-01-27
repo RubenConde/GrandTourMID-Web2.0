@@ -34,6 +34,8 @@ namespace GrandTourMID.Controllers
         PreguntasBO objp = new PreguntasBO();
         PreguntaDAO BDPRE = new PreguntaDAO();
         ComentarioDAO BDCOME = new ComentarioDAO();
+        ComentPubDAO BDCOMPUB = new ComentPubDAO();
+        ComentPubBO objcomenpub = new ComentPubBO();
 
         // GET: Ajax
         public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file, HttpPostedFileBase file2, HttpPostedFileBase file3)
@@ -758,11 +760,11 @@ namespace GrandTourMID.Controllers
                     
                     if (imagen == "")
                     {
-                        respuesta = "<div class=\"w3-container w3-margin-top w3-card w3-white w3-round \"><br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span><h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" onclick=\"myFunction('comentarios')\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button><div class=\"w3-card w3-white w3-margin-bottom\" id=\"comentarios\"><label> HOLA que onda</ label ></div ></div>";
+                        respuesta = "<div class=\"w3-container w3-margin-top w3-card w3-white w3-round \"><br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span><h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-amber w3-hover-yellow w3-opacity-min w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" onclick=\"myFunction('comentpub')\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
                     }
                     else if (imagen != "" && imagen2 == "" && imagen3 == "")
                     {
-                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"] + "\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom w3-opacity-min w3-hover-opacity-off\"><button type =\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"] + "\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom w3-opacity-min w3-hover-opacity-off\"><button type =\"button\" class=\"w3-button w3-amber w3-hover-yellow w3-opacity-min w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
 
 
                     }
@@ -790,7 +792,7 @@ namespace GrandTourMID.Controllers
 
                         "</div>" +
                         "<br />" +
-                        "<button style =\"margin-left:15px\" type=\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i> Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button>" +
+                        "<button style =\"margin-left:15px\" type=\"button\" class=\"w3-button w3-amber w3-hover-yellow w3-opacity-min w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i> Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button>" +
                           "</div>" +
                       "</div>";
                     }
@@ -813,7 +815,7 @@ namespace GrandTourMID.Controllers
                         "</div>" +
                         "</div>" +
                         "<br />" +
-                        "<button style =\"margin-left:15px\" type=\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button>" +
+                        "<button style =\"margin-left:15px\" type=\"button\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button>" +
                         "</div>" +
                         "</div>";
 
@@ -1599,6 +1601,20 @@ namespace GrandTourMID.Controllers
                 respuesta = "1";
 
 
+            }
+
+            else if (data== "comentpub")
+            {
+                DataTable comentpubli = BDCOMPUB.CargarComentPub();
+
+                foreach (DataRow row in comentpubli.Rows)
+                {
+                    respuesta = "<div class=\"w3-row\"><div class=\"w3-col m2 text-center\"><img class=\"w3-circle\" src=\"" + row["idcomentpub"] + "\" style=\"width:80px;height:80px; margin-top:20px\"></div><div class=\"w3-col m-10 w3-container w3-dark-gray w3-round\" style=\"width:360px; height:130px; margin-left:4px\"><h4>" + row["iduser"] + "<span class=\"w3-medium w3-right\"> " + row["idpub"] + "</span></h4><p>" + row["comentpub"] + "</p><br></div></div><br/>";
+                    Response.Write(respuesta);
+
+                }
+
+                respuesta = "";
             }
 
             else if(data=="loadcomentarios")

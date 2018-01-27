@@ -31,7 +31,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 1)
             {
-                return View("~/Admi/Back");
+                return View("~/Admi/email");
             }
             return Content("");
         }

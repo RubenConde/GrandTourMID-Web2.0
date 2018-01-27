@@ -47,9 +47,9 @@
 
 
 
-<div class=" w3-display-container w3-opacity-min" style=" min-height: 100%;" id="imgheader1">
+<div class=" w3-display-container w3-opacity-min" style=" min-height: 540px;" id="imgheader1">
 
-    <div id="content" style="margin-top:180px; width:550.117px; height:325.233px; border:none" class="w3-container w3-small w3-col m4 w3-text-white">
+    <div id="content" style="margin-top:40px; width:390px; height:500px; border:none;" class="w3-container w3-small w3-col m4 w3-text-white">
         <h5 class="w3-text-dark-gray w3-center">Comentarios recientes</h5>
         <div id="scrollable">
 
@@ -62,7 +62,7 @@
 
     </div><br />
 
-    <div class="phone-display w3-display-right w3-display-top w3-opacity-off" style="right:100px">
+    @*<div class="phone-display w3-display-right w3-display-top w3-opacity-off" style="right:100px">
         <div class="phone-display--carousel">
             <img class="phone-display--image" src="~/img/phone-screenshot.png" width="190" height="330" />
             <div class="phone-display--carousel-mask">
@@ -76,13 +76,13 @@
         <div class="phone-display--bezel hidden-xs">
             <h3 class="w3-button w3-text-black">Descargalo</h3>
         </div>
-    </div>
+    </div>*@
 
 </div>
 <!-- Container (About Section) -->
-<div class="w3-content w3-container w3-padding-64" id="about">
+<div class="w3-content" style="height:560px" id="about">
     <div class="w3-row">
-        <div class="w3-center w3-padding-large">
+        <div class="w3-center">
             <p class="w3-xlarge"><b id="titulograndtour"><i class="fa fa-user w3-margin-right"></i></b></p>
             <br>
             <div class="phone-display--carousel">
@@ -100,7 +100,7 @@
     <br />
     <!-- Hide this text on small devices -->
     <div class="w3-row">
-        <div class=w3-hide-small w3-padding-large">
+        <div class="w3-hide-small ">
             <br /><br />
             <textarea class="w3-large" readonly="readonly" disabled style="width:950px; height:90px; background-color:transparent;  border:none; resize:none" id="infoapp">
             </textarea>
@@ -126,7 +126,7 @@
     </div>
 </div>
 <!-- Second Parallax Image with Portfolio Text -->
-<div class="bgimg-2 w3-display-container w3-opacity-min" id="header2" style="min-width:80%">
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="header2" style="min-width:80%; min-height:30%">
     <div class="w3-display-middle">
         <span id="edititulo3" class="w3-xxlarge w3-dark-grey w3-text-white w3-wide"></span>
     </div>
@@ -156,7 +156,7 @@
     </div>
 
 </div>
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'" >
     <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
     <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
         <img id="img01" class="w3-image">
@@ -164,16 +164,16 @@
     </div>
 </div>
 <!-- Third Parallax Image with Portfolio Text -->
-<div class="bgimg-3 w3-display-container w3-opacity-min" id="header3">
+<div class="bgimg-3 w3-display-container w3-opacity-min" id="header3" style="min-width:80%; min-height:30%">
     <div class="w3-display-middle">
         <span id="edititulo4" class="w3-dark-grey w3-xxlarge w3-text-white w3-wide"></span>
     </div>
 </div>
 <!-- Container (Contact Section) -->
-<div class="w3-content w3-container w3-padding-64" id="contact">
+<div class="w3-content" id="contact">
     <h3 class="w3-center" id="txtTitulo"></h3>
     <h3 class="w3-center" id="Subtitulo"><em></em></h3>
-    <div class="w3-row w3-padding-32 w3-section">
+    <div class="w3-row w3-section">
         <div class="w3-col m4 w3-container">
             <!-- Add Google Maps -->
             <div id="googleMap" class="w3-round-large " style="width:100%;height:400px;"></div>
@@ -207,17 +207,17 @@
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-48">
     <div class="w3-center">
-        <div class="w3-section w3-xlarge" >
+        <div class="w3-section w3-large" >
             <a style="cursor:pointer" onclick="document.getElementById('id01').style.display='block'">
                 <li style="font-family:Arial"><i class="fa fa-sign-in"></i> Iniciar sesión</li>
             </a>
         </div>
-        <div class="w3-xlarge w3-section">
+        <div class="w3-large w3-section">
             <a class=" w3-display-container" href="~/Home/Login">
                 <li style="font-family:Arial;text-decoration-line:none"><i class="fa fa-cogs"></i> Administrador</li>
             </a>
         </div>
-        <div class="w3-xlarge w3-section">
+        <div class="w3-large w3-section">
             <a style="cursor:pointer" onclick="document.getElementById('id02').style.display='block'">
                 <li style="font-family:Arial"><i class="fa fa-user-plus"></i> Crear cuenta</li>
             </a>

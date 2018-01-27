@@ -27,16 +27,16 @@
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="~/Admin/Back" class="w3-bar-item w3-button w3-text-white"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
+        <a href="~/Admin/email" class="w3-bar-item w3-button w3-text-white"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
     </div>
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
-        <a href="~/Admin/Back" class="w3-bar-item w3-button w3-text-white w3-right"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
+        <a href="~/Admin/email" class="w3-bar-item w3-button w3-text-white w3-right"><li class="fa fa-cogs fa-spin"></li> Panel de Administración</a>
     </div>
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class=" w3-display-container w3-opacity-min" style="min-height: 100%;" id="imgheader1">
+<div class=" w3-display-container w3-opacity-min" style="min-height:540px;" id="imgheader1">
     <div class="w3-display-middle" style="white-space:nowrap;">
         <span id="edittitulo" class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"></span>
         <button id="edit1" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-round w3-blue w3-ripple w3-hover-blue w3-small">Editar <i class="fa fa-cog fa-spin"></i> </button>
@@ -46,7 +46,7 @@
         <span id="cancelaimagen2" style="cursor:pointer" class="w3-text-red w3-center w3-round" onclick="cargarimagenesinicio();"><li class="fa fa-times-circle"></li></span>
         <span id="cambiarimagen2" style="cursor:pointer" class="w3-text-green w3-center w3-round"><li class="fa fa-check-circle"></li></span>
 
-        <center><label class="w3-hover-gray w3-round w3-text-white" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio2(event)" /></label>&nbsp;</center>
+        @*<center><label class="w3-hover-gray w3-round w3-text-white" id="uploadimg" style="width:133px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio2(event)" /></label>&nbsp;</center>
         <div class="phone-display--carousel">
             <img class="phone-display--image" src="/img/phone-screenshot.png" width="190" height="330" />
             <div class="phone-display--carousel-mask">
@@ -63,7 +63,7 @@
 
             <h3 class="w3-button w3-text-black">Descargalo</h3>
 
-        </div>
+        </div>*@
 
     </form>
 
@@ -83,20 +83,17 @@
 
 <!-- Container (About Section) -->
 
-<div class="w3-content w3-container w3-padding-64" id="about">
-    <button id="edit2" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-round w3-blue w3-ripple w3-hover-blue w3-small"> Editar <i class="fa fa-cog fa-spin"></i></button>
+<div class="w3-content" style="height:590px" id="about">
     <div class="w3-row">
+        <button id="edit2" onclick="document.getElementById('Modaledit').style.display='block'" class="w3-button w3-right w3-round w3-blue w3-ripple w3-hover-blue w3-small w3-right" accesskey=""><i class="fa fa-cog fa-spin"></i> Editar</button>
 
-        <div class="w3-center w3-padding-large">
-            <p><b id="titulograndtour"></b></p>
+        <div class="w3-center">
+            <p class="w3-xlarge"><b id="titulograndtour"></b></p>
             <span id="cancelaimagen1" style="cursor:pointer" class="w3-text-red w3-center w3-round" onclick="cancelar();"><li class="fa fa-times-circle"></li></span>
             <span id="cambiarimagen1" style="cursor:pointer" class="w3-text-green w3-center w3-round"><li class="fa fa-check-circle"></li></span>
             <br>
-
             <div class="phone-display--carousel">
-
                 <img class="phone-display--image" src="~/img/phone-screenshot.png" width="190" height="330" />
-
                 <div class="phone-display--carousel-mask">
                     <lu>
                         <li class="is-current">
@@ -116,7 +113,7 @@
             <center><label class="w3-hover-gray w3-round " id="uploadimg" style="width:133px;cursor:pointer;">Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadimageninicio1(event)" /></label>&nbsp;</center>
             <br /><br />
 
-            <textarea readonly="readonly" disabled style="width:950px; height:90px; background-color:transparent;  border:none; resize:none" id="infoapp">
+            <textarea class="w3-large" readonly="readonly" disabled style="width:950px; height:90px; background-color:transparent;  border:none; resize:none" id="infoapp">
             </textarea>
         </div>
     </form>

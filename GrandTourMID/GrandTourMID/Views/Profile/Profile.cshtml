@@ -23,7 +23,7 @@
 
 <form id="frmpublicacion" class="w3-margin-bottom w3-animate-zoom" enctype="multipart/form-data">
     <div class="w3-row w3-content w3-card w3-round w3-white">
-        <h3 class="w3-theme-d5">&nbsp; Realiza una publicación</h3>
+        <h3 class="w3-amber">&nbsp; Realiza una publicación</h3>
         <div class="w3-col m12">
             <div class="w3-row-padding w3-center">
                 <div class="w3-col m12">
@@ -45,7 +45,7 @@
                             <div class="w3-col m4">
                                 <span id="spancloseimagen2" onclick="eliminarimagen2();" class="w3-right w3-display-container fa fa-times-circle w3-small" style="cursor:pointer; margin-right:-0px; margin-top:2px"></span>
                                 <label class="w3-hover-opacity w3-round" id="uploadimg" style="cursor:pointer;">
-                                    <input id="fileimg2" name="file2" type="file" accept="image/*" style="display:none" onchange="loadimagenpublic2(event)" />
+                                    <input id="fileimg2" name   ="file2" type="file" accept="image/*" style="display:none" onchange="loadimagenpublic2(event)" />
                                     <img src="~/img/subirfoto.png" class=" w3-round" style="width:200px;height:200px" id="imgpublic2">
                                 </label>
                             </div>
@@ -63,8 +63,8 @@
                             </div>
 
                         </div>
-                        <button id="cancelarsubida"  type="button" style="margin-left:300px" class="w3-button w3-right-align w3-theme-d2">cancelar subida de imagenes</button>
-                        <button type="submit" class="w3-button w3-right  w3-theme-d2">Publicar</button>
+                        <label id="cancelarsubida"  type="button" style="margin-left:300px" class="w3-button w3-right-align w3-amber w3-opacity-min">cancelar subida de imagenes</label>
+                        <button type="submit" class="w3-button w3-right  w3-amber w3-opacity-min">Publicar</button>
 
 
                     </div>
@@ -73,19 +73,13 @@
 
         </div>
     </div>
-
 </form>
-
-
-
-
-
 <div class="w3-row">
     <div id="publicaciones" class="w3-animate-top">
 
     </div>
 
-    <div class="w3-card w3-white" id="comentarios">
+    <div class="w3-card w3-white" id="comentpub">
         <label>HOLA que onda</label>
 
     </div>
@@ -112,7 +106,7 @@
 <script>
 
     $("#btnComentar").click(function () {
-        $("#comentarios").show();
+        $("#comentpub").show();
 
 
     })

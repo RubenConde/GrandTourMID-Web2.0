@@ -36,10 +36,10 @@
                 <div class="sidebar-logo">
                     <div class="peers ai-c fxw-nw">
                         <div class="peer peer-greed">
-                            <a class="sidebar-link td-n" href="https://colorlib.com/polygon/adminator/index.html">
+                            <a class="sidebar-link td-n" href="#">
                                 <div class="peers ai-c fxw-nw">
                                     <div class="peer">
-                                        <div class="logo"><img src="~/img/usuario.png" class="rounded-circle" style="width:50px" alt=""></div>
+                                        <div class="logo"><img src="~/img/usuario.png" class="rounded-circle w3-center" style="width:50px; margin-top:10px; margin-left:5px" alt=""></div>
                                     </div>
                                     <div class="peer peer-greed">
                                         <h5 class="lh-1 mB-0 logo-text">Administrador</h5>
@@ -54,26 +54,15 @@
                     </div>
 
                 </div>
-                <center><i class=" ti-alarm-clock"></i><span id="demo"></span></center>
+                @*<center><i class=" ti-alarm-clock"></i><span id="demo"></span></center>*@
                 <ul class="sidebar-menu scrollable pos-r ps ps--active-y">
-                    <li class="nav-item mT-30 active"><a class="sidebar-link" href="~/Admin/Back" default=""><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Inicio</span></a></li>
+                    @*<li class="nav-item mT-30 active"><a class="sidebar-link" href="~/Admin/Back" default=""><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Inicio</span></a></li>*@
                     <li class="nav-item"><a class="sidebar-link" href="~/Admin/email"><span class="icon-holder"><i class="c-brown-500 ti-email"></i> </span><span class="title">Correo</span></a></li>
-                    <li class="nav-item"><a class="sidebar-link" href="~/Admin/Compose"><span class="icon-holder"><i class="c-blue-500 ti-share"></i> </span><span class="title">Componer correo</span></a></li>
-                    <li class="nav-item"><a class="sidebar-link" href="~/Admin/Calendar"><span class="icon-holder"><i class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Calendario</span></a></li>
+                    @*<li class="nav-item"><a class="sidebar-link" href="~/Admin/Compose"><span class="icon-holder"><i class="c-blue-500 ti-share"></i> </span><span class="title">Componer correo</span></a></li>*@
+                    @*<li class="nav-item"><a class="sidebar-link" href="~/Admin/Calendar"><span class="icon-holder"><i class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Calendario</span></a></li>*@
                     <li class="nav-item"><a class="sidebar-link" href="~/Admin/Chat"><span class="icon-holder"><i class="c-deep-purple-500 ti-comment-alt"></i> </span><span class="title">Chat</span></a></li>
                     <li class="nav-item"><a class="sidebar-link" href="~/Admin/Myprofile"><span class="icon-holder"><i class="c-indigo-500 ti-user"></i> </span><span class="title">Mi perfil</span></a></li>
                     <li class="nav-item"><a class="sidebar-link" href="~/Admin/IndexEdit"><span class="icon-holder"><i class="c-pink-500 ti-settings"></i> </span><span class="title">Mi diseño inicial</span></a></li>
-
-
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-orange-500 ti-help-alt"></i> </span><span class="title">Preguntas y Respuestas</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="sidebar-link" href="~/Admin/AddPreguntas">Agregar preguntas y respuestas</a>
-                            </li>
-                            <li><a class="sidebar-link" href="~/Admin/ListaPreguntas">Ver Preguntas del lugar</a></li>
-                        </ul>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-blue-grey-500 ti-bookmark"></i> </span><span class="title">Retos</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
                         <ul class="dropdown-menu">
@@ -92,9 +81,8 @@
                             <li><a class="sidebar-link" href="~/Admin/ListaLugares">Lugares registrados</a></li>
                         </ul>
                     </li>
-
                     <li class="nav-item dropdown">
-                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-teal-500 ti-view-list-alt"></i> </span><span class="title">Multiple Levels</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-teal-500 ti-view-list-alt"></i> </span><span class="title">Establecimientos</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
                         <ul class="dropdown-menu">
                             <li class="nav-item dropdown"><a href="javascript:void(0);"><span>Menu Item</span></a></li>
                             <li class="nav-item dropdown">
@@ -106,6 +94,16 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-orange-500 ti-help-alt"></i> </span><span class="title">Preguntas y Respuestas</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="sidebar-link" href="~/Admin/AddPreguntas">Agregar preguntas y respuestas</a>
+                            </li>
+                            <li><a class="sidebar-link" href="~/Admin/ListaPreguntas">Ver Preguntas del lugar</a></li>
+                        </ul>
+                    </li>
+
                     <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
                         <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                     </div>
@@ -120,12 +118,12 @@
                 <div class="header-container">
                     <ul class="nav-left">
                         <li><a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a></li>
-                        <li class="search-box"><a class="search-toggle no-pdd-right" href="javascript:void(0);"><i class="search-icon ti-search pdd-right-10"></i> <i class="search-icon-close ti-close pdd-right-10"></i></a></li>
-                        <li class="search-input"><input class="form-control" placeholder="Search..." type="text"></li>
+                        @*<li class="search-box"><a class="search-toggle no-pdd-right" href="javascript:void(0);"><i class="search-icon ti-search pdd-right-10"></i> <i class="search-icon-close ti-close pdd-right-10"></i></a></li>
+                        <li class="search-input"><input class="form-control" placeholder="Search..." type="text"></li>*@
 
                     </ul>
                     <ul class="nav-right">
-                        <li class="notifications dropdown">
+                        @*<li class="notifications dropdown">
                             <span class="counter bgc-red">3</span><a href="" class="dropdown-toggle no-after" data-toggle="dropdown"><i class="ti-comment-alt"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="pX-20 pY-15 bdB"><i class="ti-bell pR-10"></i> <span class="fsz-sm fw-600 c-grey-900">Notifications</span></li>
@@ -160,7 +158,7 @@
                                 </li>
                                 <li class="pX-20 pY-15 ta-c bdT"><span><a href="" class="c-grey-600 cH-blue fsz-sm td-n">View All Notifications <i class="ti-angle-right fsz-xs mL-10"></i></a></span></li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li class="notifications dropdown">
                             <span class="counter bgc-blue" id="newinbox">•••</span><a href="" class="dropdown-toggle no-after" data-toggle="dropdown"><i class="ti-email"></i></a>
                             <ul class="dropdown-menu">
@@ -188,9 +186,9 @@
                                 <div class="peer"><span id="usernameadmis" class="fsz-sm c-grey-900"></span></div>
                             </a>
                             <ul class="dropdown-menu fsz-sm">
-                                <li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>Setting</span></a></li>
+                                <li><a href="~/Admin/IndexEdit" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>Config. Inicio</span></a></li>
                                 <li><a href="~/Admin/Myprofile" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Perfil</span></a></li>
-                                <li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-email mR-10"></i> <span>Messages</span></a></li>
+                                <li><a href="~/Admin/email" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-email mR-10"></i> <span>Mensajes</span></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a style="cursor:pointer;" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700" onclick="CerrarSesion()"><i class="ti-power-off mR-10"></i><span>Cerrar sesión</span></a></li>
                             </ul>

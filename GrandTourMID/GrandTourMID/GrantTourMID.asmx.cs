@@ -83,7 +83,8 @@ namespace GrandTourMID
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void CargarPublicaciones()
+        public void Cargar
+            ()
         {
             DataTable dtspu = BDPU.CargarPublicaciones();
             string SalidaJson = String.Empty;
