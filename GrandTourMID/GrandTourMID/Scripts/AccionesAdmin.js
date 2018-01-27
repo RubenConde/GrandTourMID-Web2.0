@@ -3,6 +3,7 @@
 
 ///cargar lugares
 $(document).ready(function () {
+    myinfo();
     $.ajax({
         url: "/Ajax/Ajax?data=loadlugares",
         type: "POST",
@@ -47,6 +48,9 @@ $(document).ready(function () {
                 cache: false,
                 contentType: false,
                 processData: false,
+                beforeSend: function () {
+                    $("#btnagregarlugar").html('<i class="fa fa-spinner fa-pulse fa-fw"></i>  Agregando');
+                },
                 success: function (a) {
                     if (a == 1) {
                         swal({
@@ -58,6 +62,13 @@ $(document).ready(function () {
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true
                         })
+                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nuevo lugar');
+                        $("#namelugar").val('');
+                        $("#infolugarweb").val('');
+                        $("#infolugarapp").val('');
+                        $("#direccionlugar").val('');
+                        $("#fechalugar").val('');
+                        
                     }
                     else if (a == 0) {
                         swal({
@@ -70,6 +81,7 @@ $(document).ready(function () {
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true
                         });
+                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nuevo lugar');
                     }
                     else {
 
@@ -91,6 +103,7 @@ $(document).ready(function () {
                 closeOnConfirm: true,
                 showLoaderOnConfirm: true
             });
+            $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nuevo lugar');
         }
     });
 });
@@ -130,6 +143,12 @@ $(document).ready(function () {
             cache: false,
             contentType: false,
             processData: false,
+
+            beforeSend: function () {
+
+                $("#btnupdatepicture").html('<li class="fa fa-spinner fa-spin"></li>Actualizando');
+                $("#btnupdatepicture").prop('disabled', true);
+            },
             success: function (a) {
                 if (a == 1) {
                     swal({
@@ -142,10 +161,11 @@ $(document).ready(function () {
                         showLoaderOnConfirm: true
                     })
                     myinfo();
+                    $("#btnupdatepicture").html('Actualizar');
                     $("#btnupdatepicture").prop('disabled', true);
                     $("#uploadimg").hide();
                     $("#btncancelarfoto").hide();
-
+                   
 
                 }
 
@@ -657,42 +677,7 @@ $(document).ready(function () {
 
 
 //cargar info contacto
-$(document).ready(function () {
-    $.ajax({
-        url: "/Ajax/Ajax?data=cargarInfoContact",
-        type: "POST",
-        success: function (a) {
-            var datos = JSON.parse(a);
-            $('#la').val(datos.latitud);
-            $('#lon').val(datos.longitud);
-            $('#tit').val(datos.titulo);
-            $('#subt').val(datos.subtitulo);
-            $('#dire').val(datos.direccion);
-            $('#tel').val(datos.numero);
-            $('#corr').val(datos.correo);
-            $('#mensajecontacto').val(datos.mensaje);
-            $('#googleMap').locationpicker({
-                radius: 0,
-                location: {
-                    latitude: $('#la').val(),
-                    longitude: $('#lon').val()
-                },
-                inputBinding: {
-                    latitudeInput: $('#la'),
-                    longitudeInput: $('#lon'),
-                    locationNameInput: $('#txtubi')
 
-                },
-                enableAutocomplete: true
-
-            });
-
-
-
-
-        }
-    });
-});
 
 
 //Actualizar info contacto

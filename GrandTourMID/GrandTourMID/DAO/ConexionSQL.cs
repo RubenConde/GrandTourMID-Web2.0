@@ -17,13 +17,13 @@ namespace GrandTourMID.DAO
 
         public ConexionSQL()
         {
-            con = new SqlConnection("Server=localhost;Database=proyectoTour; Trusted_Connection=True;");
+            con = new SqlConnection("Data Source=SQL5037.site4now.net;Initial Catalog=DB_A33427_tour;User Id=DB_A33427_tour_admin;Password=pelana182;");
             //sirve para establecer las consultas e instrucciones SQL que se ejecutarán en el servidor
             exec = new SqlCommand();
         }
         public SqlConnection establecerConexion()
         {
-            string cs = "Server=localhost;Database=proyectoTour; Trusted_Connection=True;";
+            string cs = "Data Source=SQL5037.site4now.net;Initial Catalog=DB_A33427_tour;User Id=DB_A33427_tour_admin;Password=pelana182;";
             con = new SqlConnection(cs);
             return con;
         }

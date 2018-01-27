@@ -6,13 +6,11 @@
 
 <!DOCTYPE html>
 <head>
-    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
     <link href="https://colorlib.com/polygon/adminator/style.css" rel="stylesheet" />
     <link href="~/Content/tablas.css" rel="stylesheet" />
-    <link href="~/Content/charts.css" rel="stylesheet" />
-    <link href="~/Content/tooltip.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 
@@ -26,7 +24,7 @@
             const loader = document.getElementById('loader');
             setTimeout(() => {
                 loader.classList.add('fadeOut');
-            }, 300);
+            }, 1000);
         });
     </script>
 
@@ -182,7 +180,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
-                                <div class="peer mR-10"><img style="width:32px; height:32px" id="roundphotoadmi" class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt=""></div>
+                                <div class="peer mR-10"><img style="width:32px; height:32px" id="roundphotoadmi" class="w-2r bdrs-50p" ></div>
                                 <div class="peer"><span id="usernameadmis" class="fsz-sm c-grey-900"></span></div>
                             </a>
                             <ul class="dropdown-menu fsz-sm">
@@ -220,7 +218,7 @@
 
                 <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAA_QOzbpA8wTVvsWCfvksp3MfngNP6Q-E'></script>
 
-                
+                <script src="~/Scripts/jquery-3.2.1.min.js"></script>
                 <script src="~/Scripts/locationpicker.jquery.min.js"></script>
                 <script type="text/javascript" src="~/Scripts/vendor.js"></script>
                 <script type="text/javascript" src="~/Scripts/bundle.js"></script>
@@ -263,19 +261,7 @@
                             }
                         });
                     };
-                    var myVar = setInterval(function () { myTimer() }, 1000);
-
-                    function myTimer() {
-                        var d = new Date();
-                        var t = d.toLocaleTimeString();
-                        document.getElementById("demo").innerHTML = t;
-                    };
-
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag() { dataLayer.push(arguments); }
-                    gtag('js', new Date());
-
-                    gtag('config', 'UA-23581568-13');
+                   
                 </script>
             </footer>
         </div>
