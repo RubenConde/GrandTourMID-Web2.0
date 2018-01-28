@@ -664,9 +664,9 @@ namespace GrandTourMID.Controllers
                 else if (file != null && file2 == null && file3 == null)
                 {
                     string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
+                    string patc = System.IO.Path.Combine(Server.MapPath("christian98-001-site1.btempurl.com/img/publicaciones/"), pic);
                     file.SaveAs(patc);
-                    objepu.img = "/img/publicaciones/" + pic;
+                    objepu.img = "christian98-001-site1.btempurl.com/img/publicaciones/" + pic;
                     objepu.img2 = "";
                     objepu.img3 = "";
                     objepu.idusuario = Convert.ToInt32(Session["ID"]);
@@ -678,14 +678,14 @@ namespace GrandTourMID.Controllers
                 {
 
                     string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
+                    string patc = System.IO.Path.Combine(Server.MapPath("christian98-001-site1.btempurl.com/img/publicaciones/"), pic);
                     file.SaveAs(patc);
-                    objepu.img = "/img/publicaciones/" + pic;
+                    objepu.img = "christian98-001-site1.btempurl.com/img/publicaciones/" + pic;
 
                     string pic2 = "inicio_GDE" + System.IO.Path.GetFileName(file2.FileName);
-                    string patc2 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic2);
+                    string patc2 = System.IO.Path.Combine(Server.MapPath("christian98-001-site1.btempurl.com/img/publicaciones/"), pic2);
                     file2.SaveAs(patc2);
-                    objepu.img2 = "/img/publicaciones/" + pic2;
+                    objepu.img2 = "christian98-001-site1.btempurl.com/img/publicaciones/" + pic2;
 
                     objepu.img3 = "";
 
@@ -700,20 +700,20 @@ namespace GrandTourMID.Controllers
                 else if (file != null && file2 != null && file3 != null)
                 {
                     string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic);
+                    string patc = System.IO.Path.Combine(Server.MapPath("christian98-001-site1.btempurl.com/img/publicaciones/"), pic);
                     file.SaveAs(patc);
-                    objepu.img = "/img/publicaciones/" + pic;
+                    objepu.img = "christian98-001-site1.btempurl.com/img/publicaciones/" + pic;
 
                     string pic2 = "inicio_GDE" + System.IO.Path.GetFileName(file2.FileName);
-                    string patc2 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic2);
+                    string patc2 = System.IO.Path.Combine(Server.MapPath("christian98-001-site1.btempurl.com/img/publicaciones/"), pic2);
                     file2.SaveAs(patc2);
-                    objepu.img2 = "/img/publicaciones/" + pic2;
+                    objepu.img2 = "christian98-001-site1.btempurl.com/img/publicaciones/" + pic2;
 
 
                     string pic3 = "inicio_GDE" + System.IO.Path.GetFileName(file3.FileName);
-                    string patc3 = System.IO.Path.Combine(Server.MapPath("~/img/publicaciones/"), pic3);
+                    string patc3 = System.IO.Path.Combine(Server.MapPath("christian98-001-site1.btempurl.com/img/publicaciones/"), pic3);
                     file3.SaveAs(patc3);
-                    objepu.img3 = "/img/publicaciones/" + pic3;
+                    objepu.img3 = "christian98-001-site1.btempurl.com/img/publicaciones/" + pic3;
 
 
                     objepu.idusuario = Convert.ToInt32(Session["ID"]);
@@ -1221,9 +1221,9 @@ namespace GrandTourMID.Controllers
                     {
                         string imgs = Request.Form["file"];
                         string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
+                        string patc = System.IO.Path.Combine(Server.MapPath("christian98-001-site1.btempurl.com/img/lugares/"), pic);
                         file.SaveAs(patc);
-                        objelug.imagen = "/img/lugares/" + pic;
+                        objelug.imagen = "christian98-001-site1.btempurl.com/img/lugares/" + pic;
 
                         objelug.nombre = Request.Form["namelugar"];
                         objelug.direccion = Request.Form["direccionlugar"];
@@ -1651,7 +1651,7 @@ namespace GrandTourMID.Controllers
             string respuesta = "";
             if (file != null)
             {
-                string path = Server.MapPath("~/img/");
+                string path = Server.MapPath("christian98-001-site1.btempurl.com/img/");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
