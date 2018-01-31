@@ -31,14 +31,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 1)
             {
-                if (estado == 1)
-                {
-                    return View("~/Admi/email");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return View("~/Admi/email");
             }
             return Content("");
         }
@@ -66,14 +59,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 1)
             {
-                if (estado == 1)
-                {
-                    return View("~/Admi/email");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return View("~/Admi/email");
             }
             return Content("");
         }
@@ -101,14 +87,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 1)
             {
-                if (estado == 1)
-                {
-                    return View("~/Admi/email");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return View("~/Admi/email");
             }
             return Content("");
         }
@@ -135,14 +114,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 1)
             {
-                if (estado == 1)
-                {
-                    return View("~/Admi/email");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return View("~/Admi/email");
             }
             return Content("");
         }

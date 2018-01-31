@@ -32,14 +32,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -88,14 +81,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -144,14 +130,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -189,14 +168,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -234,14 +206,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -270,14 +235,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -306,14 +264,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -342,14 +293,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -378,14 +322,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -415,14 +352,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -451,14 +381,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -486,14 +409,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
@@ -521,14 +437,7 @@ namespace GrandTourMID.Controllers
             }
             if (idtipo == 2)
             {
-                if (estado == 1)
-                {
-                    return View("~/Profile/Profile");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Profile/Profile");
             }
 
             return Content("");
