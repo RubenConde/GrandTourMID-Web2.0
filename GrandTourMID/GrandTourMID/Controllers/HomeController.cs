@@ -33,7 +33,14 @@ namespace GrandTourMID.Controllers
                 }
                 if (idtipo == 2)
                 {
-                    return Redirect("~/Profile/Profile");
+                    if (estado == 1)
+                    {
+                        return View("~/Profile/Profile");
+                    }
+                    else
+                    {
+                        return View("~/Home/Index");
+                    }
                 }
             }
             return Content("");
@@ -64,7 +71,14 @@ namespace GrandTourMID.Controllers
                 }
                 if (idtipo == 2)
                 {
-                    return Redirect("~/Profile/Profile");
+                    if (estado == 1)
+                    {
+                        return View("~/Profile/Profile");
+                    }
+                    else
+                    {
+                        return View("~/Home/Index");
+                    }
                 }
             }
             return Content("");
@@ -105,7 +119,14 @@ namespace GrandTourMID.Controllers
                 }
                 if (idtipo == 2)
                 {
-                    return Redirect("~/Profile/Profile");
+                    if (estado == 1)
+                    {
+                        return View("~/Profile/Profile");
+                    }
+                    else
+                    {
+                        return View("~/Home/Index");
+                    }
                 }
             }
             return Content("");
