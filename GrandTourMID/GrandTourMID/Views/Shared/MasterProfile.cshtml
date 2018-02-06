@@ -26,10 +26,9 @@
         font-family: "Open Sans", sans-serif
     }
 </style>
-<body class="w3-theme-light" style="background-image:/img/inicio/inicio GDEpubg-iphone.jpg">
+<body class="w3-theme-light" style="background-image:url(http://www.yucatan.travel/img/Plaza-Grande.jpg); background-size:cover ">
 
-    <!-- Navbar -->
-    <div class="w3-top">
+    @*<div class="w3-top">
         <div class="w3-bar w3-amber w3-opacity-min w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-yellow w3-large w3-amber w3-hover-yellow" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
             <a href="~/Profile/Profile" class="w3-bar-item w3-button w3-padding-large w3-amber w3-hover-yellow"><i class="fa fa-home w3-margin-right"></i>Inicio</a>
@@ -38,14 +37,13 @@
         </div>
     </div>
 
-    <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
         <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
-    <br /><br /><br />
+    </div>*@
+    <br />
 
     <!--Contenido de la pagina-->
     <div class="w3-row">
@@ -66,6 +64,7 @@
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
                     <div class="w3-white">
+                        <a class="w3-button w3-block w3-amber w3-hover-yellow w3-left-align" href="~/Profile/Profile"><i class="fa fa-home fa-fw w3-margin-right"></i> Inicio</a>
                         <a class="w3-button w3-block w3-amber w3-hover-yellow w3-left-align" href="~/Profile/EditProfile"><i class="fa fa-gear fa-fw w3-margin-right"></i> Configuración</a>
                         <a class="w3-button w3-block w3-amber w3-hover-yellow w3-left-align" href="~/Profile/LugaresVisitados"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mis Lugares Visitados</a>
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-amber w3-hover-yellow w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mis fotos recientes</button>
@@ -74,6 +73,7 @@
                             <div class="w3-row-padding" id="ultimasfotosusuario">
                             </div>
                         </div>
+                        <a href="#" onclick="CerrarSesion()" class="w3-button w3-block w3-amber w3-hover-yellow w3-left-align" title="My Account"><i class="fa fa-sign-out   fa-fw w3-margin-right"></i> Cerrar Sesión</a>
                     </div>
                 </div>
                 <br>
@@ -102,7 +102,7 @@
         </div>
         <!-- End Left Column -->
         <!-- Page Container -->
-        <div class="w3-col m7">
+        <div class="w3-col m9">
             <div class="w3-container " style="margin-left:10px; margin-right:10px">
                 @RenderBody()
             </div>
@@ -120,7 +120,7 @@
                         <p><button class="w3-button w3-block w3-theme-l4">Información</button></p>
                     </div>
                 </div>*@
-                <div class="w3-card w3-round w3-white w3-hide-small">
+                @*<div class="w3-card w3-round w3-white w3-hide-small">
                     <div class="w3-container w3-padding">
                         <p><b>Lugares mas visitados por la comunidad</b></p>
                         <p>
@@ -130,11 +130,10 @@
                             <span class="w3-tag w3-small w3-green w3-opacity">Centro de Convencions Siglo XXI</span>
                         </p>
                     </div>
-                </div>
-                <br>
-                <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+                </div>*@
+                @*<div class="w3-card w3-round w3-white w3-padding-16 w3-center">
                     <a href="https://ltcminer.us/464525" target="_blank"><img src="https://3.bp.blogspot.com/-twnAZnM4eZY/WmajZUDAjGI/AAAAAAAAA2w/6GhU4kHFf0074lR0EgKHpUF7ReXkPxatgCLcBGAs/s1600/litecoin-leaderboard_256.gif" alt="Litecoin Miner - Mine and Earn free Litecoin" /></a>
-                </div>
+                </div>*@
             </div>
         </div>
         <!-- End Right Column -->
@@ -143,15 +142,6 @@
  
     <!--Final contenido de la pagina-->
     <br />
-
-
-    
-
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-d5">
-       <p>Derechos reservados para Grand Tour MID</p>
-    </footer>
-
 
     <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
     <script src="~/Scripts/AccionesProfile.js"></script>

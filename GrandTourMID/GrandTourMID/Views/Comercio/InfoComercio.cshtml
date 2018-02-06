@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "InfoComercio";
+    Layout = "~/Views/Shared/MasterComercio.cshtml";
+}
+
+<head>
+    <title>Información</title>
+</head>
+
+<div class="row gap-20 masonry pos-r" style="position: relative; height: 1110.6px;">
+    <div class="masonry-sizer col-md-6"></div>
+    <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 0px;">
+        <div class="bgc-white p-20 bd">
+            <button class="btn btn-primary pull-right" style="cursor:pointer" id="btneditfoto" type="button"><li class="fa fa-edit"></li> Editar</button>
+            <h6 class="c-grey-900">Foto de perfil</h6>
+            <div class="mT-30">
+                <form id="frmcambiarfoto" enctype="multipart/form-data" style="height:426.233px">
+                    <center><img class="w-1r bdrs-50p" id="imgadmi" style="width:300px; height:320px;" /></center>
+                    <center><label class="btn-outline-secondary  rounded" id="uploadimg" style="width:133px;cursor:pointer;">Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadfile(event)" /></label></center>
+
+                    <center> <input id="btnupdatepicture" style="cursor:pointer" class="btn btn-info align-center" type="submit" value="Actualizar" /></center><br />
+                    <center> <button class="w-2r bdrs-50p  btn btn-outline-danger" id="btncancelarfoto" type="button">x</button></center>
+                    <br /><br />
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 801.666px;">
+        <div class="bgc-white p-20 bd">
+            <button class="btn btn-primary pull-right" id="btnhabilit" style="cursor:pointer" type="button"><li class="fa fa-edit"></li> Editar</button>
+            <h6 class="c-grey-900">Mis datos</h6>
+            <div class="mT-30">
+                <form class="container" id="needs-validation" style="width:566px; height:426.233px" novalidate="">
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label for="validationCustom01">Nombre</label><input class="form-control" id="validationCustom02" name="nameadmi" placeholder="Nombre" required="" type="text"></div>
+                        <div class="col-md-6 mb-3"><label for="validationCustom03">Usuario</label><input class="form-control" id="validationCustom04" name="useradmi" placeholder="Usuario" required="" type="text"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label for="validationCustom05">Apellido Paterno</label><input class="form-control" id="validationCustom06" name="apepa" placeholder="Apellido Paterno" required="" type="text"></div>
+                        <div class="col-md-6 mb-3"><label for="validationCustom07">Apellido Materno</label><input class="form-control" id="validationCustom08" name="apemat" placeholder="Apellido Materno" required="" type="text"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom09">Correo electronico</label><input class="form-control" name="emailadmi" id="validationCustom10" placeholder="Correo electronico" required="" type="email"></div>
+                    </div>
+                    <br /><br /><br /><br />
+                    <button id="btnupdate" class="btn btn-primary" type="submit">Actualizar mis datos</button>
+                    <button class="btn btn-danger pull-right" id="btncancelar" type="button"> Cancelar</button>
+                </form>
+
+
+                <script>!function () { "use strict"; window.addEventListener("load", function () { var t = document.getElementById("needs-validation"); t.addEventListener("submit", function (e) { !1 === t.checkValidity() && (e.preventDefault(), e.stopPropagation()), t.classList.add("was-validated") }, !1) }, !1) }()</script>
+            </div>
+        </div>
+    </div>
+
+    <div class="masonry-item col-md-12" style="position: absolute; left: 49.9994%; top: 506.4px;">
+        <div class="bgc-white p-20 bd">
+            <button class="btn btn-primary pull-right" id="btneditcontra" style="cursor:pointer" type="button"><li class="fa fa-edit"></li> Editar</button>
+            <h6 class="c-grey-900">Mi contraseña</h6>
+            <div class="mT-30">
+                <form id="frmvalidarcontra">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Contraseña actual</label>
+                        <div class="col-sm-10"><input class="form-control" id="contrac" name="contraac" placeholder="Contraseña actual" type="password"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Contraseña nueva</label>
+                        <div class="col-sm-10"><input class="form-control" id="contranue" name="contranue" placeholder="Contraseña nueva" type="password"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Confirmar contraseña</label>
+                        <div class="col-sm-10"><input class="form-control" id="contraconfi" name="contraconfi" placeholder="Confirmar contraseña" type="password"></div>
+                    </div>
+
+                    <button class="btn btn-primary" id="btnvalidar" type="submit"><li class="fa fa-save"></li> Actualizar contraseña</button>
+                    <button class="btn btn-danger pull-right" id="btncancelarcontra" type="button"> Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/sweetalert2.all.js"></script>
+

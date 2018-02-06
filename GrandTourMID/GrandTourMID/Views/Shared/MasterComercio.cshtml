@@ -1,0 +1,279 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<head>
+
+    <link href="https://colorlib.com/polygon/adminator/style.css" rel="stylesheet" />
+    <link href="~/Content/tablas.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body class="app">
+
+    <div id='loader'>
+        <div class="spinner"></div>
+    </div>
+    <script type="text/javascript">
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('fadeOut');
+            }, 1000);
+        });
+    </script>
+
+    <div>
+        <div class="sidebar">
+            <div class="sidebar-inner">
+                <div class="sidebar-logo">
+                    <div class="peers ai-c fxw-nw">
+                        <div class="peer peer-greed">
+                            <a class="sidebar-link td-n" href="#">
+                                <div class="peers ai-c fxw-nw">
+                                    <div class="peer">
+                                        <div class="logo"><img src="~/img/usuario.png" class="rounded-circle w3-center" style="width:50px; margin-top:10px; margin-left:5px" alt=""></div>
+                                    </div>
+                                    <div class="peer peer-greed">
+                                        <h5 class="lh-1 mB-0 logo-text">Comercio</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="peer">
+                            <div class="mobile-toggle sidebar-toggle"><a href="" class="td-n"><i class="ti-arrow-circle-left"></i></a></div>
+
+                        </div>
+                    </div>
+
+                </div>
+                @*<center><i class=" ti-alarm-clock"></i><span id="demo"></span></center>*@
+                <ul class="sidebar-menu scrollable pos-r ps ps--active-y">
+                    <li class="nav-item mT-30 active"><a class="sidebar-link" href="~/Comercio/Estadisticas" default=""><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Estadísticas</span></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-purple-500 ti-map-alt"></i> </span><span class="title">Mis publicidades</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="sidebar-link" href="~/Comercio/AddPubli">Agregar Publicidad</a>
+                            </li>
+                            <li><a class="sidebar-link" href="~/Comercio/ListaPublicidades">Publicidades registradas</a></li>
+                        </ul>
+                    </li>
+                    @*<li class="nav-item"><a class="sidebar-link" href="~/Admin/Compose"><span class="icon-holder"><i class="c-blue-500 ti-share"></i> </span><span class="title">Componer correo</span></a></li>*@
+                    @*<li class="nav-item"><a class="sidebar-link" href="~/Admin/Calendar"><span class="icon-holder"><i class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Calendario</span></a></li>*@
+                    <li class="nav-item"><a class="sidebar-link" href="~/Comercio/Scanner"><span class="icon-holder"><i class="c-deep-purple-500 ti-comment-alt"></i> </span><span class="title">Escanear Código</span></a></li>
+                    <li class="nav-item"><a class="sidebar-link" href="~/Comercio/InfoComercio"><span class="icon-holder"><i class="c-indigo-500 ti-user"></i> </span><span class="title">Información</span></a></li>
+                    @*<li class="nav-item"><a class="sidebar-link" href="~/Admin/IndexEdit"><span class="icon-holder"><i class="c-pink-500 ti-settings"></i> </span><span class="title">Mi diseño inicial</span></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-blue-grey-500 ti-bookmark"></i> </span><span class="title">Retos</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="sidebar-link" href="~/Admin/AddRetos">Agregar Retos</a>
+                            </li>
+                            <li><a class="sidebar-link" href="~/Admin/ListaRetos">Ver Retos del lugar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-purple-500 ti-map-alt"></i> </span><span class="title">Lugares</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="sidebar-link" href="~/Admin/AddLugar">Agregar Lugares</a>
+                            </li>
+                            <li><a class="sidebar-link" href="~/Admin/ListaLugares">Lugares registrados</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-teal-500 ti-view-list-alt"></i> </span><span class="title">Establecimientos</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item dropdown"><a href="javascript:void(0);"><span>Menu Item</span></a></li>
+                            <li class="nav-item dropdown">
+                                <a href="javascript:void(0);"><span>Menu Item</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0);">Menu Item</a></li>
+                                    <li><a href="javascript:void(0);">Menu Item</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-orange-500 ti-help-alt"></i> </span><span class="title">Preguntas y Respuestas</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="sidebar-link" href="~/Admin/AddPreguntas">Agregar preguntas y respuestas</a>
+                            </li>
+                            <li><a class="sidebar-link" href="~/Admin/ListaPreguntas">Ver Preguntas del lugar</a></li>
+                        </ul>
+                    </li>
+
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px; height: 679px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 620px;"></div>
+                    </div>*@
+                </ul>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="header navbar">
+                <div class="header-container">
+                    <ul class="nav-left">
+                        <li><a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a></li>
+                        @*<li class="search-box"><a class="search-toggle no-pdd-right" href="javascript:void(0);"><i class="search-icon ti-search pdd-right-10"></i> <i class="search-icon-close ti-close pdd-right-10"></i></a></li>
+                            <li class="search-input"><input class="form-control" placeholder="Search..." type="text"></li>*@
+
+                    </ul>
+                    <ul class="nav-right">
+                        @*<li class="notifications dropdown">
+                                <span class="counter bgc-red">3</span><a href="" class="dropdown-toggle no-after" data-toggle="dropdown"><i class="ti-comment-alt"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li class="pX-20 pY-15 bdB"><i class="ti-bell pR-10"></i> <span class="fsz-sm fw-600 c-grey-900">Notifications</span></li>
+                                    <li>
+                                        <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm ps">
+                                            <li>
+                                                <a href="" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
+                                                    <div class="peer mR-15"><img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt=""></div>
+                                                    <div class="peer peer-greed">
+                                                        <span><span class="fw-500">John Doe</span> <span class="c-grey-600">liked your <span class="text-dark">post</span></span></span>
+                                                        <p class="m-0"><small class="fsz-xs">5 mins ago</small></p>
+                                                    </div>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
+                                                    <div class="peer mR-15"><img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/3.jpg" alt=""></div>
+                                                    <div class="peer peer-greed">
+                                                        <span><span class="fw-500">Lee Doe</span> <span class="c-grey-600">commented on your <span class="text-dark">video</span></span></span>
+                                                        <p class="m-0"><small class="fsz-xs">10 mins ago</small></p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                            </div>
+                                            <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <li class="pX-20 pY-15 ta-c bdT"><span><a href="" class="c-grey-600 cH-blue fsz-sm td-n">View All Notifications <i class="ti-angle-right fsz-xs mL-10"></i></a></span></li>
+                                </ul>
+                            </li>*@
+                        <li class="notifications dropdown">
+                            <span class="counter bgc-blue" id="newinbox">•••</span><a href="" class="dropdown-toggle no-after" data-toggle="dropdown"><i class="ti-email"></i></a>
+                            <ul class="dropdown-menu">
+                                <li class="pX-20 pY-15 bdB"><i class="ti-email pR-10"></i> <span class="fsz-sm fw-600 c-grey-900">Correos recibidos</span></li>
+                                <li>
+                                    <ul id="ultimosrecibidos" class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm ps">
+
+                                        <li class="fa fa-spin fa-spinner"></li>
+                                        <label> Cargando...</label>
+
+                                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                        </div>
+                                        <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                <li class="pX-20 pY-15 ta-c bdT"><span><a onclick="verinboxall()" style="cursor:pointer" class="c-grey-600 cH-blue fsz-sm td-n">Ver todos los emails<i class="fs-xs ti-angle-right mL-10"></i></a></span></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+                                <div class="peer mR-10"><img style="width:32px; height:32px" id="roundphotoadmi" class="w-2r bdrs-50p"></div>
+                                <div class="peer"><span id="usernameadmis" class="fsz-sm c-grey-900"></span></div>
+                            </a>
+                            <ul class="dropdown-menu fsz-sm">
+                                <li><a href="~/Admin/IndexEdit" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>Config. Inicio</span></a></li>
+                                <li><a href="~/Admin/Myprofile" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Perfil</span></a></li>
+                                <li><a href="~/Admin/email" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-email mR-10"></i> <span>Mensajes</span></a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a style="cursor:pointer;" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700" onclick="CerrarSesion()"><i class="ti-power-off mR-10"></i><span>Cerrar sesión</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <main class="main-content bgc-grey-100">
+                <div id="mainContent">
+                    @RenderBody()
+                </div>
+            </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
+
+                <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAA_QOzbpA8wTVvsWCfvksp3MfngNP6Q-E'></script>
+
+                <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+                <script src="~/Scripts/locationpicker.jquery.min.js"></script>
+                <script type="text/javascript" src="~/Scripts/vendor.js"></script>
+                <script type="text/javascript" src="~/Scripts/bundle.js"></script>
+                <script src="~/Scripts/AccionesComercio.js"></script>
+                <script src="~/Scripts/sweetalert2.all.js"></script>
+
+                <script>
+                    function CerrarSesion() {
+                        $.ajax({
+                            url: "/Ajax/Ajax?data=closesesion",
+                            type: "POST",
+                            beforeSend: function () {
+
+                            },
+                            success: function (a) {
+
+                                if (a == 1) {
+                                    swal({
+                                        title: 'Estamos cerrando la sesión!',
+                                        text: 'Nos vemos pronto.',
+                                        timer: 5000,
+                                        onOpen: () => {
+                                            swal.showLoading()
+                                        }
+                                    }).then((result) => {
+                                        if (result.dismiss === 'timer') {
+                                            window.location = "/Home/Index";
+                                        }
+                                    })
+
+                                }
+                                else if (a == 0) {
+
+                                }
+                                else {
+
+
+                                }
+
+                            }
+                        });
+                    };
+
+                </script>
+            </footer>
+        </div>
+    </div>
+</body>
+
+

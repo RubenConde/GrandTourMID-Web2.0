@@ -154,6 +154,7 @@
     <Compile Include="BO\UsuarioBO.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\ComercioController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -221,6 +222,7 @@
     <Content Include="Scripts\Acciones.js" />
     <Content Include="Scripts\AccionesAdmin.js" />
     <Content Include="Scripts\AccionesChat.js" />
+    <Content Include="Scripts\AccionesComercio.js" />
     <Content Include="Scripts\AccionesProfile.js" />
     <Content Include="Scripts\ActionesInboxContacto.js" />
     <Content Include="Scripts\AdmiLogin.js" />
@@ -312,6 +314,13 @@
     <Content Include="Views\Home\Lugares.cshtml" />
     <Content Include="Views\Home\InfoLugar.cshtml" />
     <Content Include="Views\Profile\chatuser.cshtml" />
+    <Content Include="Views\Shared\MasterComercio.cshtml" />
+    <Content Include="Views\Comercio\Estadisticas.cshtml" />
+    <Content Include="Views\Comercio\ListaPublicidades.cshtml" />
+    <Content Include="Views\Comercio\InfoComercio.cshtml" />
+    <Content Include="Views\Comercio\AddPubli.cshtml" />
+    <Content Include="Views\Comercio\EditPubli.cshtml" />
+    <Content Include="Views\Comercio\Scanner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

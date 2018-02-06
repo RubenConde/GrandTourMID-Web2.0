@@ -6,34 +6,35 @@ using System.Web.Mvc;
 
 namespace GrandTourMID.Controllers
 {
-    public class ProfileController : Controller
+    public class ComercioController : Controller
     {
-        // GET: Profile
-        public new ActionResult Profile()
+        public ActionResult Estadisticas()
         {
+
             int idtipo = 0;
             int id = Convert.ToInt32(Session["ID"]);
             idtipo = Convert.ToInt32(Session["idtipo"]);
             int estado = Convert.ToInt32(Session["estado"]);
             if (Session["ID"] == null)
             {
-                return View("~/Home/Index");
-            }
-            if (idtipo == 2)
-            {
-                if(estado == 1)
-                {
-                    return View();
-                }
-                else{
-                    return View("~/Home/Index");
-                }
+                return Redirect("~/Home/Index");
             }
             if (idtipo == 1)
             {
                 if (estado == 1)
                 {
-                    return View("~/Admi/email");
+                    return View("~/Admin/email");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
                 }
                 else
                 {
@@ -44,31 +45,6 @@ namespace GrandTourMID.Controllers
             {
                 if (estado == 1)
                 {
-                    return View("~/Comercio/Estadisticas");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
-            }
-
-            return Content("");
-        }
-
-        public ActionResult EditProfile()
-        {
-            int idtipo = 0;
-            int id = Convert.ToInt32(Session["ID"]);
-            idtipo = Convert.ToInt32(Session["idtipo"]);
-            int estado = Convert.ToInt32(Session["estado"]);
-            if (Session["ID"] == null)
-            {
-                return View("~/Home/Index");
-            }
-            if (idtipo == 2)
-            {
-                if (estado == 1)
-                {
                     return View();
                 }
                 else
@@ -76,11 +52,38 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            return Content("");
+
+
+        }
+
+        public ActionResult ListaPublicidades()
+        {
+
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
             if (idtipo == 1)
             {
                 if (estado == 1)
                 {
-                    return View("~/Admi/email");
+                    return View("~/Admin/email");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
                 }
                 else
                 {
@@ -91,31 +94,6 @@ namespace GrandTourMID.Controllers
             {
                 if (estado == 1)
                 {
-                    return View("~/Comercio/Estadisticas");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
-            }
-
-            return Content("");
-        }
-
-        public ActionResult LugaresVisitados()
-        {
-            int idtipo = 0;
-            int id = Convert.ToInt32(Session["ID"]);
-            idtipo = Convert.ToInt32(Session["idtipo"]);
-            int estado = Convert.ToInt32(Session["estado"]);
-            if (Session["ID"] == null)
-            {
-                return View("~/Home/Index");
-            }
-            if (idtipo == 2)
-            {
-                if (estado == 1)
-                {
                     return View();
                 }
                 else
@@ -123,11 +101,38 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            return Content("");
+
+
+        }
+
+        public ActionResult InfoComercio()
+        {
+
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
             if (idtipo == 1)
             {
                 if (estado == 1)
                 {
-                    return View("~/Admi/email");
+                    return View("~/Admin/email");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
                 }
                 else
                 {
@@ -138,30 +143,6 @@ namespace GrandTourMID.Controllers
             {
                 if (estado == 1)
                 {
-                    return View("~/Comercio/Estadisticas");
-                }
-                else
-                {
-                    return View("~/Home/Index");
-                }
-            }
-
-            return Content("");
-        }
-        public ActionResult InfoLugarVisitado()
-        {
-            int idtipo = 0;
-            int id = Convert.ToInt32(Session["ID"]);
-            idtipo = Convert.ToInt32(Session["idtipo"]);
-            int estado = Convert.ToInt32(Session["estado"]);
-            if (Session["ID"] == null)
-            {
-                return View("~/Home/Index");
-            }
-            if (idtipo == 2)
-            {
-                if (estado == 1)
-                {
                     return View();
                 }
                 else
@@ -169,11 +150,38 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            return Content("");
+
+
+        }
+
+        public ActionResult AddPubli()
+        {
+
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
             if (idtipo == 1)
             {
                 if (estado == 1)
                 {
-                    return View("~/Admi/email");
+                    return View("~/Admin/email");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
                 }
                 else
                 {
@@ -184,20 +192,115 @@ namespace GrandTourMID.Controllers
             {
                 if (estado == 1)
                 {
-                    return View("~/Comercio/Estadisticas");
+                    return View();
                 }
                 else
                 {
                     return View("~/Home/Index");
                 }
             }
-
             return Content("");
+
+
         }
 
-        public ActionResult chatuser()
+        public ActionResult EditPubli()
         {
-            return View();
+
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+            if (idtipo == 1)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Admin/email");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            return Content("");
+
+
         }
+
+        public ActionResult Scanner()
+        {
+
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+            if (idtipo == 1)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Admin/email");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            return Content("");
+
+
+        }
+
     }
 }

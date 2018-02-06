@@ -41,6 +41,18 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+
 
             return Content("");
         }
@@ -91,6 +103,17 @@ namespace GrandTourMID.Controllers
                 if (estado == 1)
                 {
                     return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
                 }
                 else
                 {
@@ -153,6 +176,17 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
 
             return Content("");
         }
@@ -192,6 +226,17 @@ namespace GrandTourMID.Controllers
                 if (estado == 1)
                 {
                     return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
                 }
                 else
                 {
@@ -243,6 +288,17 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
 
             return Content("");
         }
@@ -273,6 +329,17 @@ namespace GrandTourMID.Controllers
                 if (estado == 1)
                 {
                     return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
                 }
                 else
                 {
@@ -315,6 +382,17 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
 
             return Content("");
         }
@@ -351,6 +429,17 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
 
             return Content("");
 
@@ -381,6 +470,17 @@ namespace GrandTourMID.Controllers
                 if (estado == 1)
                 {
                     return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
                 }
                 else
                 {
@@ -424,6 +524,17 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
 
             return Content("");
         }
@@ -454,6 +565,17 @@ namespace GrandTourMID.Controllers
                 if (estado == 1)
                 {
                     return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
                 }
                 else
                 {
@@ -495,6 +617,17 @@ namespace GrandTourMID.Controllers
                     return View("~/Home/Index");
                 }
             }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
 
             return Content("");
         }
@@ -524,6 +657,17 @@ namespace GrandTourMID.Controllers
                 if (estado == 1)
                 {
                     return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
                 }
                 else
                 {

@@ -21,6 +21,11 @@ $(document).ready(function () {
                     window.location = "/Home/Index";
                     clear();
                 }
+                else if (a == 3) {
+                    $("#btnlogin").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Iniciar Sesión');
+                    window.location = "/Comercio/Estadisticas";
+                    clear();
+                }
                 else if (a == 0) {
 
                     swal({
