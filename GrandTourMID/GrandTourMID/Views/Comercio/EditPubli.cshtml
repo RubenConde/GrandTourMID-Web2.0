@@ -32,33 +32,16 @@
         <div class="bgc-white p-20 bd">
             <button type="button" id="editlugar2" class="btn btn-primary pull-right">Editar</button>
             <br />
-            <h6 class="c-grey-900">Datos del lugar</h6>
+            <h6 class="c-grey-900">Datos</h6>
             <div class="mT-30">
                 <form id="frmeditardatoslugar" style="height:529.233px" class="container" novalidate="">
                     <input id="idlugar2" name="idlugar2" type="hidden" />
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre del lugar</label><input class="form-control" id="editnamelugar" name="editnamelugar" placeholder="Ingrese nombre del lugar" type="text"></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="editnamelugar" name="editnamelugar" placeholder="Ingrese nombre del lugar" type="text"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom05">Información del lugar (WEB)</label><textarea style="resize:none" class="form-control" id="editinfolugarweb" name="editinfolugarweb" placeholder="Ingrese información de la web" type="text"></textarea></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom05">Código de barras</label><textarea style="resize:none" class="form-control" id="editinfolugarweb" name="editinfolugarweb" placeholder="Código de barras" type="text"></textarea></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom05">Información del lugar (APP)</label><textarea style="resize:none" class="form-control" id="editinfolugarapp" name="editinfolugarapp" placeholder="Ingrese infomación de la app" type="text"></textarea></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom09">Dirección</label><input class="form-control" name="editdireccionlugar" id="editdireccionlugar" placeholder="Ingrese la dirección" type="text"></div>
-                    </div>
-                    <br />
-                    <div class="timepicker-input input-icon form-group">
-                        <label for="validationCustom09">Fecha de fundación</label>
-                        <div class="input-group">
-                            <div class="input-group-addon bgc-white bd bdwR-0"><i class="ti-calendar"></i></div>
-                            <input class="form-control bdc-grey-200 start-date" id="editfechalugar" name="editfechalugar" placeholder="Fecha" data-provide="datepicker" type="text">
-
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" id="btneditardatoslugar" type="submit"><li class="fa fa-edit"></li>Actualizar información</button>
-                    <button class="btn btn-danger pull-right" id="btncancelardatoseditarlugar" type="button">Cancelar</button>
 
                 </form>
             </div>
@@ -231,7 +214,6 @@
 
     $("#editlugar2").click(function () {
         $("#editnamelugar").prop('disabled', false);
-        $("#editinfolugarweb").prop('disabled', false);
         $("#editinfolugarapp").prop('disabled', false);
         $("#editdireccionlugar").prop('disabled', false);
         $("#btncancelardatoseditarlugar").prop('disabled', false);
