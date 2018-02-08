@@ -145,6 +145,7 @@
     <Compile Include="BO\AcercaBO.cs" />
     <Compile Include="BO\ComentarioBO.cs" />
     <Compile Include="BO\ComentPubBO.cs" />
+    <Compile Include="BO\ComercioBO.cs" />
     <Compile Include="BO\ContactoBO.cs" />
     <Compile Include="BO\CorreoBO.cs" />
     <Compile Include="BO\InicioBO.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="DAO\ChatDAO.cs" />
     <Compile Include="DAO\ComentarioDAO.cs" />
     <Compile Include="DAO\ComentPubDAO.cs" />
+    <Compile Include="DAO\ComercioDAO.cs" />
     <Compile Include="DAO\ConexionSQL.cs" />
     <Compile Include="DAO\ContactoDAO.cs" />
     <Compile Include="DAO\InicioDAO.cs" />
@@ -238,6 +240,7 @@
     </Content>
     <Content Include="json\en.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\botones.js" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\editarindex.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -320,7 +323,6 @@
     <Content Include="Views\Comercio\InfoComercio.cshtml" />
     <Content Include="Views\Comercio\AddPubli.cshtml" />
     <Content Include="Views\Comercio\EditPubli.cshtml" />
-    <Content Include="Views\Comercio\Scanner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
