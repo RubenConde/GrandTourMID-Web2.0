@@ -734,7 +734,7 @@ namespace GrandTourMID.Controllers
                     respuesta = "1";
 
                 }
-                else if ( file == null && file2 ==null && file3==null)
+                else if (file == null && file2 == null && file3 == null)
                 {
                     objepu.img = "";
                     objepu.img2 = "";
@@ -762,18 +762,18 @@ namespace GrandTourMID.Controllers
 
                 foreach (DataRow row in Lispubli.Rows)
                 {
-                    
+
                     imagen = row["img"].ToString();
                     imagen2 = row["img2"].ToString();
                     imagen3 = row["img3"].ToString();
-                    
+
                     if (imagen == "")
                     {
                         respuesta = "<div class=\"w3-container w3-margin-top w3-card w3-white w3-round \"><br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span><h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><button type =\"button\" class=\"w3-button w3-amber w3-hover-yellow w3-opacity-min w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type =\"button\" onclick=\"myFunction('comentpub')\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
                     }
                     else if (imagen != "" && imagen2 == "" && imagen3 == "")
                     {
-                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"]+"\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">"+row["fechapub"]+"</span><h6>"+row["nombre"]+ "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"] + "\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom w3-opacity-min w3-hover-opacity-off\"><button type =\"button\" class=\"w3-button w3-amber w3-hover-yellow w3-opacity-min w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
+                        respuesta = "<div class=\"w3-container w3-card w3-white w3-round w3-margin-top\"><br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px;\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span><h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p><hr class=\"w3-clear\"><img onclick=\"onClick(this)\" src=\"" + row["img"] + "\" style=\"width:100%; cursor:pointer\" class=\"w3-margin-bottom w3-opacity-min w3-hover-opacity-off\"><button type =\"button\" class=\"w3-button w3-amber w3-hover-yellow w3-opacity-min w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>&nbsp<button type=\"button\" class=\"w3-button w3-amber w3-opacity-min w3-hover-yellow w3-margin-bottom\"><i class=\"fa fa-comment\"></i> Comment</button></div>";
 
 
                     }
@@ -808,7 +808,7 @@ namespace GrandTourMID.Controllers
                     else if (imagen != null && imagen2 != "" && imagen3 != "")
                     {
                         respuesta = "<div  class=\"w3-container w3-margin-top w3-card w3-white w3-round\">" +
-                            
+
                         "<br><img src=\"" + row["foto"] + "\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:40px; height:40px\"><span class=\"w3-right w3-opacity\">" + row["fechapub"] + "</span>" +
                         "<h6>" + row["nombre"] + "</h6><br><p>" + row["texto"] + "</p>" +
                         "<hr class=\"w3-clear\">" +
@@ -1292,7 +1292,7 @@ namespace GrandTourMID.Controllers
                 DataTable Lisluga = BDLU.BuscarLugarPorUsuario(id);
                 foreach (DataRow row in Lisluga.Rows)
                 {
-                    respuesta = "<div class=\"w3-row w3-center w3-margin\"><div class=\"w3-col m6 w3-margin-top\"><a onclick=\"verinfolugar(" + row["idlugar"] + ")\" class=\"w3-btn w3-white w3-ripple\" style=\"margin:0;padding:0;\"><div style = \"width:320px; height:200px\" ><img src=\"" + row["imagenportada"] + "\" style=\"width:100%; height:165px\"><h5 class=\"w3-small\">" + row["nombre"] + "</h5></div></a></div></div>";
+                    respuesta = "<a style=\"cursor: pointer\" onclick=\"verinfolugar(" + row["idlugar"] + ")\"><div class=\"w3-third w3-container w3-margin-bottom\"><img src =\"" + row["imagenportada"] + "\" alt=\"Norway\" style=\"width:100%\" class=\"w3-hover-opacity\"><div class=\"w3-container w3-white\"><p><b>" + row["nombre"] + "</b></p></div></div></a>";
                     Response.Write(respuesta);
                 }
 
@@ -1307,8 +1307,8 @@ namespace GrandTourMID.Controllers
                 DataTable Lisluga = BDLU.CargarFotosLugarUsuario(idlug, iduser);
                 foreach (DataRow row in Lisluga.Rows)
                 {
-                    respuesta = "<center><div class=\"w3-third w3-margin-top\"><img src =\"" + row["foto"] + "\" style=\"width:200px; height:200px;cursor:zoom-in\" onclick=\"document.getElementById('modalgaleria"+row["idfoto"]+"').style.display = 'block'\">" +
-                        "<div style=\"padding - top:0\" id = \"modalgaleria" + row["idfoto"]+ "\" class=\"w3-modal w3-black\" onclick=\"document.getElementById('modalgaleria" + row["idfoto"] + "').style.display = 'none'\"><span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span><div class=\"w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64\"><img src = \"" + row["foto"] + "\" style=\"width:100%\"></div></div></div></center>";
+                    respuesta = "<center><div class=\"w3-third w3-margin-top\"><img src =\"" + row["foto"] + "\" style=\"width:200px; height:200px;cursor:zoom-in\" onclick=\"document.getElementById('modalgaleria" + row["idfoto"] + "').style.display = 'block'\">" +
+                        "<div style=\"padding - top:0\" id = \"modalgaleria" + row["idfoto"] + "\" class=\"w3-modal w3-black\" onclick=\"document.getElementById('modalgaleria" + row["idfoto"] + "').style.display = 'none'\"><span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span><div class=\"w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64\"><img src = \"" + row["foto"] + "\" style=\"width:100%\"></div></div></div></center>";
                     Response.Write(respuesta);
                 }
 
@@ -1334,7 +1334,15 @@ namespace GrandTourMID.Controllers
             else if (data == "verinfolugar")
             {
                 Session["idlugar"] = Convert.ToInt32(Request.QueryString["idlugar"]);
-                respuesta = "1";
+                int idlu = Convert.ToInt32(Session["idlugar"]);
+
+                if (idlu != 0)
+                {
+                    respuesta = "1";
+                }
+                else {
+                    respuesta = "0";
+                }
             }
             //res
             else if (data == "cargarinfolugar")

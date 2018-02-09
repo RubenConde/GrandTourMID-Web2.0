@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "LugaresVisitados";
+    Layout = "~/Views/Shared/MasterPerfil.cshtml";
+}
+
+
+
+<h2 style="margin-left:20px">Lugares Visitados</h2>
+
+
+<div class="w3-row-padding" id="cargarlugares">
+  
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=loadlugaresvisitados",
+            type: "POST",
+            success: function (a) {
+
+                $("#cargarlugares").html(a);
+
+            }
+        });
+    });
+
+
+    var interval;
+
+    function verinfolugar(e) {
+        clearInterval(interval);
+        $.ajax({
+            url: '/Ajax/Ajax?data=verinfolugar&idlugar=' + e,
+            type: "post",
+
+            success: function (a) {
+                if (a == 1) {
+                    window.location = "/Perfil/LugarVisitado"
+                }
+
+            }
+        });
+    };
+
+
+</script>

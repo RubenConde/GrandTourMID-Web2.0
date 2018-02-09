@@ -66,7 +66,7 @@ function verinfolugar(e) {
         success: function (a) {
             if (a == 1) {
 
-                window.location = "/Profile/InfoLugarVisitado"
+                window.location = "/Perfil/InfoLugarVisitado"
             }
 
         }

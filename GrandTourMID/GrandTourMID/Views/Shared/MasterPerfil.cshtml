@@ -1,0 +1,225 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/w3.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>MasterPerfil</title>
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+        <br>
+        <div class="w3-container">
+            <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <img id="imguser" style="width:145px; height:145px" class="w3-circle"><br><br>
+            <h4><b id="nameuser">PORTFOLIO</b></h4>
+            <p class="w3-text-grey" id="username">Template by W3.CSS</p>
+        </div>
+        <div class="w3-bar-block">
+            <a href="~/Perfil/LugaresVisitados" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Lugares Visitados</a>
+            <a href="~/Perfil/MiPerfil" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Mi perfil</a>
+            <a href="~/Perfil/MiPerfil" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Cerrar Sesión</a>
+
+        </div>
+        <div class="w3-panel w3-large">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px">
+
+        <!-- Header -->
+        <header id="portfolio">
+            <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+            <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+            <div class="w3-container">
+                <h1 style="margin-left:30px"><b></b></h1>
+            </div>
+        </header>
+        <td></td>
+        <!-- First Photo Grid-->
+        <div style="height:580px; margin-left:10px">
+
+            @RenderBody();
+
+        </div>
+
+
+    </div>
+
+
+
+    <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAA_QOzbpA8wTVvsWCfvksp3MfngNP6Q-E'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/locationpicker.jquery.min.js"></script>
+    <script src="~/Scripts/sweetalert2.all.js"></script>
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+
+        var cargarimageneditar = function (event) {
+            var imgeditar = document.getElementById('imgedit');
+            imgeditar.src = URL.createObjectURL(event.target.files[0]);
+            $("#btnupdatefoto").prop('disabled', false);
+        };
+
+
+        $(document).ready(function () {
+            myinfo();
+            Deshabilitar();
+
+        });
+
+
+        function Deshabilitar() {
+
+            $("#nombreusuarios").prop('disabled', true);
+            $("#userprofile").prop('disabled', true);
+            $("#apellidouserpate").prop('disabled', true);
+            $("#apellidousermate").prop('disabled', true);
+            $("#emailadmi").prop('disabled', true);
+            $("#btnupdate").prop('disabled', true);
+            $("#contrac").prop('disabled', true);
+
+            $("#contranue").prop('disabled', true);
+            $("#contraconfi").prop('disabled', true);
+
+
+
+            $("#btncancelarcontra").hide();
+            $("#btnvalidar").hide();
+            $("#btncancelar").hide();
+            $("#btnupdate").hide();
+            $("#btnupdatefoto").hide();
+            $("#uploadimg").hide();
+            $("#btncancelarfoto").hide();
+        }
+
+        $("#btneditcontra").click(function () {
+
+
+            $("#contrac").prop('disabled', false);
+            $("#contranue").prop('disabled', false);
+            $("#contraconfi").prop('disabled', false);
+            $("#btncancelarcontra").show();
+            $("#btnvalidar").show();
+        })
+
+        $("#btncancelarcontra").click(function () {
+            $("#contrac").prop('disabled', true);
+            $("#contranue").prop('disabled', true);
+            $("#contraconfi").prop('disabled', true);
+            $("#btncancelarcontra").hide();
+            $("#btnvalidar").hide();
+            $("#contrac").val('');
+            $("#contranue").val('');
+            $("#contraconfi").val('');
+        })
+
+
+        $("#btnhabilitar").click(function () {
+
+            $("#nombreusuarios").prop('disabled', false);
+            $("#userprofile").prop('disabled', false);
+            $("#btncancelar").show();
+            $("#btnupdate").show();
+            $("#apellidouserpate").prop('disabled', false);
+            $("#apellidousermate").prop('disabled', false);
+            $("#emailadmi").prop('disabled', false);
+            $("#btnupdate").prop('disabled', false);
+
+        })
+
+
+        $("#btncancelar").click(function () {
+            myinfo();
+            $("#nombreusuarios").prop('disabled', true);
+            $("#userprofile").prop('disabled', true);
+            $("#apellidouserpate").prop('disabled', true);
+            $("#apellidousermate").prop('disabled', true);
+            $("#emailadmi").prop('disabled', true);
+            $("#btnupdate").prop('disabled', true);
+            $("#btncancelar").hide();
+            $("#btnupdate").hide();
+
+        })
+
+        $("#btneditfoto").click(function () {
+            $("#btnupdatefoto").prop('disabled', true);
+            $("#btnupdatefoto").show();
+            $("#uploadimg").show();
+            $("#btncancelarfoto").show();
+
+        });
+
+        $("#btncancelarfoto").click(function () {
+
+            $("#btnupdatefoto").hide();
+            $("#uploadimg").hide();
+            $("#btncancelarfoto").hide();
+            myinfo();
+        })
+
+
+
+
+        function myinfo() {
+            $.ajax({
+                url: "/Ajax/Ajax?data=DatosUsuario",
+                type: "POST",
+                success: function (a) {
+
+                    var datos = JSON.parse(a);
+
+
+                    $('#userprofile').val(datos.usuario);
+                    $('#nombreusuarios').val(datos.nombreus);
+                    $('#nameuser').html(datos.nombreus);
+                    $('#username').html(datos.usuario);
+                    $('#apellidouserpate').val(datos.apellidop);
+                    $('#apellidousermate').val(datos.apellidom);
+                    $('#emailadmi').val(datos.email);
+                    $("#imgedit").prop("src", datos.foto)
+                    $("#imguser").prop("src", datos.foto)
+                }
+
+            });
+        }
+    </script>
+
+</body>
+</html>

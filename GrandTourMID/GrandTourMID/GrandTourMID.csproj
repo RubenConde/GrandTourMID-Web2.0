@@ -158,6 +158,7 @@
     <Compile Include="Controllers\ComercioController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="DAO\AcercaDAO.cs" />
     <Compile Include="DAO\ChatDAO.cs" />
@@ -323,6 +324,10 @@
     <Content Include="Views\Comercio\InfoComercio.cshtml" />
     <Content Include="Views\Comercio\AddPubli.cshtml" />
     <Content Include="Views\Comercio\EditPubli.cshtml" />
+    <Content Include="Views\Shared\MasterPerfil.cshtml" />
+    <Content Include="Views\Perfil\LugaresVisitados.cshtml" />
+    <Content Include="Views\Perfil\MiPerfil.cshtml" />
+    <Content Include="Views\Perfil\LugarVisitado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

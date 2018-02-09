@@ -148,6 +148,9 @@ $(document).ready(function () {
 
                 $("#btnupdatepicture").html('<li class="fa fa-spinner fa-spin"></li>Actualizando');
                 $("#btnupdatepicture").prop('disabled', true);
+                $("#sss").show();
+                $("#uploadimg").hide();
+               
             },
             success: function (a) {
                 if (a == 1) {
@@ -165,7 +168,8 @@ $(document).ready(function () {
                     $("#btnupdatepicture").prop('disabled', true);
                     $("#uploadimg").hide();
                     $("#btncancelarfoto").hide();
-                   
+                    $("#uploadimg").hide();
+                    $("#sss").hide();
 
                 }
 
@@ -280,7 +284,7 @@ $(document).ready(function () {
     $("#btncancelar").prop('disabled', true);
     $("#btncancelarcontra").prop('disabled', true);
     $("#btncancelarfoto").hide();
-
+    $("#sss").hide();
 
 
 });
