@@ -320,7 +320,6 @@
     <Content Include="Views\Profile\chatuser.cshtml" />
     <Content Include="Views\Shared\MasterComercio.cshtml" />
     <Content Include="Views\Comercio\Estadisticas.cshtml" />
-    <Content Include="Views\Comercio\ListaPublicidades.cshtml" />
     <Content Include="Views\Comercio\InfoComercio.cshtml" />
     <Content Include="Views\Comercio\AddPubli.cshtml" />
     <Content Include="Views\Comercio\EditPubli.cshtml" />
