@@ -36,6 +36,8 @@ namespace GrandTourMID.Controllers
         ComentarioDAO BDCOME = new ComentarioDAO();
         ComentPubDAO BDCOMPUB = new ComentPubDAO();
         ComentPubBO objcomenpub = new ComentPubBO();
+        ComercioDAO BDCOMER = new ComercioDAO();
+        ComercioBO objcomercio = new ComercioBO();
 
         // GET: Ajax
         public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file, HttpPostedFileBase file2, HttpPostedFileBase file3)
@@ -129,6 +131,15 @@ namespace GrandTourMID.Controllers
                 objeus.id = Convert.ToInt32(Session["ID"]);
                 int id = objeus.id;
                 DataTable dt = BDU.BuscarUser(id);
+                String jSonString = ConvertirDataJson(dt);
+                respuesta = jSonString;
+
+            }
+            else if (data == "DatosComercio")
+            {
+                objcomercio.id = Convert.ToInt32(Session["ID"]);
+                int id = objcomercio.id;
+                DataTable dt = BDCOMER.BuscarComercio(id);
                 String jSonString = ConvertirDataJson(dt);
                 respuesta = jSonString;
 
@@ -1197,6 +1208,15 @@ namespace GrandTourMID.Controllers
                 BDU.Actualizarinfoadmi(objeus);
                 respuesta = "1";
             }
+            else if (data == "updateinfocomercio")
+            {
+                objcomercio.id = Convert.ToInt32(Session["ID"]);
+                objcomercio.nombrecomer = Request.Form["nameadmi"];
+                objcomercio.dirprincomer = Request.Form["useradmi"];
+                BDCOMER.Actualizarinfocomer(objcomercio);
+                respuesta = "1";
+            }
+
             //res
             else if (data == "guardarfotos")
             {
@@ -1221,6 +1241,30 @@ namespace GrandTourMID.Controllers
                 return Content(respuesta);
 
             }
+            else if (data == "guardarfotoscomercio")
+            {
+
+                if (file != null)
+                {
+
+                    objeus.id = Convert.ToInt32(Session["ID"]);
+                    string imgs = Request.Form["file"];
+                    string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(file.FileName);
+                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/comercios/"), pic);
+                    file.SaveAs(patc);
+                    objcomercio.imagencomercio = "/img/comercios/" + pic;
+                    BDCOMER.ActualizarFoto(objeus);
+                    respuesta = "1";
+                }
+                else
+                {
+
+                    respuesta = "0";
+                }
+                return Content(respuesta);
+
+            }
+
             //res
             else if (data == "addlugar")
             {
@@ -1258,6 +1302,38 @@ namespace GrandTourMID.Controllers
 
 
             }
+            else if (data == "addpubli")
+            {
+                try
+                {
+                    if (file != null)
+                    {
+                        string imgs = Request.Form["file"];
+                        string pic = "publi_Gde_" + System.IO.Path.GetFileName(file.FileName);
+                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/publi/"), pic);
+                        file.SaveAs(patc);
+                        objcomercio.cover = "/img/publi/" + pic;
+
+                        objcomercio.cover = Request.Form["namepubli"];
+                        objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjero"]);
+                        objcomercio.fecha = Request.Form["fechacupon"];
+                        BDCOMER.AddPublicidad(objcomercio);
+                        respuesta = "1";
+                    }
+                    else
+                    {
+                        respuesta = "0";
+                    }
+                }
+                catch
+                {
+                    respuesta = "2";
+                }
+
+
+
+            }
+
             //res
             else if (data == "loadlugares")
             {
@@ -1504,6 +1580,20 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in lispre.Rows)
                 {
                     respuesta = "<tr><td > " + row["idreto"] + " </td ><td>" + row["reto"] + "</td><td><button type=\"button\" onclick=\"editarreto(" + row["idreto"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
+                    Response.Write(respuesta);
+
+
+                }
+                respuesta = "";
+
+            }
+
+            else if (data == "verpublis")
+            {
+                DataTable lispre = BDCOMER.VerPublicidades();
+                foreach (DataRow row in lispre.Rows)
+                {
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td>" + row["cantidad"] + "</td><td><button type=\"button\" onclick=\"editarreto(" + row["fecha"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
                     Response.Write(respuesta);
 
 

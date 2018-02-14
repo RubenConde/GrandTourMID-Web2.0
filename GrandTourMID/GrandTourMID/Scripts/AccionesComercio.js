@@ -1,44 +1,9 @@
-﻿
-
-
-///cargar lugares
+﻿/// AGREGAR
 $(document).ready(function () {
-    myinfo();
-    $.ajax({
-        url: "/Ajax/Ajax?data=loadlugares",
-        type: "POST",
-        success: function (a) {
-
-            $("#contenedordelugares").html(a);
-
-        }
-    });
-});
-////
-function verinfolugar(e) {
-    clearInterval(interval);
-    $.ajax({
-        url: '/Ajax/Ajax?data=verinfolugar&idlugar=' + e,
-        type: "post",
-
-        success: function (a) {
-            if (a == 1) {
-
-                window.location = "/Comercio/EditPubli"
-            }
-
-        }
-    });
-};
-///cargar info del lugar seleccionado
-
-/// agregarlugar
-
-$(document).ready(function () {
-    $("#frmagregarlugar").submit(function (e) {
+    $("#frmagregarpubli").submit(function (e) {
         e.preventDefault();
-        if ($("#namelugar").val() != "" && $("#infolugarweb").val() != "" && $("#infolugarapp").val() != "" && $("#direccionlugar").val() != "" && $("#fechalugar").val() != "") {
-            var form = $('#frmagregarlugar')[0];
+        if ($("#namepubli").val() != "" && $("#maxcanjeo").val() != "" && $("#fechacupon").val() != "") {
+            var form = $('#frmagregarpubli')[0];
             var dataString = new FormData(form);
             $.ajax({
                 url: '/Ajax/Ajax?data=addlugar',  //Server script to process data
@@ -49,7 +14,7 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 beforeSend: function () {
-                    $("#btnagregarlugar").html('<i class="fa fa-spinner fa-pulse fa-fw"></i>  Agregando');
+                    $("#btnaddpubli").html('<i class="fa fa-spinner fa-pulse fa-fw"></i>  Agregando');
                 },
                 success: function (a) {
                     if (a == 1) {
@@ -62,12 +27,10 @@ $(document).ready(function () {
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true
                         })
-                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nuevo lugar');
-                        $("#namelugar").val('');
-                        $("#infolugarweb").val('');
-                        $("#infolugarapp").val('');
-                        $("#direccionlugar").val('');
-                        $("#fechalugar").val('');
+                        $("#btnaddpubli").html('<i class="fa fa-plus"></i>  Agregar cupón');
+                        $("#namepubli").val('');
+                        $("#maxcanjeo").val('');
+                        $("#fechacupon").val('');
 
                     }
                     else if (a == 0) {
@@ -81,7 +44,7 @@ $(document).ready(function () {
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true
                         });
-                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nuevo lugar');
+                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Agregar cupón');
                     }
                     else {
 
@@ -103,32 +66,26 @@ $(document).ready(function () {
                 closeOnConfirm: true,
                 showLoaderOnConfirm: true
             });
-            $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nuevo lugar');
+            $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Agregar cupón');
         }
     });
 });
 
-///cargar imagen en <img> del lugar
-
-var loadimagenlugar = function (event) {
-    var imglugar = document.getElementById('imglugar');
-    imglugar.src = URL.createObjectURL(event.target.files[0]);
+///cargar imagen
+var loadimagenpubli = function (event) {
+    var imgpubli = document.getElementById('imgpubli');
+    imgpubli.src = URL.createObjectURL(event.target.files[0]);
 };
 
 ////////cargra imagen de editar lugar en <img>
-var loadimagenlugareditar = function (event) {
-    var imgeditarlugar = document.getElementById('imgeditarlugar');
-    imgeditarlugar.src = URL.createObjectURL(event.target.files[0]);
-};
 
 
 ////////////////////EDITAR PERFIL ADMINISTRADOR////////////////////////
 ///cargar imagen en <img> del perfil del administrador
 var loadfile = function (event) {
-    var pic = document.getElementById('imgadmi');
+    var pic = document.getElementById('imgcomer');
     pic.src = URL.createObjectURL(event.target.files[0]);
 };
-
 ////cambiar imagen de perfil
 $(document).ready(function () {
     $("#frmcambiarfoto").submit(function (e) {
@@ -136,7 +93,7 @@ $(document).ready(function () {
         var form = $('#frmcambiarfoto')[0];
         var dataString = new FormData(form);
         $.ajax({
-            url: '/Ajax/Ajax?data=guardarfotos',  //Server script to process data
+            url: '/Ajax/Ajax?data=guardarfotoscomercio',  //Server script to process data
             type: 'POST',
             data: dataString,
             //Options to tell jQuery not to process data or worry about content-type.
@@ -280,6 +237,9 @@ $(document).ready(function () {
     $("#btncancelar").prop('disabled', true);
     $("#btncancelarcontra").prop('disabled', true);
     $("#btncancelarfoto").hide();
+    $("#btnupdate").hide();
+    $("#btncancelar").hide();
+    $("#btnupdatepicture").hide();
 
 
 
@@ -299,6 +259,9 @@ $("#btncancelar").click(function () {
     $("#validationCustom08").prop('disabled', true);
     $("#btnupdate").prop('disabled', true);
     $("#btncancelar").prop('disabled', true);
+    $("#btnupdate").hide();
+    $("#btncancelar").hide();
+
 })
 $("#btncancelarfoto").click(function () {
     myinfo();
@@ -325,7 +288,7 @@ $("#btneditfoto").click(function () {
     $("#btnupdatepicture").prop('disabled', false);
     $("#uploadimg").show();
     $("#btncancelarfoto").show();
-
+    $("#btnupdatepicture").show();
 
 
 });
@@ -351,17 +314,19 @@ $("#btnhabilit").click(function () {
     $("#validationCustom08").prop('disabled', false);
     $("#btnupdate").prop('disabled', false);
     $("#btncancelar").prop('disabled', false);
+    $("#btnupdate").show();
+    $("#btncancelar").show();
 
 
 });
 
-//actualizar info admi
+//actualizar info
 $(document).ready(function () {
     $("#needs-validation").submit(function (e) {
         e.preventDefault();
-        if ($("#validationCustom02").val() != "" && $("#validationCustom04").val() != "" && $("#validationCustom06").val() != "" && $("#validationCustom08").val() != "" && $("#validationCustom10").val() != "") {
+        if ($("#validationCustom02").val() != "" && $("#validationCustom10").val() != "") {
             $.ajax({
-                url: "/Ajax/Ajax?data=updateinfo",
+                url: "/Ajax/Ajax?data=updateinfocomercio",
                 type: "POST",
                 data: $("#needs-validation").serialize(),
                 beforeSend: function () {
@@ -384,10 +349,7 @@ $(document).ready(function () {
                         myinfo();
 
                         $("#validationCustom02").prop('disabled', true);
-                        $("#validationCustom04").prop('disabled', true);
-                        $("#validationCustom06").prop('disabled', true);
                         $("#validationCustom10").prop('disabled', true);
-                        $("#validationCustom08").prop('disabled', true);
                         $("#contrac").prop('disabled', true);
                         $("#contranue").prop('disabled', true);
                         $("#contraconfi").prop('disabled', true);
@@ -461,39 +423,6 @@ $(document).ready(function () {
     setInterval(ajaxCall, 1000)
 });
 
-///////ver todos emails
-
-function verinboxall() {
-    $.ajax({
-        url: "/Ajax/Ajax?data=viewall",
-        type: "POST",
-
-        success: function (a) {
-            window.location = "/Admin/email";
-
-
-        }
-    });
-
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=viewall",
-            type: "POST",
-            beforeSend: function () {
-
-            },
-            success: function (a) {
-
-                $("#contenedorecibidos").html(a);
-
-            }
-        });
-    }
-    setInterval(ajaxCall, 1000)
-
-
-};
-
 
 function myinfo() {
     $.ajax({
@@ -504,374 +433,18 @@ function myinfo() {
             var datos = JSON.parse(a);
 
 
-            $('#usernameadmis').html(datos.nombreus);
-            $('#userprofile').val(datos.usuario);
-            $('#validationCustom02').val(datos.nombreus);
-            $('#validationCustom04').val(datos.usuario);
-            $('#validationCustom06').val(datos.apellidop);
-            $('#validationCustom08').val(datos.apellidom);
-            $('#validationCustom10').val(datos.email);
-            $("#imgadmi").prop("src", datos.foto)
-            $("#roundphotoadmi").prop("src", datos.foto)
+            $('#usernameadmis').html(datos.nombre);
+            $('#userprofile').val(datos.nombre);
+            $('#validationCustom02').val(datos.nombre);
+            $('#validationCustom10').val(datos.dirprincipal);
+            $("#imgadmi").prop("src", datos.imagen)
+            $("#roundphotoadmi").prop("src", datos.imagen)
         }
 
     });
 }
 
-///ultimos inbox recibidos
-$(document).ready(function () {
 
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=ultimosinboxrecibidos",
-            type: "POST",
-            beforeSend: function () {
 
-            },
-            success: function (a) {
 
-                $("#ultimosrecibidos").html(a);
 
-            }
-        });
-    }
-    setInterval(ajaxCall, 1000)
-});
-
-
-//numero de mensajes recibidos en widget
-$(document).ready(function () {
-
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=mensajesnumeroprincipal",
-            type: "POST",
-            beforeSend: function () {
-
-            },
-            success: function (a) {
-
-                $("#contarmensajes").html(a);
-
-            }
-        });
-    }
-    setInterval(ajaxCall, 1000)
-});
-
-//numero de usuarios en la pagina
-$(document).ready(function () {
-    $.ajax({
-        url: "/Ajax/Ajax?data=numberuser",
-        type: "POST",
-        beforeSend: function () {
-
-        },
-        success: function (a) {
-
-            $("#numerousers").html(a);
-
-        }
-    });
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=numberuser",
-            type: "POST",
-            beforeSend: function () {
-
-            },
-            success: function (a) {
-
-                $("#numerousers").html(a);
-
-            }
-        });
-    }
-    setInterval(ajaxCall, 3000)
-});
-
-//cargar listas de usuarios activos
-$(document).ready(function () {
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=ListadoUsuarios",
-            type: "POST",
-            beforeSend: function () {
-                $("#mensaje").html("Información en tiempo real")
-            },
-            success: function (a) {
-
-                if (a == 1) {
-                    $("#userscontent").html(a);
-
-                }
-                else if (a == 0) {
-
-                }
-
-
-            }
-
-        });
-
-    }
-    setInterval(ajaxCall, 1000);
-
-});
-
-//Inactivos
-$(document).ready(function () {
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=ListadoUsuariosInactivos",
-            type: "POST",
-            beforeSend: function () {
-                $("#mess").html("Información en tiempo real")
-            },
-            success: function (a) {
-                if (a == 1) {
-                    $("#userscontentInactive").html(a);
-                }
-                else if (a == 0) {
-
-                }
-
-
-            }
-
-        });
-
-    }
-    setInterval(ajaxCall, 1000);
-
-});
-
-
-//Bloqueados
-$(document).ready(function () {
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=ListadoUsuariosBloqueados",
-            type: "POST",
-            beforeSend: function () {
-                $("#message").html("Información en tiempo real")
-            },
-            success: function (a) {
-
-                if (a == 1) {
-
-                    $("#usersblocked").html(a);
-                }
-                else {
-
-                }
-
-            }
-
-        });
-
-    }
-    setInterval(ajaxCall, 1000);
-
-});
-
-
-//cargar info contacto
-
-
-
-//Actualizar info contacto
-$("#btncontacto").click(function () {
-    if ($('#la').val() != "" && $("#lon").val() != "" && $("#tit").val() != "" && $("#subt").val() != "" && $("#dire").val() != "" && $("#tel").val() != "" && $("#corr").val() != "") {
-        $.ajax({
-            url: "/Ajax/Ajax?data=InsertInfoContact",
-            type: "POST",
-            data: $("#frmContacto").serialize(),
-            beforeSend: function () {
-
-            },
-            success: function (a) {
-
-                if (a == 1) {
-
-                    swal({
-                        title: "Informacion Actualizada",
-                        text: 'Se ha actualizado correctamente la información',
-                        type: "success",
-                        confirmButtonText: "Aceptar",
-                        closeOnCancel: true,
-                        closeOnConfirm: true,
-                        showLoaderOnConfirm: true
-                    });
-
-
-                    $("#tit").prop('disabled', true);
-                    $("#subt").prop('disabled', true);
-                    $("#dire").prop('disabled', true);
-                    $("#tel").prop('disabled', true);
-                    $("#corr").prop('disabled', true);
-                    $("#me").prop('disabled', true);
-                    $("#btncontacto").prop('disabled', true);
-                    $("#btncancelar").prop('disabled', true);
-                    $("#mes").hide();
-                }
-                else if (a == 0) {
-
-
-                }
-                else {
-
-
-
-                }
-
-            }
-        });
-    }
-    else {
-
-        swal({
-            title: "¿Olvidas algo?",
-            text: 'Valida que los campos no esten vacíos',
-            type: "question",
-            confirmButtonText: "Aceptar",
-            closeOnCancel: true,
-            closeOnConfirm: true,
-            showLoaderOnConfirm: true
-        });
-
-    }
-
-
-});
-
-//ver información de usuario
-var interval;
-function VerInfo(e) {
-    clearInterval(interval);
-    $.ajax({
-        url: '/Ajax/Ajax?data=verinfousuariosregistrados&iduser=' + e,
-        type: "post",
-
-        success: function (r) {
-            var modal = document.getElementById('modalinfousers');
-            modal.style.display = "block";
-
-            var datos = JSON.parse(r);
-            $("#nameregister").val(datos.nombreus);
-            $("#lastnamep").val(datos.apellidop);
-            $("#lastnamem").val(datos.apellidom);
-            $("#userregister").val(datos.usuario);
-            $("#perfilimg").prop("src", datos.foto);
-        }
-    });
-};
-
-////Desactivar cuenta
-
-function desact(e) {
-
-    swal({
-        title: '¿Estas seguro?',
-        text: "¿Desactivar cuenta?!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, Desactivar cuenta!  ',
-        cancelButtonText: 'No, Cancelar!',
-        confirmButtonClass: 'w3-button w3-green',
-        cancelButtonClass: 'w3-button w3-red',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.value) {
-
-            DesactivarAccount(e);
-
-
-        } else if (result.dismiss === 'cancel') {
-            swal(
-                'Cancelado',
-                'No se desactivo la cuenta',
-                'error'
-            )
-        }
-    })
-
-}
-var interval;
-function DesactivarAccount(e) {
-    clearInterval(interval);
-    $.ajax({
-        url: '/Ajax/Ajax?data=desactivarcuenta&iduser=' + e,
-        type: "post",
-
-        success: function (r) {
-
-            if (r == 1) {
-                swal(
-                    'Exito!',
-                    'La cuenta ha sido desactivada!.',
-                    'success'
-                );
-                $("#btnusarnew").html('<button class="w3-red w3-round w3-button">Desactivado</button>');
-            }
-            else if (r == 2) {
-
-            }
-            else {
-
-
-            }
-
-        }
-    });
-};
-
-
-//actualizar info acercade
-
-
-function ver() {
-    var file = document.getElementById('fileacerca');
-    var img = file.files[0];
-    var file = file.value.split("\\");
-    var fileName = file[file.length - 1];
-    var nameunic = fileName.replace(/\s/g, '');
-    alert(fileName);
-    $("#imagenacercas").val(nameunic);
-    var imd = file.value;
-}
-
-function Acercade(imd) {
-    $.ajax({
-        url: "/Ajax/Ajax?data=acercaAdmi&files=" + imd,
-        type: "POST",
-        data: $("#frmAcercade").serialize(),
-        beforeSend: function () {
-
-        },
-        success: function (a) {
-
-            if (a == 1) {
-
-                swal({
-                    title: "Informacion Actualizada",
-                    text: 'Se ha actualizado correctamente la información',
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnCancel: true,
-                    closeOnConfirm: true,
-                    showLoaderOnConfirm: true
-                });
-
-            }
-            else if (a == 0) {
-
-            }
-            else {
-            }
-
-        }
-    });
-};

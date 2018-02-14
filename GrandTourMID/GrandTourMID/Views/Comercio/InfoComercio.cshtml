@@ -16,7 +16,7 @@
             <h6 class="c-grey-900">Foto de perfil</h6>
             <div class="mT-30">
                 <form id="frmcambiarfoto" enctype="multipart/form-data" style="height:426.233px">
-                    <center><img class="w-1r bdrs-50p" id="imgadmi" style="width:300px; height:320px;" /></center>
+                    <center><img class="w-1r bdrs-50p" id="imgcomer" style="width:300px; height:320px;" /></center>
                     <center><label class="btn-outline-secondary  rounded" id="uploadimg" style="width:133px;cursor:pointer;">Seleccionar imagen <input name="file" type="file" accept="image/*" style="display:none" onchange="loadfile(event)" /></label></center>
 
                     <center> <input id="btnupdatepicture" style="cursor:pointer" class="btn btn-info align-center" type="submit" value="Actualizar" /></center><br />
@@ -36,15 +36,10 @@
             <div class="mT-30">
                 <form class="container" id="needs-validation" style="width:566px; height:426.233px" novalidate="">
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre</label><input class="form-control" id="validationCustom02" name="nameadmi" placeholder="Nombre" required="" type="text"></div>
-                        @*<div class="col-md-6 mb-3"><label for="validationCustom03">Usuario</label><input class="form-control" id="validationCustom04" name="useradmi" placeholder="Usuario" required="" type="text"></div>*@
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre</label><input class="form-control" id="validationCustom02" name="namecomer" placeholder="Nombre" required="" type="text"></div>
                     </div>
-                    @*<div class="row">
-                        <div class="col-md-6 mb-3"><label for="validationCustom05">Apellido Paterno</label><input class="form-control" id="validationCustom06" name="apepa" placeholder="Apellido Paterno" required="" type="text"></div>
-                        <div class="col-md-6 mb-3"><label for="validationCustom07">Apellido Materno</label><input class="form-control" id="validationCustom08" name="apemat" placeholder="Apellido Materno" required="" type="text"></div>
-                    </div>*@
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom09">Direccion Principañ</label><input class="form-control" name="emailadmi" id="validationCustom10" placeholder="Direccion principal" required="" type="email"></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom09">Establecimiento principal</label><input class="form-control" name="direccomer" id="validationCustom10" placeholder="Direccion de su establecimiento principal" required=""></div>
                     </div>
                     <br /><br /><br /><br />
                     <button id="btnupdate" class="btn btn-primary" type="submit">Actualizar mis datos</button>

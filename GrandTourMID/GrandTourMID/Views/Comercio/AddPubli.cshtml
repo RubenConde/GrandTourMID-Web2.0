@@ -18,7 +18,7 @@
                 <div style="height:463.233px">
                     <center><img class="rounded mx-auto d-block" id="imgpubli" src="~/img/addimagen.png" style="width:450px; height:400px;" /></center>
                     <br />
-                    <center><label class="btn-outline-secondary rounded" id="uploadimagenpubli" style="width:133px;cursor:pointer;">Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenlugar(event)" /></label></center>
+                    <center><label class="btn-outline-secondary rounded" id="uploadimagenpubli" style="width:133px;cursor:pointer;">Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenpubli(event)" /></label></center>
 
                 </div>
             </div>
@@ -31,14 +31,19 @@
             <div class="mT-30">
                 <div class="container" novalidate="">
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namelugar" placeholder="Ingrese nombre de la publicidad" type="text"></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namepubli" placeholder="Ingrese nombre de la publicidad" type="text"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom05">Código de Barras</label><textarea style="resize:none" class="form-control" id="codigopubli" name="infolugarweb" placeholder="Generar código de barras" type="text"></textarea></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom05">Numero maximo de canjeos</label><textarea style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Generar código de barras" type="text"></textarea></div>
                     </div>
-                    <center>
-                        <a class="btn btn-info align-center" style="cursor:pointer">Generar código</a>
-                    </center>
+                    <div class="timepicker-input input-icon form-group">
+                        <label for="validationCustom09">Fecha de vencimiento</label>
+                        <div class="input-group">
+                            <div class="input-group-addon bgc-white bd bdwR-0"><i class="ti-calendar"></i></div>
+                            <input class="form-control bdc-grey-200 start-date" id="fechacupon" name="fechacupon" placeholder="Fecha" data-provide="datepicker" type="text">
+                        </div>
+                    </div>
+                    <button style="cursor:pointer" class="btn btn-primary" id="btnaddpubli" type="submit"><li class="fa fa-plus"></li>Agregar cupón</button>
                 </div>
             </div>
         </div>

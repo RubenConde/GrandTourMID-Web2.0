@@ -11,5 +11,10 @@ namespace GrandTourMID.BO
         public string comentpub { get; set; }
         public int idpublic { get; set; }
         public int iduser { get; set; }
+        public string cover { get; set; }
+        public int cantidad { get; set; }
+        public string fecha { get; set; }
+
+
     }
 }
