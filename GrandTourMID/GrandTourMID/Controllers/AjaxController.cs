@@ -135,15 +135,6 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
 
             }
-            else if (data == "DatosComercio")
-            {
-                objcomercio.id = Convert.ToInt32(Session["ID"]);
-                int id = objcomercio.id;
-                DataTable dt = BDCOMER.BuscarComercio(id);
-                String jSonString = ConvertirDataJson(dt);
-                respuesta = jSonString;
-
-            }
             //Agregar Registro
             else if (data == "registro")
             {
@@ -1210,10 +1201,10 @@ namespace GrandTourMID.Controllers
             }
             else if (data == "updateinfocomercio")
             {
-                objcomercio.id = Convert.ToInt32(Session["ID"]);
-                objcomercio.nombrecomer = Request.Form["nameadmi"];
-                objcomercio.dirprincomer = Request.Form["useradmi"];
-                BDCOMER.Actualizarinfocomer(objcomercio);
+                objeus.id = Convert.ToInt32(Session["ID"]);
+                objeus.nombre = Request.Form["namecomer"];
+                objeus.email = Request.Form["direccomer"];
+                BDU.Actualizarinfocomer(objeus);
                 respuesta = "1";
             }
 
@@ -1231,29 +1222,6 @@ namespace GrandTourMID.Controllers
                     file.SaveAs(patc);
                     objeus.imagen = "/img/usuarios/" + pic;
                     BDU.ActualizarFotou(objeus);
-                    respuesta = "1";
-                }
-                else
-                {
-
-                    respuesta = "0";
-                }
-                return Content(respuesta);
-
-            }
-            else if (data == "guardarfotoscomercio")
-            {
-
-                if (file != null)
-                {
-
-                    objeus.id = Convert.ToInt32(Session["ID"]);
-                    string imgs = Request.Form["file"];
-                    string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/comercios/"), pic);
-                    file.SaveAs(patc);
-                    objcomercio.imagencomercio = "/img/comercios/" + pic;
-                    BDCOMER.ActualizarFoto(objeus);
                     respuesta = "1";
                 }
                 else
@@ -1314,8 +1282,8 @@ namespace GrandTourMID.Controllers
                         file.SaveAs(patc);
                         objcomercio.cover = "/img/publi/" + pic;
 
-                        objcomercio.cover = Request.Form["namepubli"];
-                        objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjero"]);
+                        objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjeo"]);
+                        objcomercio.descripcion = Request.Form["descrip"];
                         objcomercio.fecha = Request.Form["fechacupon"];
                         BDCOMER.AddPublicidad(objcomercio);
                         respuesta = "1";
@@ -1593,7 +1561,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDCOMER.VerPublicidades();
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td>" + row["cantidad"] + "</td><td><button type=\"button\" onclick=\"editarreto(" + row["fecha"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ></tr>";
                     Response.Write(respuesta);
 
 

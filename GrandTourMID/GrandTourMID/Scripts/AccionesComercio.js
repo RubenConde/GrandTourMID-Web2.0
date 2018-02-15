@@ -2,11 +2,11 @@
 $(document).ready(function () {
     $("#frmagregarpubli").submit(function (e) {
         e.preventDefault();
-        if ($("#namepubli").val() != "" && $("#maxcanjeo").val() != "" && $("#fechacupon").val() != "") {
+        if ($("#namepubli").val() != "" && $("#maxcanjeo").val() != "" && $("#fechacupon").val() != "" && $("#descrip").val() != "") {
             var form = $('#frmagregarpubli')[0];
             var dataString = new FormData(form);
             $.ajax({
-                url: '/Ajax/Ajax?data=addlugar',  //Server script to process data
+                url: '/Ajax/Ajax?data=addpubli',  //Server script to process data
                 type: 'POST',
                 data: dataString,
                 //Options to tell jQuery not to process data or worry about content-type.
@@ -44,12 +44,20 @@ $(document).ready(function () {
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true
                         });
-                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Agregar cupón');
+                        $("#btnaddpubli").html('<i class="fa fa-plus"></i>  Agregar cupón');
                     }
-                    else {
-
-
-
+                    else if (a == 2) {
+                        swal({
+                            title: '¡Ah ocurrido un error!',
+                            html: "Un error ha ocurrido",
+                            type: "error",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                        $("#btnaddpubli").html('<i class="fa fa-plus"></i>  Agregar cupón');
                     }
 
                 }
@@ -70,16 +78,12 @@ $(document).ready(function () {
         }
     });
 });
-
 ///cargar imagen
 var loadimagenpubli = function (event) {
     var imgpubli = document.getElementById('imgpubli');
     imgpubli.src = URL.createObjectURL(event.target.files[0]);
 };
-
 ////////cargra imagen de editar lugar en <img>
-
-
 ////////////////////EDITAR PERFIL ADMINISTRADOR////////////////////////
 ///cargar imagen en <img> del perfil del administrador
 var loadfile = function (event) {
@@ -93,7 +97,7 @@ $(document).ready(function () {
         var form = $('#frmcambiarfoto')[0];
         var dataString = new FormData(form);
         $.ajax({
-            url: '/Ajax/Ajax?data=guardarfotoscomercio',  //Server script to process data
+            url: '/Ajax/Ajax?data=guardarfotos',  //Server script to process data
             type: 'POST',
             data: dataString,
             //Options to tell jQuery not to process data or worry about content-type.
@@ -219,9 +223,7 @@ $(document).ready(function () {
 });
 ///cargar info usuario
 $(document).ready(function () {
-
     myinfo();
-
     $("#validationCustom02").prop('disabled', true);
     $("#validationCustom04").prop('disabled', true);
     $("#validationCustom06").prop('disabled', true);
@@ -237,14 +239,14 @@ $(document).ready(function () {
     $("#btncancelar").prop('disabled', true);
     $("#btncancelarcontra").prop('disabled', true);
     $("#btncancelarfoto").hide();
-    $("#btnupdate").hide();
+    $("#btnupdateinfocomer").hide();
     $("#btncancelar").hide();
     $("#btnupdatepicture").hide();
-
+    $("#btnvalidar").hide();
+    $("#btncancelarcontra").hide();
 
 
 });
-
 ///cancelar 
 $("#btncancelar").click(function () {
 
@@ -257,9 +259,9 @@ $("#btncancelar").click(function () {
     $("#validationCustom08").prop('disabled', true);
     $("#validationCustom10").prop('disabled', true);
     $("#validationCustom08").prop('disabled', true);
-    $("#btnupdate").prop('disabled', true);
+    $("#btnupdateinfocomer").prop('disabled', true);
     $("#btncancelar").prop('disabled', true);
-    $("#btnupdate").hide();
+    $("#btnupdateinfocomer").hide();
     $("#btncancelar").hide();
 
 })
@@ -269,6 +271,8 @@ $("#btncancelarfoto").click(function () {
     $("#btnupdatepicture").prop('disabled', true);
     $("#uploadimg").hide();
     $("#btncancelarfoto").hide();
+    $("#btnupdatepicture").hide();
+
 })
 $("#btncancelarcontra").click(function () {
 
@@ -280,8 +284,10 @@ $("#btncancelarcontra").click(function () {
     $("#contraconfi").prop('disabled', true);
     $("#btnvalidar").prop('disabled', true);
     $("#btncancelarcontra").prop('disabled', true);
-})
+    $("#btncancelarcontra").hide();
+    $("#btnvalidar").hide();
 
+})
 ///habilitar Foto
 $("#btneditfoto").click(function () {
 
@@ -300,6 +306,8 @@ $("#btneditcontra").click(function () {
     $("#contraconfi").prop('disabled', false);
     $("#btncancelarcontra").prop('disabled', false);
     $("#btnvalidar").prop('disabled', false);
+    $("#btncancelarcontra").show();
+    $("#btnvalidar").show();
 
 
 });
@@ -312,14 +320,13 @@ $("#btnhabilit").click(function () {
     $("#validationCustom06").prop('disabled', false);
     $("#validationCustom10").prop('disabled', false);
     $("#validationCustom08").prop('disabled', false);
-    $("#btnupdate").prop('disabled', false);
+    $("#btnupdateinfocomer").prop('disabled', false);
     $("#btncancelar").prop('disabled', false);
-    $("#btnupdate").show();
+    $("#btnupdateinfocomer").show();
     $("#btncancelar").show();
 
 
 });
-
 //actualizar info
 $(document).ready(function () {
     $("#needs-validation").submit(function (e) {
@@ -330,7 +337,7 @@ $(document).ready(function () {
                 type: "POST",
                 data: $("#needs-validation").serialize(),
                 beforeSend: function () {
-                    $("#btnupdate").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Actualizando');
+                    $("#btnupdateinfocomer").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Actualizando');
                 },
                 success: function (a) {
                     if (a == 1) {
@@ -345,7 +352,7 @@ $(document).ready(function () {
                             showLoaderOnConfirm: true
 
                         });
-                        $("#btnupdate").html('<i class="fa fa-save" aria-hidden="true"></i> Actualizar mis datos');
+                        $("#btnupdateinfocomer").html('<i class="fa fa-save" aria-hidden="true"></i> Actualizar mis datos');
                         myinfo();
 
                         $("#validationCustom02").prop('disabled', true);
@@ -354,9 +361,12 @@ $(document).ready(function () {
                         $("#contranue").prop('disabled', true);
                         $("#contraconfi").prop('disabled', true);
                         $("#btnvalidar").prop('disabled', true);
-                        $("#btnupdate").prop('disabled', true);
+                        $("#btnupdateinfocomer").prop('disabled', true);
                         $("#btncancelar").prop('disabled', true);
                         $("#btncancelarcontra").prop('disabled', true);
+                        $("#btncancelar").hide();
+                        $("#btnupdateinfocomer").hide();
+
                     }
                     else if (a == 0) {
                         swal({
@@ -369,10 +379,8 @@ $(document).ready(function () {
                             showLoaderOnConfirm: true
                         })
 
-                        $("#btnupdate").html('<i class="fa fa-save" aria-hidden="true"></i> Actualizar mis datos');
+                        $("#btnupdateinfocomer").html('<i class="fa fa-save" aria-hidden="true"></i> Actualizar mis datos');
                         $("#passprofilevalidar").val('');
-
-
                     }
                     else {
 
@@ -396,8 +404,6 @@ $(document).ready(function () {
     });
 });
 //cargarinfo
-
-
 //span animado
 $(document).ready(function () {
     $.ajax({
@@ -422,8 +428,6 @@ $(document).ready(function () {
     }
     setInterval(ajaxCall, 1000)
 });
-
-
 function myinfo() {
     $.ajax({
         url: "/Ajax/Ajax?data=DatosUsuario",
@@ -433,12 +437,15 @@ function myinfo() {
             var datos = JSON.parse(a);
 
 
-            $('#usernameadmis').html(datos.nombre);
-            $('#userprofile').val(datos.nombre);
-            $('#validationCustom02').val(datos.nombre);
-            $('#validationCustom10').val(datos.dirprincipal);
-            $("#imgadmi").prop("src", datos.imagen)
-            $("#roundphotoadmi").prop("src", datos.imagen)
+            $('#usernameadmis').html(datos.nombreus);
+            $('#userprofile').val(datos.usuario);
+            $('#validationCustom02').val(datos.nombreus);
+            $('#validationCustom04').val(datos.usuario);
+            $('#validationCustom06').val(datos.apellidop);
+            $('#validationCustom08').val(datos.apellidom);
+            $('#validationCustom10').val(datos.email);
+            $("#imgcomer").prop("src", datos.foto)
+            $("#roundphotoadmi").prop("src", datos.foto)
         }
 
     });

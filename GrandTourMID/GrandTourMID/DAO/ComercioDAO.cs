@@ -49,10 +49,11 @@ namespace GrandTourMID.DAO
 
         public int AddPublicidad(ComercioBO objelug)
         {
-            cmd = new SqlCommand("insert into lugares  (cantidad, fecha, cover) values (@cantidad, @fecha, @cover)");
+            cmd = new SqlCommand("insert into lugares  (cantidad, fecha, cover, descripcion) values (@cantidad, @fecha, @cover, @descripcion)");
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = objelug.cantidad;
-            cmd.Parameters.Add("@fecha", SqlDbType.VarChar).Value = objelug.fecha;
+            cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = objelug.fecha;
             cmd.Parameters.Add("@cover", SqlDbType.VarChar).Value = objelug.cover;
+            cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = objelug.descripcion;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }

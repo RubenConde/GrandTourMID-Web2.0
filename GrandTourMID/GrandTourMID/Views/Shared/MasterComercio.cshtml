@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="app">
+<body id="bodyhaha" class="app app">
 
     <div id='loader'>
         <div class="spinner"></div>
@@ -33,38 +33,54 @@
             <div class="sidebar-inner">
                 <div class="sidebar-logo">
                     <div class="peers ai-c fxw-nw">
+
                         <div class="peer peer-greed">
+
                             <a class="sidebar-link td-n" href="#">
+
                                 <div class="peers ai-c fxw-nw">
+
                                     <div class="peer">
-                                        <div class="logo"><img src="~/img/usuario.png" class="rounded-circle w3-center" style="width:50px; margin-top:10px; margin-left:5px" alt=""></div>
+
+                                        <div class="logo"><img src="~/img/usuario.png" class="rounded-circle w3-center" style="width:50px; margin-top:10px; margin-left:5px" alt="">
+                                        </div>
+
                                     </div>
+
                                     <div class="peer peer-greed">
                                         <h5 class="lh-1 mB-0 logo-text">Comercio</h5>
                                     </div>
+
                                 </div>
+
                             </a>
+
                         </div>
 
                         <div class="peer">
                             <div class="mobile-toggle sidebar-toggle"><a href="" class="td-n"><i class="ti-arrow-circle-left"></i></a></div>
                         </div>
+
                     </div>
                 </div>
 
                 <ul class="sidebar-menu scrollable pos-r ps ps--active-y">
 
                     <li class="nav-item mT-30 active"><a class="sidebar-link" href="~/Comercio/Estadisticas" default=""><span class="icon-holder"><i class="c-blue-500 ti-bar-chart"></i> </span><span class="title">Estadísticas</span></a></li>
-
                     <li class="nav-item"><a class="sidebar-link" href="~/Comercio/AddPubli"><span class="icon-holder"><i class="c-amber-500 ti-image"></i> </span><span class="title">Agregar publicidad</span></a></li>
-
                     <li class="nav-item"><a class="sidebar-link" href="~/Comercio/InfoComercio"><span class="icon-holder"><i class="c-green-500  ti-user"></i> </span><span class="title">Información personal</span></a></li>
-
                     <li role="separator" class="divider"></li>
-
                     <li class="nav-item"><a style="cursor:pointer;" class="sidebar-link" onclick="CerrarSesion()"><span class="icon-holder"><i class="ti-power-off c-red-500"></i></span><span class="title">Cerrar sesión</span></a></li>
 
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px; height: 679px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 620px;"></div>
+                    </div>
+
                 </ul>
+
             </div>
         </div>
 
@@ -72,7 +88,10 @@
             <div class="header navbar">
                 <div class="header-container">
                     <ul class="nav-left">
-                        <li><a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a></li>
+                        <li><a id="sidebar-toggle" class="sidebar-toggle" style="cursor:pointer" onclick="javascript: CambiarEstilo();">
+                            <i class="ti-menu"></i>
+                            </a>
+                        </li>
 
                     </ul>
                     <ul class="nav-right">
@@ -97,25 +116,12 @@
                     </ul>
                 </div>
             </div>
+
             <main class="main-content bgc-grey-100">
                 <div id="mainContent">
                     @RenderBody()
                 </div>
             </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
 
@@ -165,6 +171,16 @@
                         });
                     };
 
+                </script>
+                <script>
+                    function CambiarEstilo() {
+                        var elemento = document.getElementById("bodyhaha");
+                        if (elemento.className == "app") {
+                            elemento.className = "app is-collapsed";
+                        } else {
+                            elemento.className = "app";
+                        }
+                    }
                 </script>
             </footer>
         </div>

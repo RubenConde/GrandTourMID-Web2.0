@@ -31,16 +31,19 @@
             <div class="mT-30">
                 <div class="container" novalidate="">
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namepubli" placeholder="Ingrese nombre de la publicidad" type="text"></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namepubli" placeholder="Ingrese el nombre de la publicidad" type="text"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom05">Numero maximo de canjeos</label><textarea style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Generar código de barras" type="text"></textarea></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom05">Numero maximo de canjeos</label><input style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Introducir el número máximo de canjeos" type="text"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom06">Numero maximo de canjeos</label><textarea style="resize:none" class="form-control" id="descrip" name="descrip" placeholder="Introducir la descripción del cupón" type="text"></textarea></div>
                     </div>
                     <div class="timepicker-input input-icon form-group">
                         <label for="validationCustom09">Fecha de vencimiento</label>
                         <div class="input-group">
                             <div class="input-group-addon bgc-white bd bdwR-0"><i class="ti-calendar"></i></div>
-                            <input class="form-control bdc-grey-200 start-date" id="fechacupon" name="fechacupon" placeholder="Fecha" data-provide="datepicker" type="text">
+                            <input class="form-control bdc-grey-200 start-date" id="fechacupon" name="fechacupon" placeholder="Fecha" data-provide="datepicker" type="date">
                         </div>
                     </div>
                     <button style="cursor:pointer" class="btn btn-primary" id="btnaddpubli" type="submit"><li class="fa fa-plus"></li>Agregar cupón</button>

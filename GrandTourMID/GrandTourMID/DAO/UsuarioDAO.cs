@@ -50,6 +50,17 @@ namespace GrandTourMID.DAO
 
 
         }
+        public int Actualizarinfocomer(UsuarioBO objeus)
+        {
+            cmd = new SqlCommand("Update usuario set nombre=@nombre, email=@email where idusuario=@id");
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = objeus.email;
+            cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = objeus.id;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+
+
+        }
 
 
         public int ModificarContraseña(UsuarioBO objeus)

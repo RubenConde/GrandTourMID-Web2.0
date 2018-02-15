@@ -10,6 +10,7 @@ namespace GrandTourMID.BO
         public string cover { get; set; }
         public int cantidad { get; set; }
         public string fecha { get; set; }
+        public string descripcion { get; set; }
 
         public string imagencomercio { get; set; }
         public string nombrecomer { get; set; }
