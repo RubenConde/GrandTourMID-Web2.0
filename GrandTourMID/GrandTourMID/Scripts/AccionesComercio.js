@@ -19,7 +19,7 @@ $(document).ready(function () {
                 success: function (a) {
                     if (a == 1) {
                         swal({
-                            text: 'Se ha agregado el lugar correctamente!',
+                            text: 'Se agregado el cupon correctamente!',
                             type: "success",
                             confirmButtonText: "Aceptar",
                             confirmButtonColor: "#7986CB",

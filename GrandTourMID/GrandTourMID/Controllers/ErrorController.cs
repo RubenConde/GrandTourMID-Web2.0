@@ -14,8 +14,8 @@ namespace GrandTourMID.Controllers
             switch (error)
             {
                 case 500:
-                    ViewBag.Title = "Ocurrio un error inesperado";
-                    return View("Error500");
+
+                    break;
 
                 case 404:
                     ViewBag.Title = "Página no encontrada";
@@ -28,6 +28,8 @@ namespace GrandTourMID.Controllers
                     ViewBag.Title = "Página no encontrada";
                     return View("Error500");
             }
+
+            return Content("");
 
           
 

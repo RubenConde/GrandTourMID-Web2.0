@@ -326,6 +326,7 @@
     <Content Include="Views\Perfil\LugaresVisitados.cshtml" />
     <Content Include="Views\Perfil\MiPerfil.cshtml" />
     <Content Include="Views\Perfil\LugarVisitado.cshtml" />
+    <Content Include="Views\Admin\UsuariosRegistrados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
