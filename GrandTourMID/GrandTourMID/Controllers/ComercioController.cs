@@ -21,6 +21,30 @@ namespace GrandTourMID.Controllers
 
 
         }
+        public ActionResult ListaSucursales()
+        {
+
+            return View();
+
+
+        }
+
+
+        public ActionResult Sucursales()
+        {
+
+            return View();
+
+
+        }
+
+        public ActionResult EditarSucursal()
+        {
+
+            return View();
+
+        }
+
 
         public ActionResult InfoComercio()
         {

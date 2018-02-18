@@ -75,7 +75,7 @@ namespace GrandTourMID.DAO
 
         public DataTable BuscarUser(int id)
         {
-            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.apellidop, u.apellidom,u.usuario, u.contrasenia, u.foto, u.email, t.nombre as rol FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and idusuario = '{0}'", id);
+            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.apellidop, u.apellidom,u.usuario, u.contrasenia, u.foto, u.email, t.nombre as rol, u.rfc FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and idusuario = '{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
 
         }

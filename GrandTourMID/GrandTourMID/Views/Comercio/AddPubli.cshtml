@@ -5,7 +5,7 @@
 }
 
 <head>
-    <title>Agregar Publicidad</title>
+    <title>Agregar Sucursal</title>
 </head>
 
 
@@ -16,7 +16,7 @@
             <h6 class="c-grey-900">Foto del lugar</h6>
             <div class="mT-30">
                 <div style="height:463.233px">
-                    <center><img class="rounded mx-auto d-block" id="imgpubli" src="~/img/addimagen.png" style="width:450px; height:400px;" /></center>
+                    <center><img class="rounded mx-auto d-block" id="imgpubli" name="imgpubli" src="~/img/addimagen.png" style="width:450px; height:400px;" /></center>
                     <br />
                     <center><label class="btn-outline-secondary rounded" id="uploadimagenpubli" style="width:133px;cursor:pointer;">Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenpubli(event)" /></label></center>
 
@@ -34,10 +34,10 @@
                         <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namepubli" placeholder="Ingrese el nombre de la publicidad" type="text"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom05">Numero maximo de canjeos</label><input style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Introducir el número máximo de canjeos" type="text"></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom05">Número maximo de canjeos</label><input style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Introducir el número máximo de canjeos" type="text" onkeypress="return soloNumeros(event);"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom06">Numero maximo de canjeos</label><textarea style="resize:none" class="form-control" id="descrip" name="descrip" placeholder="Introducir la descripción del cupón" type="text"></textarea></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom06">Descripción del cupón</label><textarea style="resize:none" class="form-control" id="descrip" name="descrip" placeholder="Introducir la descripción del cupón" type="text"></textarea></div>
                     </div>
                     <div class="timepicker-input input-icon form-group">
                         <label for="validationCustom09">Fecha de vencimiento</label>
@@ -46,7 +46,7 @@
                             <input class="form-control bdc-grey-200 start-date" id="fechacupon" name="fechacupon" placeholder="Fecha" data-provide="datepicker" type="date">
                         </div>
                     </div>
-                    <button style="cursor:pointer" class="btn btn-primary" id="btnaddpubli" type="submit"><li class="fa fa-plus"></li>Agregar cupón</button>
+                    <button style="cursor:pointer" class="btn btn-primary" id="btnaddpubli" type="submit"><li class="fa fa-plus"></li> Agregar cupón</button>
                 </div>
             </div>
         </div>
@@ -56,4 +56,3 @@
 </form>
 
 <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
-

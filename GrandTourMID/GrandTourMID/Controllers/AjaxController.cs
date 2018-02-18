@@ -1270,6 +1270,41 @@ namespace GrandTourMID.Controllers
 
 
             }
+            else if (data == "addsuc")
+            {
+                try
+                {
+                    if (file != null)
+                    {
+                        string imgs = Request.Form["file"];
+                        string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
+                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
+                        file.SaveAs(patc);
+                        objelug.imagen = "/img/lugares/" + pic;
+                        objelug.nombre = Request.Form["namelugar"];
+                        objelug.direccion = Request.Form["direccionlugar"];
+                        objelug.direccionmaps = Request.Form["txtubicalugar"];
+                        objelug.informacionweb = Request.Form["infolugarweb"];
+                        objelug.latitud = Request.Form["lalugar"];
+                        objelug.longitud = Request.Form["lonlugar"];
+                        objelug.idtipo = 2;
+                        BDLU.AgregarSucursal(objelug);
+                        respuesta = "1";
+                    }
+                    else
+                    {
+                        respuesta = "0";
+                    }
+                }
+                catch
+                {
+                    respuesta = "2";
+                }
+
+
+
+            }
+
             else if (data == "addpubli")
             {
                 try
@@ -1281,7 +1316,7 @@ namespace GrandTourMID.Controllers
                         string patc = System.IO.Path.Combine(Server.MapPath("~/img/publi/"), pic);
                         file.SaveAs(patc);
                         objcomercio.cover = "/img/publi/" + pic;
-
+                        objcomercio.idusuario = Convert.ToInt32(Session["ID"]);
                         objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjeo"]);
                         objcomercio.descripcion = Request.Form["descrip"];
                         objcomercio.fecha = Request.Form["fechacupon"];
@@ -1316,6 +1351,20 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
+            else if (data == "loadsucursales")
+            {
+                int iduser = Convert.ToInt32(Session["ID"]);
+                DataTable Lisluga = BDLU.CargarSucursales(iduser);
+                foreach (DataRow row in Lisluga.Rows)
+                {
+                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><a onclick=\"verinfosuc(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</a></p></div>";
+                    Response.Write(respuesta);
+                }
+
+                respuesta = "";
+
+            }
+
             else if (data == "loadhomelugares")
             {
 
@@ -1388,6 +1437,21 @@ namespace GrandTourMID.Controllers
                     respuesta = "0";
                 }
             }
+            else if (data == "verinfosuc")
+            {
+                Session["idlugar"] = Convert.ToInt32(Request.QueryString["idlugar"]);
+                int idlu = Convert.ToInt32(Session["idlugar"]);
+
+                if (idlu != 0)
+                {
+                    respuesta = "1";
+                }
+                else
+                {
+                    respuesta = "0";
+                }
+            }
+
             //res
             else if (data == "cargarinfolugar")
             {
@@ -1435,6 +1499,22 @@ namespace GrandTourMID.Controllers
                 }
                 catch { respuesta = "0"; }
             }
+            else if (data == "actualizardatossucursal")
+            {
+                try
+                {
+                    objelug.idlugar = Convert.ToInt32(Request.Form["idlugar2"]);
+                    objelug.nombre = Request.Form["editnamelugar"];
+                    objelug.informacionweb = Request.Form["editinfolugarweb"];
+                    objelug.informacionapp = Request.Form["editinfolugarweb"];
+                    objelug.direccion = Request.Form["editdireccionlugar"];
+                    objelug.fecha = "";
+                    BDLU.ActualizarDatosLugar(objelug);
+                    respuesta = "1";
+                }
+                catch { respuesta = "0"; }
+            }
+
             //res
             else if (data == "actualizarubicacion")
             {
@@ -1558,10 +1638,26 @@ namespace GrandTourMID.Controllers
 
             else if (data == "verpublis")
             {
-                DataTable lispre = BDCOMER.VerPublicidades();
+                int iduser = Convert.ToInt32(Session["ID"]);
+                DataTable lispre = BDCOMER.VerPublicidades1(iduser);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ></tr>";
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ></tr>";
+                    Response.Write(respuesta);
+
+
+                }
+                respuesta = "";
+
+            }
+
+            else if (data == "verpublis2")
+            {
+                int iduser = Convert.ToInt32(Session["ID"]);
+                DataTable lispre = BDCOMER.VerPublicidades2(iduser);
+                foreach (DataRow row in lispre.Rows)
+                {
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ></tr>";
                     Response.Write(respuesta);
 
 

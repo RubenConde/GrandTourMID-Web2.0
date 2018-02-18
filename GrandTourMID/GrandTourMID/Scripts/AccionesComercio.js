@@ -1,4 +1,4 @@
-﻿/// AGREGAR
+﻿/// Agregar publicidad
 $(document).ready(function () {
     $("#frmagregarpubli").submit(function (e) {
         e.preventDefault();
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 success: function (a) {
                     if (a == 1) {
                         swal({
-                            text: 'Se ha agregado el lugar correctamente!',
+                            text: 'Se ha agregado el cupón correctamente!',
                             type: "success",
                             confirmButtonText: "Aceptar",
                             confirmButtonColor: "#7986CB",
@@ -31,7 +31,7 @@ $(document).ready(function () {
                         $("#namepubli").val('');
                         $("#maxcanjeo").val('');
                         $("#fechacupon").val('');
-
+                        $("#descrip").val('');
                     }
                     else if (a == 0) {
                         swal({
@@ -66,7 +66,7 @@ $(document).ready(function () {
         else {
             swal({
 
-                text: 'No puedes dejar campos vaciós',
+                text: 'No puedes dejar campos vacíos',
                 type: "question",
                 confirmButtonText: "Aceptar",
                 confirmButtonColor: "#7986CB",
@@ -78,13 +78,124 @@ $(document).ready(function () {
         }
     });
 });
+/// Agregar sucursales
+$(document).ready(function () {
+    $("#frmagregarlugar").submit(function (e) {
+        e.preventDefault();
+        if ($("#namelugar").val() != "" && $("#infolugarweb").val() != "" && $("#direccionlugar").val() != "") {
+            var form = $('#frmagregarlugar')[0];
+            var dataString = new FormData(form);
+            $.ajax({
+                url: '/Ajax/Ajax?data=addsuc',  //Server script to process data
+                type: 'POST',
+                data: dataString,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    $("#btnagregarlugar").html('<i class="fa fa-spinner fa-pulse fa-fw"></i>  Agregando');
+                },
+                success: function (a) {
+                    if (a == 1) {
+                        swal({
+                            text: 'Se ha agregado la sucursal correctamente!',
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        })
+                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nueva sucursal');
+                        $("#namelugar").val('');
+                        $("#infolugarweb").val('');
+                        $("#infolugarapp").val('');
+                        $("#direccionlugar").val('');
+                        $("#fechalugar").val('');
+                        $("#imglugar").prop("src", "/img/addimagen.png");
+
+
+                    }
+                    else if (a == 0) {
+                        swal({
+                            title: '¿Seguro no olvidas algo?',
+                            html: '<li class="fa fa-image"></li>' + " " + "Debes ingresar una imagen",
+                            type: "question",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                        $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nueva sucursal');
+                    }
+                    else {
+
+
+
+                    }
+
+                }
+            });
+        }
+        else {
+            swal({
+
+                text: 'No puedes dejar campos vaciós',
+                type: "question",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#7986CB",
+                closeOnCancel: true,
+                closeOnConfirm: true,
+                showLoaderOnConfirm: true
+            });
+            $("#btnagregarlugar").html('<i class="fa fa-plus"></i>  Añadir nueva sucursal');
+        }
+    });
+});
+///Ver Sucursales
+$(document).ready(function () {
+    myinfo();
+    $.ajax({
+        url: "/Ajax/Ajax?data=loadsucursales",
+        type: "POST",
+        success: function (a) {
+
+            $("#listasucursales").html(a);
+
+        }
+    });
+});
+function verinfosuc(e) {
+    clearInterval(interval);
+    $.ajax({
+        url: '/Ajax/Ajax?data=verinfosuc&idlugar=' + e,
+        type: "post",
+
+        success: function (a) {
+            if (a == 1) {
+
+                window.location = "/Comercio/EditarSucursal"
+            }
+        }
+    });
+};
 ///cargar imagen
 var loadimagenpubli = function (event) {
     var imgpubli = document.getElementById('imgpubli');
     imgpubli.src = URL.createObjectURL(event.target.files[0]);
 };
 ////////cargra imagen de editar lugar en <img>
-////////////////////EDITAR PERFIL ADMINISTRADOR////////////////////////
+var loadimagenlugar = function (event) {
+    var imgpubli = document.getElementById('imglugar');
+    imglugar.src = URL.createObjectURL(event.target.files[0]);
+};
+
+var loadimagenlugareditar = function (event) {
+    var imgpubli = document.getElementById('imgeditarlugar');
+    imgeditarlugar.src = URL.createObjectURL(event.target.files[0]);
+};
 ///cargar imagen en <img> del perfil del administrador
 var loadfile = function (event) {
     var pic = document.getElementById('imgcomer');
@@ -228,7 +339,7 @@ $(document).ready(function () {
     $("#validationCustom04").prop('disabled', true);
     $("#validationCustom06").prop('disabled', true);
     $("#validationCustom10").prop('disabled', true);
-    $("#validationCustom08").prop('disabled', true);
+    $("#validationCustom11").prop('disabled', true);
     $("#btnupdatepicture").prop('disabled', true);
     $("#uploadimg").hide();
     $("#contrac").prop('disabled', true);
@@ -256,7 +367,7 @@ $("#btncancelar").click(function () {
     $("#validationCustom04").prop('disabled', true);
     $("#validationCustom06").prop('disabled', true);
     $("#validationCustom10").prop('disabled', true);
-    $("#validationCustom08").prop('disabled', true);
+    $("#validationCustom11").prop('disabled', true);
     $("#validationCustom10").prop('disabled', true);
     $("#validationCustom08").prop('disabled', true);
     $("#btnupdateinfocomer").prop('disabled', true);
@@ -319,7 +430,7 @@ $("#btnhabilit").click(function () {
     $("#validationCustom04").prop('disabled', false);
     $("#validationCustom06").prop('disabled', false);
     $("#validationCustom10").prop('disabled', false);
-    $("#validationCustom08").prop('disabled', false);
+    $("#validationCustom11").prop('disabled', false);
     $("#btnupdateinfocomer").prop('disabled', false);
     $("#btncancelar").prop('disabled', false);
     $("#btnupdateinfocomer").show();
@@ -428,6 +539,7 @@ $(document).ready(function () {
     }
     setInterval(ajaxCall, 1000)
 });
+
 function myinfo() {
     $.ajax({
         url: "/Ajax/Ajax?data=DatosUsuario",
@@ -442,13 +554,42 @@ function myinfo() {
             $('#validationCustom02').val(datos.nombreus);
             $('#validationCustom04').val(datos.usuario);
             $('#validationCustom06').val(datos.apellidop);
-            $('#validationCustom08').val(datos.apellidom);
+            $('#validationCustom11').val(datos.rfc);
             $('#validationCustom10').val(datos.email);
             $("#imgcomer").prop("src", datos.foto)
             $("#roundphotoadmi").prop("src", datos.foto)
         }
 
     });
+}
+
+/**
+ * Función que solo permite la entrada de numeros, un signo negativo y
+ * un punto para separar los decimales
+ */
+function soloNumeros(e) {
+    // capturamos la tecla pulsada
+    var teclaPulsada = window.event ? window.event.keyCode : e.which;
+    // capturamos el contenido del input
+    var valor = document.getElementById("maxcanjeo").value;
+    if (valor.length < 10) {
+        // 13 = tecla enter
+        // Si el usuario pulsa la tecla enter o el punto y no hay ningun otro
+        // punto
+        if (teclaPulsada == 13) {
+            return true;
+        }
+        if (teclaPulsada == 8) {
+            return true;
+        }
+        if (teclaPulsada == 9) {
+            return true;
+        }
+        // devolvemos true o false dependiendo de si es numerico o no
+        return /\d/.test(String.fromCharCode(teclaPulsada));
+    } else {
+        return false;
+    }
 }
 
 

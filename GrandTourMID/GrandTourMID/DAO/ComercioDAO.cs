@@ -41,22 +41,34 @@ namespace GrandTourMID.DAO
 
         }
 
-        public DataTable VerPublicidades()
+        public DataTable VerPublicidades1(int iduser)
         {
-            string sql = string.Format("select * from cupon");
+            string sql = string.Format("select c.cover, c.descripcion, c.cantidad, c.fecha, c.canjeos from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 1", iduser);
+
             return EjercutarSentenciaBusqueda(sql);
         }
 
+        public DataTable VerPublicidades2(int iduser)
+        {
+            string sql = string.Format("select c.cover, c.descripcion, c.cantidad, c.fecha, c.canjeos from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 0", iduser);
+
+            return EjercutarSentenciaBusqueda(sql);
+        }
+
+
         public int AddPublicidad(ComercioBO objelug)
         {
-            cmd = new SqlCommand("insert into lugares  (cantidad, fecha, cover, descripcion) values (@cantidad, @fecha, @cover, @descripcion)");
+            cmd = new SqlCommand("insert into cupon  (cantidad, fecha, cover, descripcion, idusuario) values (@cantidad, @fecha, @cover, @descripcion, @idusuario)");
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = objelug.cantidad;
             cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = objelug.fecha;
             cmd.Parameters.Add("@cover", SqlDbType.VarChar).Value = objelug.cover;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = objelug.descripcion;
+            cmd.Parameters.Add("@idusuario", SqlDbType.Int).Value = objelug.idusuario;
+
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
 
     }
+
 }

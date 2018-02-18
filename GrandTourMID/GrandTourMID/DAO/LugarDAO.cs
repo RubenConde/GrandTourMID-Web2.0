@@ -26,12 +26,35 @@ namespace GrandTourMID.DAO
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
+
+        public int AgregarSucursal(LugarBO objelug)
+        {
+            cmd = new SqlCommand("insert into lugares  (nombre, informacionweb, latitud, longitud, direccion, imagenportada, direccionmap, idtipo) values (@nombre, @infoweb, @latitud, @longitud, @direccion, @img, @direccionmap, @idtipo)");
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objelug.nombre;
+            cmd.Parameters.Add("@infoweb", SqlDbType.VarChar).Value = objelug.informacionweb;
+            cmd.Parameters.Add("@latitud", SqlDbType.VarChar).Value = objelug.latitud;
+            cmd.Parameters.Add("@longitud", SqlDbType.VarChar).Value = objelug.longitud;
+            cmd.Parameters.Add("@direccion", SqlDbType.VarChar).Value = objelug.direccion;
+            cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objelug.imagen;
+            cmd.Parameters.Add("@direccionmap", SqlDbType.VarChar).Value = objelug.direccionmaps;
+            cmd.Parameters.Add("@idtipo", SqlDbType.Int).Value = objelug.idtipo;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
         public DataTable CargarLugares()
         {
-            string sql = string.Format("select * from lugares");
+            string sql = string.Format("select * from lugares where idtipo = 1");
             return EjercutarSentenciaBusqueda(sql);
 
         }
+        public DataTable CargarSucursales(int iduser)
+        {
+            string sql = string.Format("Select * from lugares l join sucursal s on s.idlugar = l.idlugar join usuario u on u.idusuario = s.idusuario where s.idusuario = '{0}'", iduser);
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
         public DataTable BuscarLugar(int id)
         {
             string sql = string.Format("select nombre, fechafundacion, informacionapp, informacionweb, latitud, longitud, direccion, direccionmap, idlugar, imagenportada from lugares where idlugar={0}", id);

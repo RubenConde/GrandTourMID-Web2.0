@@ -11,6 +11,10 @@ namespace GrandTourMID.BO
         public int cantidad { get; set; }
         public string fecha { get; set; }
         public string descripcion { get; set; }
+        public int idusuario { get; set; }
+
+
+
 
         public string imagencomercio { get; set; }
         public string nombrecomer { get; set; }

@@ -15,15 +15,17 @@ namespace GrandTourMID.DAO
         SqlConnection con;
         SqlCommand exec;
 
+        //"Data Source=SQL5037.site4now.net;Initial Catalog=DB_A33427_tour;User Id=DB_A33427_tour_admin;Password=pelana182;"
+
         public ConexionSQL()
         {
-            con = new SqlConnection("Data Source=SQL5037.site4now.net;Initial Catalog=DB_A33427_tour;User Id=DB_A33427_tour_admin;Password=pelana182;");
+            con = new SqlConnection("Server=localhost;Database=DB_A33427_tour;Trusted_Connection=True;");
             //sirve para establecer las consultas e instrucciones SQL que se ejecutarán en el servidor
             exec = new SqlCommand();
         }
         public SqlConnection establecerConexion()
         {
-            string cs = "Data Source=SQL5037.site4now.net;Initial Catalog=DB_A33427_tour;User Id=DB_A33427_tour_admin;Password=pelana182;";
+            string cs = "Server=localhost;Database=DB_A33427_tour;Trusted_Connection=True;";
             con = new SqlConnection(cs);
             return con;
         }
@@ -75,5 +77,7 @@ namespace GrandTourMID.DAO
             adapter.Fill(tabla);
             return tabla;
         }
+
+
     }
 }

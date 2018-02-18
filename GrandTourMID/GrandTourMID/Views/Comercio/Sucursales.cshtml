@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Sucursales";
+    Layout = "~/Views/Shared/MasterComercio.cshtml";
+}
+
+<head>
+    <title>Agregar Sucursal</title>
+</head>
+
+
+<form ondragstart="return false" id="frmagregarlugar" class="row gap-20 masonry pos-r" enctype="multipart/form-data" style="position: relative; height: 1110.6px;">
+    <div class="masonry-sizer col-md-6"></div>
+    <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 0px;">
+        <div class="bgc-white p-20 bd">
+            <h6 class="c-grey-900">Foto de la sucursal</h6>
+                <div style="height:320px">
+                    <center><img class="rounded mx-auto d-block" id="imglugar" src="~/img/addimagen.png" style="width:350px; height:300px;" /></center>
+                    <center><label class="btn-outline-secondary rounded" id="uploadimagenlugar" style="width:133px;cursor:pointer;">Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenlugar(event)" /></label></center>
+
+                </div>
+        </div>
+    </div>
+
+    <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 801.666px;">
+        <div class="bgc-white p-20 bd">
+            <h6 class="c-grey-900">Datos de la sucursal</h6>
+            <div class="mT-30">
+                <div class="container" novalidate="">
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la sucursal</label><input class="form-control" id="namelugar" name="namelugar" placeholder="Ingrese nombre de la sucursal" type="text"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom05">Descripción</label><textarea style="resize:none" class="form-control" id="infolugarweb" name="infolugarweb" placeholder="Ingrese una descripción de la sucursal" type="text"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom09">Dirección</label><input class="form-control" name="direccionlugar" id="direccionlugar" placeholder="Ejemplo: Calle 60 entre 61 y 63" type="text"></div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="masonry-item col-md-12" style="position: absolute; left: 49.9994%; top: 506.4px;">
+
+        <div class="bgc-white p-20 bd">
+            <h6 class="c-grey-900">Ubicación de la sucursal</h6>
+            <div class="mT-30">
+                <div>
+                    <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                        <input id="txtubicalugar" name="txtubicalugar" class="form-control" placeholder="Buscar..." type="text" /><br />
+                        <center><div id="maplugar" style="position: relative; height:400px;  overflow: hidden;"></div></center>
+
+                    </div>
+                    <input type="hidden" name="lonlugar" id="lonlugar" />
+                    <input type="hidden" name="lalugar" id="lalugar" />
+                </div>
+
+                <button style="cursor:pointer" class="btn btn-primary" id="btnagregarlugar" type="submit"><li class="fa fa-plus"></li> Añadir nueva sucursal</button>
+                <button style="cursor:pointer" class="btn btn-danger pull-right" id="btncancelarlugar" type="button">Cancelar</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</form>
+
+<script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('#maplugar').locationpicker({
+            radius: 0,
+            location: {
+                latitude: 20.9681469,
+                longitude: -89.62987240000001
+            },
+            inputBinding: {
+                latitudeInput: $('#lalugar'),
+                longitudeInput: $('#lonlugar'),
+                locationNameInput: $('#txtubicalugar')
+
+
+            },
+            enableAutocomplete: true
+
+        });
+    })
+</script>
