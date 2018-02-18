@@ -677,5 +677,13 @@ namespace GrandTourMID.Controllers
 
             return Content("");
         }
+
+
+
+        public ActionResult UsuariosRegistrados()
+        {
+
+            return View();
+        }
     }
 }

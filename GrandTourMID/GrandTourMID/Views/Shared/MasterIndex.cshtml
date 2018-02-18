@@ -14,8 +14,8 @@
 <link href="~/Content/w3.css" rel="stylesheet" />
 <body>
     <!-- Navbar (sit on top) -->
-    <div class="w3-top w3-amber">
-        <div class="w3-bar w3-amber" id="myNavbar">
+    <div class="w3-top w3-black">
+        <div class="w3-bar w3-black" id="myNavbar">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
                 <i class="fa fa-bars"></i>
             </a>
@@ -140,9 +140,9 @@
         function myFunction() {
             var navbar = document.getElementById("myNavbar");
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                navbar.className = "w3-bar" + " w3-card" + " w3-animate-zoom" + " w3-amber";
+                navbar.className = "w3-bar" + " w3-card" + " w3-animate-zoom" + " w3-black";
             } else {
-                navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-amber", "");
+                navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-black", "");
             }
         }   
 

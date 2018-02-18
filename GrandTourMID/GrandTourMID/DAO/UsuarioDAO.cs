@@ -1,4 +1,4 @@
-﻿using GrandTourMID.BO;
+﻿    using GrandTourMID.BO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -119,7 +119,7 @@ namespace GrandTourMID.DAO
 
         public DataTable BuscarUsuariosTodos()
         {
-            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.apellidop as ApellidoP, u.apellidom as ApellidoM, u.usuario as Usuario, u.foto as Foto FROM usuario u");
+            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.apellidop as ApellidoP, u.apellidom as ApellidoM, u.usuario as Usuario, u.foto as Foto, u.Email, u.fecharegistro FROM usuario u");
             return EjercutarSentenciaBusqueda(sql);
 
         }
