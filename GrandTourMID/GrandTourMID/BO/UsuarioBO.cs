@@ -26,7 +26,7 @@ namespace GrandTourMID.BO
         public DateTime fecha { get; set; }
         public string ruta { get; set; }
         public string email { get; set; }
-
+        public string rfc { get; set; }
 
 
         public string EncriptarMD5(string texto)

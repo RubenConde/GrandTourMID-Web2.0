@@ -48,7 +48,7 @@ namespace GrandTourMID.DAO
         }
         public DataTable verinforeto(int id)
         {
-            string sql = string.Format("select reto.idreto, lugares.imagenportada, reto.reto,lugares.nombre from reto, lugares where reto.idlugar = lugares.idlugar and reto.idreto ='{0}'", id);
+            string sql = string.Format("select reto.idreto, lugares.imagenportada, reto.reto, lugares.nombre from reto, lugares where reto.idlugar = lugares.idlugar and reto.idreto ='{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
         }
         public int ActualizarPregunta(PreguntasBO objep)

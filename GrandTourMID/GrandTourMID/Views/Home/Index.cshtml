@@ -44,17 +44,16 @@
     }
 </style>
 
-
+<head>
+    <title>
+        Grand Tour MID
+    </title>
+</head>
 
 
 <div class=" w3-display-container w3-opacity-min" style=" min-height:540px; background-size:cover" id="imgheader1">
 
     <div id="content" style="margin-top:40px; width:390px; height:500px; border:none;" class="w3-container w3-small w3-col m4 w3-text-white">
-        <h5 class="w3-text-dark-gray w3-center">Comentarios recientes</h5>
-        <div id="scrollable">
-
-
-        </div>
     </div>
 
     <div class="w3-display-middle" style="white-space:nowrap;">
@@ -63,20 +62,20 @@
     </div><br />
 
     @*<div class="phone-display w3-display-right w3-display-top w3-opacity-off" style="right:100px">
-        <div class="phone-display--carousel">
-            <img class="phone-display--image" src="~/img/phone-screenshot.png" width="190" height="330" />
-            <div class="phone-display--carousel-mask">
-                <lu>
-                    <li class="is-current">
-                        <img id="imginicio2" class="phone-display--carousel-list" />
-                    </li>
-                </lu>
+            <div class="phone-display--carousel">
+                <img class="phone-display--image" src="~/img/phone-screenshot.png" width="190" height="330" />
+                <div class="phone-display--carousel-mask">
+                    <lu>
+                        <li class="is-current">
+                            <img id="imginicio2" class="phone-display--carousel-list" />
+                        </li>
+                    </lu>
+                </div>
             </div>
-        </div>
-        <div class="phone-display--bezel hidden-xs">
-            <h3 class="w3-button w3-text-black">Descargalo</h3>
-        </div>
-    </div>*@
+            <div class="phone-display--bezel hidden-xs">
+                <h3 class="w3-button w3-text-black">Descargalo</h3>
+            </div>
+        </div>*@
 
 </div>
 <!-- Container (About Section) -->
@@ -140,10 +139,10 @@
     <div class="w3-row-padding w3-center">
 
         <div class="w3-content w3-display-container" style="max-width:900px">
-            <img id="slide1" class="mySlides" style="width:100%; height:420px">
-            <img id="slide2" class="mySlides" style="width:100%; height:420px">
-            <img id="slide3" class="mySlides" style="width:100%; height:420px">
-            <img id="slide4" class="mySlides" style="width:100%; height:420px">
+            <img id="slide1" class="mySlides" style="width:100%">
+            <img id="slide2" class="mySlides" style="width:100%">
+            <img id="slide3" class="mySlides" style="width:100%">
+            <img id="slide4" class="mySlides" style="width:100%">
             <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
                 <div class="w3-left w3-text-black w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
                 <div class="w3-right w3-text-black w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
@@ -156,7 +155,7 @@
     </div>
 
 </div>
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'" >
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
     <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
     <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
         <img id="img01" class="w3-image">
@@ -180,9 +179,9 @@
         </div>
         <div class="w3-col m8 w3-panel">
             <div class="w3-large w3-margin-bottom">
-                <i class="fa fa-map-marker fa-fw w3-text-black w3-xlarge " style="width:169px" id="direccion"></i> <br>
-                <i class="fa fa-phone fa-fw w3-text-black w3-xlarge w3-margin-right" id="telefono"></i> <br>
-                <i class="fa fa-envelope fa-fw w3-text-black w3-xlarge w3-margin-right" id="correo"></i> <br>
+                <i class="fa fa-map-marker fa-fw w3-text-black w3-xlarge " style="width:169px" id="direccion">&nbsp;</i> <br>
+                <i class="fa fa-phone fa-fw w3-text-black w3-xlarge w3-margin-right" id="telefono">&nbsp;</i> <br>
+                <i class="fa fa-envelope fa-fw w3-text-black w3-xlarge w3-margin-right" id="correo">&nbsp;</i> <br>
                 <input type="hidden" class="w3-round w3-transparent" id="latitud" />
                 <input type="hidden" class="w3-round w3-transparent w3-border" id="longitud" />
             </div>

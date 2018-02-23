@@ -68,7 +68,7 @@ $(document).ready(function () {
                         $("#infolugarapp").val('');
                         $("#direccionlugar").val('');
                         $("#fechalugar").val('');
-                        
+
                     }
                     else if (a == 0) {
                         swal({
@@ -150,7 +150,7 @@ $(document).ready(function () {
                 $("#btnupdatepicture").prop('disabled', true);
                 $("#sss").show();
                 $("#uploadimg").hide();
-               
+
             },
             success: function (a) {
                 if (a == 1) {
@@ -879,3 +879,247 @@ function Acercade(imd) {
         }
     });
 };
+
+
+$(document).ready(function () {
+    $("#frmaddcomer").submit(function (e) {
+        e.preventDefault();
+        if ($('#nombrecomercio').val() != "" && $("#rfccomercio").val() != "" && $("#usercomercio").val() != "" && $("#emailcomercio").val() != "" && $("#passcomercio").val() != "" && $("#passcomerciocon").val() != "") {
+            if ($("#passcomercio").val() == $("#passcomerciocon").val()) {
+                $.ajax({
+                    url: "/Ajax/Ajax?data=registrocomercio",
+                    type: "POST",
+                    data: $("#frmaddcomer").serialize(),
+                    beforeSend: function () {
+                        $("#btnaddcomercio").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Registrando');
+                    },
+                    success: function (a) {
+                        if (a == 1) {
+                            swal({
+                                title: "Registro Exitoso",
+                                text: 'Se ha registrado correctamente el comercio',
+                                type: "success",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true,
+                                });
+                            
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar comercio');
+                            $("#nombrecomercio").val('');
+                            $("#rfccomercio").val('');
+                            $("#usercomercio").val('');
+                            $("#emailcomercio").val('');
+                            $("#passcomercio").val('');
+                            $("#passcomerciocon").val('');
+                            window.setTimeout(function () { }, 3000);
+                            location.reload();
+                        }
+
+                        else if (a == 0) {
+                            swal({
+
+                                title: "Oops",
+                                text: 'Se ha generado un error intentalo de nuevo',
+                                type: "error",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnaddcomercio").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar comercio');
+                        }
+                        else if (a == 2) {
+                            swal({
+                                html: '<li class="fa fa-user"></li> El usuario ya ha sido registrado',
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnaddcomercio").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar comercio');
+                        }
+                        else if (a == 3) {
+
+                            swal({
+
+                                title: "oops",
+                                text: 'El correo ya ah sido registrado',
+                                type: "question",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnaddcomercio").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar comercio');
+
+                        }
+
+                        else {
+
+                            $("#btnaddcomercio").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar comercio');
+                        }
+                    }
+                });
+
+            }
+            else {
+
+                swal({
+                    title: "Las contraseñas no coinciden",
+                    text: 'Verifique sus datos nuevamente',
+                    type: "error",
+                    confirmButtonColor: "#006064",
+                    confirmButtonText: "Aceptar",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                });
+
+
+            }
+        }
+        else {
+
+            swal({
+                title: "¿Estas seguro de haber llenado los campos?",
+                text: 'Verifica los campos por favor',
+                type: "question",
+                confirmButtonColor: "#006064",
+                confirmButtonText: "Aceptar",
+                closeOnCancel: true,
+                closeOnConfirm: true,
+                showLoaderOnConfirm: true
+            });
+
+
+
+
+        }
+    });
+
+});
+$(document).ready(function () {
+    $("#frmregistro").submit(function (e) {
+        e.preventDefault();
+        if ($('#nomc').val() != "" && $("#apep").val() != "" && $("#apem").val() != "" && $("#ps").val() != "" && $("#coe").val() != "" && $("#usr").val() != "" && $("#ps2").val() != "") {
+            if ($("#ps").val() == $("#ps2").val()) {
+                $.ajax({
+                    url: "/Ajax/Ajax?data=registroadmin",
+                    type: "POST",
+                    data: $("#frmregistro").serialize(),
+                    beforeSend: function () {
+                        $("#btnregistro").html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Registrando');
+                    },
+                    success: function (a) {
+                        if (a == 1) {
+                            swal({
+                                title: "Registro Exitoso",
+                                text: 'Se ha registrado correctamente tu cuenta',
+                                type: "success",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
+                            $("#nomc").val('');
+                            $("#apep").val('');
+                            $("#apem").val('');
+                            $("#ps").val('');
+                            $("#coe").val('');
+                            $("#usr").val('');
+                            $("#ps2").val('');
+
+                        }
+
+                        else if (a == 0) {
+                            swal({
+
+                                title: "oops",
+                                text: 'Se ha generado un error intentalo de nuevo',
+                                type: "error",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
+                        }
+                        else if (a == 2) {
+                            swal({
+                                html: '<li class="fa fa-user"></li> El usuario ya ha sido registrado',
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
+                        }
+                        else if (a == 3) {
+
+                            swal({
+
+                                title: "oops",
+                                text: 'El correo ya ah sido  registrado',
+                                type: "question",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
+
+                        }
+
+                        else {
+
+                            $("#btnregistro").html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Registrar');
+                        }
+                    }
+                });
+
+            }
+            else {
+
+                swal({
+                    title: "Las contraseñas no coinciden",
+                    text: 'Verifique sus datos nuevamente',
+                    type: "error",
+                    confirmButtonColor: "#006064",
+                    confirmButtonText: "Aceptar",
+                    closeOnCancel: true,
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: true
+                });
+
+
+            }
+        }
+        else {
+
+            swal({
+                title: "¿Estas seguro de haber llenado los campos?",
+                text: 'Verifica los campos por favor',
+                type: "question",
+                confirmButtonColor: "#006064",
+                confirmButtonText: "Aceptar",
+                closeOnCancel: true,
+                closeOnConfirm: true,
+                showLoaderOnConfirm: true
+            });
+
+
+
+
+        }
+    });
+
+});

@@ -15,16 +15,40 @@ namespace GrandTourMID.DAO
 
         public int Agregar(UsuarioBO objeus)
         {
-            cmd = new SqlCommand("INSERT INTO Usuario(nombre, apellidop, apellidom, usuario, contrasenia, email) values(@nombre, @apellidop, @apellidom, @usuario, @contrasenia, @email)");
+            cmd = new SqlCommand("INSERT INTO Usuario(nombre, usuario, contrasenia, email, idtipo, fecharegistro) values(@nombre, @apellidop, @apellidom, @usuario, @contrasenia, @email, @idtipo, getdate())");
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
-            cmd.Parameters.Add("@apellidop", SqlDbType.VarChar).Value = objeus.apellidop;
-            cmd.Parameters.Add("@apellidom", SqlDbType.VarChar).Value = objeus.apellidom;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = objeus.usuario;
             cmd.Parameters.Add("@contrasenia", SqlDbType.VarChar).Value = objeus.EncriptarMD5(objeus.contraseña);
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = objeus.email;
+            cmd.Parameters.Add("@idtipo", SqlDbType.VarChar).Value = 2;
+
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
+        public int AgregarAdmin(UsuarioBO objeus)
+        {
+            cmd = new SqlCommand("INSERT INTO Usuario(nombre, usuario, contrasenia, email, idtipo, fecharegistro) values(@nombre, @apellidop, @apellidom, @usuario, @contrasenia, @email, @idtipo, getdate())");
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
+            cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = objeus.usuario;
+            cmd.Parameters.Add("@contrasenia", SqlDbType.VarChar).Value = objeus.EncriptarMD5(objeus.contraseña);
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = objeus.email;
+            cmd.Parameters.Add("@idtipo", SqlDbType.VarChar).Value = 1;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+        public int AgregarComercio(UsuarioBO objeus)
+        {
+            cmd = new SqlCommand("INSERT INTO Usuario(nombre, rfc, usuario, contrasenia, email, idtipo, fecharegistro) values(@nombre, @rfc, @usuario, @contrasenia, @email, @idtipo, getdate())");
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
+            cmd.Parameters.Add("@rfc", SqlDbType.VarChar).Value = objeus.rfc;
+            cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = objeus.usuario;
+            cmd.Parameters.Add("@contrasenia", SqlDbType.VarChar).Value = objeus.EncriptarMD5(objeus.contraseña);
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = objeus.email;
+            cmd.Parameters.Add("@idtipo", SqlDbType.Int).Value = 3;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+        }
+
 
         public int ActualizarFotou(UsuarioBO objeus)
         {
@@ -38,10 +62,8 @@ namespace GrandTourMID.DAO
 
         public int Actualizarinfoadmi(UsuarioBO objeus)
         {
-            cmd = new SqlCommand("Update usuario set nombre=@nombre, apellidop=@apep, usuario=@usuario, apellidom=@apem, email=@email where idusuario=@id");
+            cmd = new SqlCommand("Update usuario set nombre=@nombre, usuario=@usuario, email=@email where idusuario=@id");
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
-            cmd.Parameters.Add("@apep", SqlDbType.VarChar).Value =objeus.apellidop;
-            cmd.Parameters.Add("@apem", SqlDbType.VarChar).Value = objeus.apellidom;
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = objeus.email;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = objeus.usuario;
             cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = objeus.id;
@@ -75,10 +97,18 @@ namespace GrandTourMID.DAO
 
         public DataTable BuscarUser(int id)
         {
-            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.apellidop, u.apellidom,u.usuario, u.contrasenia, u.foto, u.email, t.nombre as rol, u.rfc FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and idusuario = '{0}'", id);
+            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.usuario, u.contrasenia, u.foto, u.email, t.nombre as rol, u.rfc FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and idusuario = '{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
 
         }
+
+        public DataTable BuscarUserComercio(int id)
+        {
+            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.usuario, u.contrasenia, u.foto, u.email, t.nombre as rol, u.rfc FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and idusuario = '{0}'", id);
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
 
         public ArrayList BuscarUsuario(UsuarioBO objeus)
         {
@@ -119,10 +149,40 @@ namespace GrandTourMID.DAO
 
         public DataTable BuscarUsuariosTodos()
         {
-            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.apellidop as ApellidoP, u.apellidom as ApellidoM, u.usuario as Usuario, u.foto as Foto, u.Email, u.fecharegistro FROM usuario u");
+            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.usuario as Usuario, u.foto as Foto, u.Email, CONVERT(varchar, u.fecharegistro, 107) as fecharegistro FROM usuario u where idtipo = 1");
             return EjercutarSentenciaBusqueda(sql);
 
         }
+        public DataTable BuscarUsuariosRegistrados()
+        {
+            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.usuario as Usuario, u.foto as Foto, u.Email, CONVERT(varchar, u.fecharegistro, 107) as fecharegistro FROM usuario u where estado = 1");
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
+        public DataTable BuscarUsuariosInactivos()
+        {
+            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.usuario as Usuario, u.foto as Foto, u.Email, CONVERT(varchar, u.fecharegistro, 107) as fecharegistro FROM usuario u where u.estado = 2");
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
+        public DataTable BuscarUsuariosBloquedos()
+        {
+            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.usuario as Usuario, u.foto as Foto, u.Email, CONVERT(varchar, u.fecharegistro, 107) as fecharegistro FROM usuario u where estado = 3");
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
+
+        public DataTable BuscarUsuariosComercio()
+        {
+            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.rfc, u.usuario as Usuario, u.foto as Foto, u.Email, CONVERT(varchar, u.fecharegistro, 107) as fecharegistro FROM usuario u where idtipo = 3");
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
+
 
         public DataTable NumeroUsuarios()
         {
@@ -147,20 +207,20 @@ namespace GrandTourMID.DAO
 
         public DataTable BuscarUsuarioActivo()
         {
-            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.apellidop as ApellidoP, u.apellidom as ApellidoM, u.usuario as Usuario, u.foto as Foto, u.estado from usuario u, tipo t WHERE t.idtipo = u.idtipo and u.estado = 1");
+            string sql = string.Format("SELECT u.idusuario as ID, u.nombre as Nombre, u.usuario as Usuario, u.foto as Foto, u.estado from usuario u, tipo t WHERE t.idtipo = u.idtipo and u.estado = 1");
             return EjercutarSentenciaBusqueda(sql);
         }
 
         public DataTable BuscarUsuarioInactivo()
         {
-            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.apellidop, u.apellidom,u. usuario, u.contrasenia, u.foto, email, t.nombre as rol FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and u.estado = 0 ");
+            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.usuario, u.contrasenia, u.foto, email, t.nombre as rol FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and u.estado = 0 ");
             return EjercutarSentenciaBusqueda(sql);
 
         }
 
         public DataTable BuscarUsuarioBloqueado()
         {
-            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.apellidop, u.apellidom,u. usuario, u.contrasenia, u.foto, email, t.nombre as rol FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and u.estado =2");
+            string sql = string.Format("SELECT u.idusuario, u.nombre as nombreus, u.usuario, u.contrasenia, u.foto, email, t.nombre as rol FROM tipo t, usuario u WHERE t.idtipo = u.idtipo and u.estado =2");
             return EjercutarSentenciaBusqueda(sql);
 
         }

@@ -685,5 +685,25 @@ namespace GrandTourMID.Controllers
 
             return View();
         }
+
+        public ActionResult UsuariosComercio()
+        {
+
+            return View();
+        }
+
+        public ActionResult Cupones()
+        {
+
+            return View();
+        }
+
+        public ActionResult CuponesAprob()
+        {
+
+            return View();
+        }
+
+
     }
 }

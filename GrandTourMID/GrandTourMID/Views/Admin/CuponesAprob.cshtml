@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "CuponesAprob";
+    Layout = "~/Views/Shared/MasterAdmi.cshtml";
+}
+
+<h2>Cupones aprobados</h2>
+<head>
+    <title>Cupones aprobados</title>
+</head>
+
+<div class="w3-centered" style="width:1080px; margin-left:60px; height:425px; overflow:auto;">
+    <table id="datosUsuarios" class="table table-striped table-bordered">
+        <thead>
+        <td>ID</td>
+        <td>Imágen del cupón</td>
+        <td>Descripción</td>
+        <td>Comercio</td>
+        <td>Opciones</td>
+        </thead>
+        <tbody id="Contenercuponesaprob"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="content" class="modal-body">
+                <center>
+                    <img id="imgcuponejemplo" class="align-middle" style="width:70%" />
+                </center>
+                <br />
+                <input class="form-control-plaintext" id="descripcupon" type="text" style="width:100%; border:none; font-size:large" disabled="disabled" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script>
+
+    function SeleccionarL(a) {
+        $.ajax({
+            url: "/Ajax/Ajax?data=desaprobarcupon&idcupon=" + a,
+            type: "POST",
+            success: function (a) {
+                location.reload();
+            }
+
+        });
+    }
+
+
+    function VerC(a) {
+        $.ajax({
+            url: "/Ajax/Ajax?data=verinfocupon&idcupon=" + a,
+            type: "POST",
+            success: function (a) {
+
+                var datos = JSON.parse(a);
+                $("#imgcuponejemplo").prop("src", datos.cover);
+                $("#descripcupon").val(datos.descripcion)
+
+
+            }
+
+        });
+    }
+
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Ajax/Ajax?data=ListaCuponesAprob",
+            type: "POST",
+            success: function (a) {
+
+                $("#Contenercuponesaprob").html(a);
+
+            }
+        });
+    });
+
+
+
+    function doSearch() {
+        var tableReg = document.getElementById('datosUsuarios');
+        var searchText = document.getElementById('buscaruse').value.toLowerCase();
+        var cellsOfRow = "";
+        var found = false;
+        var compareWith = "";
+        // Recorremos todas las filas con contenido de la tabla
+        for (var i = 1; i < tableReg.rows.length; i++) {
+            cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+            found = false;
+            // Recorremos todas las celdas
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                // Buscamos el texto en el contenido de la celda
+                if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tableReg.rows[i].style.display = '';
+            } else {
+                // si no ha encontrado ninguna coincidencia, esconde la
+                // fila de la tabla
+                tableReg.rows[i].style.display = 'none';
+            }
+        }
+    };
+
+</script>
+
+

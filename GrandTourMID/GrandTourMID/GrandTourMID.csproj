@@ -329,6 +329,9 @@
     <Content Include="Views\Comercio\Sucursales.cshtml" />
     <Content Include="Views\Comercio\ListaSucursales.cshtml" />
     <Content Include="Views\Comercio\EditarSucursal.cshtml" />
+    <Content Include="Views\Admin\UsuariosComercio.cshtml" />
+    <Content Include="Views\Admin\Cupones.cshtml" />
+    <Content Include="Views\Admin\CuponesAprob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

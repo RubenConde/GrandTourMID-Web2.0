@@ -54,10 +54,17 @@ namespace GrandTourMID.DAO
             return EjercutarSentenciaBusqueda(sql);
 
         }
+        public DataTable CargarSucursal(int idlugar)
+        {
+            string sql = string.Format("Select * from lugares where idlugar = '{0}'", idlugar);
+            return EjercutarSentenciaBusqueda(sql);
+
+        }
+
 
         public DataTable BuscarLugar(int id)
         {
-            string sql = string.Format("select nombre, fechafundacion, informacionapp, informacionweb, latitud, longitud, direccion, direccionmap, idlugar, imagenportada from lugares where idlugar={0}", id);
+            string sql = string.Format("select nombre, CONVERT(varchar, fechafundacion, 107) as fechafundacion, informacionapp, informacionweb, latitud, longitud, direccion, direccionmap, idlugar, imagenportada from lugares where idlugar={0}", id);
             return EjercutarSentenciaBusqueda(sql);
 
         }

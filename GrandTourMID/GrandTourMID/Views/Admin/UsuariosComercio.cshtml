@@ -1,22 +1,19 @@
 ﻿
 @{
-    ViewBag.Title = "UsuariosRegistrados";
+    ViewBag.Title = "UsuariosComercio";
     Layout = "~/Views/Shared/MasterAdmi.cshtml";
 }
 
-<h2>Usuarios Administradores</h2>
+<h2>Usuarios Comercio</h2>
 <head>
     <title>
-        Usuarios Administradores
+        Usuarios Comercio
     </title>
 </head>
 
 
 
 <form style="margin-left:60px; width:1080px">
-
-
-
     <label>Buscar usuario</label>
     <button type="button" id="agregarusu" data-toggle="modal" data-target="#exampleModal" style="margin-left:860px; cursor:pointer" class="btn-sm btn btn-primary"><li class="fa fa-plus-circle"></li> Agregar Usuario</button>
     <br />
@@ -24,18 +21,17 @@
     <br />
 </form>
 <div class="w3-centered" style="width:1080px; margin-left:60px; height:425px; overflow:auto;">
-    <table id="datosUsuarios" class="table table-striped table-bordered">
+    <table id="datosUsuariosComercio" class="table table-striped table-bordered">
         <thead>
         <td>ID</td>
         <td>Foto</td>
         <td>Nombre</td>
-        <td>Apellido Paterno</td>
-        <td>Apellido Materno</td>
+        <td>RFC</td>
         <td>Usuario</td>
         <td>Email</td>
         <td>Fecha de registro</td>
         </thead>
-        <tbody id="ContenerUsuario"></tbody>
+        <tbody id="ContenerUsuarioComercio"></tbody>
     </table>
 </div>
 
@@ -49,31 +45,26 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5>Agregar administrador</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="cursor:pointer"><span aria-hidden="true">×</span></button>
+                <h5>Agregar comercio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="cursor:pointer"><span aria-hidden="true">x</span></button>
             </div>
             <div id="content" class="modal-body">
-                <form class="w3-container" id="frmregistro">
-                    <label class="w3-animate-left"><b>Nombre</b></label>
-                    <input id="nomc" name="nomc" class="form-control" type="text" placeholder="Ingrese su nombre(s)">
-                    <label class="w3-animate-left"><b>Apellido Paterno</b></label>
-                    <input id="apep" name="apep" class="form-control" type="text" placeholder="Ingrese su apellido paterno">
-                    <label class="w3-animate-left"><b>Apellido Materno</b></label>
-                    <input id="apem" name="apem" class="form-control" type="text" placeholder="Ingrese su apellido materno">
-                    <label class="w3-animate-left"><b>Usuario</b></label>
-                    <input id="usr" name="usr" class="form-control" type="text" placeholder="Ingrese un nombre de usuario">
-                    <label class="w3-animate-left"><b>Correo electrónico</b></label>
-                    <input id="coe" name="coe" class="form-control" type="email" placeholder="Ingrese su correo electrónico">
-                    <label class="w3-animate-left"><b>Contraseña</b></label>
-                    <input name="ps" id="ps" class="form-control" type="password" placeholder="Ingrese su contraseña">
-                    <label class="w3-animate-left"><b>Confirmar Contraseña</b></label>
-                    <input name="ps2" id="ps2" class="form-control" type="password" placeholder="Confirme su contraseña">
-                    <br />
-                    <button id="btnregistro" class="btn btn-success btn-sm" type="submit">
-                        <li class="fa fa-plus-circle"></li> Registrar
-                    </button>
-                </form>
+                <form id="frmaddcomer" ondragstart="return false;" enctype="multipart/form-data" style="position: relative;">
+                    <label><b>Nombre</b></label>
+                    <input placeholder="Ingrese el nombre del comercio" id="nombrecomercio" name="nombrecomercio" class="form-control" type="text" />
+                    <label><b>Registro Federal de Contribuyentes (RFC)</b></label>
+                    <input placeholder="Ingrese el rfc del comercio" id="rfccomercio" name="rfccomercio" class="form-control" type="text" />
+                    <label><b>Nombre de usuario</b></label>
+                    <input placeholder="Ingrese el nombre de usuario del comercio" id="usercomercio" name="usercomercio" class="form-control" type="text" />
+                    <label><b>E-mail</b></label>
+                    <input placeholder="Ingrese el correo electrónico del comercio" id="emailcomercio" name="emailcomercio" class="form-control" type="text" />
+                    <label><b>Contraseña</b></label>
+                    <input placeholder="Ingrese la contraseña del comercio" id="passcomercio" name="passcomercio" class="form-control" type="password" />
+                    <label><b>Confirmar contraseña</b></label>
+                    <input placeholder="Confirme la contraseña del comercio" id="passcomerciocon" name="passcomerciocon" class="form-control" type="password" /><br />
 
+                    <button type="submit" style="cursor:pointer" class="btn btn-success btn-sm" id="btnaddcomercio"><i class="fa fa-plus-circle"></i> Registrar comercio</button>
+                </form>
             </div>
 
         </div>
@@ -91,11 +82,11 @@
 
     $(document).ready(function () {
         $.ajax({
-            url: "/Ajax/Ajax?data=ListaUsuario",
+            url: "/Ajax/Ajax?data=ListaUsuarioComercio",
             type: "POST",
             success: function (a) {
 
-                $("#ContenerUsuario").html(a);
+                $("#ContenerUsuarioComercio").html(a);
 
             }
         });
@@ -104,7 +95,7 @@
 
 
     function doSearch() {
-        var tableReg = document.getElementById('datosUsuarios');
+        var tableReg = document.getElementById('datosUsuariosComercio');
         var searchText = document.getElementById('buscaruse').value.toLowerCase();
         var cellsOfRow = "";
         var found = false;

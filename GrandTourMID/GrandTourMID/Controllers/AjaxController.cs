@@ -1,4 +1,4 @@
-﻿    using GrandTourMID.BO;
+﻿using GrandTourMID.BO;
 using GrandTourMID.DAO;
 using Newtonsoft.Json;
 using System;
@@ -135,6 +135,16 @@ namespace GrandTourMID.Controllers
                 respuesta = jSonString;
 
             }
+            else if (data == "DatosUsuarioComercio")
+            {
+                objeus.id = Convert.ToInt32(Session["ID"]);
+                int id = objeus.id;
+                DataTable dt = BDU.BuscarUser(id);
+                String jSonString = ConvertirDataJson(dt);
+                respuesta = jSonString;
+
+            }
+
             //Agregar Registro
             else if (data == "registro")
             {
@@ -170,6 +180,74 @@ namespace GrandTourMID.Controllers
                 }
 
             }
+            else if (data == "registrocomercio")
+            {
+                try
+                {
+                    objeus.email = Request.Form["emailcomercio"];
+                    objeus.usuario = Request.Form["usercomercio"];
+                    DataTable usre = BDU.ValidarRegistroUsuario(objeus);
+                    DataTable usemail = BDU.ValidarRegistroEmail(objeus);
+
+                    if (usre.Rows.Count > 0)
+                    {
+                        respuesta = "2";
+                    }
+                    else if (usemail.Rows.Count > 0)
+                    {
+                        respuesta = "3";
+                    }
+                    else
+                    {
+                        objeus.nombre = Request.Form["nombrecomercio"];
+                        objeus.rfc = Request.Form["rfccomercio"];
+                        objeus.contraseña = Request.Form["passcomercio"];
+                        BDU.AgregarComercio(objeus);
+                        respuesta = "1";
+                    }
+
+                }
+                catch
+                {
+                    respuesta = "0";
+                }
+
+            }
+            else if (data == "registroadmin")
+            {
+                try
+                {
+                    objeus.email = Request.Form["coe"];
+                    objeus.usuario = Request.Form["usr"];
+                    DataTable usre = BDU.ValidarRegistroUsuario(objeus);
+                    DataTable usemail = BDU.ValidarRegistroEmail(objeus);
+
+                    if (usre.Rows.Count > 0)
+                    {
+                        respuesta = "2";
+                    }
+                    else if (usemail.Rows.Count > 0)
+                    {
+                        respuesta = "3";
+                    }
+                    else
+                    {
+                        objeus.nombre = Request.Form["nomc"];
+                        objeus.apellidop = Request.Form["apep"];
+                        objeus.apellidom = Request.Form["apem"];
+                        objeus.contraseña = Request.Form["ps"];
+                        BDU.AgregarAdmin(objeus);
+                        respuesta = "1";
+                    }
+
+                }
+                catch
+                {
+                    respuesta = "0";
+                }
+
+            }
+
             //Validar Contraseña en el perfil de usuario
             else if (data == "checkpass")
             {
@@ -1312,10 +1390,10 @@ namespace GrandTourMID.Controllers
                     if (file != null)
                     {
                         string imgs = Request.Form["file"];
-                        string pic = "publi_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/publi/"), pic);
+                        string pic = "publi_" + System.IO.Path.GetFileName(file.FileName);
+                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/cupon/"), pic);
                         file.SaveAs(patc);
-                        objcomercio.cover = "/img/publi/" + pic;
+                        objcomercio.cover = "/img/cupon/" + pic;
                         objcomercio.idusuario = Convert.ToInt32(Session["ID"]);
                         objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjeo"]);
                         objcomercio.descripcion = Request.Form["descrip"];
@@ -1327,6 +1405,27 @@ namespace GrandTourMID.Controllers
                     {
                         respuesta = "0";
                     }
+                }
+                catch
+                {
+                    respuesta = "2";
+                }
+
+
+
+            }
+
+            else if (data == "addcomercio")
+            {
+                try
+                {
+                    objeus.nombre = Request.Form["nombrecomercio"];
+                    objeus.usuario = Request.Form["usercomercio"];
+                    objeus.rfc = Request.Form["rfccomercio"];
+                    objeus.email = Request.Form["emailcomercio"];
+                    objeus.contraseña = Request.Form["passcomercio"];
+                    BDU.AgregarComercio(objeus);
+                    respuesta = "1";
                 }
                 catch
                 {
@@ -1357,7 +1456,7 @@ namespace GrandTourMID.Controllers
                 DataTable Lisluga = BDLU.CargarSucursales(iduser);
                 foreach (DataRow row in Lisluga.Rows)
                 {
-                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><a onclick=\"verinfosuc(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</a></p></div>";
+                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><a onclick=\"editsuc(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</a></p></div>";
                     Response.Write(respuesta);
                 }
 
@@ -1538,7 +1637,7 @@ namespace GrandTourMID.Controllers
                 DataTable dlugares = BDLU.CargarLugares();
                 foreach (DataRow row in dlugares.Rows)
                 {
-                    respuesta = "<tr><td > " + row["idlugar"] + " </td ><td>" + row["nombre"] + "</td><td>" + row["direccion"] + " </td><td><button onclick=\"SeleccionarL(" + row["idlugar"] + ")\" class=\"btn btn-primary small\" style=\"cursor:pointer\" data-dismiss=\"modal\" type=\"button\"><li class=\"fa fa-share-square-o\"></li> Seleccionar</button></td></tr>";
+                    respuesta = "<tr><td>" + row["nombre"] + "</td><td>" + row["direccion"] + " </td><td><button onclick=\"SeleccionarL(" + row["idlugar"] + ")\" class=\"btn btn-primary small\" style=\"cursor:pointer\" data-dismiss=\"modal\" type=\"button\"><li class=\"fa fa-share-square-o\"></li> Seleccionar</button></td></tr>";
                     Response.Write(respuesta);
                 }
 
@@ -1556,6 +1655,40 @@ namespace GrandTourMID.Controllers
 
 
             }
+            else if (data == "verinfocupon")
+            {
+                int id = Convert.ToInt32(Request.QueryString["idcupon"]);
+                DataTable dt = BDCOMER.Verinfocupon(id);
+                String jSonString = ConvertirDataJson(dt);
+
+                respuesta = jSonString;
+
+
+            }
+
+            else if (data == "aprobarcupon")
+            {
+                int id = Convert.ToInt32(Request.QueryString["idcupon"]);
+                BDCOMER.Aprobarcupon(id);
+                
+
+                respuesta = "1";
+
+
+            }
+
+            else if (data == "desaprobarcupon")
+            {
+                int id = Convert.ToInt32(Request.QueryString["idcupon"]);
+                BDCOMER.Desaprobarcupon(id);
+
+
+                respuesta = "1";
+
+
+            }
+
+
             //res
             else if (data == "agregarpregunta")
             {
@@ -1616,7 +1749,7 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in datos.Rows)
                 {
 
-                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>"+row["Email"] +"</td><td>"+row["fecharegistro"] +"</td></tr>";
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
                     Response.Write(respuesta);
 
                 }
@@ -1626,6 +1759,109 @@ namespace GrandTourMID.Controllers
 
             }
 
+            else if (data == "ListaCuponesDesaprob")
+            {
+                DataTable datos = BDCOMER.VerCuponesDes();
+                foreach (DataRow row in datos.Rows)
+                {
+
+                    respuesta = "<tr><td>" + row["idcupon"] + "</td><td><center><img style=\"width:150px; heigth:150px;\" src=\"" + row["cover"] + "\"/></center></td><td>" + row["descripcion"] + " </td><td>" + row["nombre"] + " </td><td><button onclick=\"SeleccionarL(" + row["idcupon"] + ")\" class=\"btn btn-primary small\" style=\"cursor:pointer\" data-dismiss=\"modal\" type=\"button\"><li class=\"fa fa-check\" alt=\"Aprobar\"></li></button>&nbsp;<button onclick=\"VerC(" + row["idcupon"] + ")\" data-target=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-eye\" alt=\"Aprobar\"></li></button></td></tr>";
+                    Response.Write(respuesta);
+
+                }
+
+                respuesta = "";
+
+
+            }
+
+            else if (data == "ListaCuponesAprob")
+            {
+                DataTable datos = BDCOMER.VerCuponesApr();
+                foreach (DataRow row in datos.Rows)
+                {
+
+                    respuesta = "<tr><td>" + row["idcupon"] + "</td><td><center><img style=\"width:150px; heigth:150px;\" src=\"" + row["cover"] + "\"/></center></td><td>" + row["descripcion"] + " </td><td>" + row["nombre"] + " </td><td><button onclick=\"SeleccionarL(" + row["idcupon"] + ")\" class=\"btn btn-primary small\" style=\"cursor:pointer\" data-dismiss=\"modal\" type=\"button\"><li class=\"fa fa-ban\" alt=\"Aprobar\"></li></button>&nbsp;<button onclick=\"VerC(" + row["idcupon"] + ")\" data-target=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-eye\" alt=\"Aprobar\"></li></button></td></tr>";
+                    Response.Write(respuesta);
+
+                }
+
+                respuesta = "";
+
+
+            }
+
+            else if (data == "ListaUsuarioRegistrado")
+            {
+
+                DataTable datos = BDU.BuscarUsuariosRegistrados();
+                foreach (DataRow row in datos.Rows)
+                {
+
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    Response.Write(respuesta);
+
+                }
+
+                respuesta = "";
+
+
+            }
+
+            else if (data == "ListaUsuarioInactivo")
+            {
+
+                DataTable datos = BDU.BuscarUsuariosInactivos();
+                foreach (DataRow row in datos.Rows)
+                {
+
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    Response.Write(respuesta);
+
+                }
+
+                respuesta = "";
+
+
+            }
+
+            else if (data == "ListaUsuarioBloqueado")
+            {
+
+                DataTable datos = BDU.BuscarUsuariosBloquedos();
+                foreach (DataRow row in datos.Rows)
+                {
+
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    Response.Write(respuesta);
+
+                }
+
+                respuesta = "";
+
+
+            }
+
+
+
+
+
+            else if (data == "ListaUsuarioComercio")
+            {
+
+                DataTable datos = BDU.BuscarUsuariosComercio();
+                foreach (DataRow row in datos.Rows)
+                {
+
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["rfc"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    Response.Write(respuesta);
+
+                }
+
+                respuesta = "";
+
+
+            }
 
             //res
             else if (data == "verpregunatasrespuestas")
@@ -1648,7 +1884,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDPRE.VerRetosLugar(id);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td > " + row["idreto"] + " </td ><td>" + row["reto"] + "</td><td><button type=\"button\" onclick=\"editarreto(" + row["idreto"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
+                    respuesta = "<tr><td > " + row["idreto"] + " </td ><td>" + row["reto"] + "</td><td><button type=\"button\" onclick=\"editarreto(" + row["idreto"] + ")\" style=\"cursor:pointer\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
                     Response.Write(respuesta);
 
 
@@ -1701,6 +1937,14 @@ namespace GrandTourMID.Controllers
                 respuesta = "1";
 
             }
+            else if (data == "editsuc")
+            {
+
+                Session["idlugar"] = Convert.ToInt32(Request.QueryString["idlugar"]);
+                respuesta = "1";
+
+            }
+
             //res
             else if (data == "infopreguntaeditar")
             {
@@ -1718,6 +1962,15 @@ namespace GrandTourMID.Controllers
 
                 respuesta = jSonString;
             }
+            else if (data == "infosuceditar")
+            {
+                int idpre = Convert.ToInt32(Session["idlugar"]);
+                DataTable dt = BDLU.CargarSucursales(idpre);
+                String jSonString = ConvertirDataJson(dt);
+
+                respuesta = jSonString;
+            }
+
             //res
             else if (data == "updatepregunta")
             {

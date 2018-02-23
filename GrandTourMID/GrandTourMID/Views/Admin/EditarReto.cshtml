@@ -3,6 +3,9 @@
     ViewBag.Title = "EditarPregunta";
     Layout = "~/Views/Shared/MasterAdmi.cshtml";
 }
+<head>
+    <title>Editar reto</title>
+</head>
 
 <div class="container-fluid">
     <div class="bgc-white bd bdrs-3 p-20 mB-20">
@@ -67,7 +70,7 @@
             success: function (a) {
                 var datos = JSON.parse(a);
 
-                $('#nameretoeditar').val(datos.pregunta);
+                $('#nameretoeditar').val(datos.reto);
                 $('#titulolugareditar').html(datos.nombre);
                 $("#respuesta").val(datos.idpregunta);
                 $("#imageneditarreto").prop("src", datos.imagenportada)

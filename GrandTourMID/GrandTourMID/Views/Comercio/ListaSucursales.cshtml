@@ -18,3 +18,39 @@
 
 
 <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script>
+    function editarreto(e) {
+
+        $.ajax({
+            url: '/Ajax/Ajax?data=editsuc&idlugar=' + e,
+            type: "post",
+
+            success: function (a) {
+                if (a == 1) {
+
+                    window.location = "/Comercio/EditarSucursal"
+                }
+
+            }
+        });
+    };
+
+    function Infosuc() {
+
+        $.ajax({
+            url: "/Ajax/Ajax?data=infosuceditar",
+            type: "POST",
+            success: function (a) {
+                var datos = JSON.parse(a);
+
+                $('#nameretoeditar').val(datos.reto);
+                $('#titulolugareditar').html(datos.nombre);
+                $("#respuesta").val(datos.idpregunta);
+                $("#imageneditarreto").prop("src", datos.imagenportada)
+
+            }
+
+        });
+    };
+
+</script>
