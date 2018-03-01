@@ -10,8 +10,5 @@ namespace GrandTourMID.DAO
 {
     public class AcercaDAO:ConexionSQL
     {
-        SqlCommand cmd;
-
-
     }
 }

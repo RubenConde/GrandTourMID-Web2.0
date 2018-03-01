@@ -683,25 +683,193 @@ namespace GrandTourMID.Controllers
         public ActionResult UsuariosRegistrados()
         {
 
-            return View();
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+            if (idtipo == 1)
+            {
+                if (estado == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+
+            return Content("");
         }
 
         public ActionResult UsuariosComercio()
         {
 
-            return View();
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+            if (idtipo == 1)
+            {
+                if (estado == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+
+            return Content("");
         }
 
         public ActionResult Cupones()
         {
 
-            return View();
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+            if (idtipo == 1)
+            {
+                if (estado == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+
+            return Content("");
         }
 
         public ActionResult CuponesAprob()
         {
 
-            return View();
+            int idtipo = 0;
+            int id = Convert.ToInt32(Session["ID"]);
+            idtipo = Convert.ToInt32(Session["idtipo"]);
+            int estado = Convert.ToInt32(Session["estado"]);
+            if (Session["ID"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+            if (idtipo == 1)
+            {
+                if (estado == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 2)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Profile/Profile");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+            if (idtipo == 3)
+            {
+                if (estado == 1)
+                {
+                    return View("~/Comercio/Estadisticas");
+                }
+                else
+                {
+                    return View("~/Home/Index");
+                }
+            }
+
+            return Content("");
         }
 
 

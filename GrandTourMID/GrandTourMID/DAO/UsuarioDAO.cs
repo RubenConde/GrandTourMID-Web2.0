@@ -15,7 +15,7 @@ namespace GrandTourMID.DAO
 
         public int Agregar(UsuarioBO objeus)
         {
-            cmd = new SqlCommand("INSERT INTO Usuario(nombre, usuario, contrasenia, email, idtipo, fecharegistro) values(@nombre, @apellidop, @apellidom, @usuario, @contrasenia, @email, @idtipo, getdate())");
+            cmd = new SqlCommand("INSERT INTO Usuario(nombre, usuario, contrasenia, email, idtipo, fecharegistro) values(@nombre, @usuario, @contrasenia, @email, @idtipo, getdate())");
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = objeus.usuario;
             cmd.Parameters.Add("@contrasenia", SqlDbType.VarChar).Value = objeus.EncriptarMD5(objeus.contraseña);
@@ -27,7 +27,7 @@ namespace GrandTourMID.DAO
         }
         public int AgregarAdmin(UsuarioBO objeus)
         {
-            cmd = new SqlCommand("INSERT INTO Usuario(nombre, usuario, contrasenia, email, idtipo, fecharegistro) values(@nombre, @apellidop, @apellidom, @usuario, @contrasenia, @email, @idtipo, getdate())");
+            cmd = new SqlCommand("INSERT INTO Usuario(nombre, usuario, contrasenia, email, idtipo, fecharegistro) values(@nombre, @usuario, @contrasenia, @email, @idtipo, getdate())");
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objeus.nombre;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = objeus.usuario;
             cmd.Parameters.Add("@contrasenia", SqlDbType.VarChar).Value = objeus.EncriptarMD5(objeus.contraseña);

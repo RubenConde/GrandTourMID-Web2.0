@@ -25,13 +25,17 @@
     <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 801.666px;">
         <div class="bgc-white p-20 bd">
             <h6 class="c-grey-900">Datos</h6>
+            <div class="bg-danger text-white ">
+                <h5>¡Atención!</h5>
+                <p>Al momento de agregar un nuevo cupón no podrá modificarlo después.</p>
+            </div>
             <div class="mT-30">
                 <div class="container" novalidate="">
                     <div class="row">
                         <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namepubli" placeholder="Ingrese el nombre de la publicidad" type="text"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom05">Número maximo de canjeos</label><input style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Introducir el número máximo de canjeos" type="text" onkeypress="return soloNumeros(event);"></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom05">Número máximo de canjeos</label><input style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Introducir el número máximo de canjeos" type="text" onkeypress="return soloNumeros(event);"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3"><label for="validationCustom06">Descripción del cupón</label><textarea style="resize:none" class="form-control" id="descrip" name="descrip" placeholder="Introducir la descripción del cupón" type="text"></textarea></div>
@@ -43,11 +47,13 @@
                             <input class="form-control bdc-grey-200 start-date" id="fechacupon" name="fechacupon" placeholder="Fecha" data-provide="datepicker" type="date">
                         </div>
                     </div>
-                    <button style="cursor:pointer" class="btn btn-primary" id="btnaddpubli" type="submit"><li class="fa fa-plus"></li> Agregar cupón</button>
+                    <button style="cursor:pointer" class="btn btn-primary" id="btnaddpubli" type="submit"><li class="fa fa-plus"></li> Agregar cupón</button><br />
                 </div>
             </div>
         </div>
     </div>
+
+
 </form>
 
 <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>

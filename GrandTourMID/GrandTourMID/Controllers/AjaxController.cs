@@ -166,8 +166,6 @@ namespace GrandTourMID.Controllers
                     else
                     {
                         objeus.nombre = Request.Form["nomc"];
-                        objeus.apellidop = Request.Form["apep"];
-                        objeus.apellidom = Request.Form["apem"];
                         objeus.contraseña = Request.Form["ps"];
                         BDU.Agregar(objeus);
                         respuesta = "1";
@@ -233,8 +231,6 @@ namespace GrandTourMID.Controllers
                     else
                     {
                         objeus.nombre = Request.Form["nomc"];
-                        objeus.apellidop = Request.Form["apep"];
-                        objeus.apellidom = Request.Form["apem"];
                         objeus.contraseña = Request.Form["ps"];
                         BDU.AgregarAdmin(objeus);
                         respuesta = "1";
@@ -1271,8 +1267,6 @@ namespace GrandTourMID.Controllers
                 objeus.id = Convert.ToInt32(Session["ID"]);
                 objeus.nombre = Request.Form["nameadmi"];
                 objeus.usuario = Request.Form["useradmi"];
-                objeus.apellidop = Request.Form["apepa"];
-                objeus.apellidom = Request.Form["apemat"];
                 objeus.email = Request.Form["emailadmi"];
                 BDU.Actualizarinfoadmi(objeus);
                 respuesta = "1";
@@ -1298,6 +1292,9 @@ namespace GrandTourMID.Controllers
                     string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(file.FileName);
                     string patc = System.IO.Path.Combine(Server.MapPath("~/img/usuarios/"), pic);
                     file.SaveAs(patc);
+                    //byte[] imageBytes = System.IO.File.ReadAllBytes(patc);
+                    //string base64String = Convert.ToBase64String(imageBytes);
+
                     objeus.imagen = "/img/usuarios/" + pic;
                     BDU.ActualizarFotou(objeus);
                     respuesta = "1";
@@ -1318,12 +1315,15 @@ namespace GrandTourMID.Controllers
                 {
                     if (file != null)
                     {
+
                         string imgs = Request.Form["file"];
                         string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
                         string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
                         file.SaveAs(patc);
-                        objelug.imagen = "/img/lugares/" + pic;
+                        //byte[] imageBytes = System.IO.File.ReadAllBytes(patc);
+                        //string base64String = Convert.ToBase64String(imageBytes);
 
+                        objelug.imagen = "/img/lugares/" + pic;
                         objelug.nombre = Request.Form["namelugar"];
                         objelug.direccion = Request.Form["direccionlugar"];
                         objelug.direccionmaps = Request.Form["txtubicalugar"];
@@ -1382,7 +1382,6 @@ namespace GrandTourMID.Controllers
 
 
             }
-
             else if (data == "addpubli")
             {
                 try
@@ -1414,7 +1413,6 @@ namespace GrandTourMID.Controllers
 
 
             }
-
             else if (data == "addcomercio")
             {
                 try
@@ -1456,14 +1454,13 @@ namespace GrandTourMID.Controllers
                 DataTable Lisluga = BDLU.CargarSucursales(iduser);
                 foreach (DataRow row in Lisluga.Rows)
                 {
-                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><a onclick=\"editsuc(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</a></p></div>";
+                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><a onclick=\"verinfolugar(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</a></p></div>";
                     Response.Write(respuesta);
                 }
 
                 respuesta = "";
 
             }
-
             else if (data == "loadhomelugares")
             {
 
@@ -1477,7 +1474,6 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
             else if (data == "loadlugaresvisitados")
             {
                 int id = Convert.ToInt32(Session["ID"]);
@@ -1491,7 +1487,6 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
             else if (data == "loadfotosusuarioxlugar")
             {
                 int iduser = Convert.ToInt32(Session["ID"]);
@@ -1507,7 +1502,6 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
-
             else if (data == "loadultimasfotosuser")
             {
                 int iduser = Convert.ToInt32(Session["ID"]);
@@ -1670,7 +1664,7 @@ namespace GrandTourMID.Controllers
             {
                 int id = Convert.ToInt32(Request.QueryString["idcupon"]);
                 BDCOMER.Aprobarcupon(id);
-                
+
 
                 respuesta = "1";
 
@@ -1749,7 +1743,7 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in datos.Rows)
                 {
 
-                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
                     Response.Write(respuesta);
 
                 }
@@ -1798,7 +1792,7 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in datos.Rows)
                 {
 
-                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
                     Response.Write(respuesta);
 
                 }
@@ -1815,7 +1809,7 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in datos.Rows)
                 {
 
-                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
                     Response.Write(respuesta);
 
                 }
@@ -1832,7 +1826,7 @@ namespace GrandTourMID.Controllers
                 foreach (DataRow row in datos.Rows)
                 {
 
-                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["ApellidoP"] + "</td><td>" + row["ApellidoM"] + "</td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
+                    respuesta = "<tr><td > " + row["ID"] + " </td ><td><img style=\"width:50px; heigth:50px;\" src=\"" + row["Foto"] + "\"/></td><td>" + row["Nombre"] + " </td><td>" + row["Usuario"] + "</td><td>" + row["Email"] + "</td><td>" + row["fecharegistro"] + "</td></tr>";
                     Response.Write(respuesta);
 
                 }

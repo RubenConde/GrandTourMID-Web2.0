@@ -12,8 +12,6 @@ namespace GrandTourMID.BO
     {
         public int id { get; set; }
         public string nombre { get; set; }
-        public string apellidop { get; set; }
-        public string apellidom { get; set; }
         public int idtipo { get; set; }
         public string imagen { get; set; }
         public int idDireccion { get; set; }

@@ -47,7 +47,7 @@ namespace GrandTourMID
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void RegistrarUsuario(string nombre, string apellidopa, string apellidoma, string pas, string us, string correo)
+        public void RegistrarUsuario(string nombre, string pas, string us, string correo)
         {
             string respuesta = "";
             objeus.email = correo;
@@ -66,8 +66,6 @@ namespace GrandTourMID
             else
             {
                 objeus.nombre = nombre;
-                objeus.apellidop = apellidopa;
-                objeus.apellidom = apellidopa;
                 objeus.contraseña = pas;
                 BDUS.Agregar(objeus);
                 respuesta = "1";

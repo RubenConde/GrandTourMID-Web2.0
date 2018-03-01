@@ -167,6 +167,22 @@ $(document).ready(function () {
         }
     });
 });
+function verinfolugar(e) {
+    clearInterval(interval);
+    $.ajax({
+        url: '/Ajax/Ajax?data=verinfolugar&idlugar=' + e,
+        type: "post",
+
+        success: function (a) {
+            if (a == 1) {
+
+                window.location = "/Comercio/EditarSucursal"
+            }
+
+        }
+    });
+};
+
 function verinfosuc(e) {
     clearInterval(interval);
     $.ajax({
