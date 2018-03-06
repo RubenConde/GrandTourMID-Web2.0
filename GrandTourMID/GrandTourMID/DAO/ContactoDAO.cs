@@ -68,7 +68,7 @@ namespace GrandTourMID.DAO
         }
         public DataTable InboxVistos()
         {
-            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=1 and eliminado=0");
+            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where visto=1 and eliminado=0 order by idmensaje desc");
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable Vermensaje(ContactoBO objec)
@@ -95,7 +95,7 @@ namespace GrandTourMID.DAO
         }
         public DataTable InboxEnviado()
         {
-            string sql = string.Format("select idcorreo, fecha, para, motivo, mensaje from Correo");
+            string sql = string.Format("select idcorreo, fecha, para, motivo, mensaje from Correo order by idcorreo desc");
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable Verinboxenviado(ContactoBO objec)
@@ -110,7 +110,7 @@ namespace GrandTourMID.DAO
         }
         public DataTable Inboxeliminado()
         {
-            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where eliminado=1");
+            string sql = string.Format("select idmensaje, nombre, email, mensaje, fecha from MensajeContacto where eliminado=1 order by idmensaje desc");
             return EjercutarSentenciaBusqueda(sql);
         }
         public int Mensajeeliminado(ContactoBO objec)

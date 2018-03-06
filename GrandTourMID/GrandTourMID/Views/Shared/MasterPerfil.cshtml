@@ -18,8 +18,56 @@
             font-family: "Raleway", sans-serif
         }
     </style>
+
+    <meta property="og:url" content="http://christian98-001-site1.btempurl.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Grand Tour MID" />
+    <meta property="og:description" content="¡Ven, juega, diviertete y aprende sobre Yucatán!" />
+    <meta property="og:image" content="http://christian98-001-site1.btempurl.com/img/logogtm.png" />
+
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.12&appId=351451418613500&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <script>
+        $('.popup').click(function (event) {
+
+            var width = 50,
+
+                height = 400,
+
+                left = ($(window).width() - width) / 2,
+
+                top = ($(window).height() - height) / 2,
+
+                url = this.href,
+
+                opts = 'status=1' +
+
+                    ',width=' + width +
+
+                    ',height=' + height +
+
+                    ',top=' + top +
+
+                    ',left=' + left;
+
+            window.open(url, 'twitter', opts);
+
+            return false;
+
+        });
+    </script>
 
     <!-- Sidebar/menu -->
 
@@ -48,14 +96,22 @@
             <a style="cursor:pointer" onclick="CerrarSesion()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>Cerrar Sesión</a>
 
         </div>
-        <div class="w3-panel w3-large">
-            <i class="fa fa-facebook-official w3-hover-opacity"></i>
-            <i class="fa fa-instagram w3-hover-opacity"></i>
-            <i class="fa fa-snapchat w3-hover-opacity"></i>
-            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-            <i class="fa fa-twitter w3-hover-opacity"></i>
-            <i class="fa fa-linkedin w3-hover-opacity"></i>
-        </div>
+        @*<div class="w3-panel w3-large">
+                <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                <i class="fa fa-instagram w3-hover-opacity"></i>
+                <i class="fa fa-snapchat w3-hover-opacity"></i>
+                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+                <i class="fa fa-twitter w3-hover-opacity"></i>
+                <i class="fa fa-linkedin w3-hover-opacity"></i>
+            </div>*@
+
+
+
+        <!-- Your share button code -->
+        <div class="fb-share-button w3-margin" data-href="http://christian98-001-site1.btempurl.com" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchristian98-001-site1.btempurl.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook-official w3-hover-opacity w3-xxlarge" style="cursor:pointer"></i></a></div>
+
+        <div class="fb-share-button w3-margin" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="popup" href="http://twitter.com/share?text=Gracias%20Grand%20Tour%20MID%20por%20la%20experiencía&via=GrandTourMIDOfi"><i class="fa fa-twitter w3-hover-opacity w3-xxlarge"></i></a></div>
+
     </nav>
 
     <!-- Overlay effect when opening sidebar on small screens -->
@@ -72,7 +128,7 @@
                 <h1 style="margin-left:30px"><b></b></h1>
             </div>
         </header>
-        <td></td>
+
         <!-- First Photo Grid-->
         <div style="height:580px; margin-left:10px">
 

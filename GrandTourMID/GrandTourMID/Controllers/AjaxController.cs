@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
@@ -1320,9 +1321,12 @@ namespace GrandTourMID.Controllers
                         string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
                         string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
                         file.SaveAs(patc);
-                        //byte[] imageBytes = System.IO.File.ReadAllBytes(patc);
+                        string url = Request.Form["urlimagen"];
+                        var webClient = new WebClient();
+                        byte[] imageBytes = webClient.DownloadData(url);
                         //string base64String = Convert.ToBase64String(imageBytes);
 
+                        
                         objelug.imagen = "/img/lugares/" + pic;
                         objelug.nombre = Request.Form["namelugar"];
                         objelug.direccion = Request.Form["direccionlugar"];
@@ -1332,6 +1336,7 @@ namespace GrandTourMID.Controllers
                         objelug.informacionweb = Request.Form["infolugarweb"];
                         objelug.latitud = Request.Form["lalugar"];
                         objelug.longitud = Request.Form["lonlugar"];
+                        objelug.icono = imageBytes;
                         BDLU.AgregarLugar(objelug);
                         respuesta = "1";
                     }

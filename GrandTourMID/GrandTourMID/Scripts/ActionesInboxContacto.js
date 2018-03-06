@@ -10,8 +10,8 @@ function deleteinbox(e) {
 
             if (r == 1) {
                 swal(
-                    'Deleted!',
-                    'Your file has been deleted.',
+                    'Eliminado!',
+                    'El correo ha sido eliminado .',
                     'success'
                 );
             }
@@ -382,7 +382,7 @@ $(document).ready(function () {
                     else if (a == 0) {
                         swal({
                             title: "Error",
-                            text: 'No se envio tu correo electronico, verifica tu conexion a internet e intentalo de nuevo',
+                            text: 'No se envio tu correo electronico, verifica tu conexión a internet e intentalo de nuevo',
                             type: "error",
                             confirmButtonText: "Aceptar",
                             closeOnCancel: true,

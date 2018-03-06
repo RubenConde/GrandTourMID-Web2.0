@@ -267,7 +267,7 @@ $("#cambiarimagen1").click(function () {
         success: function (a) {
             if (a == 1) {
                 swal({
-                    text: 'Se ha actualizado tu foto de perfil!',
+                    text: 'Se ha actualizado la imagen',
                     type: "success",
                     confirmButtonText: "Aceptar",
                     confirmButtonColor: "#006064",
@@ -628,7 +628,7 @@ $("#cambiarslide1").click(function () {
         success: function (a) {
             if (a == 1) {
                 swal({
-                    text: 'Se ha actualizado tu foto de perfil!',
+                    text: 'Se ha actualizado la imagen',
                     type: "success",
                     confirmButtonText: "Aceptar",
                     confirmButtonColor: "#006064",
@@ -663,7 +663,7 @@ $("#cambiarslide2").click(function () {
         success: function (a) {
             if (a == 1) {
                 swal({
-                    text: 'Se ha actualizado tu foto de perfil!',
+                    text: 'Se ha actualizado la imagen',
                     type: "success",
                     confirmButtonText: "Aceptar",
                     confirmButtonColor: "#006064",
@@ -699,7 +699,7 @@ $("#cambiarslide3").click(function () {
         success: function (a) {
             if (a == 1) {
                 swal({
-                    text: 'Se ha actualizado tu foto de perfil!',
+                    text: 'Se ha actualizado la imagen',
                     type: "success",
                     confirmButtonText: "Aceptar",
                     confirmButtonColor: "#006064",
@@ -734,7 +734,7 @@ $("#cambiarslide4").click(function () {
         success: function (a) {
             if (a == 1) {
                 swal({
-                    text: 'Se ha actualizado tu foto de perfil!',
+                    text: 'Se ha actualizado la imagen',
                     type: "success",
                     confirmButtonText: "Aceptar",
                     confirmButtonColor: "#006064",

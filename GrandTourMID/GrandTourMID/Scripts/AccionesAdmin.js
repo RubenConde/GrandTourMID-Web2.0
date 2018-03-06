@@ -1034,7 +1034,8 @@ $(document).ready(function () {
                             $("#coe").val('');
                             $("#usr").val('');
                             $("#ps2").val('');
-
+                            window.setTimeout(function () { }, 3000);
+                            location.reload();
                         }
 
                         else if (a == 0) {
