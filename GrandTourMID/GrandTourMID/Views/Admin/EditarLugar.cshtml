@@ -30,12 +30,12 @@
     </div>
 
     <div class="masonry-item col-md-6" style="position: absolute; left: 0%; top: 801.666px;">
-        <div class="bgc-white p-20 bd">
+        <div class="bgc-white p-20 bd" style="height:650px">
             <button type="button" id="editlugar2" class="btn btn-primary pull-right">Editar</button>
             <br />
             <h6 class="c-grey-900">Datos del lugar</h6>
             <div class="mT-30">
-                <form id="frmeditardatoslugar" style="height:529.233px" class="container" novalidate="">
+                <form id="frmeditardatoslugar" name="frmeditardatoslugar" style="height:529.233px" class="container" novalidate="">
                     <input id="idlugar2" name="idlugar2" type="hidden" />
                     <div class="row">
                         <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre del lugar</label><input class="form-control" id="editnamelugar" name="editnamelugar" placeholder="Ingrese nombre del lugar" type="text"></div>
@@ -49,13 +49,32 @@
                     <div class="row">
                         <div class="col-md-12 mb-3"><label for="validationCustom09">Dirección</label><input class="form-control" name="editdireccionlugar" id="editdireccionlugar" placeholder="Ingrese la dirección" type="text"></div>
                     </div>
-                    <br />
-                    <div class="timepicker-input input-icon form-group">
-                        <label for="validationCustom09">Fecha de fundación</label>
-                        <div class="input-group">
-                            <div class="input-group-addon bgc-white bd bdwR-0"><i class="ti-calendar"></i></div>
-                            <input class="form-control bdc-grey-200 start-date" id="editfechalugar" name="editfechalugar" placeholder="Fecha" data-provide="datepicker" type="text">
-
+                    <div class="row">
+                        <div class="timepicker-input input-icon form-group">
+                            <label for="validationCustom09">Fecha de fundación</label>
+                            <div class="input-group">
+                                <div class="input-group-addon bgc-white bd bdwR-0"><i class="ti-calendar"></i></div>
+                                <input class="form-control bdc-grey-200 start-date" id="editfechalugar" name="editfechalugar" placeholder="Fecha" data-provide="datepicker" type="text">
+                            </div>
+                        </div>
+                        <div class=" col-md-4">
+                            <label for="validationCustom09">Seleccionar el icono</label><br />
+                            <input class="form-control" id="urlimagen" name="urlimagen" placeholder="Ingrese nombre del lugar" type="hidden" value="http://christian98-001-site1.btempurl.com/img/icono/1.png">
+                            <center>
+                                <img src="http://christian98-001-site1.btempurl.com/img/icono/1.png" width="70" height="70" name="icono" id="icono" />
+                                <select name="switch" onchange="switchImage();">
+                                    <option value="1">Iglesia</option>
+                                    <option value="2">Estatua</option>
+                                    <option value="3">Cementerio</option>
+                                    <option value="4">Museo</option>
+                                    <option value="5">Tienda de arte</option>
+                                    <option value="6">Tienda de ropa</option>
+                                    <option value="7">Restaurante</option>
+                                    <option value="8">Planetario</option>
+                                    <option value="9">Teatro</option>
+                                    <option value="10">Parque</option>
+                                </select>
+                            </center>
                         </div>
                     </div>
                     <button class="btn btn-primary" id="btneditardatoslugar" type="submit"><li class="fa fa-edit"></li>Actualizar información</button>
@@ -92,9 +111,19 @@
 </div>
 <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        
+    var imageList = Array();
+    for (var i = 1; i <= 10; i++) {
+        imageList[i] = new Image(70, 70);
+        imageList[i].src = "http://christian98-001-site1.btempurl.com/img/icono/" + i + ".png";
+    }
 
+    function switchImage() {
+        var selectedImage = document.frmeditardatoslugar.switch.options[document.frmeditardatoslugar.switch.selectedIndex].value;
+        document.icono.src = imageList[selectedImage].src;
+        document.getElementById("urlimagen").value = document.icono.src;
+    }
+
+    $(document).ready(function () {
         $("#frmeditarubicacionlugar").submit(function (e) {
             e.preventDefault();
             $.ajax({
@@ -320,6 +349,7 @@
                 $('#idlugar').val(datos.idlugar);
                 $('#idlugar2').val(datos.idlugar);
                 $('#idlugar3').val(datos.idlugar);
+                $('#urlimagen').val(datos.rutaicono);
 
 
                 $('#maplugaredit').locationpicker({

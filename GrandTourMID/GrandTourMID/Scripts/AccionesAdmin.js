@@ -399,6 +399,7 @@ $(document).ready(function () {
                         $("#btnupdate").prop('disabled', true);
                         $("#btncancelar").prop('disabled', true);
                         $("#btncancelarcontra").prop('disabled', true);
+
                     }
                     else if (a == 0) {
                         swal({

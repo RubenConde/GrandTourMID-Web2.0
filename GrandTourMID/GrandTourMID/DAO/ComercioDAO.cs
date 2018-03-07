@@ -59,7 +59,7 @@ namespace GrandTourMID.DAO
 
         public DataTable Verinfocupon(int idcupon)
         {
-            string sql = string.Format("select idcupon, cover, descripcion from cupon where idcupon = '{0}'", idcupon);
+            string sql = string.Format("select idcupon, cantidad, CONVERT(varchar, fecha, 103) as fecha, cover, descripcion from cupon where idcupon = '{0}'", idcupon);
 
             return EjercutarSentenciaBusqueda(sql);
         }
@@ -82,7 +82,7 @@ namespace GrandTourMID.DAO
 
         public DataTable VerPublicidades1(int iduser)
         {
-            string sql = string.Format("select c.cover, c.descripcion, c.cantidad, CONVERT(varchar, c.fecha, 107) as fecha, c.canjeos from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 1", iduser);
+            string sql = string.Format("select c.idcupon, c.cover, c.descripcion, c.cantidad, CONVERT(varchar, c.fecha, 107) as fecha, c.canjeos from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 1", iduser);
 
             return EjercutarSentenciaBusqueda(sql);
         }

@@ -1324,9 +1324,10 @@ namespace GrandTourMID.Controllers
                         string url = Request.Form["urlimagen"];
                         var webClient = new WebClient();
                         byte[] imageBytes = webClient.DownloadData(url);
-                        //string base64String = Convert.ToBase64String(imageBytes);
+                        byte[] portada64 = System.IO.File.ReadAllBytes(patc);
+                        string base64String = Convert.ToBase64String(portada64);
 
-                        
+
                         objelug.imagen = "/img/lugares/" + pic;
                         objelug.nombre = Request.Form["namelugar"];
                         objelug.direccion = Request.Form["direccionlugar"];
@@ -1337,6 +1338,8 @@ namespace GrandTourMID.Controllers
                         objelug.latitud = Request.Form["lalugar"];
                         objelug.longitud = Request.Form["lonlugar"];
                         objelug.icono = imageBytes;
+                        objelug.portada64 = base64String;
+                        objelug.rutaicono = url;
                         BDLU.AgregarLugar(objelug);
                         respuesta = "1";
                     }
@@ -1363,6 +1366,15 @@ namespace GrandTourMID.Controllers
                         string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
                         string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
                         file.SaveAs(patc);
+                        string icono = Request.Form["file2"];
+                        string icono2 = "lugar_Gde_" + System.IO.Path.GetFileName(file2.FileName);
+                        string iconopatc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
+                        file.SaveAs(iconopatc);
+                        byte[] iconochido = System.IO.File.ReadAllBytes(iconopatc);
+
+                        byte[] portada64 = System.IO.File.ReadAllBytes(patc);
+                        string base64String = Convert.ToBase64String(portada64);
+
                         objelug.imagen = "/img/lugares/" + pic;
                         objelug.nombre = Request.Form["namelugar"];
                         objelug.direccion = Request.Form["direccionlugar"];
@@ -1371,6 +1383,8 @@ namespace GrandTourMID.Controllers
                         objelug.latitud = Request.Form["lalugar"];
                         objelug.longitud = Request.Form["lonlugar"];
                         objelug.idtipo = 2;
+                        objelug.icono = iconochido;
+                        objelug.portada64 = base64String;
                         BDLU.AgregarSucursal(objelug);
                         respuesta = "1";
                     }
@@ -1571,7 +1585,10 @@ namespace GrandTourMID.Controllers
                     string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
                     string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
                     file.SaveAs(patc);
+                    byte[] portada64 = System.IO.File.ReadAllBytes(patc);
+                    string base64String = Convert.ToBase64String(portada64);
                     objelug.imagen = "/img/lugares/" + pic;
+                    objelug.portada64 = base64String;
                     BDLU.ActualizarImagenLugar(objelug);
                     respuesta = "1";
                 }
@@ -1587,12 +1604,18 @@ namespace GrandTourMID.Controllers
             {
                 try
                 {
+                    string url = Request.Form["urlimagen"];
+                    var webClient = new WebClient();
+                    byte[] imageBytes = webClient.DownloadData(url);
+
                     objelug.idlugar = Convert.ToInt32(Request.Form["idlugar2"]);
                     objelug.nombre = Request.Form["editnamelugar"];
                     objelug.informacionweb = Request.Form["editinfolugarweb"];
                     objelug.informacionapp = Request.Form["editinfolugarapp"];
                     objelug.direccion = Request.Form["editdireccionlugar"];
                     objelug.fecha = Request.Form["editfechalugar"];
+                    objelug.icono = imageBytes;
+                    objelug.rutaicono = url;
                     BDLU.ActualizarDatosLugar(objelug);
                     respuesta = "1";
                 }
@@ -1898,7 +1921,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDCOMER.VerPublicidades1(iduser);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ></tr>";
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ><td><button onclick=\"VerC(" + row["idcupon"] + ")\" data-target=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-pencil\" alt=\"Editar\"></li></button></td></tr>";
                     Response.Write(respuesta);
 
 

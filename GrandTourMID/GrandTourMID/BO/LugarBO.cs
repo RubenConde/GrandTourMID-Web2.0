@@ -19,8 +19,9 @@ namespace GrandTourMID.BO
         public string direccionmaps { get; set; }
         public int idtipo { get; set; }
         public byte[] icono { get; set; }
+        public string portada64 { get; set; }
 
-
+        public string rutaicono { get; set; }
 
     }
 }

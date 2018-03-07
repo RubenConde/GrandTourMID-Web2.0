@@ -46,13 +46,14 @@
 <div style="position: center">
     <hr />
     <h3>Cupones Vigentes</h3>
-    <table class="table table-bordered">
+    <table class="table table-bordered ">
         <thead>
         <td style="width:200px">Imágen del cupón</td>
         <td style="width:500px">Descripción del cupón</td>
         <td style="width:250px">Número de canjeos</td>
         <td style="width:240px">Máximo de canjeos</td>
         <td style="width:260px">Fecha de vencimiento</td>
+        <td>Seleccionar</td>
         </thead>
         <tbody id="contenedorpublis"></tbody>
     </table>
@@ -69,6 +70,38 @@
         <tbody id="contenedorpublis2"></tbody>
     </table>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="content" class="modal-body">
+                <center><img class="rounded mx-auto d-block" id="imgcuponejemplo" style="width:150px; height:150px;" /></center>
+                <br />
+                <center><label class="btn-outline-secondary rounded" id="editarcuponimagen" style="width:150px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagencuponeditar(event)" /></label></center>
+                @*<div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namepubli" placeholder="Ingrese el nombre de la publicidad" type="text"></div>
+                    </div>*@
+                <div class="row">
+                    <div class="col-md-12 mb-3"><label for="validationCustom05">Número máximo de canjeos</label><input style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Introducir el número máximo de canjeos" type="text" onkeypress="return soloNumeros(event);"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3"><label for="validationCustom06">Descripción del cupón</label><textarea style="resize:none" class="form-control" id="descripcupon" name="descripcupon" placeholder="Introducir la descripción del cupón" type="text"></textarea></div>
+                </div>
+                <div class="timepicker-input input-icon form-group">
+                    <label for="validationCustom09">Fecha de vencimiento</label>
+                    <div class="input-group">
+                        <div class="input-group-addon bgc-white bd bdwR-0"><i class="ti-calendar"></i></div>
+                        <input class="form-control bdc-grey-200 start-date" id="editfechacup" name="editfechacup" placeholder="Fecha" data-provide="datepicker" type="text">
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="btneditcupon" type="submit"><li class="fa fa-edit"></li>Actualizar</button>
+                <button class="btn btn-danger pull-right" id="btncancelareditcupon" type="button">Cancelar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -94,6 +127,25 @@
             }
         });
     };
+
+    function VerC(a) {
+        $.ajax({
+            url: "/Ajax/Ajax?data=verinfocupon&idcupon=" + a,
+            type: "POST",
+            success: function (a) {
+
+                var datos = JSON.parse(a);
+                $("#imgcuponejemplo").prop("src", datos.cover);
+                $("#namepubli").val(datos.nombre)
+                $("#maxcanjeo").val(datos.cantidad)
+                $("#descripcupon").val(datos.descripcion)
+                $("#editfechacup").val(datos.fecha)
+
+
+            }
+
+        });
+    }
 
 
     function Verpublicidades2(a) {

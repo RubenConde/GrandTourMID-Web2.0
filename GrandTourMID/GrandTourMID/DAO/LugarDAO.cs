@@ -13,7 +13,7 @@ namespace GrandTourMID.DAO
         SqlCommand cmd;
         public int AgregarLugar(LugarBO objelug)
         {
-            cmd = new SqlCommand("insert into lugares  (fechafundacion, nombre, informacionapp, informacionweb, latitud, longitud, direccion, imagenportada, direccionmap, icono) values (@fecha, @nombre, @infoapp, @infoweb, @latitud, @longitud, @direccion, @img, @direccionmap, @icono)");
+            cmd = new SqlCommand("insert into lugares  (fechafundacion, nombre, informacionapp, informacionweb, latitud, longitud, direccion, imagenportada, direccionmap, icono, portada64, rutaicono) values (@fecha, @nombre, @infoapp, @infoweb, @latitud, @longitud, @direccion, @img, @direccionmap, @icono, @portada64, @rutaicono)");
             cmd.Parameters.Add("@fecha", SqlDbType.VarChar).Value = objelug.fecha;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objelug.nombre;
             cmd.Parameters.Add("@infoapp", SqlDbType.VarChar).Value = objelug.informacionapp;
@@ -24,13 +24,16 @@ namespace GrandTourMID.DAO
             cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objelug.imagen;
             cmd.Parameters.Add("@direccionmap", SqlDbType.VarChar).Value = objelug.direccionmaps;
             cmd.Parameters.Add("@icono", SqlDbType.Image).Value = objelug.icono;
+            cmd.Parameters.Add("@portada64", SqlDbType.VarChar).Value = objelug.portada64;
+            cmd.Parameters.Add("@rutaicono", SqlDbType.VarChar).Value = objelug.rutaicono;
+
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
 
         public int AgregarSucursal(LugarBO objelug)
         {
-            cmd = new SqlCommand("insert into lugares  (nombre, informacionweb, latitud, longitud, direccion, imagenportada, direccionmap, idtipo) values (@nombre, @infoweb, @latitud, @longitud, @direccion, @img, @direccionmap, @idtipo)");
+            cmd = new SqlCommand("insert into lugares  (nombre, informacionweb, latitud, longitud, direccion, imagenportada, direccionmap, idtipo, icono, portada64) values (@nombre, @infoweb, @latitud, @longitud, @direccion, @img, @direccionmap, @idtipo, @icono, @portada64)");
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objelug.nombre;
             cmd.Parameters.Add("@infoweb", SqlDbType.VarChar).Value = objelug.informacionweb;
             cmd.Parameters.Add("@latitud", SqlDbType.VarChar).Value = objelug.latitud;
@@ -39,6 +42,9 @@ namespace GrandTourMID.DAO
             cmd.Parameters.Add("@img", SqlDbType.VarChar).Value = objelug.imagen;
             cmd.Parameters.Add("@direccionmap", SqlDbType.VarChar).Value = objelug.direccionmaps;
             cmd.Parameters.Add("@idtipo", SqlDbType.Int).Value = objelug.idtipo;
+            cmd.Parameters.Add("@icono", SqlDbType.Image).Value = objelug.icono;
+            cmd.Parameters.Add("@portada64", SqlDbType.VarChar).Value = objelug.portada64;
+
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }
@@ -65,7 +71,7 @@ namespace GrandTourMID.DAO
 
         public DataTable BuscarLugar(int id)
         {
-            string sql = string.Format("select nombre, CONVERT(varchar, fechafundacion, 107) as fechafundacion, informacionapp, informacionweb, latitud, longitud, direccion, direccionmap, idlugar, imagenportada from lugares where idlugar={0}", id);
+            string sql = string.Format("select nombre, CONVERT(varchar, fechafundacion, 107) as fechafundacion, informacionapp, informacionweb, latitud, longitud, direccion, direccionmap, idlugar, imagenportada, rutaicono from lugares where idlugar={0}", id);
             return EjercutarSentenciaBusqueda(sql);
 
         }
@@ -93,9 +99,11 @@ namespace GrandTourMID.DAO
 
         public int ActualizarImagenLugar(LugarBO objelu)
         {
-            cmd = new SqlCommand("update lugares set imagenportada=@imagen where idlugar=@id");
+            cmd = new SqlCommand("update lugares set imagenportada=@imagen, portada64=@portada64 where idlugar=@id");
             cmd.Parameters.Add("@imagen", SqlDbType.VarChar).Value= objelu.imagen;
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = objelu.idlugar;
+            cmd.Parameters.Add("@portada64", SqlDbType.VarChar).Value = objelu.portada64;
+
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
 
@@ -103,13 +111,16 @@ namespace GrandTourMID.DAO
 
         public int ActualizarDatosLugar(LugarBO objelug)
         {
-            cmd = new SqlCommand("update lugares set fechafundacion=@fecha, nombre=@nombre,informacionapp=@infoapp, informacionweb=@infoweb, direccion=@direccion where idlugar=@id ");
+            cmd = new SqlCommand("update lugares set fechafundacion=@fecha, nombre=@nombre,informacionapp=@infoapp, informacionweb=@infoweb, direccion=@direccion, icono=@icono, rutaicono=@rutaicono where idlugar=@id ");
             cmd.Parameters.Add("@fecha", SqlDbType.VarChar).Value = objelug.fecha;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objelug.nombre;
             cmd.Parameters.Add("@infoapp", SqlDbType.VarChar).Value = objelug.informacionapp;
             cmd.Parameters.Add("@infoweb", SqlDbType.VarChar).Value = objelug.informacionweb;
             cmd.Parameters.Add("@direccion", SqlDbType.VarChar).Value = objelug.direccion;
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = objelug.idlugar;
+            cmd.Parameters.Add("@icono", SqlDbType.Image).Value = objelug.icono;
+            cmd.Parameters.Add("@rutaicono", SqlDbType.VarChar).Value = objelug.rutaicono;
+
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }

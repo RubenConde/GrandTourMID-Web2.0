@@ -212,6 +212,11 @@ var loadimagenlugareditar = function (event) {
     var imgpubli = document.getElementById('imgeditarlugar');
     imgeditarlugar.src = URL.createObjectURL(event.target.files[0]);
 };
+var loadimagencuponeditar = function (event) {
+    var imgpubli = document.getElementById('imgcuponejemplo');
+    imgcuponejemplo.src = URL.createObjectURL(event.target.files[0]);
+};
+
 ///cargar imagen en <img> del perfil del administrador
 var loadfile = function (event) {
     var pic = document.getElementById('imgcomer');
