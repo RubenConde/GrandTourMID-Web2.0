@@ -31,9 +31,46 @@ namespace GrandTourMID.DAO
             cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = objcomercio.id;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
+        }
+
+
+
+        public int ActualizarCUPON(ComercioBO objcomercio)
+        {
+            cmd = new SqlCommand("Update cupon set cantidad=@cantidad, fecha=@fecha, cover=@cover, descripcion=@descripcion, cupon64=@cupon64 where idcupon=@id");
+            cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = objcomercio.cantidad;
+            cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = objcomercio.fecha;
+            cmd.Parameters.Add("@cover", SqlDbType.VarChar).Value = objcomercio.cover;
+            cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = objcomercio.descripcion;
+            cmd.Parameters.Add("@cupon64", SqlDbType.VarChar).Value = objcomercio.cupon64;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objcomercio.idcupon;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
 
 
         }
+        public int ActualizarCUPONsinimagen(ComercioBO objcomercio)
+        {
+            cmd = new SqlCommand("Update cupon set cantidad=@cantidad, fecha=@fecha, descripcion=@descripcion where idcupon=@id");
+            cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = objcomercio.cantidad;
+            cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = objcomercio.fecha;
+            cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = objcomercio.descripcion;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objcomercio.idcupon;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+
+
+        }
+
+
+        public string VerifCupon(int idcupon)
+        {
+            string columna = "cuenta";
+            string sql = string.Format("select count(*) as cuenta from cupon where idcupon = {0} and aprobado = 1", idcupon);
+
+            return EjectuadorComandosDatoEspecifico(sql, columna);
+        }
+
 
         public int Aprobarcupon(int idcupon)
         {
@@ -97,13 +134,13 @@ namespace GrandTourMID.DAO
 
         public int AddPublicidad(ComercioBO objelug)
         {
-            cmd = new SqlCommand("insert into cupon  (cantidad, fecha, cover, descripcion, idusuario) values (@cantidad, @fecha, @cover, @descripcion, @idusuario)");
+            cmd = new SqlCommand("insert into cupon  (cantidad, fecha, cover, descripcion, idusuario, cupon64) values (@cantidad, @fecha, @cover, @descripcion, @idusuario, @cupon64)");
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = objelug.cantidad;
             cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = objelug.fecha;
             cmd.Parameters.Add("@cover", SqlDbType.VarChar).Value = objelug.cover;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = objelug.descripcion;
             cmd.Parameters.Add("@idusuario", SqlDbType.Int).Value = objelug.idusuario;
-
+            cmd.Parameters.Add("@cupon64", SqlDbType.VarChar).Value = objelug.cupon64;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
         }

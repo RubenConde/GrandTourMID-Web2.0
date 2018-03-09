@@ -78,6 +78,18 @@ namespace GrandTourMID.DAO
             return tabla;
         }
 
+        public string EjectuadorComandosDatoEspecifico(string ComandSQL, string Columna)
+        {
+            SqlCommand cmd = new SqlCommand(ComandSQL, this.establecerConexion());
+            this.abrirConexion();
+            SqlDataReader LeerDato;
+            LeerDato = cmd.ExecuteReader();
+            LeerDato.Read();
+            string DatoEspecifico = LeerDato[Columna].ToString();
+            LeerDato.Close();
+            this.cerrarconexion();
+            return DatoEspecifico;
+        }
 
     }
 }

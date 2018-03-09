@@ -167,26 +167,11 @@ $(document).ready(function () {
         }
     });
 });
+var interval
 function verinfolugar(e) {
     clearInterval(interval);
     $.ajax({
         url: '/Ajax/Ajax?data=verinfolugar&idlugar=' + e,
-        type: "post",
-
-        success: function (a) {
-            if (a == 1) {
-
-                window.location = "/Comercio/EditarSucursal"
-            }
-
-        }
-    });
-};
-
-function verinfosuc(e) {
-    clearInterval(interval);
-    $.ajax({
-        url: '/Ajax/Ajax?data=verinfosuc&idlugar=' + e,
         type: "post",
 
         success: function (a) {
@@ -207,14 +192,23 @@ var loadimagenlugar = function (event) {
     var imgpubli = document.getElementById('imglugar');
     imglugar.src = URL.createObjectURL(event.target.files[0]);
 };
+var loadiconolugar = function (event) {
+    var imgpubli = document.getElementById('icono');
+    icono.src = URL.createObjectURL(event.target.files[0]);
+};
+var loadiconosuc = function (event) {
+    var imgpubli = document.getElementById('iconosuc');
+    iconosuc.src = URL.createObjectURL(event.target.files[0]);
+};
 
 var loadimagenlugareditar = function (event) {
     var imgpubli = document.getElementById('imgeditarlugar');
     imgeditarlugar.src = URL.createObjectURL(event.target.files[0]);
 };
+
 var loadimagencuponeditar = function (event) {
-    var imgpubli = document.getElementById('imgcuponejemplo');
-    imgcuponejemplo.src = URL.createObjectURL(event.target.files[0]);
+    var imgpubli = document.getElementById('imgcuponjemplo');
+    imgcuponjemplo.src = URL.createObjectURL(event.target.files[0]);
 };
 
 ///cargar imagen en <img> del perfil del administrador
@@ -584,10 +578,6 @@ function myinfo() {
     });
 }
 
-/**
- * Función que solo permite la entrada de numeros, un signo negativo y
- * un punto para separar los decimales
- */
 function soloNumeros(e) {
     // capturamos la tecla pulsada
     var teclaPulsada = window.event ? window.event.keyCode : e.which;
@@ -612,7 +602,6 @@ function soloNumeros(e) {
         return false;
     }
 }
-
 
 
 

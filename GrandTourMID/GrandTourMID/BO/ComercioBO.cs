@@ -12,7 +12,8 @@ namespace GrandTourMID.BO
         public string fecha { get; set; }
         public string descripcion { get; set; }
         public int idusuario { get; set; }
-
+        public int idcupon { get; set; }
+        public string cupon64 { get; set; }
 
 
 

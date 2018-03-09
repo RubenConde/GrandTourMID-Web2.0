@@ -1365,11 +1365,11 @@ namespace GrandTourMID.Controllers
                         string imgs = Request.Form["file"];
                         string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
                         string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
-                        file.SaveAs(patc);
                         string icono = Request.Form["file2"];
-                        string icono2 = "lugar_Gde_" + System.IO.Path.GetFileName(file2.FileName);
-                        string iconopatc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
-                        file.SaveAs(iconopatc);
+                        string icono2 = "icono_" + System.IO.Path.GetFileName(file2.FileName);
+                        string iconopatc = System.IO.Path.Combine(Server.MapPath("~/img/icono/"), icono2);
+                        file.SaveAs(patc);
+                        file2.SaveAs(iconopatc);
                         byte[] iconochido = System.IO.File.ReadAllBytes(iconopatc);
 
                         byte[] portada64 = System.IO.File.ReadAllBytes(patc);
@@ -1385,7 +1385,11 @@ namespace GrandTourMID.Controllers
                         objelug.idtipo = 2;
                         objelug.icono = iconochido;
                         objelug.portada64 = base64String;
+                        objelug.rutaicono = "/img/icono/" + icono2;
                         BDLU.AgregarSucursal(objelug);
+                        int iduser = Convert.ToInt32(Session["ID"]);
+                        int idlugarinsertado = Convert.ToInt32(BDLU.GetUltimoLugar());
+                        BDLU.AgregarEnSucursal(iduser, idlugarinsertado);
                         respuesta = "1";
                     }
                     else
@@ -1411,11 +1415,14 @@ namespace GrandTourMID.Controllers
                         string pic = "publi_" + System.IO.Path.GetFileName(file.FileName);
                         string patc = System.IO.Path.Combine(Server.MapPath("~/img/cupon/"), pic);
                         file.SaveAs(patc);
+                        byte[] cupon64 = System.IO.File.ReadAllBytes(patc);
+                        string base64String = Convert.ToBase64String(cupon64);
                         objcomercio.cover = "/img/cupon/" + pic;
                         objcomercio.idusuario = Convert.ToInt32(Session["ID"]);
                         objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjeo"]);
                         objcomercio.descripcion = Request.Form["descrip"];
                         objcomercio.fecha = Request.Form["fechacupon"];
+                        objcomercio.cupon64 = base64String;
                         BDCOMER.AddPublicidad(objcomercio);
                         respuesta = "1";
                     }
@@ -1473,7 +1480,7 @@ namespace GrandTourMID.Controllers
                 DataTable Lisluga = BDLU.CargarSucursales(iduser);
                 foreach (DataRow row in Lisluga.Rows)
                 {
-                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><a onclick=\"verinfolugar(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</a></p></div>";
+                    respuesta = "<div class=\"col-md-4\"><img src =\"" + row["imagenportada"] + "\" style=\"width:349px; height:313px\" class=\"rounded\"/><h4>" + row["nombre"] + "</h4><p>" + row["direccion"] + "</p><p><br><button type=\"button\" onclick=\"verinfolugar(" + row["idlugar"] + ");\" style=\"cursor:pointer; color:white;\" class=\"btn btn-primary\">Más información</button></p></div>";
                     Response.Write(respuesta);
                 }
 
@@ -1621,20 +1628,75 @@ namespace GrandTourMID.Controllers
                 }
                 catch { respuesta = "0"; }
             }
+
+            else if (data == "actualizarcupon")
+            {
+                int idcuponcito = Convert.ToInt32(Request.Form["idcupon"]);
+                string verifaprob = BDCOMER.VerifCupon(idcuponcito);
+                if (verifaprob == "1") { respuesta = "2"; }
+                else if (verifaprob == "0")
+                {
+                    if (file != null)
+                    {
+                        objcomercio.idcupon = idcuponcito;
+                        string pic = "publi_Gde_" + System.IO.Path.GetFileName(file.FileName);
+                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/cupon/"), pic);
+                        file.SaveAs(patc);
+                        byte[] cupon64 = System.IO.File.ReadAllBytes(patc);
+                        string base64String = Convert.ToBase64String(cupon64);
+                        objcomercio.cover = "/img/cupon/" + pic;
+                        objcomercio.cantidad = Int32.Parse(Request.Form["maxcanjeo"]);
+                        objcomercio.fecha = Request.Form["editfechacup"];
+                        objcomercio.descripcion = Request.Form["descripcupon"];
+                        objcomercio.cupon64 = base64String;
+                        BDCOMER.ActualizarCUPON(objcomercio);
+                        respuesta = "1";
+                    }
+                    else
+                    {
+                        objcomercio.idcupon = idcuponcito;
+                        objcomercio.cantidad = Int32.Parse(Request.Form["maxcanjeo"]);
+                        objcomercio.fecha = Request.Form["editfechacup"];
+                        objcomercio.descripcion = Request.Form["descripcupon"];
+                        BDCOMER.ActualizarCUPONsinimagen(objcomercio);
+                        respuesta = "1";
+                    }
+                }
+                return Content(respuesta);
+
+            }
+
+
             else if (data == "actualizardatossucursal")
             {
-                try
+                if (file != null)
+                {
+                    string url = Request.Form["urlimagen"];
+                    string icono = Request.Form["file"];
+                    string icono2 = "icono_" + System.IO.Path.GetFileName(file.FileName);
+                    string iconopatc = System.IO.Path.Combine(Server.MapPath("~/img/icono/"), icono2);
+                    file.SaveAs(iconopatc);
+                    byte[] iconochido = System.IO.File.ReadAllBytes(iconopatc);
+
+
+                    objelug.idlugar = Convert.ToInt32(Request.Form["idlugar2"]);
+                    objelug.nombre = Request.Form["editnamelugar"];
+                    objelug.informacionweb = Request.Form["editinfolugarweb"];
+                    objelug.direccion = Request.Form["editdireccionlugar"];
+                    objelug.icono = iconochido;
+                    objelug.rutaicono = "/img/icono/" + icono2;
+                    BDLU.ActualizarDatosSucursal(objelug);
+                    respuesta = "1";
+                }
+                else
                 {
                     objelug.idlugar = Convert.ToInt32(Request.Form["idlugar2"]);
                     objelug.nombre = Request.Form["editnamelugar"];
                     objelug.informacionweb = Request.Form["editinfolugarweb"];
-                    objelug.informacionapp = Request.Form["editinfolugarweb"];
                     objelug.direccion = Request.Form["editdireccionlugar"];
-                    objelug.fecha = "";
-                    BDLU.ActualizarDatosLugar(objelug);
+                    BDLU.ActualizarDatosSucursalsinicono(objelug);
                     respuesta = "1";
                 }
-                catch { respuesta = "0"; }
             }
 
             //res
