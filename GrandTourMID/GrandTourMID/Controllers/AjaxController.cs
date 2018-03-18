@@ -14,6 +14,9 @@ using System.Net.Mail;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+
 
 namespace GrandTourMID.Controllers
 {
@@ -39,6 +42,11 @@ namespace GrandTourMID.Controllers
         ComentPubBO objcomenpub = new ComentPubBO();
         ComercioDAO BDCOMER = new ComercioDAO();
         ComercioBO objcomercio = new ComercioBO();
+      
+
+
+
+
 
         // GET: Ajax
         public ActionResult Ajax(String data, UsuarioBO objeus, HttpPostedFileBase file, HttpPostedFileBase file2, HttpPostedFileBase file3)
@@ -709,38 +717,8 @@ namespace GrandTourMID.Controllers
 
                 respuesta = "";
             }
-            //ejemplo para guardar foto aun no funciona bien
-            else if (data == "fotos")
-            {
-                /* string imgs = Request.Form["file"];
-                 string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(img.FileName);
-                 string patc = System.IO.Path.Combine(Server.MapPath("~/img/"), pic);
-                 img.SaveAs(patc);
-                 objeus.imagen = pic;
-                 BDU.Foto(objeus);
-
-
-                 respuesta = "1";*/
-
-                /* for (int i = 0; i < Request.Files.Count; i++)
-                 {
-                     var file = Request.Files[i];
-
-                     var fileName = Session["ID"]+"_gde_"+ Path.GetFileName(file.FileName);
-
-                     var path = Path.Combine(Server.MapPath("~/img/"), fileName);
-                     file.SaveAs(path);
-
-                     objeus.imagen = fileName;
-
-                     BDU.Foto(objeus);
-                 }
-
-                 objeus.imagen = "";
-                 respuesta = "1";*/
-            }
-            //ejemplo de vista previa de publicaciones aun no funciona correctamente
-
+            
+          
             else if (data == "agregarpublicacion")
             {
                 if (Request.Form["textpub"] == "" && file == null && file2 == null && file3 == null)
@@ -1065,11 +1043,23 @@ namespace GrandTourMID.Controllers
             //res
             else if (data == "GuardarImagen1")
             {
-                string imgs = Request.Form["file"];
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+
+                objei.img = ruta;
                 BDI.Actualizarimagen1(objei);
                 respuesta = "1";
 
@@ -1077,11 +1067,22 @@ namespace GrandTourMID.Controllers
             //res
             else if (data == "GuardarImagen2")
             {
-                string imgs = Request.Form["file"];
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.Actualizarimagen2(objei);
                 respuesta = "1";
 
@@ -1090,11 +1091,22 @@ namespace GrandTourMID.Controllers
             //res
             else if (data == "GuardarImagenheader1")
             {
-                string imgs = Request.Form["file"];
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.Actualizarimagenheader1(objei);
                 respuesta = "1";
 
@@ -1103,11 +1115,22 @@ namespace GrandTourMID.Controllers
             //res
             else if (data == "guardarparallax")
             {
-                string imgs = Request.Form["file"];
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.Actualizarimagenparallax(objei);
                 respuesta = "1";
 
@@ -1116,11 +1139,22 @@ namespace GrandTourMID.Controllers
             //res
             else if (data == "guardarparallax2")
             {
-                string imgs = Request.Form["file"];
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                             "grandtourmid",
+                             "895677732535539",
+                              "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.Actualizarimagenparallax2(objei);
 
                 respuesta = "1";
@@ -1130,10 +1164,23 @@ namespace GrandTourMID.Controllers
             else if (data == "guardarimagenpaso1")
             {
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+
+                objei.img = ruta;
                 BDI.Actualizarimagenpaso1(objei);
 
                 respuesta = "1";
@@ -1143,11 +1190,22 @@ namespace GrandTourMID.Controllers
             }
             else if (data == "guardarimagenpaso2")
             {
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.Actualizarimagenpaso2(objei);
 
                 respuesta = "1";
@@ -1157,11 +1215,22 @@ namespace GrandTourMID.Controllers
             }
             else if (data == "guardarimagenpaso3")
             {
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.Actualizarimagenpaso3(objei);
 
                 respuesta = "1";
@@ -1172,10 +1241,22 @@ namespace GrandTourMID.Controllers
             else if (data == "guardarimagenpaso4")
             {
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                             "grandtourmid",
+                             "895677732535539",
+                              "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.Actualizarimagenpaso4(objei);
 
                 respuesta = "1";
@@ -1186,10 +1267,22 @@ namespace GrandTourMID.Controllers
             else if (data == "guardarimagenslide1")
             {
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                             "grandtourmid",
+                             "895677732535539",
+                              "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.ActualizarSlide1(objei);
 
                 respuesta = "1";
@@ -1200,10 +1293,22 @@ namespace GrandTourMID.Controllers
             else if (data == "guardarimagenslide2")
             {
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                             "grandtourmid",
+                             "895677732535539",
+                              "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.ActualizarSlide2(objei);
 
                 respuesta = "1";
@@ -1214,10 +1319,22 @@ namespace GrandTourMID.Controllers
             else if (data == "guardarimagenslide3")
             {
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.ActualizarSlide3(objei);
 
                 respuesta = "1";
@@ -1228,10 +1345,22 @@ namespace GrandTourMID.Controllers
             else if (data == "guardarimagenslide4")
             {
 
-                string pic = "inicio_GDE" + System.IO.Path.GetFileName(file.FileName);
-                string patc = System.IO.Path.Combine(Server.MapPath("~/img/inicio/"), pic);
-                file.SaveAs(patc);
-                objei.img = "/img/inicio/" + pic;
+                Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, file.InputStream),
+                };
+
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                String ruta = uploadResult.SecureUri.ToString();
+                objei.img = ruta;
                 BDI.ActualizarSlide4(objei);
 
                 respuesta = "1";
@@ -1289,14 +1418,23 @@ namespace GrandTourMID.Controllers
                 {
 
                     objeus.id = Convert.ToInt32(Session["ID"]);
-                    string imgs = Request.Form["file"];
-                    string pic = Session["ID"] + "_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/usuarios/"), pic);
-                    file.SaveAs(patc);
-                    //byte[] imageBytes = System.IO.File.ReadAllBytes(patc);
-                    //string base64String = Convert.ToBase64String(imageBytes);
+                    Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
 
-                    objeus.imagen = "/img/usuarios/" + pic;
+                    Cloudinary cloudinary = new Cloudinary(account);
+
+                    var uploadParams = new ImageUploadParams
+                    {
+                        File = new FileDescription(file.FileName, file.InputStream),
+                    };
+
+                    var uploadResult = cloudinary.Upload(uploadParams);
+
+                    String ruta = uploadResult.SecureUri.ToString();
+
+                    objeus.imagen = ruta;
                     BDU.ActualizarFotou(objeus);
                     respuesta = "1";
                 }
@@ -1308,7 +1446,7 @@ namespace GrandTourMID.Controllers
                 return Content(respuesta);
 
             }
-
+         
             //res
             else if (data == "addlugar")
             {
@@ -1316,19 +1454,30 @@ namespace GrandTourMID.Controllers
                 {
                     if (file != null)
                     {
+                        Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
 
+                        Cloudinary cloudinary = new Cloudinary(account);
+
+                        var uploadParams = new ImageUploadParams
+                        {
+                            File = new FileDescription(file.FileName, file.InputStream),
+                        };
+
+                        var uploadResult = cloudinary.Upload(uploadParams);
+
+                        String ruta = uploadResult.SecureUri.ToString();
                         string imgs = Request.Form["file"];
-                        string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
-                        file.SaveAs(patc);
+
+
                         string url = Request.Form["urlimagen"];
                         var webClient = new WebClient();
                         byte[] imageBytes = webClient.DownloadData(url);
-                        byte[] portada64 = System.IO.File.ReadAllBytes(patc);
-                        string base64String = Convert.ToBase64String(portada64);
 
 
-                        objelug.imagen = "/img/lugares/" + pic;
+                        objelug.imagen = ruta;
                         objelug.nombre = Request.Form["namelugar"];
                         objelug.direccion = Request.Form["direccionlugar"];
                         objelug.direccionmaps = Request.Form["txtubicalugar"];
@@ -1338,7 +1487,6 @@ namespace GrandTourMID.Controllers
                         objelug.latitud = Request.Form["lalugar"];
                         objelug.longitud = Request.Form["lonlugar"];
                         objelug.icono = imageBytes;
-                        objelug.portada64 = base64String;
                         objelug.rutaicono = url;
                         BDLU.AgregarLugar(objelug);
                         respuesta = "1";
@@ -1362,20 +1510,30 @@ namespace GrandTourMID.Controllers
                 {
                     if (file != null)
                     {
-                        string imgs = Request.Form["file"];
-                        string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
+                        Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                        Cloudinary cloudinary = new Cloudinary(account);
+
+                        var uploadParams = new ImageUploadParams
+                        {
+                            File = new FileDescription(file.FileName, file.InputStream),
+                        };
+
+                        var uploadResult = cloudinary.Upload(uploadParams);
+
+                        String ruta = uploadResult.SecureUri.ToString();
+
                         string icono = Request.Form["file2"];
                         string icono2 = "icono_" + System.IO.Path.GetFileName(file2.FileName);
                         string iconopatc = System.IO.Path.Combine(Server.MapPath("~/img/icono/"), icono2);
-                        file.SaveAs(patc);
+                        
                         file2.SaveAs(iconopatc);
                         byte[] iconochido = System.IO.File.ReadAllBytes(iconopatc);
 
-                        byte[] portada64 = System.IO.File.ReadAllBytes(patc);
-                        string base64String = Convert.ToBase64String(portada64);
-
-                        objelug.imagen = "/img/lugares/" + pic;
+                        objelug.imagen = ruta;
                         objelug.nombre = Request.Form["namelugar"];
                         objelug.direccion = Request.Form["direccionlugar"];
                         objelug.direccionmaps = Request.Form["txtubicalugar"];
@@ -1384,7 +1542,6 @@ namespace GrandTourMID.Controllers
                         objelug.longitud = Request.Form["lonlugar"];
                         objelug.idtipo = 2;
                         objelug.icono = iconochido;
-                        objelug.portada64 = base64String;
                         objelug.rutaicono = "/img/icono/" + icono2;
                         BDLU.AgregarSucursal(objelug);
                         int iduser = Convert.ToInt32(Session["ID"]);
@@ -1411,18 +1568,28 @@ namespace GrandTourMID.Controllers
                 {
                     if (file != null)
                     {
-                        string imgs = Request.Form["file"];
-                        string pic = "publi_" + System.IO.Path.GetFileName(file.FileName);
-                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/cupon/"), pic);
-                        file.SaveAs(patc);
-                        byte[] cupon64 = System.IO.File.ReadAllBytes(patc);
-                        string base64String = Convert.ToBase64String(cupon64);
-                        objcomercio.cover = "/img/cupon/" + pic;
+
+                        Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                        Cloudinary cloudinary = new Cloudinary(account);
+
+                        var uploadParams = new ImageUploadParams
+                        {
+                            File = new FileDescription(file.FileName, file.InputStream),
+                        };
+
+                        var uploadResult = cloudinary.Upload(uploadParams);
+
+                        String ruta = uploadResult.SecureUri.ToString();
+
+                        objcomercio.cover = ruta;
                         objcomercio.idusuario = Convert.ToInt32(Session["ID"]);
                         objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjeo"]);
                         objcomercio.descripcion = Request.Form["descrip"];
                         objcomercio.fecha = Request.Form["fechacupon"];
-                        objcomercio.cupon64 = base64String;
                         BDCOMER.AddPublicidad(objcomercio);
                         respuesta = "1";
                     }
@@ -1589,13 +1756,24 @@ namespace GrandTourMID.Controllers
                 {
 
                     objelug.idlugar = Convert.ToInt32(Request.Form["idlugar"]);
-                    string pic = "lugar_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                    string patc = System.IO.Path.Combine(Server.MapPath("~/img/lugares/"), pic);
-                    file.SaveAs(patc);
-                    byte[] portada64 = System.IO.File.ReadAllBytes(patc);
-                    string base64String = Convert.ToBase64String(portada64);
-                    objelug.imagen = "/img/lugares/" + pic;
-                    objelug.portada64 = base64String;
+
+
+                    Account account = new Account(
+                             "grandtourmid",
+                             "895677732535539",
+                              "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                    Cloudinary cloudinary = new Cloudinary(account);
+
+                    var uploadParams = new ImageUploadParams
+                    {
+                        File = new FileDescription(file.FileName, file.InputStream),
+                    };
+
+                    var uploadResult = cloudinary.Upload(uploadParams);
+
+                    String ruta = uploadResult.SecureUri.ToString();
+                    objelug.imagen = ruta;
                     BDLU.ActualizarImagenLugar(objelug);
                     respuesta = "1";
                 }
@@ -1639,16 +1817,28 @@ namespace GrandTourMID.Controllers
                     if (file != null)
                     {
                         objcomercio.idcupon = idcuponcito;
-                        string pic = "publi_Gde_" + System.IO.Path.GetFileName(file.FileName);
-                        string patc = System.IO.Path.Combine(Server.MapPath("~/img/cupon/"), pic);
-                        file.SaveAs(patc);
-                        byte[] cupon64 = System.IO.File.ReadAllBytes(patc);
-                        string base64String = Convert.ToBase64String(cupon64);
-                        objcomercio.cover = "/img/cupon/" + pic;
+
+                        Account account = new Account(
+                            "grandtourmid",
+                            "895677732535539",
+                             "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                        Cloudinary cloudinary = new Cloudinary(account);
+
+                        var uploadParams = new ImageUploadParams
+                        {
+                            File = new FileDescription(file.FileName, file.InputStream),
+                        };
+
+                        var uploadResult = cloudinary.Upload(uploadParams);
+
+                        String ruta = uploadResult.SecureUri.ToString();
+
+                        objcomercio.cover = ruta;
                         objcomercio.cantidad = Int32.Parse(Request.Form["maxcanjeo"]);
                         objcomercio.fecha = Request.Form["editfechacup"];
                         objcomercio.descripcion = Request.Form["descripcupon"];
-                        objcomercio.cupon64 = base64String;
+                        
                         BDCOMER.ActualizarCUPON(objcomercio);
                         respuesta = "1";
                     }
