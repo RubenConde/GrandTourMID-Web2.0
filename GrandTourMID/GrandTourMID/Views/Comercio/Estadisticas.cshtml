@@ -52,8 +52,8 @@
         <td style="width:500px">Descripción del cupón</td>
         <td style="width:250px">Número de canjeos</td>
         <td style="width:240px">Máximo de canjeos</td>
-        <td style="width:260px">Fecha de vencimiento</td>
-        <td>Seleccionar</td>
+        <td style="width:230px">Fecha de vencimiento</td>
+        <td style="width:150px">Seleccionar</td>
         </thead>
         <tbody id="contenedorpublis"></tbody>
     </table>
@@ -80,15 +80,19 @@
                     <center><img class="rounded mx-auto d-block" id="imgcuponjemplo" style="width:150px; height:150px;" /></center>
                     <br />
                     <center><label class="btn-outline-secondary rounded" id="editarcuponimagen" style="width:150px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagencuponeditar(event)" /></label></center>
-                    @*<div class="row">
-                            <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="namepubli" name="namepubli" placeholder="Ingrese el nombre de la publicidad" type="text"></div>
-                        </div>*@
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Nombre de la publicidad</label><input class="form-control" id="editnamepubli" name="editnamepubli" placeholder="Ingrese el nombre de la publicidad" type="text"></div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 mb-3"><label for="validationCustom05">Número máximo de canjeos</label><input style="resize:none" class="form-control" id="maxcanjeo" name="maxcanjeo" placeholder="Introducir el número máximo de canjeos" type="text" onkeypress="return soloNumeros(event);"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3"><label for="validationCustom06">Descripción del cupón</label><textarea style="resize:none" class="form-control" id="descripcupon" name="descripcupon" placeholder="Introducir la descripción del cupón" type="text"></textarea></div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom06">Bases y condiciones de canjeo</label><textarea style="resize:none" class="form-control" id="editbases" name="editbases" placeholder="Introducir las bases y condiciones de canjeo" type="text"></textarea></div>
+                    </div>
+
                     <div class="timepicker-input input-icon form-group">
                         <label for="validationCustom09">Fecha de vencimiento</label>
                         <div class="input-group">
@@ -96,13 +100,30 @@
                             <input class="form-control bdc-grey-200 start-date" id="editfechacup" name="editfechacup" placeholder="Fecha" data-provide="datepicker" type="text">
                         </div>
                     </div>
-                    <button class="btn btn-primary" id="btneditcupon" type="submit"><li class="fa fa-edit"></li>Actualizar</button>
+                    <button class="btn btn-primary" id="btneditcupon" type="submit" style="cursor:pointer"><li class="fa fa-edit"></li>Actualizar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="content" class="modal-body">
+                <form id="frmcanjeo" enctype="multipart/form-data" ondragstart="return false">
+                    <input id="idcuponcanjeo" name="idcuponcanjeo" type="hidden" />
+                    <center><img class="rounded mx-auto d-block" id="imgcuponjemplocanjeo" style="width:150px; height:150px;" /></center>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Ingrese el código del cupón</label><input class="form-control" id="codigocupon" name="codigocupon" placeholder="Ingrese el código del cupon que se muestra en el dispositivo" type="text"></div>
+                    </div>
+                    <button class="btn btn-primary" id="btncanjearcupon" type="submit" style="cursor:pointer"><li class="fa fa-edit"></li>Canjear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -137,11 +158,26 @@
 
                 var datos = JSON.parse(a);
                 $("#imgcuponjemplo").prop("src", datos.cover);
-                $("#namepubli").val(datos.nombre)
+                $("#editnamepubli").val(datos.nombrecupon)
                 $("#maxcanjeo").val(datos.cantidad)
                 $("#descripcupon").val(datos.descripcion)
                 $("#editfechacup").val(datos.fecha)
+                $("#editbases").val(datos.condiciones)
                 $("#idcupon").val(datos.idcupon)
+
+            }
+
+        });
+    }
+    function VerC2(a) {
+        $.ajax({
+            url: "/Ajax/Ajax?data=verinfocupon&idcupon=" + a,
+            type: "POST",
+            success: function (a) {
+
+                var datos = JSON.parse(a);
+                $("#imgcuponjemplocanjeo").prop("src", datos.cover);
+                $("#idcuponcanjeo").val(datos.idcupon)
 
             }
 
@@ -192,6 +228,62 @@
                         swal({
                             title: "¡Alto ahí!",
                             text: 'El cupón ha sido aprobado, ya no se puede modificar',
+                            type: "error",
+                            confirmButtonText: "Aceptar",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                    }
+                    else if (a == 0) {
+                        swal({
+                            title: '¿Seguro no olvidas algo?',
+                            html: '<li class="fa fa-image"></li>' + " " + "Debes ingresar una imagen nueva",
+                            type: "question",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                    }
+                }
+            });
+        });
+    });
+    $(document).ready(function () {
+        $("#frmcanjeo").submit(function (e) {
+            e.preventDefault();
+            var form = $('#frmcanjeo')[0];
+            var dataString = new FormData(form);
+            $.ajax({
+                url: "/Ajax/Ajax?data=actualizarcuponcanjeo",
+                type: "POST",
+                data: dataString,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (a) {
+                    if (a == 1) {
+                        swal({
+                            title: "¡Cupón canjeado!",
+                            text: 'Favor de aplicar el producto o servicio correspondiente',
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        })
+                        setTimeout(function () {
+                            window.location.reload(1);
+                        }, 2000);
+                    }
+                    else if (a == 2) {
+                        swal({
+                            title: "¡Alto ahí!",
+                            text: 'El código del cupón es incorrecto, favor de verificarlo',
                             type: "error",
                             confirmButtonText: "Aceptar",
                             closeOnCancel: true,

@@ -23,5 +23,11 @@ namespace GrandTourMID.Controllers
         {
             return View();
         }
+
+        public ActionResult Galeria()
+        {
+            return View();
+        }
+
     }
 }

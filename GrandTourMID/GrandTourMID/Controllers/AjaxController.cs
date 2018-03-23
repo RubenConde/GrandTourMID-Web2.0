@@ -42,7 +42,7 @@ namespace GrandTourMID.Controllers
         ComentPubBO objcomenpub = new ComentPubBO();
         ComercioDAO BDCOMER = new ComercioDAO();
         ComercioBO objcomercio = new ComercioBO();
-      
+
 
 
 
@@ -717,8 +717,8 @@ namespace GrandTourMID.Controllers
 
                 respuesta = "";
             }
-            
-          
+
+
             else if (data == "agregarpublicacion")
             {
                 if (Request.Form["textpub"] == "" && file == null && file2 == null && file3 == null)
@@ -1446,7 +1446,7 @@ namespace GrandTourMID.Controllers
                 return Content(respuesta);
 
             }
-         
+
             //res
             else if (data == "addlugar")
             {
@@ -1529,7 +1529,7 @@ namespace GrandTourMID.Controllers
                         string icono = Request.Form["file2"];
                         string icono2 = "icono_" + System.IO.Path.GetFileName(file2.FileName);
                         string iconopatc = System.IO.Path.Combine(Server.MapPath("~/img/icono/"), icono2);
-                        
+
                         file2.SaveAs(iconopatc);
                         byte[] iconochido = System.IO.File.ReadAllBytes(iconopatc);
 
@@ -1587,8 +1587,10 @@ namespace GrandTourMID.Controllers
 
                         objcomercio.cover = ruta;
                         objcomercio.idusuario = Convert.ToInt32(Session["ID"]);
+                        objcomercio.nombrecupon = Request.Form["namepubli"];
                         objcomercio.cantidad = Convert.ToInt32(Request.Form["maxcanjeo"]);
                         objcomercio.descripcion = Request.Form["descrip"];
+                        objcomercio.condiciones = Request.Form["condiciones"];
                         objcomercio.fecha = Request.Form["fechacupon"];
                         BDCOMER.AddPublicidad(objcomercio);
                         respuesta = "1";
@@ -1835,19 +1837,24 @@ namespace GrandTourMID.Controllers
                         String ruta = uploadResult.SecureUri.ToString();
 
                         objcomercio.cover = ruta;
+                        objcomercio.nombrecupon = Request.Form["editnamepubli"];
                         objcomercio.cantidad = Int32.Parse(Request.Form["maxcanjeo"]);
                         objcomercio.fecha = Request.Form["editfechacup"];
                         objcomercio.descripcion = Request.Form["descripcupon"];
-                        
+                        objcomercio.condiciones = Request.Form["editbases"];
+
                         BDCOMER.ActualizarCUPON(objcomercio);
                         respuesta = "1";
                     }
                     else
                     {
                         objcomercio.idcupon = idcuponcito;
+                        objcomercio.nombrecupon = Request.Form["editnamepubli"];
                         objcomercio.cantidad = Int32.Parse(Request.Form["maxcanjeo"]);
                         objcomercio.fecha = Request.Form["editfechacup"];
                         objcomercio.descripcion = Request.Form["descripcupon"];
+                        objcomercio.condiciones = Request.Form["editbases"];
+
                         BDCOMER.ActualizarCUPONsinimagen(objcomercio);
                         respuesta = "1";
                     }
@@ -1856,6 +1863,17 @@ namespace GrandTourMID.Controllers
 
             }
 
+            else if (data == "actualizarcuponcanjeo")
+            {
+                objcomercio.codigocupon = Convert.ToInt32(Request.Form["codigocupon"]);
+                BDCOMER.ActualizarCUPONcanjeo(objcomercio);
+                respuesta = "1";
+
+
+
+                return Content(respuesta);
+
+            }
 
             else if (data == "actualizardatossucursal")
             {
@@ -1930,6 +1948,16 @@ namespace GrandTourMID.Controllers
 
             }
             else if (data == "verinfocupon")
+            {
+                int id = Convert.ToInt32(Request.QueryString["idcupon"]);
+                DataTable dt = BDCOMER.Verinfocupon(id);
+                String jSonString = ConvertirDataJson(dt);
+
+                respuesta = jSonString;
+
+
+            }
+            else if (data == "verinfocuponcanjeo")
             {
                 int id = Convert.ToInt32(Request.QueryString["idcupon"]);
                 DataTable dt = BDCOMER.Verinfocupon(id);
@@ -2173,7 +2201,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDCOMER.VerPublicidades1(iduser);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ><td><button onclick=\"VerC(" + row["idcupon"] + ")\" data-target=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-pencil\" alt=\"Editar\"></li></button></td></tr>";
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ><td><button onclick=\"VerC(" + row["idcupon"] + ")\" data-target=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-pencil\" alt=\"Editar\"></li></button>&nbsp<button onclick=\"VerC2(" + row["idcupon"] + ")\" data-target=\"#exampleModal2\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-check-circle\" alt=\"Canjear\"></li></button></td></tr>";
                     Response.Write(respuesta);
 
 
@@ -2196,6 +2224,20 @@ namespace GrandTourMID.Controllers
                 respuesta = "";
 
             }
+            else if (data == "galeriafotos")
+            {
+                int iduser = Convert.ToInt32(Session["ID"]);
+                int idlugar = Convert.ToInt32(Session["idlugar"]);
+                DataTable lispre = BDCOMER.Galeria(iduser, idlugar);
+                foreach (DataRow row in lispre.Rows)
+                {
+                    respuesta = "<figure><a href =\"" + row["foto"] + "\" class=\"photostack-img\"><img style=\"width:240px; height:240px\" src =\"" + row["foto"] + "\" alt=\"img01\" /></a><figcaption><h2 class=\"photostack-title\">"+ row["nombre"] + "</h2></figcaption></figure>";
+                    Response.Write(respuesta);
+                }
+                respuesta = "";
+
+            }
+
             //res
             else if (data == "editquestion")
             {

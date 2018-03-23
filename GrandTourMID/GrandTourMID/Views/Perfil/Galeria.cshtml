@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Galeria";
+    Layout = "~/Views/Shared/MasterPerfil.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galería</title>
+    <link href="~/Resources/css/normalize.css" type="text/css" rel="stylesheet" />
+    <link href="~/Resources/css/demo.css" type="text/css" rel="stylesheet" />
+    <link href="~/Resources/css/component.css" type="text/css" rel="stylesheet" />
+    <script src="~/Resources/js/modernizr.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <section id="photostack-1" class="photostack ">
+            <div  id="galeriafotos" >
+                
+            </div>
+        </section>
+
+    </div>
+    
+    <script src="~/Resources/js/classie.js"></script>
+    <script src="~/Resources/js/photostack.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script>
+        // [].slice.call( document.querySelectorAll( '.photostack' ) ).forEach( function( el ) { new Photostack( el ); } );
+        $(document).ready(function () {
+            Verpublicidades1();
+        });
+
+        new Photostack(document.getElementById('photostack-1'), {
+            callback: function (item) {
+                //console.log(item)
+            }
+        });
+        new Photostack(document.getElementById('photostack-2'), {
+            callback: function (item) {
+                //console.log(item)
+            }
+        });
+        new Photostack(document.getElementById('photostack-3'), {
+            callback: function (item) {
+                //console.log(item)
+            }
+        });
+
+        function Verpublicidades1() {
+            $.ajax({
+                url: "/Ajax/Ajax?data=galeriafotos",
+                type: "POST",
+                success: function (a) {
+
+                    $("#galeriafotos").html(a);
+
+                }
+            });
+        };
+
+    </script>
+
+</body>
+

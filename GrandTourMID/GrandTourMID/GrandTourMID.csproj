@@ -49,10 +49,16 @@
     <Reference Include="CloudinaryDotNet, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
       <HintPath>..\packages\CloudinaryDotNet.1.2.0\lib\net40\CloudinaryDotNet.dll</HintPath>
     </Reference>
+    <Reference Include="CloudinaryDotNet.1.2.0.0.Fakes">
+      <HintPath>FakesAssemblies\CloudinaryDotNet.1.2.0.0.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\CloudinaryDotNet.1.2.0\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -251,6 +257,31 @@
     <Content Include="img\raidlobby.jpg" />
     <Content Include="img\rosada.jpg" />
     <Content Include="img\usuario.png" />
+    <Content Include="Resources\css\component.css" />
+    <Content Include="Resources\css\demo.css" />
+    <Content Include="Resources\css\normalize.css" />
+    <Content Include="Resources\fonts\codropsicons\codropsicons.svg" />
+    <Content Include="Resources\fonts\codropsicons\license.txt" />
+    <Content Include="Resources\fonts\icons\icons.svg" />
+    <Content Include="Resources\img\1.jpg" />
+    <Content Include="Resources\img\10.jpg" />
+    <Content Include="Resources\img\11.jpg" />
+    <Content Include="Resources\img\12.jpg" />
+    <Content Include="Resources\img\13.jpg" />
+    <Content Include="Resources\img\14.jpg" />
+    <Content Include="Resources\img\15.jpg" />
+    <Content Include="Resources\img\16.jpg" />
+    <Content Include="Resources\img\2.jpg" />
+    <Content Include="Resources\img\3.jpg" />
+    <Content Include="Resources\img\4.jpg" />
+    <Content Include="Resources\img\5.jpg" />
+    <Content Include="Resources\img\6.jpg" />
+    <Content Include="Resources\img\7.jpg" />
+    <Content Include="Resources\img\8.jpg" />
+    <Content Include="Resources\img\9.jpg" />
+    <Content Include="Resources\js\classie.js" />
+    <Content Include="Resources\js\modernizr.min.js" />
+    <Content Include="Resources\js\photostack.js" />
     <Content Include="Scripts\Acciones.js" />
     <Content Include="Scripts\AccionesAdmin.js" />
     <Content Include="Scripts\AccionesChat.js" />
@@ -269,7 +300,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="json\en.json" />
+    <Fakes Include="Fakes\CloudinaryDotNet.fakes" />
     <None Include="Properties\PublishProfiles\MyASP - Grand Tour MID.pubxml" />
+    <Content Include="Resources\css\.DS_Store" />
+    <Content Include="Resources\fonts\.DS_Store" />
+    <Content Include="Resources\fonts\codropsicons\codropsicons.eot" />
+    <Content Include="Resources\fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="Resources\fonts\codropsicons\codropsicons.woff" />
+    <Content Include="Resources\fonts\icons\.DS_Store" />
+    <Content Include="Resources\fonts\icons\icons.eot" />
+    <Content Include="Resources\fonts\icons\icons.ttf" />
+    <Content Include="Resources\fonts\icons\icons.woff" />
+    <Content Include="Resources\img\.DS_Store" />
+    <Content Include="Resources\js\.DS_Store" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\botones.js" />
     <Content Include="Scripts\bundle.js" />
@@ -362,6 +405,7 @@
     <Content Include="Views\Admin\UsuariosComercio.cshtml" />
     <Content Include="Views\Admin\Cupones.cshtml" />
     <Content Include="Views\Admin\CuponesAprob.cshtml" />
+    <Content Include="Views\Perfil\Galeria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
