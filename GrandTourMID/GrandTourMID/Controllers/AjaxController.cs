@@ -2229,11 +2229,14 @@ namespace GrandTourMID.Controllers
                 int iduser = Convert.ToInt32(Session["ID"]);
                 int idlugar = Convert.ToInt32(Session["idlugar"]);
                 DataTable lispre = BDCOMER.Galeria(iduser, idlugar);
+                string repe = "";
                 foreach (DataRow row in lispre.Rows)
                 {
                     respuesta = "<figure><a href =\"" + row["foto"] + "\" class=\"photostack-img\"><img style=\"width:240px; height:240px\" src =\"" + row["foto"] + "\" alt=\"img01\" /></a><figcaption><h2 class=\"photostack-title\">"+ row["nombre"] + "</h2></figcaption></figure>";
+
                     Response.Write(respuesta);
                 }
+
                 respuesta = "";
 
             }
