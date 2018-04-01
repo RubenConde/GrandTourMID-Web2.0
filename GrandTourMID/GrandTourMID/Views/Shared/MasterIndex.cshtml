@@ -5,11 +5,13 @@
 
 
 <head>
+    <meta charset="utf-8" />
     <meta property="og:url" content="http://christian98-001-site1.btempurl.com" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Grand Tour MID" />
     <meta property="og:description" content="¡Ven, juega, diviertete y aprende sobre Yucatán!" />
     <meta property="og:image" content="http://christian98-001-site1.btempurl.com/img/logogtm.png" />
+
 </head>
 <!DOCTYPE html>
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
@@ -25,15 +27,13 @@
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
                 <i class="fa fa-bars"></i>
             </a>
-            <a href="~/Home/Index" class="w3-bar-item w3-hover-yellow w3-button w3-text-white">INICIO</a>
-            <a href="#about" class="w3-bar-item w3-button w3-hover-yellow w3-hide-small w3-text-white"><i class="fa fa-user w3-text-white"></i> ACERCA DE</a>
-            <a href="#portfolio" class="w3-bar-item w3-button w3-hover-yellow  w3-hide-small w3-text-white"><i class="fa fa-gamepad w3-text-white"></i> ¿COMO JUGAR?</a>
-            <a href="#contact" id="contactmenu" class="w3-bar-item w3-hover-yellow w3-button w3-hide-small w3-text-white"><i class="fa fa-envelope w3-text-white"></i> CONTACTO</a>
+            <a href="~/Home/Index" class="w3-bar-item w3-hover-grey w3-button w3-text-white">INICIO</a>
+            <a href="#about" class="w3-bar-item w3-button w3-hover-grey w3-hide-small w3-text-white"><i class="fa fa-user w3-text-white"></i> ACERCA DE</a>
+            <a href="#portfolio" class="w3-bar-item w3-button w3-hover-grey  w3-hide-small w3-text-white"><i class="fa fa-gamepad w3-text-white"></i> ¿COMO JUGAR?</a>
+            <a href="#contact" id="contactmenu" class="w3-bar-item w3-hover-grey w3-button w3-hide-small w3-text-white"><i class="fa fa-envelope w3-text-white"></i> CONTACTO</a>
             @*<a href="~/Home/Lugares" class="w3-bar-item w3-button w3-text-white"><i class="fa fa-share w3-text-white"></i> LUGARES</a>*@
 
-
             <button onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-hide-small w3-text-white w3-right w3-hover-yellow"><i class="fa fa-user w3-text-white"></i> INICIAR SESIÓN</button>
-
         </div>
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
@@ -71,10 +71,93 @@
                 </div>
             </form>
             <div class="w3-container w3-border-top  w3-light-grey">
-                <span class="w3-right w3-padding w3-hide-small"><a href="#">¿Olvidaste tu contraseña?</a></span>
+                <span class="w3-right w3-padding w3-hide-small"><a href="#" onclick="document.getElementById('modalrecovery').style.display = 'block'; document.getElementById('id01').style.display='none'">¿Olvidaste tu contraseña?</a></span>
             </div>
         </div>
     </div>
+
+
+
+
+    <div id="modalrecovery" class="w3-modal">
+        <form id="frmrecuperarpass" class="w3-modal-content w3-animate-left w3-card-4" style="width:400px">
+            <header class="w3-container w3-white">
+                <span onclick="document.getElementById('modalrecovery').style.display='none'"
+                      class="w3-button w3-display-topright">&times;</span>
+                <h5 class="w3-center">Recuperar contraseña</h5>
+            </header>
+            <div class="w3-container">
+
+                <input type="email" required name="ema" id="ema" class="w3-input w3-border w3-round" placeholder="Ingrese su correo electronico" /><span class="glyphicon glyphicon-envelope"></span>
+                <br />
+                <tr></tr>
+                <button type="button" onclick="document.getElementById('modalrecovery').style.display='none'" class="w3-button w3-hover-red w3-red w3-ripple w3-round w3-right" style="margin-right:5px">Cancelar</button>
+
+                <button type="submit" id="btncorreo" class="w3-button w3-hover-green w3-green w3-ripple w3-round w3-right" style="margin-right:5px">Enviar</button>
+                <br /><br />
+
+            </div>
+
+        </form>
+    </div>
+
+
+    <div id="modalvalidarpass" class="w3-modal">
+        <form id="frmcodigo" class="w3-modal-content w3-animate-left w3-card-4" style="width:400px">
+            <header class="w3-container w3-white">
+                <span onclick="document.getElementById('modalvalidarpass').style.display='none'"
+                      class="w3-button w3-display-topright">&times;</span>
+                <h5 class="w3-center">Código de recuperación</h5>
+            </header>
+            <div class="w3-container">
+                <center>
+                    <input type="text" name="cod" id="cod" class="w3-input w3-border w3-round" placeholder="Ingrese el código de recuperación" />
+                    <br />
+                    <b><a href="#loginpass" onclick="document.getElementById('modalrecovery').style.display = 'block'; document.getElementById('modalvalidarpass').style.display='none'">¿No recibiste tu código? click aqui</a></b>
+                </center>
+                <br />
+                <button type="button" onclick="document.getElementById('modalvalidarpass').style.display='none'" class="w3-button w3-hover-red w3-red w3-ripple w3-round w3-right" style="margin-right:5px">Cancelar</button>
+
+                <button type="submit" id="btncorreo" class="w3-button w3-hover-green w3-green w3-ripple w3-round w3-right" style="margin-right:5px">Enviar</button>
+                <br /><br />
+
+            </div>
+
+        </form>
+    </div>
+
+
+
+    <div id="modalcambiocontra" class="w3-modal">
+        <form id="frmcambiocontra" class="w3-modal-content w3-animate-left w3-card-4" style="width:400px">
+            <header class="w3-container w3-white">
+                <span onclick="document.getElementById('modalcambiocontra').style.display='none'"
+                      class="w3-button w3-display-topright">&times;</span>
+                <br /><br />
+            </header>
+            <div class="w3-container">
+                <center>
+                    <label>Contraseña nueva</label><br />
+                    <input type="text" name="pass1" id="pass1" class="w3-input w3-border w3-round" placeholder="Ingrese contraseña" />
+                </center>
+                <center>
+                    <br />
+                    <label>Contraseña nueva</label><br />
+                    <input type="text" name="pass2" id="pass2" class="w3-input w3-border w3-round" placeholder="Confirme su contraseña" />
+                </center>
+
+                <br />
+                <button type="button" onclick="document.getElementById('modalcambiocontra').style.display='none'" class="w3-button w3-hover-red w3-red w3-ripple w3-round w3-right" style="margin-right:5px">Cancelar</button>
+
+                <button type="submit" id="btnRefresh" class="w3-button w3-hover-green w3-green w3-ripple w3-round w3-right" style="margin-right:5px">Actualizar contraseña</button>
+                <br /><br />
+
+            </div>
+
+        </form>
+    </div>
+
+
     <div id="id02" class="w3-modal">
         <br />
         <div class="w3-modal-content w3-animate-bottom w3-card-4" style="width:600px">
@@ -126,6 +209,153 @@
     <script src="~/Scripts/Acciones.js"></script>
     <script src="~/Scripts/sweetalert2.all.js"></script>
     <script>
+
+
+        $(document).ready(function () {
+            $("#frmcodigo").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/Ajax/Ajax?data=CodeRecovery",
+                    type: "POST",
+                    data: $("#frmcodigo").serialize(),
+                    beforeSend: function () {
+
+                    },
+                    success: function (a) {
+
+                        if (a == 1) {
+
+                            var modal = document.getElementById('modalcambiocontra');
+                            modal.style.display = 'block';
+                            var mod = document.getElementById('modalvalidarpass');
+                            mod.style.display = 'none';
+
+                        }
+                        else if (a == 0) {
+                            swal({
+                                title: "Codigo erroneo",
+                                text: 'Verifique el codigo e intentelo de nuevo!',
+                                type: "error",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+                            $("#cod").val('');
+                        }
+                        else {
+
+
+                        }
+
+                    }
+                });
+            });
+        });
+
+
+        $(document).ready(function () {
+            $("#frmrecuperarpass").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/Ajax/Ajax?data=code",
+                    type: "POST",
+                    data: $("#frmrecuperarpass").serialize(),
+                    beforeSend: function () {
+                        $("#btncorreo").html('<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i> Enviando');
+                    },
+                    success: function (a) {
+
+                        if (a == 1) {
+
+                            swal({
+                                title: "Correo enviado",
+                                text: 'Se ha enviado un correo electronico con tu codigo. verfica tu bandeja de entrada o mensajes de spam',
+                                type: "success",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+
+                            var modal = document.getElementById('modalrecovery');
+                            var modalcode = document.getElementById('modalvalidarpass');
+
+                            modal.style.display = "none";
+                            modalcode.style.display = "block";
+
+
+                            $("#btncorreo").html('<i class="" aria-hidden="true"></i> Enviar');
+
+                            $("#ema").val('');
+
+                        }
+                        else if (a == 0) {
+
+                            swal({
+                                title: "Hubo un error",
+                                text: 'Verifique su conexion a internet e intentelo de nuevo!',
+                                type: "error",
+                                confirmButtonText: "Aceptar",
+                                closeOnCancel: true,
+                                closeOnConfirm: true,
+                                showLoaderOnConfirm: true
+                            });
+
+                            $("#btncorreo").html('<i class="" aria-hidden="true"></i> Enviar');
+
+                        }
+                        else {
+
+
+
+                        }
+
+                    }
+                });
+            });
+        });
+
+
+
+
+        $(document).ready(function () {
+            $("#frmcambiocontra").submit(function (e) {
+                e.preventDefault();
+                if ($("#pass1").val() == $("#pass2").val()) {
+                    $.ajax({
+                        url: "/Ajax/Ajax?data=Changepassword",
+                        type: "POST",
+                        data: $("#frmcambiocontra").serialize(),
+                        beforeSend: function () {
+
+                            $("#btnRefresh").html('<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i> Atualizando');
+                        },
+                        success: function (a) {
+
+                            if (a == 1) {
+                                $("#btnRefresh").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Actualizar contraseña');
+                                window.location = "/Perfil/Galeria";
+                            }
+                            else if (a == 0) {
+                                $("#btnRefresh").html('<i "></i> Actualizar contraseña');
+                            }
+                            else {
+
+                            }
+
+                        }
+                    });
+                };
+            });
+        });
+
+
+
+
+
+
         // Modal Image Gallery
         function onClick(element) {
             document.getElementById("img01").src = element.src;
