@@ -74,14 +74,11 @@ $(document).ready(function () {
                         showLoaderOnConfirm: true
                     });
 
-                    
-
+                    document.getElementById('loginpass').style.display = 'none'
+                    document.getElementById('codigopass').style.display = 'block'
                     $("#codigopass").modal('show');
-
                     $("#loginpass").modal("hide");
-
                     $("#btncorreo").html('<i class="" aria-hidden="true"></i> Enviar');
-
                     $("#ema").val('');
 
                 }
@@ -126,9 +123,13 @@ $(document).ready(function () {
             success: function (a) {
 
                 if (a == 1) {
+
+                    document.getElementById('codigopass').style.display = 'none'
+                    document.getElementById('cambiocontra').style.display = 'block'
+
                     $("#cambiocontra").modal('show');
                     $("#codigopass").modal('hide');
-                    $("#cod").val('');
+                    $("#co  d").val('');
 
                 }
                 else if (a == 0) {
@@ -171,7 +172,17 @@ $(document).ready(function () {
 
                     if (a == 1) {
                         $("#btnRefresh").html('<i class="fa fa-check-circle" aria-hidden="true"></i> Actualizar contraseña');
-                        window.location = "/Admin/email";
+                        swal({
+                            title: "Contraseña cambiada",
+                            text: 'Intente una vez mas iniciar sesión',
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                        document.getElementById('cambiocontra').style.display = 'none'
+                        $("#cambiocontra").modal('hide');
                     }
                     else if (a == 0) {
                         $("#btnRefresh").html('<i "></i> Actualizar contraseña');

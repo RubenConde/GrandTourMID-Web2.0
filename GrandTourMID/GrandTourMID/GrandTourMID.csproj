@@ -332,10 +332,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="json\en.json" />
-    <Fakes Include="Fakes\CloudinaryDotNet.fakes" />
+    <None Include="Fakes\CloudinaryDotNet.fakes">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\Grand Tour Mid.pubxml" />
     <None Include="Properties\PublishProfiles\MyASP - Grand Tour MID.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\botones.js" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\editarindex.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

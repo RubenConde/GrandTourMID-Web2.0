@@ -349,20 +349,11 @@ namespace GrandTourMID.Controllers
             {
                 try
                 {
-                    int estado;
-                    objec.email = Request.Form["ema"];
-                    ArrayList datos = BDU.TipoDeEstado(objec);
-                    if (datos.Count > 0)
+                    string email = Request.Form["ema"];
+                    string estado = BDU.TipoDeEstado(email);
+
+                    if (estado == "1")
                     {
-                        Session["estado"] = datos[0].ToString();
-                    }
-
-                    estado = Convert.ToInt32(Session["estado"]);
-
-                    if (estado == 1)
-                    {
-
-
                         GenerarCodigo(objec);
                         objec.email = Request.Form["ema"];
                         BDU.ActualizarCodigo(objec);
@@ -386,7 +377,7 @@ namespace GrandTourMID.Controllers
                         smtp.Send(correo);
                         respuesta = "1";
                     }
-                    else if (estado == 2)
+                    else if (estado == "2")
                     {
                         GenerarCodigo(objec);
                         objec.email = Request.Form["ema"];
@@ -409,8 +400,6 @@ namespace GrandTourMID.Controllers
                         string contra = "peluso182";
                         smtp.Credentials = new System.Net.NetworkCredential(cuenta, contra);
                         smtp.Send(correo);
-
-
                     }
 
                 }
@@ -1865,12 +1854,18 @@ namespace GrandTourMID.Controllers
 
             else if (data == "actualizarcuponcanjeo")
             {
-                objcomercio.codigocupon = Convert.ToInt32(Request.Form["codigocupon"]);
-                BDCOMER.ActualizarCUPONcanjeo(objcomercio);
+                Session["codigoobtencion"] = Convert.ToInt32(Request.Form["codigocupon"]);
+                Session["idcupon"] = Convert.ToInt32(BDCOMER.Obteneridcupon(Convert.ToInt32(Session["codigoobtencion"])));
                 respuesta = "1";
+                return Content(respuesta);
 
+            }
 
-
+            else if (data == "canjearcupon")
+            {
+                int idobtencion = Convert.ToInt32(Session["codigoobtencion"]);
+                BDCOMER.ActualizarCUPONcanjeo(idobtencion);
+                respuesta = "1";
                 return Content(respuesta);
 
             }
@@ -1959,7 +1954,7 @@ namespace GrandTourMID.Controllers
             }
             else if (data == "verinfocuponcanjeo")
             {
-                int id = Convert.ToInt32(Request.QueryString["idcupon"]);
+                int id = Convert.ToInt32(Session["idcupon"]);
                 DataTable dt = BDCOMER.Verinfocupon(id);
                 String jSonString = ConvertirDataJson(dt);
 
@@ -2229,7 +2224,6 @@ namespace GrandTourMID.Controllers
                 int iduser = Convert.ToInt32(Session["ID"]);
                 int idlugar = Convert.ToInt32(Session["idlugar"]);
                 DataTable lispre = BDCOMER.Galeria(iduser, idlugar);
-                string repe = "";
                 foreach (DataRow row in lispre.Rows)
                 {
                     respuesta = "<figure><a href =\"" + row["foto"] + "\" class=\"photostack-img\"><img style=\"width:240px; height:240px\" src =\"" + row["foto"] + "\" alt=\"img01\" /></a><figcaption><h2 class=\"photostack-title\">"+ row["nombre"] + "</h2></figcaption></figure>";
@@ -2410,7 +2404,7 @@ namespace GrandTourMID.Controllers
             return Content(respuesta);
         }
 
-        public ActionResult cargarimagen(HttpPostedFileBase file)
+        public ActionResult Cargarimagen(HttpPostedFileBase file)
         {
             string respuesta = "";
             if (file != null)

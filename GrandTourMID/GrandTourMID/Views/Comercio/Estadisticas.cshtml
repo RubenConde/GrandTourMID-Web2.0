@@ -5,10 +5,11 @@
 }
 
 <head>
-    <title>Estadísticas</title>
+    <title>Página principal</title>
 </head>
 <div class="w3-container" style="margin-top:10px" id="showcase">
-    <h1 class="w3-justify"><b>Estadísticas</b></h1>
+    <h1 class="w3-justify"><b>Página principal</b></h1><h4>Código de canjeo movil: <b><span id="iduserlabel"></span></b></h4>
+    <button data-target="#exampleModal2" data-toggle="modal" class="btn btn-primary small" style="cursor:pointer" type="button"><li class="fa fa-check-circle" alt="Canjear"></li> Canjear cupón</button>
 </div>
 <style>
     .header-fixed {
@@ -112,13 +113,29 @@
         <div class="modal-content">
             <div id="content" class="modal-body">
                 <form id="frmcanjeo" enctype="multipart/form-data" ondragstart="return false">
-                    <input id="idcuponcanjeo" name="idcuponcanjeo" type="hidden" />
-                    <center><img class="rounded mx-auto d-block" id="imgcuponjemplocanjeo" style="width:150px; height:150px;" /></center>
                     <br />
                     <div class="row">
-                        <div class="col-md-12 mb-3"><label for="validationCustom01">Ingrese el código del cupón</label><input class="form-control" id="codigocupon" name="codigocupon" placeholder="Ingrese el código del cupon que se muestra en el dispositivo" type="text"></div>
+                        <div class="col-md-12 mb-3"><label for="validationCustom01">Ingrese el código correspondiente</label><input class="form-control" id="codigocupon" name="codigocupon" placeholder="Ingrese el código que se muestra en el dispositivo" type="text"></div>
                     </div>
-                    <button class="btn btn-primary" id="btncanjearcupon" type="submit" style="cursor:pointer"><li class="fa fa-edit"></li>Canjear</button>
+                    <button onclick="VerC2()" class="btn btn-primary" id="btncanjearcupon" type="submit" style="cursor:pointer" data-target="#exampleModalconfirmar" data-toggle="modal"><li class="fa fa-edit"></li>Canjear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalconfirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="content" class="modal-body">
+                <form id="canjear">
+                    <center>
+                        <img id="imgcuponejemplo" class="align-middle" style="width:70%" />
+                    </center>
+                    <input class="form-control-plaintext" id="descripcupon" type="text" style="width:100%; border:none; font-size:large" disabled="disabled" />
+                    <br />
+                    <button onclick="VerC2()" class="btn btn-primary" id="btncanjearcupon" type="submit" style="cursor:pointer" data-target="#exampleModalconfirmar" data-toggle="modal"><li class="fa fa-edit"></li>Confirmar</button>
                 </form>
             </div>
         </div>
@@ -169,15 +186,16 @@
 
         });
     }
-    function VerC2(a) {
+    function VerC2() {
         $.ajax({
-            url: "/Ajax/Ajax?data=verinfocupon&idcupon=" + a,
+            url: "/Ajax/Ajax?data=verinfocuponcanjeo",
             type: "POST",
             success: function (a) {
+                document.getElementById('exampleModal').style.display = 'none'
 
                 var datos = JSON.parse(a);
-                $("#imgcuponjemplocanjeo").prop("src", datos.cover);
-                $("#idcuponcanjeo").val(datos.idcupon)
+                $("#imgcuponejemplo").prop("src", datos.cover);
+                $("#descripcupon").val(datos.descripcion)
 
             }
 
@@ -266,6 +284,63 @@
                 processData: false,
                 success: function (a) {
                     if (a == 1) {
+                        //swal({
+                        //    title: "¡Cupón canjeado!",
+                        //    text: 'Favor de aplicar el producto o servicio correspondiente',
+                        //    type: "success",
+                        //    confirmButtonText: "Aceptar",
+                        //    confirmButtonColor: "#7986CB",
+                        //    closeOnCancel: true,
+                        //    closeOnConfirm: true,
+                        //    showLoaderOnConfirm: true
+                        //})
+                        //setTimeout(function () {
+                        //    window.location.reload(1);
+                        //}, 2000);
+
+                    }
+                    else if (a == 2) {
+                        swal({
+                            title: "¡Alto ahí!",
+                            text: 'El código del cupón es incorrecto, favor de verificarlo',
+                            type: "error",
+                            confirmButtonText: "Aceptar",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                    }
+                    else if (a == 0) {
+                        swal({
+                            title: '¿Seguro no olvidas algo?',
+                            html: '<li class="fa fa-image"></li>' + " " + "Debes ingresar una imagen nueva",
+                            type: "question",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        });
+                    }
+                }
+            });
+        });
+    });
+    $(document).ready(function () {
+        $("#canjear").submit(function (e) {
+            e.preventDefault();
+            var form = $('#canjear')[0];
+            var dataString = new FormData(form);
+            $.ajax({
+                url: "/Ajax/Ajax?data=canjearcupon",
+                type: "POST",
+                data: dataString,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (a) {
+                    if (a == 1) {
                         swal({
                             title: "¡Cupón canjeado!",
                             text: 'Favor de aplicar el producto o servicio correspondiente',
@@ -279,6 +354,7 @@
                         setTimeout(function () {
                             window.location.reload(1);
                         }, 2000);
+
                     }
                     else if (a == 2) {
                         swal({

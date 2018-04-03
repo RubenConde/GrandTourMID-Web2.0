@@ -563,7 +563,7 @@ function myinfo() {
 
             var datos = JSON.parse(a);
 
-
+            $('#iduserlabel').html(datos.idusuario);
             $('#usernameadmis').html(datos.nombreus);
             $('#userprofile').val(datos.usuario);
             $('#validationCustom02').val(datos.nombreus);
@@ -573,6 +573,7 @@ function myinfo() {
             $('#validationCustom10').val(datos.email);
             $("#imgcomer").prop("src", datos.foto)
             $("#roundphotoadmi").prop("src", datos.foto)
+            
         }
 
     });

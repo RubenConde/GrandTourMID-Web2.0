@@ -245,20 +245,12 @@ namespace GrandTourMID.DAO
 
         
 
-        public ArrayList TipoDeEstado(CorreoBO objec)
+        public string TipoDeEstado(string email)
         {
-            string comando = string.Format("SELECT estado FROM usuario WHERE email = '{0}'", objec.email);
-            SqlCommand adapter = new SqlCommand(comando, establecerConexion());
-            abrirConexion();
-            SqlDataReader lectura;
-            ArrayList tipous = new ArrayList();
-            lectura = adapter.ExecuteReader();
-            while (lectura.Read())
-            {
-                tipous.Add(lectura["estado"].ToString());
-            }
-            cerrarconexion();
-            return tipous;
+            string columna = "estado";
+            string sql = string.Format("select * from usuario where email = '{0}'", email);
+
+            return EjectuadorComandosDatoEspecifico(sql, columna);
 
         }
 
