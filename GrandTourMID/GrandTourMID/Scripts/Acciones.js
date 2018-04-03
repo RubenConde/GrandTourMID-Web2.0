@@ -1,50 +1,7 @@
 ﻿
 
-$(document).ready(function () {
-    $.ajax({
-        url: "/Ajax/Ajax?data=loadcomentarios",
-        type: "POST",
-        success: function (a) {
 
-            $("#scrollable").html(a);
 
-        }
-    });
-
-    var ajaxCall = function () {
-        $.ajax({
-            url: "/Ajax/Ajax?data=loadcomentarios",
-            type: "POST",
-            success: function (a) {
-
-                $("#scrollable").html(a);
-
-            }
-        });
-    }
-    setInterval(ajaxCall, 3000)
-});
-
-function inglescambio() {
-
-    $.ajax({
-        url: "/Ajax/Ajax?data=ingles",
-        type: "POST",
-        success: function (a) {
-
-            var datos = JSON.parse(a);
-            $('#edittitulo').html(datos.titulo);
-            $('#titulograndtour').html(datos.titulo2);
-            $('#infoapp').html(datos.infoapp);
-            $('#edititulo3').html(datos.titulo3);
-            $('#edittitulo4').html(datos.titulo4);
-            $("#tituloju").html(datos.titulojugar);
-            $("#subtituju").html(datos.subtitulojugar);
-
-        }
-    });
-
-}
 
 $(document).ready(function () {
     $.ajax({
@@ -73,7 +30,7 @@ $(document).ready(function () {
             }
         });
     }
-    setInterval(ajaxCall, 3000)
+    setInterval(ajaxCall, 5000)
 });
 
 
@@ -122,7 +79,7 @@ function cargarinfoinicio() {
         });
     }
 
-    setInterval(ajaxCall, 2000);
+    setInterval(ajaxCall, 5000);
 }
 
 function cargarimagenesinicio() {
@@ -166,7 +123,7 @@ function cargarimagenesinicio() {
         });
     }
 
-    setInterval(ajaxCall, 2000);
+    setInterval(ajaxCall, 5000);
 
 }
 
@@ -390,7 +347,7 @@ $(document).ready(function () {
             }
         });
     }
-    setInterval(ajaxCall, 1000);
+    setInterval(ajaxCall, 5000);
 });
 
 
