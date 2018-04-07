@@ -37,15 +37,13 @@ namespace GrandTourMID.DAO
 
         public int ActualizarCUPON(ComercioBO objcomercio)
         {
-            cmd = new SqlCommand("Update cupon set cantidad=@cantidad, fecha=@fecha, cover=@cover, descripcion=@descripcion, cupon64=@cupon64, nombrecupon=@nombrecupon, condiciones=@condiciones where idcupon=@id");
+            cmd = new SqlCommand("Update cupon set cantidad=@cantidad, fecha=@fecha, cover=@cover, descripcion=@descripcion, nombrecupon=@nombrecupon, condiciones=@condiciones where idcupon=@id");
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = objcomercio.cantidad;
             cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = objcomercio.fecha;
             cmd.Parameters.Add("@cover", SqlDbType.VarChar).Value = objcomercio.cover;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = objcomercio.descripcion;
-            cmd.Parameters.Add("@cupon64", SqlDbType.VarChar).Value = objcomercio.cupon64;
             cmd.Parameters.Add("@nombrecupon", SqlDbType.VarChar).Value = objcomercio.nombrecupon;
             cmd.Parameters.Add("@condiciones", SqlDbType.VarChar).Value = objcomercio.condiciones;
-
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = objcomercio.idcupon;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);
@@ -167,13 +165,12 @@ namespace GrandTourMID.DAO
 
         public int AddPublicidad(ComercioBO objelug)
         {
-            cmd = new SqlCommand("insert into cupon  (cantidad, fecha, cover, descripcion, idusuario, cupon64, nombrecupon, condiciones) values (@cantidad, @fecha, @cover, @descripcion, @idusuario, @cupon64, @nombre, @condiciones)");
+            cmd = new SqlCommand("insert into cupon  (cantidad, fecha, cover, descripcion, idusuario, nombrecupon, condiciones) values (@cantidad, @fecha, @cover, @descripcion, @idusuario, @nombre, @condiciones)");
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = objelug.cantidad;
             cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = objelug.fecha;
             cmd.Parameters.Add("@cover", SqlDbType.VarChar).Value = objelug.cover;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = objelug.descripcion;
             cmd.Parameters.Add("@idusuario", SqlDbType.Int).Value = objelug.idusuario;
-            cmd.Parameters.Add("@cupon64", SqlDbType.VarChar).Value = objelug.cupon64;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = objelug.nombrecupon;
             cmd.Parameters.Add("@condiciones", SqlDbType.VarChar).Value = objelug.condiciones;
             cmd.CommandType = CommandType.Text;

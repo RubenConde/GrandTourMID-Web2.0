@@ -2,7 +2,7 @@
 $(document).ready(function () {
     $("#frmagregarpubli").submit(function (e) {
         e.preventDefault();
-        if ($("#namepubli").val() != "" && $("#maxcanjeo").val() != "" && $("#fechacupon").val() != "" && $("#descrip").val() != "") {
+        if ($("#namepubli").val() != "" && $("#maxcanjeo").val() != "" && $("#fechacupon").val() != "" && $("#descrip").val() != "" && $("#condiciones").val() != "") {
             var form = $('#frmagregarpubli')[0];
             var dataString = new FormData(form);
             $.ajax({
