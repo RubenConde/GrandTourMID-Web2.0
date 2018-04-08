@@ -28,7 +28,7 @@ namespace GrandTourMID.DAO
 
         public DataTable VerPreguntasLugar(int id)
         {
-            string sql = string.Format("select pregunta.idpregunta, pregunta.pregunta, Respuestas.correcta, Respuestas.respuesta2, Respuestas.respuesta3, Respuestas.respuesta4 from pregunta, Respuestas, lugares where pregunta.idpregunta = Respuestas.idpregunta and pregunta.idlugar = lugares.idlugar and lugares.idlugar = '{0}'", id);
+            string sql = string.Format("select r.idrespuesta, r.pregunta, r.textorespuesta, r.textoincorrecta, r.textoincorrecta2, r.textoincorrecta3 from respuesta r where r.idlugar =  '{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable VerRetosLugar(int id)
@@ -39,7 +39,7 @@ namespace GrandTourMID.DAO
 
         public DataTable verinfopregunta(int id)
         {
-            string sql = string.Format("select pregunta.idpregunta, lugares.imagenportada, pregunta.pregunta, Respuestas.correcta, Respuestas.respuesta2, Respuestas.respuesta3,lugares.nombre, Respuestas.respuesta4 from pregunta, Respuestas, lugares where pregunta.idpregunta = Respuestas.idpregunta and pregunta.idlugar = lugares.idlugar and pregunta.idpregunta ='{0}'", id);
+            string sql = string.Format("  select r.idrespuesta, r.pregunta, r.textorespuesta, r.textoincorrecta, r.textoincorrecta2, r.textoincorrecta3, l.imagenportada, l.nombre from respuesta r join lugares l on l.idlugar = r.idlugar where r.idrespuesta = '{0}'", id);
             return EjercutarSentenciaBusqueda(sql);
         }
         public DataTable verinforeto(int id)
@@ -49,16 +49,13 @@ namespace GrandTourMID.DAO
         }
         public int ActualizarPregunta(PreguntasBO objep)
         {
-            cmd = new SqlCommand("update pregunta set pregunta=@pre where idpregunta=@id");
-            cmd.Parameters.Add("@pre", SqlDbType.VarChar).Value = objep.pregunta;
-            cmd.Parameters.Add("@id", SqlDbType.Int).Value = objep.idlugar;
-            cmd.CommandType = CommandType.Text;
-            int id = EjecutarComando(cmd);
-            cmd = new SqlCommand("update Respuestas set correcta=@correcta, respuesta2=@re2, respuesta3=@re3, respuesta4=@re4 where idpregunta=@id");
+
+            cmd = new SqlCommand("update Respuesta set pregunta=@pregunta, textorespuesta=@correcta, textoincorrecta=@re2, textoincorrecta2=@re3, textoincorrecta3=@re4 where idrespuesta=@id");
             cmd.Parameters.Add("@correcta", SqlDbType.VarChar).Value = objep.correcta;
             cmd.Parameters.Add("@re2", SqlDbType.VarChar).Value = objep.respuesta2;
             cmd.Parameters.Add("@re3", SqlDbType.VarChar).Value = objep.respuesta3;
             cmd.Parameters.Add("@re4", SqlDbType.VarChar).Value = objep.respuesta4;
+            cmd.Parameters.Add("@pregunta", SqlDbType.VarChar).Value = objep.pregunta;
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = objep.idlugar;
             cmd.CommandType = CommandType.Text;
             return EjecutarComando(cmd);

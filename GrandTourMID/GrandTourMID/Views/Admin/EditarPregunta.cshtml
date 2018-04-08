@@ -3,7 +3,11 @@
     ViewBag.Title = "EditarPregunta";
     Layout = "~/Views/Shared/MasterAdmi.cshtml";
 }
-
+<head>
+    <title>
+        Editar Pregunta
+    </title>
+</head>
 <div class="container-fluid">
     <div class="bgc-white bd bdrs-3 p-20 mB-20">
        <a style="color:black" href="~/Admin/ListaPreguntas"><li class="fa fa-reply-all"></li> Regresar</a> <h4 class="c-grey-900 mT-10 mB-30">Agregar Preguntas y respuestas</h4>
@@ -59,7 +63,15 @@
                 success: function (a) {
 
                     if (a == 1) {
-                        alert("ACtualizado");
+                        swal({
+                            text: 'Se ha modificado el contenido correctamente!',
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#7986CB",
+                            closeOnCancel: true,
+                            closeOnConfirm: true,
+                            showLoaderOnConfirm: true
+                        })
                         Infopregunta();
                     }
                     else if (a == 0) {
@@ -86,12 +98,12 @@
                 var datos = JSON.parse(a);
 
                 $('#namepreguntaeditar').val(datos.pregunta);
-                $('#editarcorrecta').val(datos.correcta);
-                $('#editarincorrecta1').val(datos.respuesta2);
-                $('#editarincorrecta2').val(datos.respuesta3);
-                $('#editarincorrecta3').val(datos.respuesta4);
+                $('#editarcorrecta').val(datos.textorespuesta);
+                $('#editarincorrecta1').val(datos.textoincorrecta);
+                $('#editarincorrecta2').val(datos.textoincorrecta2);
+                $('#editarincorrecta3').val(datos.textoincorrecta3);
                 $('#titulolugareditar').html(datos.nombre);
-                $("#respuesta").val(datos.idpregunta);
+                $("#respuesta").val(datos.idrespuesta);
                 $("#imageneditarpregunta").prop("src", datos.imagenportada)
 
             }

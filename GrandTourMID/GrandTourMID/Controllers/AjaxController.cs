@@ -1874,6 +1874,22 @@ namespace GrandTourMID.Controllers
             {
                 if (file != null)
                 {
+                    Account account = new Account(
+                               "grandtourmid",
+                               "895677732535539",
+                                "SKCC1grgJJ7WNO4hTn8sGevIlpM");
+
+                    Cloudinary cloudinary = new Cloudinary(account);
+
+                    var uploadParams = new ImageUploadParams
+                    {
+                        File = new FileDescription(file.FileName, file.InputStream),
+                    };
+
+                    var uploadResult = cloudinary.Upload(uploadParams);
+
+                    String ruta = uploadResult.SecureUri.ToString();
+
                     string url = Request.Form["urlimagen"];
                     string icono = Request.Form["file"];
                     string icono2 = "icono_" + System.IO.Path.GetFileName(file.FileName);
@@ -1887,7 +1903,7 @@ namespace GrandTourMID.Controllers
                     objelug.informacionweb = Request.Form["editinfolugarweb"];
                     objelug.direccion = Request.Form["editdireccionlugar"];
                     objelug.icono = iconochido;
-                    objelug.rutaicono = "/img/icono/" + icono2;
+                    objelug.rutaicono = ruta;
                     BDLU.ActualizarDatosSucursal(objelug);
                     respuesta = "1";
                 }
@@ -2167,7 +2183,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDPRE.VerPreguntasLugar(id);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td > " + row["idpregunta"] + " </td ><td>" + row["pregunta"] + "</td><td>" + row["correcta"] + " </td><td>" + row["respuesta2"] + "</td><td>" + row["respuesta3"] + "</td><td>" + row["respuesta4"] + "</td><td><button type=\"button\" onclick=\"editarpregunta(" + row["idpregunta"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
+                    respuesta = "<tr><td > " + row["idrespuesta"] + " </td ><td>" + row["pregunta"] + "</td><td>" + row["textorespuesta"] + " </td><td>" + row["textoincorrecta"] + "</td><td>" + row["textoincorrecta2"] + "</td><td>" + row["textoincorrecta3"] + "</td><td><button type=\"button\" onclick=\"editarpregunta(" + row["idrespuesta"] + ")\" class=\"btn btn-primary\"><li class=\"fa fa-edit\"></li></button></td></tr>";
                     Response.Write(respuesta);
 
 
