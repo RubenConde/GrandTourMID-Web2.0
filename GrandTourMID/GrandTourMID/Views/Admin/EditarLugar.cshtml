@@ -24,6 +24,7 @@
                     <center><label class="btn-outline-secondary rounded" id="editarlugarimagen" style="width:150px;cursor:pointer;"><li class="fa fa-paperclip"></li> Seleccionar imagen<input name="file" type="file" accept="image/*" style="display:none" onchange="loadimagenlugareditar(event)" /></label></center>
                     <center><button type="button" id="cancelarimagenlugar" class="btn btn-outline-danger btn-sm rounded-circle"><span class="btn-sm">&Chi;</span></button></center>
                     <button id="actualizarfotolugar" type="submit" class="btn btn-primary pull-right">Actualizar foto</button>
+                    <button data-target="#exampleModaQR" data-toggle="modal" class="btn btn-primary small pull-left" style="cursor:pointer" type="button"><li class="fa fa-check-circle" alt="Canjear"></li> Ver código QR</button>
                 </div>
             </div>
         </form>
@@ -108,8 +109,22 @@
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModaQR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="content" class="modal-body">
+                    <center>
+                        <img id="codigoqr" name="codigoqr" src="" alt="Generador de Códigos QR Codes" />
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 <script src="~/Scripts/admin_jquery_dist_jquery.min.js"></script>
+<script src="~/Scripts/qrcode.js"></script>
 <script>
     var imageList = Array();
     for (var i = 1; i <= 10; i++) {
@@ -335,9 +350,9 @@
             success: function (a) {
 
                 var datos = JSON.parse(a);
-                
 
                 $("#imgeditarlugar").prop("src", datos.imagenportada);
+                $("#codigoqr").prop("src", "http://www.codigos-qr.com/qr/php/qr_img.php?d=" + datos.idlugar + "&s=10&e=");
                 $('#editnamelugar').val(datos.nombre);
                 $('#editinfolugarweb').val(datos.informacionweb);
                 $('#editinfolugarapp').val(datos.informacionapp);
@@ -349,6 +364,7 @@
                 $('#idlugar').val(datos.idlugar);
                 $('#idlugar2').val(datos.idlugar);
                 $('#idlugar3').val(datos.idlugar);
+                $('#idlugarqr').val(datos.idlugar);
                 $('#urlimagen').val(datos.rutaicono);
 
 

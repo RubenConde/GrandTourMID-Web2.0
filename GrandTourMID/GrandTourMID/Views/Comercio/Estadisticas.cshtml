@@ -5,10 +5,10 @@
 }
 
 <head>
-    <title>Página principal</title>
+    <title>Panel de Control</title>
 </head>
 <div class="w3-container" style="margin-top:10px" id="showcase">
-    <h1 class="w3-justify"><b>Página principal</b></h1><h4>Código de canjeo movil: <b><span id="iduserlabel"></span></b></h4>
+    <h1 class="w3-justify"><b>Panel de Control</b></h1><h4>Código de canjeo movil: <b><span id="iduserlabel"></span></b></h4>
     <button data-target="#exampleModal2" data-toggle="modal" class="btn btn-primary small" style="cursor:pointer" type="button"><li class="fa fa-check-circle" alt="Canjear"></li> Canjear cupón</button>
 </div>
 <style>
@@ -359,13 +359,16 @@
                     else if (a == 2) {
                         swal({
                             title: "¡Alto ahí!",
-                            text: 'El código del cupón es incorrecto, favor de verificarlo',
+                            text: 'La cantidad de canjeos ha llegado al máximo, favor de aplicar el producto o servicio por ultima vez',
                             type: "error",
                             confirmButtonText: "Aceptar",
                             closeOnCancel: true,
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true
-                        });
+                        })
+                        setTimeout(function () {
+                            window.location.reload(1);
+                        }, 2000);
                     }
                     else if (a == 0) {
                         swal({

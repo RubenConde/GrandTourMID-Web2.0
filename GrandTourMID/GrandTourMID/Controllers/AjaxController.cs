@@ -1864,8 +1864,24 @@ namespace GrandTourMID.Controllers
             else if (data == "canjearcupon")
             {
                 int idobtencion = Convert.ToInt32(Session["codigoobtencion"]);
-                BDCOMER.ActualizarCUPONcanjeo(idobtencion);
-                respuesta = "1";
+                int MAXIMOcanjeos = Convert.ToInt32(BDCOMER.Obtenermaximocanjeos(Convert.ToInt32(Session["idcupon"])));
+                int canjeoshechos = Convert.ToInt32(BDCOMER.Obtenercanjeoshechos(Convert.ToInt32(Session["idcupon"])));
+                if (canjeoshechos < MAXIMOcanjeos)
+                {
+                    BDCOMER.ActualizarCUPONcanjeo(idobtencion);
+                    int MAXIMOcanjeos2 = Convert.ToInt32(BDCOMER.Obtenermaximocanjeos(Convert.ToInt32(Session["idcupon"])));
+                    int canjeoshechos2 = Convert.ToInt32(BDCOMER.Obtenercanjeoshechos(Convert.ToInt32(Session["idcupon"])));
+                    if (canjeoshechos2 == MAXIMOcanjeos2)
+                    {
+                        BDCOMER.ActualizarCUPONcOMPLETO(Convert.ToInt32(Session["idcupon"]));
+                    }
+                    respuesta = "1";
+                }
+                else
+                {
+                    BDCOMER.ActualizarCUPONcOMPLETO(Convert.ToInt32(Session["idcupon"]));
+                    respuesta = "2";
+                }
                 return Content(respuesta);
 
             }
@@ -2212,7 +2228,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDCOMER.VerPublicidades1(iduser);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ><td><button onclick=\"VerC(" + row["idcupon"] + ")\" data-target=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-pencil\" alt=\"Editar\"></li></button>&nbsp<button onclick=\"VerC2(" + row["idcupon"] + ")\" data-target=\"#exampleModal2\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-check-circle\" alt=\"Canjear\"></li></button></td></tr>";
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeoscupon"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ><td><button onclick=\"VerC(" + row["idcupon"] + ")\" data-target=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-pencil\" alt=\"Editar\"></li></button>&nbsp<button onclick=\"VerC2(" + row["idcupon"] + ")\" data-target=\"#exampleModal2\" data-toggle=\"modal\" class=\"btn btn-primary small\" style=\"cursor:pointer\" type=\"button\"><li class=\"fa fa-check-circle\" alt=\"Canjear\"></li></button></td></tr>";
                     Response.Write(respuesta);
 
 
@@ -2227,7 +2243,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDCOMER.VerPublicidades2(iduser);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeos"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ></tr>";
+                    respuesta = "<tr><td ><img src =\"" + row["cover"] + "\" style=\"width:150px; height:150px\" class=\"rounded\"/></td ><td >" + row["descripcion"] + "</td ><td >" + row["canjeoscupon"] + "</td ><td >" + row["cantidad"] + "</td ><td >" + row["fecha"] + "</td ></tr>";
                     Response.Write(respuesta);
 
 
@@ -2242,7 +2258,7 @@ namespace GrandTourMID.Controllers
                 DataTable lispre = BDCOMER.Galeria(iduser, idlugar);
                 foreach (DataRow row in lispre.Rows)
                 {
-                    respuesta = "<figure><a href =\"" + row["foto"] + "\" class=\"photostack-img\"><img style=\"width:240px; height:240px\" src =\"" + row["foto"] + "\" alt=\"img01\" /></a><figcaption><h2 class=\"photostack-title\">"+ row["nombre"] + "</h2></figcaption></figure>";
+                    respuesta = "<figure><a href =\"" + row["foto"] + "\" class=\"photostack-img\"><img style=\"width:240px; height:240px\" src =\"" + row["foto"] + "\" alt=\"img01\" /></a><figcaption><h2 class=\"photostack-title\">" + row["nombre"] + "</h2></figcaption></figure>";
 
                     Response.Write(respuesta);
                 }

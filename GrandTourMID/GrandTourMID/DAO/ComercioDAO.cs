@@ -73,10 +73,37 @@ namespace GrandTourMID.DAO
 
 
         }
+
+        public int ActualizarCUPONcOMPLETO(int idcupon)
+        {
+            cmd = new SqlCommand("Update cupon set estado = 1 where idcupon=@id");
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = idcupon;
+            cmd.CommandType = CommandType.Text;
+            return EjecutarComando(cmd);
+
+
+        }
+
         public string Obteneridcupon(int idobtencion)
         {
             string columna = "idcupon";
             string sql = string.Format("select idcupon from usuarioXcupon where idobtencioncupon = {0}", idobtencion);
+
+            return EjectuadorComandosDatoEspecifico(sql, columna);
+        }
+
+        public string Obtenermaximocanjeos(int idcupon)
+        {
+            string columna = "cantidad";
+            string sql = string.Format("select cantidad from cupon where idcupon = {0}", idcupon);
+
+            return EjectuadorComandosDatoEspecifico(sql, columna);
+        }
+
+        public string Obtenercanjeoshechos(int idcupon)
+        {
+            string columna = "canjeoshechos";
+            string sql = string.Format("select count(*) as canjeoshechos from usuarioXcupon where idcupon = {0} and estado = 1", idcupon);
 
             return EjectuadorComandosDatoEspecifico(sql, columna);
         }
@@ -144,14 +171,14 @@ namespace GrandTourMID.DAO
 
         public DataTable VerPublicidades1(int iduser)
         {
-            string sql = string.Format("select c.idcupon, c.cover, c.descripcion, c.cantidad, CONVERT(varchar, c.fecha, 107) as fecha, c.canjeos from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 0", iduser);
+            string sql = string.Format("select c.idcupon, c.cover, c.descripcion, c.cantidad, CONVERT(varchar, c.fecha, 107) as fecha, (Select count(*) as canjeos from usuarioXcupon where idcupon = c.idcupon and estado = 1) as canjeoscupon from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 0", iduser);
 
             return EjercutarSentenciaBusqueda(sql);
         }
 
         public DataTable VerPublicidades2(int iduser)
         {
-            string sql = string.Format("select c.cover, c.descripcion, c.cantidad, CONVERT(varchar, c.fecha, 107) as fecha, c.canjeos from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 1", iduser);
+            string sql = string.Format("select c.cover, c.descripcion, c.cantidad, CONVERT(varchar, c.fecha, 107) as fecha, (Select count(*) as canjeos from usuarioXcupon where idcupon = c.idcupon and estado = 1) as canjeoscupon from cupon c join usuario u on c.idusuario = u.idusuario where c.idusuario = '{0}' and c.estado = 1", iduser);
 
             return EjercutarSentenciaBusqueda(sql);
         }
