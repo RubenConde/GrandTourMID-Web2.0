@@ -99,6 +99,13 @@ namespace GrandTourMID.DAO
 
             return EjectuadorComandosDatoEspecifico(sql, columna);
         }
+        public string Obtenerestado(int idobtencion)
+        {
+            string columna = "estado";
+            string sql = string.Format("select estado from usuarioxcupon where idobtencioncupon = {0}", idobtencion);
+
+            return EjectuadorComandosDatoEspecifico(sql, columna);
+        }
 
         public string Obtenercanjeoshechos(int idcupon)
         {

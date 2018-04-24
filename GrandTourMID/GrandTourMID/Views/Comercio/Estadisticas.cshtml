@@ -8,7 +8,7 @@
     <title>Panel de Control</title>
 </head>
 <div class="w3-container" style="margin-top:10px" id="showcase">
-    <h1 class="w3-justify"><b>Panel de Control</b></h1><h4>Código de canjeo movil: <b><span id="iduserlabel"></span></b></h4>
+    <h1 class="w3-justify"><b>Panel de Control</b></h1><h4>Código de canjeo móvil: <b><span id="iduserlabel"></span></b></h4>
     <button data-target="#exampleModal2" data-toggle="modal" class="btn btn-primary small" style="cursor:pointer" type="button"><li class="fa fa-check-circle" alt="Canjear"></li> Canjear cupón</button>
 </div>
 <style>
@@ -46,7 +46,7 @@
 </style>
 <div style="position: center">
     <hr />
-    <h3>Cupones Vigentes</h3>
+    <h3>Cupones canjeables</h3>
     <table class="table table-bordered ">
         <thead>
         <td style="width:200px">Imágen del cupón</td>
@@ -59,7 +59,7 @@
         <tbody id="contenedorpublis"></tbody>
     </table>
     <br />
-    <h3>Cupones Vencidos</h3>
+    <h3>Cupones no canjeables</h3>
     <table class="table table-bordered">
         <thead>
         <td style="width:200px">Imágen del cupón</td>
@@ -370,13 +370,12 @@
                             window.location.reload(1);
                         }, 2000);
                     }
-                    else if (a == 0) {
+                    else if (a == 3) {
                         swal({
-                            title: '¿Seguro no olvidas algo?',
-                            html: '<li class="fa fa-image"></li>' + " " + "Debes ingresar una imagen nueva",
-                            type: "question",
+                            title: "¡Alto ahí!",
+                            text: '¡Este cupón ya ha sido canjeado!',
+                            type: "error",
                             confirmButtonText: "Aceptar",
-                            confirmButtonColor: "#7986CB",
                             closeOnCancel: true,
                             closeOnConfirm: true,
                             showLoaderOnConfirm: true

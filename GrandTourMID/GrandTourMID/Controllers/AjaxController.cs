@@ -1864,24 +1864,33 @@ namespace GrandTourMID.Controllers
             else if (data == "canjearcupon")
             {
                 int idobtencion = Convert.ToInt32(Session["codigoobtencion"]);
-                int MAXIMOcanjeos = Convert.ToInt32(BDCOMER.Obtenermaximocanjeos(Convert.ToInt32(Session["idcupon"])));
-                int canjeoshechos = Convert.ToInt32(BDCOMER.Obtenercanjeoshechos(Convert.ToInt32(Session["idcupon"])));
-                if (canjeoshechos < MAXIMOcanjeos)
+                int idestado = Convert.ToInt32(BDCOMER.Obtenerestado(idobtencion));
+                if (idestado == 1)
                 {
-                    BDCOMER.ActualizarCUPONcanjeo(idobtencion);
-                    int MAXIMOcanjeos2 = Convert.ToInt32(BDCOMER.Obtenermaximocanjeos(Convert.ToInt32(Session["idcupon"])));
-                    int canjeoshechos2 = Convert.ToInt32(BDCOMER.Obtenercanjeoshechos(Convert.ToInt32(Session["idcupon"])));
-                    if (canjeoshechos2 == MAXIMOcanjeos2)
-                    {
-                        BDCOMER.ActualizarCUPONcOMPLETO(Convert.ToInt32(Session["idcupon"]));
-                    }
-                    respuesta = "1";
+                    respuesta = "3";
                 }
                 else
                 {
-                    BDCOMER.ActualizarCUPONcOMPLETO(Convert.ToInt32(Session["idcupon"]));
-                    respuesta = "2";
+                    int MAXIMOcanjeos = Convert.ToInt32(BDCOMER.Obtenermaximocanjeos(Convert.ToInt32(Session["idcupon"])));
+                    int canjeoshechos = Convert.ToInt32(BDCOMER.Obtenercanjeoshechos(Convert.ToInt32(Session["idcupon"])));
+                    if (canjeoshechos < MAXIMOcanjeos)
+                    {
+                        BDCOMER.ActualizarCUPONcanjeo(idobtencion);
+                        int MAXIMOcanjeos2 = Convert.ToInt32(BDCOMER.Obtenermaximocanjeos(Convert.ToInt32(Session["idcupon"])));
+                        int canjeoshechos2 = Convert.ToInt32(BDCOMER.Obtenercanjeoshechos(Convert.ToInt32(Session["idcupon"])));
+                        if (canjeoshechos2 == MAXIMOcanjeos2)
+                        {
+                            BDCOMER.ActualizarCUPONcOMPLETO(Convert.ToInt32(Session["idcupon"]));
+                        }
+                        respuesta = "1";
+                    }
+                    else
+                    {
+                        BDCOMER.ActualizarCUPONcOMPLETO(Convert.ToInt32(Session["idcupon"]));
+                        respuesta = "2";
+                    }
                 }
+
                 return Content(respuesta);
 
             }

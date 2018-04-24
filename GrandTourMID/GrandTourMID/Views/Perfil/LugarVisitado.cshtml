@@ -13,7 +13,7 @@
 
     <div class="w3-row w3-padding-64" id="about">
         <div class="w3-col m6 w3-padding-large w3-hide-small">
-            <img id="imagenlugar"  class="w3-round w3-image w3-opacity-min" alt="Table Setting" style="width:100%; height:320px">
+            <img id="imagenlugar" class="w3-round w3-image w3-opacity-min" alt="Table Setting" style="width:100%; height:320px">
             <br /><br />
             <div id="googleMap" class="w3-round-large " style="width:100%;height:250px;"></div>
         </div>
@@ -22,7 +22,9 @@
             <h1 id="namelugar" class="w3-center">About Catering</h1><br>
             <h6 id="fechavisita" class="w3-center">Tradition since 1889</h6>
             <h6 id="infoweb" class="w3-small"></h6>
-            <a href="~/Perfil/Galeria">Ver fotos</a>
+            <center>
+                <a class="w3-button w3-amber w3-hover-yellow" href="~/Perfil/Galeria">Ver fotos</a>
+            </center>
         </div>
         <input id="latitud" type="hidden" />
         <input id="longitud" type="hidden" />
@@ -37,10 +39,10 @@
     $(document).ready(function () {
 
         Cargarinfolugar();
-        
+
     });
 
-    
+
 
 
     function Cargarinfolugar() {
